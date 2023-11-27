@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_constraintlayout/flutter_constraintlayout.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/pages/mine/view/widget/custom_mine_item.dart';
+import 'package:lend_funds/pages/mine/view/widget/delete_account_dialog.dart';
+import 'package:lend_funds/utils/storage/storage_utils.dart';
+import 'package:lend_funds/utils/toast/toast_utils.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({Key? key}) : super(key: key);
@@ -151,7 +156,11 @@ class _MinePageState extends State<MinePage> {
                   GestureDetector(
                     behavior: HitTestBehavior.opaque,
                     onTap: () {
-                      // _makePhoneCall(phones1);
+                      CZDialogUtil.show(DeleteAccountDialog(confirmBlock: () {
+                        CZDialogUtil.dismiss();
+                      }, cancelBlock: () {
+                        CZDialogUtil.dismiss();
+                      }));
                     },
                     child: MineItem(
                         title: "Delete account",
@@ -174,8 +183,8 @@ class _MinePageState extends State<MinePage> {
                   borderRadius: BorderRadius.circular(10.w)),
               child: TextButton(
                 onPressed: () {
-                  // LoginController.to.phoneStr = _phoneController.text;
-                  // Get.toNamed(CZRouteConfig.loginCode);
+                  CZStorage.removeUserInfo();
+                  Get.offAll(() => LoginPage());
                 },
                 child: Text("Log in",
                     style: TextStyle(

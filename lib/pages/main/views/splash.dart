@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/login/view/widget/agree_install_dialog.dart';
+import 'package:lend_funds/pages/main/views/widget/agree_install_dialog.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';

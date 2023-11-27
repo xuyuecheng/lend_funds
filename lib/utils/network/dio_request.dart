@@ -6,9 +6,11 @@ import 'package:dio/dio.dart';
 import 'package:dio/src/form_data.dart' as form;
 import 'package:dio/src/multipart_file.dart' as multipart;
 import 'package:dio/src/response.dart' as res;
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/login/controllers/login_controller.dart';
 import 'package:lend_funds/pages/login/view/login_page.dart';
+import 'package:lend_funds/utils/storage/storage_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 
 import 'dio_config.dart';
@@ -27,7 +29,9 @@ class HttpRequest {
       {String method = "post",
       Map<String, dynamic>? params,
       Interceptor? inter}) async {
-    log("请求参数params:$params");
+    if (kDebugMode) {
+      log("请求参数params:$params");
+    }
     // 1.创建单独配置
     String token = await DioUtils.getToken();
     final options = Options(
@@ -74,12 +78,15 @@ class HttpRequest {
         } else {
           result = await DioUtils.responseDecrypt(response.data);
         }
-        log("返回结果result:$result");
+        if (kDebugMode) {
+          log("返回结果result:$result");
+        }
         if (result != null && result['status'] != null) {
           if (result['status'] == 1012) {
             //跳转登录页面
             if (LoginController.to.isHaveLoginPage == false) {
               LoginController.to.phoneStr = '';
+              CZStorage.removeUserInfo();
               Get.offAll(const LoginPage());
             }
             LoginController.to.isHaveLoginPage = true;
@@ -145,6 +152,7 @@ class HttpRequest {
             //跳转登录页面
             if (LoginController.to.isHaveLoginPage == false) {
               LoginController.to.phoneStr = '';
+              CZStorage.removeUserInfo();
               Get.offAll(const LoginPage());
             }
             LoginController.to.isHaveLoginPage = true;
