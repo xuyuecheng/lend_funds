@@ -11,16 +11,14 @@ class DeleteAccountDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: 327.h,
-        ),
         Center(
           child: Container(
             width: 345.w,
             decoration: BoxDecoration(
                 color: Colors.transparent,
-                borderRadius: BorderRadius.circular(15.w),
+                // borderRadius: BorderRadius.circular(15.w),
                 image: DecorationImage(
                     image: AssetImage(
                         'assets/mine/mine_delete_account_background.png'),

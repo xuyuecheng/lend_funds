@@ -186,7 +186,7 @@ class _MinePageState extends State<MinePage> {
                   CZStorage.removeUserInfo();
                   Get.offAll(() => LoginPage());
                 },
-                child: Text("Log in",
+                child: Text("Log out",
                     style: TextStyle(
                         fontSize: 26.sp,
                         color: const Color(0xFFFFFFFF),

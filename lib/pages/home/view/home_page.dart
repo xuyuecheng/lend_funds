@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_constraintlayout/flutter_constraintlayout.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lend_funds/pages/home/view/widget/home_product_dialog.dart';
+import 'package:lend_funds/utils/toast/toast_utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -385,7 +387,10 @@ class _HomePageState extends State<HomePage> {
                         GestureDetector(
                           behavior: HitTestBehavior.translucent,
                           onTap: () {
-                            debugPrint("111");
+                            CZDialogUtil.show(
+                                HomeProductDialog(confirmBlock: () {
+                              CZDialogUtil.dismiss();
+                            }));
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(
