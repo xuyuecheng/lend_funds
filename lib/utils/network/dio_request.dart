@@ -12,6 +12,7 @@ import 'package:lend_funds/pages/login/controllers/login_controller.dart';
 import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'dio_config.dart';
 import 'dio_utils.dart';
@@ -55,6 +56,18 @@ class HttpRequest {
       handler.next(e);
     });
     List<Interceptor> inters = [dInter];
+
+    if (kDebugMode) {
+      inters.add(PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseHeader: true,
+        responseBody: true,
+        error: true,
+        compact: true,
+        maxWidth: 100,
+      ));
+    }
 
     // 请求单独拦截器
     if (inter != null) {
