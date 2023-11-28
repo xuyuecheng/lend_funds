@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_constraintlayout/flutter_constraintlayout.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:lend_funds/pages/home/view/widget/home_product_dialog.dart';
+import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 
 class HomePage extends StatefulWidget {
@@ -222,8 +224,8 @@ class _HomePageState extends State<HomePage> {
               ),
             ).applyConstraint(
                 id: cId('cont3'), topCenterTo: parent.topMargin(291.5.h)),
-            // _createRecommend(),
-            _createProducts(),
+            _createRecommend(),
+            // _createProducts(),
           ],
         ),
       )),
@@ -287,7 +289,7 @@ class _HomePageState extends State<HomePage> {
                     GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
-                        debugPrint("111");
+                        Get.toNamed(CZRouteConfig.uploadPersonalInforma);
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(

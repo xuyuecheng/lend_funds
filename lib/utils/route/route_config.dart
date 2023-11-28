@@ -4,6 +4,7 @@
 // import 'package:financial_app/pages/webview/webview_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/credit/view/upload_personal_info_page.dart';
 import 'package:lend_funds/pages/expection_pages/unknown_route.dart';
 import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/pages/login/view/validate_code_page.dart';
@@ -39,7 +40,7 @@ class CZRouteConfig {
   static const splash = '/splash';
   //Home
   static const home = '/home';
-  static const credit = '/home/credit';
+  static const uploadPersonalInforma = '/home/uploadPersonalInforma';
   static const creditBaseInfo = '/home/credit/baseInfo';
   static const ktp = '/home/credit/ktp';
   static const contacts = '/home/credit/contacts';
@@ -83,6 +84,9 @@ class CZRouteConfig {
     // GetPage(name: mine, page: () => const CZMinePage()),
     GetPage(name: login, page: () => const LoginPage()),
     GetPage(name: loginCode, page: () => const ValidateCodePage()),
+    GetPage(
+        name: uploadPersonalInforma,
+        page: () => const UploadPersonalInforPage()),
     // GetPage(name: credit, page: () => const CZCreditPage()),
     // GetPage(name: creditBaseInfo, page: () => const CZCreditBaseInfoPage()),
     // GetPage(name: ktp, page: () => const CZKtpPage()),
