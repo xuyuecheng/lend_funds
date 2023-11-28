@@ -35,6 +35,13 @@ class _MainPageState extends State<MainPage> {
   }
 
   @override
+  void dispose() {
+    //...
+    EventBus().off(EventBus.changeToOrderTab);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     navigationBar = BottomNavigationBar(
       currentIndex: _currentIndex,
