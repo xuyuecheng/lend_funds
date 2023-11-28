@@ -6,6 +6,7 @@ import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/pages/mine/view/widget/custom_mine_item.dart';
 import 'package:lend_funds/pages/mine/view/widget/delete_account_dialog.dart';
 import 'package:lend_funds/utils/const/translate.dart';
+import 'package:lend_funds/utils/eventbus/eventbus.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
@@ -101,9 +102,7 @@ class _MinePageState extends State<MinePage> {
                   GestureDetector(
                     behavior: HitTestBehavior.opaque,
                     onTap: () {
-                      // Get.toNamed(CZRouteConfig.mineBank);
-                      // Get.until(
-                      //     (route) => route.settings.name == CZRouteConfig.home);
+                      EventBus().emit(EventBus.changeToOrderTab, null);
                     },
                     child: MineItem(
                       title: "My loan",
