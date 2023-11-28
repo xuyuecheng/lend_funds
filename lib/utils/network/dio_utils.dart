@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:crypto/crypto.dart';
@@ -42,6 +43,9 @@ class DioUtils {
       'GAID': gaid,
       'AID': aid,
     };
+    if (kDebugMode) {
+      log("请求头tokenHeaders:$tokenHeaders");
+    }
     dynamic user = CZStorage.getUserInfo();
     if (user != null) {
       tokenHeaders['Auth'] = user['user']['token'];
