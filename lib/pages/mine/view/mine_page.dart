@@ -11,6 +11,7 @@ import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({Key? key}) : super(key: key);
@@ -20,10 +21,15 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+  bool _hasEmailSupport = false;
   @override
   void initState() {
     super.initState();
     //...
+    canLaunchUrl(Uri(scheme: 'mailto', path: 'smith@example.com'))
+        .then((bool result) {
+      _hasEmailSupport = result;
+    });
   }
 
   @override
@@ -148,11 +154,7 @@ class _MinePageState extends State<MinePage> {
                   GestureDetector(
                     behavior: HitTestBehavior.opaque,
                     onTap: () {
-                      // //隐私协议
-                      // Get.toNamed(CZRouteConfig.webView, parameters: {
-                      //   'title': Translate.privacyStatement,
-                      //   'url': AppConfig.privacyStatementURL,
-                      // });
+                      _makeEmailCall("1252552308@qq.com");
                     },
                     child: MineItem(
                         title: "Customer service",
@@ -209,5 +211,16 @@ class _MinePageState extends State<MinePage> {
         ),
       ),
     );
+  }
+
+  Future<void> _makeEmailCall(String emailNumber) async {
+    debugPrint("_hasEmailSupport:$_hasEmailSupport");
+    if (_hasEmailSupport) {
+      final Uri launchUri = Uri(
+        scheme: 'mailto',
+        path: emailNumber,
+      );
+      await launchUrl(launchUri);
+    } else {}
   }
 }
