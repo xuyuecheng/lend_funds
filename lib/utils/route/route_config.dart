@@ -9,6 +9,7 @@ import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/pages/login/view/validate_code_page.dart';
 import 'package:lend_funds/pages/main/views/main.dart';
 import 'package:lend_funds/pages/main/views/splash.dart';
+import 'package:lend_funds/pages/order/view/order_page.dart';
 import 'package:lend_funds/pages/webview/webview_utils.dart';
 
 // import '../../pages/credit/views/credit_alive_error.dart';
@@ -47,8 +48,8 @@ class CZRouteConfig {
   static const loanVerify = '/home/credit/loanVerify';
   static const repaymentPlant = '/home/credit/loanVerify/repaymentPlant';
 
-  //repay
-  static const repay = '/repay';
+  //order
+  static const order = '/order';
   static const repayPlan = '/repay/plan';
   static const repayDetail = '/repay/plan/detail';
 
@@ -97,7 +98,7 @@ class CZRouteConfig {
     // GetPage(name: mineFaq, page: () => const FaqPage()),
     // GetPage(name: mineAboutUs, page: () => const AboutUsPage()),
     // GetPage(name: mineSetting, page: () => const SettingPage()),
-    // GetPage(name: repay, page: () => const CZRepayPage()),
+    GetPage(name: order, page: () => const OrderPage()),
     // GetPage(name: repayPlan, page: () => const CZRepayPlanPage()),
     // GetPage(name: repayDetail, page: () => const CZRepayOrderDetailPage()),
     GetPage(

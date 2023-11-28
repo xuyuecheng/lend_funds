@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/pages/mine/view/widget/custom_mine_item.dart';
 import 'package:lend_funds/pages/mine/view/widget/delete_account_dialog.dart';
+import 'package:lend_funds/utils/const/translate.dart';
+import 'package:lend_funds/utils/network/dio_config.dart';
+import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 
@@ -98,8 +101,9 @@ class _MinePageState extends State<MinePage> {
                   GestureDetector(
                     behavior: HitTestBehavior.opaque,
                     onTap: () {
-                      debugPrint("111");
                       // Get.toNamed(CZRouteConfig.mineBank);
+                      // Get.until(
+                      //     (route) => route.settings.name == CZRouteConfig.home);
                     },
                     child: MineItem(
                       title: "My loan",
@@ -113,7 +117,10 @@ class _MinePageState extends State<MinePage> {
                   GestureDetector(
                     behavior: HitTestBehavior.opaque,
                     onTap: () {
-                      // Get.toNamed(CZRouteConfig.mineOrder);
+                      Get.toNamed(CZRouteConfig.webView, parameters: {
+                        'title': Translate.securityProtocol,
+                        'url': AppConfig.securityProtocol,
+                      });
                     },
                     child: MineItem(
                         title: "Security protocol",
@@ -126,7 +133,10 @@ class _MinePageState extends State<MinePage> {
                   GestureDetector(
                     behavior: HitTestBehavior.opaque,
                     onTap: () {
-                      // Get.toNamed(CZRouteConfig.mineFaq);
+                      Get.toNamed(CZRouteConfig.webView, parameters: {
+                        'title': Translate.aboutUs,
+                        'url': AppConfig.aboutUs,
+                      });
                     },
                     child: MineItem(
                         title: "About us",

@@ -39,6 +39,8 @@ class _MainPageState extends State<MainPage> {
         selectedFontSize: 10.sp,
         selectedItemColor: const Color(0xFF008773),
         unselectedItemColor: const Color(0xFFCCCCCC),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         onTap: (index) {
           setState(() {
             _currentIndex = index;

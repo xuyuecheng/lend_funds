@@ -21,6 +21,9 @@ class AppConfig {
       "${DioConfig.baseURL}html/agreement/AUTHORITY.html";
   static const String termsAgreement =
       "${DioConfig.baseURL}html/agreement/TERM.html";
+  static const String securityProtocol =
+      "${DioConfig.baseURL}html/xxx/xxx.html";
+  static const String aboutUs = "${DioConfig.baseURL}html/xxx/xxx.html";
 }
 
 class InterfaceConfig {
