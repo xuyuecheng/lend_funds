@@ -40,7 +40,7 @@ class CreditChooseInfoWidget extends StatelessWidget {
                         color: const Color(0xFF000000),
                         fontWeight: FontWeight.w500),
                   ),
-                  Image.asset('assets/home/credit_right_arrow.png',
+                  Image.asset('assets/credit/credit_right_arrow.png',
                       width: 4.1.w, height: 8.2.w, fit: BoxFit.fill),
                 ],
               ),

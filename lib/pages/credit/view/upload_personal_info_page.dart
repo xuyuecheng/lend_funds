@@ -1,6 +1,8 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/camera/views/camera_kpt.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_take_photo_widget.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
 
@@ -13,6 +15,7 @@ class UploadPersonalInforPage extends StatefulWidget {
 }
 
 class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
+  XFile? frontImageFile;
   @override
   void initState() {
     super.initState();
@@ -48,7 +51,7 @@ class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
               color: Color(0xffCFDEEA),
               child: Row(
                 children: [
-                  Image.asset('assets/home/credit_camera_small_icon.png',
+                  Image.asset('assets/credit/credit_camera_small_icon.png',
                       width: 26.w, height: 21.w),
                   SizedBox(
                     width: 9.w,
@@ -83,9 +86,23 @@ class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
               children: [
                 CreditTakePhotoWidget(
                   title: "ID Card Front",
+                  takePhotoBlock: () async {
+                    XFile? imageFile = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CameraKpt()),
+                    );
+                    if (imageFile != null) {
+                      // RequestUtil.addDot(RbiConfig.firstOcrImage);
+                      // CZCreditKtpController.to.setIdCardFrontImage(imageFile);
+                      debugPrint("frontImageFile--path:${imageFile.path}");
+                      frontImageFile = imageFile;
+                    }
+                  },
                 ),
                 CreditTakePhotoWidget(
                   title: "ID Card Back",
+                  takePhotoBlock: () {},
                 ),
               ],
             ),
@@ -107,6 +124,7 @@ class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
               children: [
                 CreditTakePhotoWidget(
                   title: "Pan Card",
+                  takePhotoBlock: () {},
                 ),
               ],
             ),
@@ -140,7 +158,7 @@ class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
               children: [
                 WidgetSpan(
                   // alignment: PlaceholderAlignment.middle,
-                  child: Image.asset('assets/home/credit_security.png',
+                  child: Image.asset('assets/credit/credit_security.png',
                       width: 7.6.w, height: 8.9.w, fit: BoxFit.fill),
                 ),
                 TextSpan(
