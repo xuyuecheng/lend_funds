@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_take_photo_widget.dart';
+import 'package:lend_funds/utils/route/route_config.dart';
 
 class UploadPersonalInforPage extends StatefulWidget {
   const UploadPersonalInforPage({Key? key}) : super(key: key);
@@ -114,16 +115,17 @@ class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
             ),
             Container(
               width: 345.w,
+              height: 50.h,
               decoration: BoxDecoration(
                   color: const Color(0xFF003C6A),
                   borderRadius: BorderRadius.circular(5.w)),
               child: TextButton(
                 onPressed: () {
-                  // confirmBlock();
+                  Get.toNamed(CZRouteConfig.ocrDetail);
                 },
-                child: Text("Confirm",
+                child: Text("Next step",
                     style: TextStyle(
-                        fontSize: 30.sp,
+                        fontSize: 17.5.sp,
                         color: const Color(0xFFFFFFFF),
                         fontWeight: FontWeight.w500)),
               ),

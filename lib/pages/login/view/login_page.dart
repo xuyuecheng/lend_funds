@@ -126,8 +126,9 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(10.w)),
                   child: TextButton(
                     onPressed: () {
-                      // LoginController.to.phoneStr = _phoneController.text;
-                      // Get.toNamed(CZRouteConfig.loginCode);
+                      LoginController.to.phoneStr = _phoneController.text;
+                      Get.toNamed(CZRouteConfig.loginCode);
+                      return;
                       LoginController.to.sendPhoneCode(params: {
                         'phone': _phoneController.text,
                         "phoneCode": "+91"

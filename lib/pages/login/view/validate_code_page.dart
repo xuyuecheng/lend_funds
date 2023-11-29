@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/login/controllers/login_controller.dart';
 import 'package:lend_funds/pages/login/view/widget/custom_verification_box.dart';
+import 'package:lend_funds/utils/route/route_config.dart';
 
 class ValidateCodePage extends StatefulWidget {
   const ValidateCodePage({Key? key}) : super(key: key);
@@ -117,8 +118,7 @@ class _ValidateCodePageState extends State<ValidateCodePage> {
                       borderRadius: BorderRadius.circular(10.w)),
                   child: TextButton(
                     onPressed: () {
-                      // LoginController.to.phoneStr = _phoneController.text;
-                      // Get.toNamed(CZRouteConfig.loginCode);
+                      Get.offAllNamed(CZRouteConfig.home);
                     },
                     child: Text("Login",
                         style: TextStyle(

@@ -4,8 +4,15 @@
 // import 'package:financial_app/pages/webview/webview_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/credit/view/bank_page.dart';
+import 'package:lend_funds/pages/credit/view/contact_page.dart';
+import 'package:lend_funds/pages/credit/view/liveness_detection_page.dart';
+import 'package:lend_funds/pages/credit/view/ocr_detail_page.dart';
+import 'package:lend_funds/pages/credit/view/personal_info_page.dart';
 import 'package:lend_funds/pages/credit/view/upload_personal_info_page.dart';
+import 'package:lend_funds/pages/credit/view/work_information_page.dart';
 import 'package:lend_funds/pages/expection_pages/unknown_route.dart';
+import 'package:lend_funds/pages/home/view/home_page.dart';
 import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/pages/login/view/validate_code_page.dart';
 import 'package:lend_funds/pages/main/views/main.dart';
@@ -41,9 +48,14 @@ class CZRouteConfig {
   //Home
   static const home = '/home';
   static const uploadPersonalInforma = '/home/uploadPersonalInforma';
+  static const ocrDetail = '/home/credit/ocrDetail';
+  static const personalInforma = '/home/personalInforma';
+  static const workInforma = '/home/workInforma';
   static const creditBaseInfo = '/home/credit/baseInfo';
   static const ktp = '/home/credit/ktp';
   static const contacts = '/home/credit/contacts';
+  static const bank = '/home/credit/bank';
+  static const livenessDetection = '/home/credit/livenessDetection';
   static const aliveError = '/home/credit/alive/error';
   static const quotaAssessment = '/home/credit/quotaAssessment';
   static const loanVerify = '/home/credit/loanVerify';
@@ -80,17 +92,22 @@ class CZRouteConfig {
   static final List<GetPage> getPages = [
     GetPage(name: splash, page: () => const Splash()),
     GetPage(name: main, page: () => const MainPage()),
-    // GetPage(name: home, page: () => const CZHomePage()),
+    GetPage(name: home, page: () => const HomePage()),
     // GetPage(name: mine, page: () => const CZMinePage()),
     GetPage(name: login, page: () => const LoginPage()),
     GetPage(name: loginCode, page: () => const ValidateCodePage()),
     GetPage(
         name: uploadPersonalInforma,
         page: () => const UploadPersonalInforPage()),
+    GetPage(name: ocrDetail, page: () => const OcrDetailPage()),
+    GetPage(name: personalInforma, page: () => const PersonalInfoPage()),
+    GetPage(name: workInforma, page: () => const WorkInformationPage()),
     // GetPage(name: credit, page: () => const CZCreditPage()),
     // GetPage(name: creditBaseInfo, page: () => const CZCreditBaseInfoPage()),
     // GetPage(name: ktp, page: () => const CZKtpPage()),
-    // GetPage(name: contacts, page: () => const CZContactsPage()),
+    GetPage(name: contacts, page: () => const ContactPage()),
+    GetPage(name: bank, page: () => const BankPage()),
+    GetPage(name: livenessDetection, page: () => const LivenessDetectionPage()),
     // GetPage(name: aliveError, page: () => const CZAliveErrorPage()),
     // GetPage(name: quotaAssessment, page: () => const CZQuotaAssessmentPage()),
     // GetPage(name: loanVerify, page: () => const CZCreditLoanVerifyPage()),
