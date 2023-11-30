@@ -78,7 +78,8 @@ class _CameraKptState extends State<CameraKpt> {
             controller.value.isInitialized && !controller.value.isRecordingVideo
                 ? onTakePictureButtonPressed
                 : null,
-      ).applyConstraint(width: 1.sw, topCenterTo: cId("mask").topMargin(380.h)),
+      ).applyConstraint(
+          width: 1.sw, topCenterTo: cId("mask").topMargin(448.w + 30.h)),
     ]));
   }
 

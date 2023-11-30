@@ -15,7 +15,8 @@ class UploadPersonalInforPage extends StatefulWidget {
 }
 
 class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
-  XFile? frontImageFile;
+  XFile? _frontImageFile;
+  XFile? _backImageFile;
   @override
   void initState() {
     super.initState();
@@ -95,14 +96,32 @@ class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
                     if (imageFile != null) {
                       // RequestUtil.addDot(RbiConfig.firstOcrImage);
                       // CZCreditKtpController.to.setIdCardFrontImage(imageFile);
-                      debugPrint("frontImageFile--path:${imageFile.path}");
-                      frontImageFile = imageFile;
+                      debugPrint("_frontImageFile--path:${imageFile.path}");
+                      setState(() {
+                        _frontImageFile = imageFile;
+                      });
                     }
                   },
+                  imgFile: _frontImageFile,
                 ),
                 CreditTakePhotoWidget(
                   title: "ID Card Back",
-                  takePhotoBlock: () {},
+                  takePhotoBlock: () async {
+                    XFile? imageFile = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CameraKpt()),
+                    );
+                    if (imageFile != null) {
+                      // RequestUtil.addDot(RbiConfig.firstOcrImage);
+                      // CZCreditKtpController.to.setIdCardFrontImage(imageFile);
+                      debugPrint("_backImageFile--path:${imageFile.path}");
+                      setState(() {
+                        _backImageFile = imageFile;
+                      });
+                    }
+                  },
+                  imgFile: _backImageFile,
                 ),
               ],
             ),

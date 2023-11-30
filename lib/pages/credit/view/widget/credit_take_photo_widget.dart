@@ -1,11 +1,18 @@
+import 'dart:io';
+
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreditTakePhotoWidget extends StatelessWidget {
   final String title;
   final Function() takePhotoBlock;
+  final XFile? imgFile;
   const CreditTakePhotoWidget(
-      {Key? key, required this.title, required this.takePhotoBlock})
+      {Key? key,
+      required this.title,
+      required this.takePhotoBlock,
+      this.imgFile})
       : super(key: key);
 
   @override
@@ -27,18 +34,32 @@ class CreditTakePhotoWidget extends StatelessWidget {
                     Positioned(
                       left: 0,
                       top: 0,
-                      child: Image.asset(
-                          'assets/credit/credit_camera_backg_icon.png',
-                          width: 157.w,
-                          height: 89.w),
+                      child: (imgFile == null)
+                          ? Image.asset(
+                              'assets/credit/credit_camera_backg_icon.png',
+                              width: 157.w,
+                              height: 89.w)
+                          : Image.file(
+                              File(imgFile!.path),
+                              height: 89.w,
+                              width: 157.w,
+                              fit: BoxFit.fill,
+                              errorBuilder: (BuildContext context, Object error,
+                                      StackTrace? stackTrace) =>
+                                  const Center(
+                                      child:
+                                          Text('Format Foto Tidak Didukung')),
+                            ),
                     ),
                     Positioned(
                       left: (157 - 44) / 2,
                       top: (89 - 38) / 2,
-                      child: Image.asset(
-                          'assets/credit/credit_camera_big_icon.png',
-                          width: 44.w,
-                          height: 38.w),
+                      child: (imgFile == null)
+                          ? Image.asset(
+                              'assets/credit/credit_camera_big_icon.png',
+                              width: 44.w,
+                              height: 38.w)
+                          : SizedBox.shrink(),
                     ),
                   ],
                 ),

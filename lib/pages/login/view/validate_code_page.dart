@@ -118,7 +118,7 @@ class _ValidateCodePageState extends State<ValidateCodePage> {
                       borderRadius: BorderRadius.circular(10.w)),
                   child: TextButton(
                     onPressed: () {
-                      Get.offAllNamed(CZRouteConfig.home);
+                      Get.offAllNamed(CZRouteConfig.main);
                     },
                     child: Text("Login",
                         style: TextStyle(
