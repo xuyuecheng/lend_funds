@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:lend_funds/pages/login/controllers/login_controller.dart';
 import 'package:lend_funds/pages/login/view/widget/custom_verification_box.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
+import 'package:lend_funds/utils/storage/storage_utils.dart';
 
 class ValidateCodePage extends StatefulWidget {
   const ValidateCodePage({Key? key}) : super(key: key);
@@ -105,29 +106,6 @@ class _ValidateCodePageState extends State<ValidateCodePage> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 25.h,
-              ),
-              Container(
-                width: 1.sw,
-                height: 50.h,
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: const Color(0xFF003C6A),
-                      borderRadius: BorderRadius.circular(10.w)),
-                  child: TextButton(
-                    onPressed: () {
-                      Get.offAllNamed(CZRouteConfig.main);
-                    },
-                    child: Text("Login",
-                        style: TextStyle(
-                            fontSize: 26.sp,
-                            color: const Color(0xFFFFFFFF),
-                            fontWeight: FontWeight.w500)),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -156,36 +134,19 @@ class _ValidateCodePageState extends State<ValidateCodePage> {
 
   void _sendSubmitted(value) {
     debugPrint("value111:$value");
-    // CZLoginController.to.requestUserLogin(
-    //     params: {'phone': _phone, 'code': value}).then((value) {
-    //   CZStorage.saveUserInfo(value);
-    //   Get.offAllNamed(CZRouteConfig.main);
-    //   RequestUtil.addDot(AddDotLoginConfig.loginSucess);
-    // }, onError: (err) {
-    //   RequestUtil.addDot(AddDotLoginConfig.loginError);
-    // });
+    LoginController.to.requestUserLogin(params: {
+      'phone': LoginController.to.phoneStr,
+      'code': value,
+      "phoneCode": "+91"
+    }).then((value) {
+      CZStorage.saveUserInfo(value);
+      Get.offAllNamed(CZRouteConfig.main);
+    }, onError: (err) {});
   }
 
   _sendCode() {
     //开始倒计时
     startCountdown();
-    // if (_isSmsCode) {
-    //   CZLoginController.to
-    //       .sendPhoneCode(params: {'phone': _phone}).then((value) {
-    //     if (value['status'] != null && value['status'] == 0) {
-    //       //开始倒计时
-    //       startCountdown();
-    //     }
-    //   }).catchError((e) {});
-    // } else {
-    //   CZLoginController.to
-    //       .sendVotpCode(params: {'phone': _phone}).then((value) {
-    //     if (value['status'] != null && value['status'] == 0) {
-    //       //开始倒计时
-    //       startCountdown();
-    //     }
-    //   }).catchError((e) {});
-    // }
   }
 
   _btnPress() {

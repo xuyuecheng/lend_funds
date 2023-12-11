@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/login/controllers/login_controller.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
+import 'package:lend_funds/utils/toast/toast_utils.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -126,14 +127,21 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(10.w)),
                   child: TextButton(
                     onPressed: () {
-                      LoginController.to.phoneStr = _phoneController.text;
-                      Get.toNamed(CZRouteConfig.loginCode);
-                      return;
+                      if (_phoneController.text.isEmpty) {
+                        CZLoading.toast("please input");
+                        return;
+                      }
+                      FocusScope.of(context).unfocus();
                       LoginController.to.sendPhoneCode(params: {
-                        'phone': _phoneController.text,
-                        "phoneCode": "+91"
+                        "model": {
+                          'phone': _phoneController.text,
+                          "phoneCode": "+91"
+                        }
                       }).then((value) {
-                        Get.toNamed(CZRouteConfig.loginCode);
+                        if (value['status'] == 0) {
+                          LoginController.to.phoneStr = _phoneController.text;
+                          Get.toNamed(CZRouteConfig.loginCode);
+                        }
                       }).catchError((e) {});
                     },
                     child: Text("Next step",

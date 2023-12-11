@@ -38,7 +38,7 @@ class InterfaceConfig {
   //语音验证码
   static const String sendVotpCode = 'auth/send_votp_code';
   //登录/注册
-  static const String userLogin = 'auth/user_login';
+  static const String userLogin = 'curacao/regardless/cadent-electrofishing';
   //表单获取
   static const String formList = 'form/form_list';
   //表单指定表单
