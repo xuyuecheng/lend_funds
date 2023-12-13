@@ -93,7 +93,7 @@ class InterfaceConfig {
   //是否删除
   static const String judgeDel = 'user/judge_del_user';
   //删除用户
-  static const String del = 'user/del_user';
+  static const String del = 'semiagricultural/shotty-eudaimonism';
   //银行卡列表
   static const String bankList = 'bank/repaymentBankList';
   //还款详情

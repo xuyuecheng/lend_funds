@@ -3,11 +3,13 @@ import 'package:flutter_constraintlayout/flutter_constraintlayout.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/login/view/login_page.dart';
+import 'package:lend_funds/pages/mine/controller/mine_controller.dart';
 import 'package:lend_funds/pages/mine/view/widget/custom_mine_item.dart';
 import 'package:lend_funds/pages/mine/view/widget/delete_account_dialog.dart';
 import 'package:lend_funds/utils/const/translate.dart';
 import 'package:lend_funds/utils/eventbus/eventbus.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
+import 'package:lend_funds/utils/preload.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
@@ -26,6 +28,7 @@ class _MinePageState extends State<MinePage> {
   void initState() {
     super.initState();
     //...
+    Get.put(MineController());
     canLaunchUrl(Uri(scheme: 'mailto', path: 'smith@example.com'))
         .then((bool result) {
       _hasEmailSupport = result;
@@ -34,6 +37,18 @@ class _MinePageState extends State<MinePage> {
 
   @override
   Widget build(BuildContext context) {
+    var userInfo = CZStorage.getUserInfo();
+    var phone = "Halo";
+    if (userInfo != null) {
+      if (kDebugMode) {
+        print("getUserInfo:${userInfo.toString()}");
+      }
+
+      var user = userInfo.containsKey("user") ? userInfo["user"] : null;
+      if (user != null) {
+        phone = user.containsKey("phone") ? user["phone"] : "Halo";
+      }
+    }
     return Scaffold(
       backgroundColor: Color(0xFFF4F5F7),
       body: SingleChildScrollView(
@@ -76,7 +91,7 @@ class _MinePageState extends State<MinePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("156****258",
+                      Text(phone,
                           style: TextStyle(
                               fontSize: 20.sp,
                               color: const Color(0xFF000000),
@@ -169,6 +184,12 @@ class _MinePageState extends State<MinePage> {
                     onTap: () {
                       CZDialogUtil.show(DeleteAccountDialog(confirmBlock: () {
                         CZDialogUtil.dismiss();
+                        MineController.to.requestDel().then((value) {
+                          if (value['status'] == 0) {
+                            CZStorage.removeUserInfo();
+                            Get.offAll(() => LoginPage());
+                          }
+                        });
                       }, cancelBlock: () {
                         CZDialogUtil.dismiss();
                       }));

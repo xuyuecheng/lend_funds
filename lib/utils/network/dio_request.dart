@@ -100,7 +100,7 @@ class HttpRequest {
             if (LoginController.to.isHaveLoginPage == false) {
               LoginController.to.phoneStr = '';
               CZStorage.removeUserInfo();
-              Get.offAll(const LoginPage());
+              Get.offAll(() => LoginPage());
             }
             LoginController.to.isHaveLoginPage = true;
           } else if (result['status'] != 1012 && result['status'] != 0) {
@@ -166,7 +166,7 @@ class HttpRequest {
             if (LoginController.to.isHaveLoginPage == false) {
               LoginController.to.phoneStr = '';
               CZStorage.removeUserInfo();
-              Get.offAll(const LoginPage());
+              Get.offAll(() => LoginPage());
             }
             LoginController.to.isHaveLoginPage = true;
           } else if (result['status'] != 1012 && result['status'] != 0) {

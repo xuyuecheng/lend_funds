@@ -44,12 +44,13 @@ class DioUtils {
       'AID': aid,
     };
     if (kDebugMode) {
-      log("请求头tokenHeaders:$tokenHeaders");
+      // log("请求头tokenHeaders:$tokenHeaders");
     }
     dynamic user = CZStorage.getUserInfo();
     if (user != null) {
       tokenHeaders['Auth'] = user['user']['token'];
     }
+    log("请求头tokenHeaders:$tokenHeaders");
     var tokenStr = json.encode(tokenHeaders);
     var encryptToken = await _aesEncrypt(tokenStr);
     return '${AppConfig.appId}${encryptToken}';
