@@ -40,7 +40,8 @@ class InterfaceConfig {
   //登录/注册
   static const String userLogin = 'curacao/regardless/cadent-electrofishing';
   //表单获取
-  static const String formList = 'form/form_list';
+  static const String formList =
+      'dissyllable/smallboy-dishearteningly-unexamining/rheda-polysepalous';
   //表单指定表单
   static const String getOneFormFlow = 'form/get_one_form_flow';
   //获取省市区三级联动

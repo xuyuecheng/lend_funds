@@ -7,7 +7,11 @@ import 'package:lend_funds/pages/credit/view/widget/credit_take_photo_widget.dar
 import 'package:lend_funds/utils/route/route_config.dart';
 
 class UploadPersonalInforPage extends StatefulWidget {
-  const UploadPersonalInforPage({Key? key}) : super(key: key);
+  final String formId;
+  final String formName;
+  const UploadPersonalInforPage(
+      {Key? key, required this.formId, required this.formName})
+      : super(key: key);
 
   @override
   State<UploadPersonalInforPage> createState() =>
@@ -34,7 +38,7 @@ class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
               Get.back();
             }),
         title: Text(
-          'Upload personal information',
+          widget.formName,
           style: TextStyle(
               fontSize: 17.5.sp,
               color: const Color(0xFF000000),

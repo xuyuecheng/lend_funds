@@ -9,7 +9,6 @@ import 'package:lend_funds/pages/credit/view/contact_page.dart';
 import 'package:lend_funds/pages/credit/view/liveness_detection_page.dart';
 import 'package:lend_funds/pages/credit/view/ocr_detail_page.dart';
 import 'package:lend_funds/pages/credit/view/personal_info_page.dart';
-import 'package:lend_funds/pages/credit/view/upload_personal_info_page.dart';
 import 'package:lend_funds/pages/credit/view/work_information_page.dart';
 import 'package:lend_funds/pages/expection_pages/unknown_route.dart';
 import 'package:lend_funds/pages/home/view/home_page.dart';
@@ -96,9 +95,9 @@ class CZRouteConfig {
     // GetPage(name: mine, page: () => const CZMinePage()),
     GetPage(name: login, page: () => const LoginPage()),
     GetPage(name: loginCode, page: () => const ValidateCodePage()),
-    GetPage(
-        name: uploadPersonalInforma,
-        page: () => const UploadPersonalInforPage()),
+    // GetPage(
+    //     name: uploadPersonalInforma,
+    //     page: () => const UploadPersonalInforPage()),
     GetPage(name: ocrDetail, page: () => const OcrDetailPage()),
     GetPage(name: personalInforma, page: () => const PersonalInfoPage()),
     GetPage(name: workInforma, page: () => const WorkInformationPage()),

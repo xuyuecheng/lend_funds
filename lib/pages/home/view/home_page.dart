@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_constraintlayout/flutter_constraintlayout.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/home/controller/home_controller.dart';
 import 'package:lend_funds/pages/home/view/widget/home_product_dialog.dart';
-import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,218 +18,227 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     //...
+    Get.put(HomeController());
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-        // reverse: true,
-        child: ConstraintLayout(
-          width: 1.sw,
-          height: matchParent,
-          children: [
-            Text("Lend Funds",
-                    style: TextStyle(
-                        fontSize: 25.sp,
-                        color: const Color(0xFF003C6A),
-                        fontWeight: FontWeight.w500))
-                .applyConstraint(
-                    id: cId('text1'),
-                    topLeftTo: parent.topMargin(30.h).leftMargin(15.w)),
-            Container(
+    return GetBuilder<HomeController>(
+      builder: (vc) {
+        return Scaffold(
+          body: SafeArea(
+              child: SingleChildScrollView(
+            // reverse: true,
+            child: ConstraintLayout(
               width: 1.sw,
-              height: 1.5.h,
-              color: Color(0xff000000),
-            ).applyConstraint(
-                id: cId('cont1'), topLeftTo: parent.topMargin(65.h)),
-            Text("Welcome！",
-                    style: TextStyle(
-                        fontSize: 25.sp,
-                        color: const Color(0xFF292929),
-                        fontWeight: FontWeight.w500))
-                .applyConstraint(
-                    id: cId('text2'),
-                    topLeftTo: parent.topMargin(86.h).leftMargin(15.w)),
-            Container(
-              width: 1.sw,
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              height: 154.w,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                      width: 154.w,
-                      height: 154.w,
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(26.w)),
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomLeft,
-                          colors: [Color(0xffF3A135), Color(0xffF5C069)],
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 10.w,
-                          ),
-                          Image.asset('assets/home/home_loan_amount_icon.png',
-                              width: 50.5.w, height: 50.5.w),
-                          SizedBox(
-                            height: 22.5.w,
-                          ),
-                          Text("Maximum loan amount",
-                              style: TextStyle(
-                                  fontSize: 11.sp,
-                                  color: const Color(0xFF000000),
-                                  fontWeight: FontWeight.w500)),
-                          Text("₹ 500,000",
-                              style: TextStyle(
-                                  fontSize: 25.sp,
-                                  color: const Color(0xFF000000),
-                                  fontWeight: FontWeight.w500)),
-                        ],
-                      )),
-                  Container(
-                      width: 154.w,
-                      height: 154.w,
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(26.w)),
-                        color: Color(0xffCFDEEA),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 15.w,
-                          ),
-                          Image.asset('assets/home/home_loan_term_icon.png',
-                              width: 40.5.w, height: 40.5.w),
-                          SizedBox(
-                            height: 27.5.w,
-                          ),
-                          Text("Maximum loan term",
-                              style: TextStyle(
-                                  fontSize: 11.sp,
-                                  color: const Color(0xFF000000),
-                                  fontWeight: FontWeight.w500)),
-                          Text("360 days",
-                              style: TextStyle(
-                                  fontSize: 25.sp,
-                                  color: const Color(0xFF000000),
-                                  fontWeight: FontWeight.w500)),
-                        ],
-                      )),
-                ],
-              ),
-            ).applyConstraint(
-                id: cId('cont2'), topCenterTo: parent.topMargin(134.h)),
-            Container(
-              width: 1.sw - 30.w,
-              // padding: EdgeInsets.symmetric(horizontal: 15.w),
-              height: 120.5.w,
-              decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  // borderRadius: BorderRadius.circular(15.w),
-                  image: DecorationImage(
-                      image: AssetImage(
-                          "assets/home/home_credit_loan_backgro.png"),
-                      fit: BoxFit.fill)),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
+              height: matchParent,
+              children: [
+                Text("Lend Funds",
+                        style: TextStyle(
+                            fontSize: 25.sp,
+                            color: const Color(0xFF003C6A),
+                            fontWeight: FontWeight.w500))
+                    .applyConstraint(
+                        id: cId('text1'),
+                        topLeftTo: parent.topMargin(30.h).leftMargin(15.w)),
+                Container(
+                  width: 1.sw,
+                  height: 1.5.h,
+                  color: Color(0xff000000),
+                ).applyConstraint(
+                    id: cId('cont1'), topLeftTo: parent.topMargin(65.h)),
+                Text("Welcome！",
+                        style: TextStyle(
+                            fontSize: 25.sp,
+                            color: const Color(0xFF292929),
+                            fontWeight: FontWeight.w500))
+                    .applyConstraint(
+                        id: cId('text2'),
+                        topLeftTo: parent.topMargin(86.h).leftMargin(15.w)),
+                Container(
+                  width: 1.sw,
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  height: 154.w,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
+                      Container(
+                          width: 154.w,
+                          height: 154.w,
+                          padding: EdgeInsets.symmetric(horizontal: 10.w),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(26.w)),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomLeft,
+                              colors: [Color(0xffF3A135), Color(0xffF5C069)],
+                            ),
+                          ),
                           child: Column(
-                        children: [
-                          SizedBox(
-                            height: 10.h,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 10.w,
+                              ),
+                              Image.asset(
+                                  'assets/home/home_loan_amount_icon.png',
+                                  width: 50.5.w,
+                                  height: 50.5.w),
+                              SizedBox(
+                                height: 22.5.w,
+                              ),
+                              Text("Maximum loan amount",
+                                  style: TextStyle(
+                                      fontSize: 11.sp,
+                                      color: const Color(0xFF000000),
+                                      fontWeight: FontWeight.w500)),
+                              Text("₹ 500,000",
+                                  style: TextStyle(
+                                      fontSize: 25.sp,
+                                      color: const Color(0xFF000000),
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          )),
+                      Container(
+                          width: 154.w,
+                          height: 154.w,
+                          padding: EdgeInsets.symmetric(horizontal: 10.w),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(26.w)),
+                            color: Color(0xffCFDEEA),
                           ),
-                          Image.asset(
-                            'assets/home/home_credit_loans.png',
-                            width: 40.5.w,
-                            height: 40.5.w,
-                          ),
-                          SizedBox(
-                            height: 6.5.h,
-                          ),
-                          Text("Credit Loans",
-                              style: TextStyle(
-                                  fontSize: 12.5.sp,
-                                  color: const Color(0xFF000000),
-                                  fontWeight: FontWeight.normal))
-                        ],
-                      )),
-                      Expanded(
                           child: Column(
-                        children: [
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Image.asset(
-                            'assets/home/home_automatic_review.png',
-                            width: 40.5.w,
-                            height: 40.5.w,
-                          ),
-                          SizedBox(
-                            height: 6.5.h,
-                          ),
-                          Text("Automatic review",
-                              style: TextStyle(
-                                  fontSize: 12.5.sp,
-                                  color: const Color(0xFF000000),
-                                  fontWeight: FontWeight.normal))
-                        ],
-                      )),
-                      Expanded(
-                          child: Column(
-                        children: [
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Image.asset(
-                            'assets/home/home_safe_reliable.png',
-                            width: 40.5.w,
-                            height: 40.5.w,
-                          ),
-                          SizedBox(
-                            height: 6.5.h,
-                          ),
-                          Text("Safe and reliable",
-                              style: TextStyle(
-                                  fontSize: 12.5.sp,
-                                  color: const Color(0xFF000000),
-                                  fontWeight: FontWeight.normal))
-                        ],
-                      )),
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 15.w,
+                              ),
+                              Image.asset('assets/home/home_loan_term_icon.png',
+                                  width: 40.5.w, height: 40.5.w),
+                              SizedBox(
+                                height: 27.5.w,
+                              ),
+                              Text("Maximum loan term",
+                                  style: TextStyle(
+                                      fontSize: 11.sp,
+                                      color: const Color(0xFF000000),
+                                      fontWeight: FontWeight.w500)),
+                              Text("360 days",
+                                  style: TextStyle(
+                                      fontSize: 25.sp,
+                                      color: const Color(0xFF000000),
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          )),
                     ],
                   ),
-                  SizedBox(
-                    height: 16.h,
+                ).applyConstraint(
+                    id: cId('cont2'), topCenterTo: parent.topMargin(134.h)),
+                Container(
+                  width: 1.sw - 30.w,
+                  // padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  height: 120.5.w,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      // borderRadius: BorderRadius.circular(15.w),
+                      image: DecorationImage(
+                          image: AssetImage(
+                              "assets/home/home_credit_loan_backgro.png"),
+                          fit: BoxFit.fill)),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                              child: Column(
+                            children: [
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Image.asset(
+                                'assets/home/home_credit_loans.png',
+                                width: 40.5.w,
+                                height: 40.5.w,
+                              ),
+                              SizedBox(
+                                height: 6.5.h,
+                              ),
+                              Text("Credit Loans",
+                                  style: TextStyle(
+                                      fontSize: 12.5.sp,
+                                      color: const Color(0xFF000000),
+                                      fontWeight: FontWeight.normal))
+                            ],
+                          )),
+                          Expanded(
+                              child: Column(
+                            children: [
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Image.asset(
+                                'assets/home/home_automatic_review.png',
+                                width: 40.5.w,
+                                height: 40.5.w,
+                              ),
+                              SizedBox(
+                                height: 6.5.h,
+                              ),
+                              Text("Automatic review",
+                                  style: TextStyle(
+                                      fontSize: 12.5.sp,
+                                      color: const Color(0xFF000000),
+                                      fontWeight: FontWeight.normal))
+                            ],
+                          )),
+                          Expanded(
+                              child: Column(
+                            children: [
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Image.asset(
+                                'assets/home/home_safe_reliable.png',
+                                width: 40.5.w,
+                                height: 40.5.w,
+                              ),
+                              SizedBox(
+                                height: 6.5.h,
+                              ),
+                              Text("Safe and reliable",
+                                  style: TextStyle(
+                                      fontSize: 12.5.sp,
+                                      color: const Color(0xFF000000),
+                                      fontWeight: FontWeight.normal))
+                            ],
+                          )),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Text(
+                          "The loan limit is allocated based on personal credit",
+                          style: TextStyle(
+                              fontSize: 11.sp,
+                              color: const Color(0xFFFFFFFF),
+                              fontWeight: FontWeight.normal))
+                    ],
                   ),
-                  Text("The loan limit is allocated based on personal credit",
-                      style: TextStyle(
-                          fontSize: 11.sp,
-                          color: const Color(0xFFFFFFFF),
-                          fontWeight: FontWeight.normal))
-                ],
-              ),
-            ).applyConstraint(
-                id: cId('cont3'), topCenterTo: parent.topMargin(291.5.h)),
-            _createRecommend(),
-            // _createProducts(),
-          ],
-        ),
-      )),
-      backgroundColor: Colors.white,
+                ).applyConstraint(
+                    id: cId('cont3'), topCenterTo: parent.topMargin(291.5.h)),
+                vc.forms.isNotEmpty ? _createRecommend() : _createProducts(),
+              ],
+            ),
+          )),
+          backgroundColor: Colors.white,
+        );
+      },
     );
   }
 
@@ -289,7 +298,10 @@ class _HomePageState extends State<HomePage> {
                     GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
-                        Get.toNamed(CZRouteConfig.uploadPersonalInforma);
+                        CZLoading.loading();
+                        HomeController().requestIncompleteForm().then((value) {
+                          CZLoading.dismiss();
+                        });
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
