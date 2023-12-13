@@ -26,8 +26,8 @@ class MineController extends GetxController {
         phone = user.containsKey("phone") ? user["phone"] : "Halo";
       }
     }
+    CZLoading.loading(status: '');
     try {
-      CZLoading.loading(status: '');
       Map<String, dynamic> result = await HttpRequest.request(
           "${InterfaceConfig.del}/${phone}",
           params: null,
