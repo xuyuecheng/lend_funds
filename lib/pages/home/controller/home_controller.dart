@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/credit/view/upload_personal_info_page.dart';
+import 'package:lend_funds/pages/credit/view/ocr_page.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/network/dio_request.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
@@ -48,7 +48,7 @@ class HomeController extends GetxController with StateMixin<Map> {
                 : "formName";
             if (formType.trim() == "OCR") {
               print("navigate.formId:$formId");
-              Get.to(() => UploadPersonalInforPage(
+              Get.to(() => OcrPage(
                     formId: formId,
                     formName: formName,
                   ));

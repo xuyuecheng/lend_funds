@@ -1,13 +1,12 @@
 import 'dart:io';
 
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreditTakePhotoWidget extends StatelessWidget {
   final String title;
   final Function() takePhotoBlock;
-  final XFile? imgFile;
+  final String? imgFile;
   const CreditTakePhotoWidget(
       {Key? key,
       required this.title,
@@ -34,13 +33,13 @@ class CreditTakePhotoWidget extends StatelessWidget {
                     Positioned(
                       left: 0,
                       top: 0,
-                      child: (imgFile == null)
+                      child: (imgFile == null || imgFile?.length == 0)
                           ? Image.asset(
                               'assets/credit/credit_camera_backg_icon.png',
                               width: 157.w,
                               height: 89.w)
                           : Image.file(
-                              File(imgFile!.path),
+                              File(imgFile!),
                               height: 89.w,
                               width: 157.w,
                               fit: BoxFit.fill,
