@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/camera/views/camera_kpt.dart';
+import 'package:lend_funds/pages/credit/controller/ocr_controller.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_take_photo_widget.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
 
@@ -25,6 +26,7 @@ class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
   void initState() {
     super.initState();
     //...
+    Get.put(OcrController());
   }
 
   @override
@@ -99,11 +101,11 @@ class _UploadPersonalInforPageState extends State<UploadPersonalInforPage> {
                     );
                     if (imageFile != null) {
                       // RequestUtil.addDot(RbiConfig.firstOcrImage);
-                      // CZCreditKtpController.to.setIdCardFrontImage(imageFile);
-                      debugPrint("_frontImageFile--path:${imageFile.path}");
-                      setState(() {
-                        _frontImageFile = imageFile;
-                      });
+                      OcrController.to.setIdCardFrontImage(imageFile);
+                      // debugPrint("_frontImageFile--path:${imageFile.path}");
+                      // setState(() {
+                      //   _frontImageFile = imageFile;
+                      // });
                     }
                   },
                   imgFile: _frontImageFile,

@@ -51,9 +51,9 @@ class InterfaceConfig {
   //提交表单
   static const String submitForm = 'form/submit_form';
   //上传文件
-  static const String uploadFile = 'oss_file/upload';
+  static const String uploadFile = 'gannet/insphere/roentgenise-peccancy';
   //ocr识别
-  static const String ocr = 'form/ocr_check';
+  static const String ocr = 'transfection/general-significance-deathy';
   //ocr信息提交
   static const String submitOcrInfo = 'form/save_base_info';
   //检测设备信息上报情况
