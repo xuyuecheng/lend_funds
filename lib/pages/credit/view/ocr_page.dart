@@ -212,7 +212,7 @@ class _OcrPageState extends State<OcrPage> {
       resultFront =
           (await testCompressAndGetFile(resultFront ?? "", resultFront ?? ""))
               .path;
-      CZLoading.loading(status: '');
+      CZLoading.loading();
       await OcrController.to.uploadFile(resultFront ?? "").then((value) {
         CZLoading.dismiss();
         if (value["status"] == 0) {
@@ -221,7 +221,7 @@ class _OcrPageState extends State<OcrPage> {
         }
       });
       if (loadFront != null && loadFront!.length > 0) {
-        CZLoading.loading(status: '');
+        CZLoading.loading();
         Map response = await OcrController.to.ocrIdentifyFront(loadFront ?? "");
         if (response["status"] == 0) {
           idCard = response["model"].containsKey("idCard")
@@ -266,7 +266,7 @@ class _OcrPageState extends State<OcrPage> {
       resultBack =
           (await testCompressAndGetFile(resultBack ?? "", resultBack ?? ""))
               .path;
-      CZLoading.loading(status: '');
+      CZLoading.loading();
       await OcrController.to.uploadFile(resultBack ?? "").then((value) {
         CZLoading.dismiss();
         if (value["status"] == 0) {
@@ -275,7 +275,7 @@ class _OcrPageState extends State<OcrPage> {
         }
       });
       if (loadBack != null && loadBack!.length > 0) {
-        CZLoading.loading(status: '');
+        CZLoading.loading();
         Map response = await OcrController.to.ocrIdentifyBack(loadBack ?? "");
         if (response["status"] == 0) {
           CZLoading.dismiss();
@@ -304,7 +304,7 @@ class _OcrPageState extends State<OcrPage> {
       }
       resultPan =
           (await testCompressAndGetFile(resultPan ?? "", resultPan ?? "")).path;
-      CZLoading.loading(status: '');
+      CZLoading.loading();
       await OcrController.to.uploadFile(resultPan ?? "").then((value) {
         CZLoading.dismiss();
         if (value["status"] == 0) {
@@ -313,7 +313,7 @@ class _OcrPageState extends State<OcrPage> {
         }
       });
       if (loadPan != null && loadPan!.length > 0) {
-        CZLoading.loading(status: '');
+        CZLoading.loading();
         Map response = await OcrController.to.ocrIdentifyFront(loadPan ?? "");
         if (response["status"] == 0) {
           taxRegNumber = response["model"].containsKey("taxRegNumber")

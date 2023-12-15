@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -23,8 +24,8 @@ class OcrDetailPage extends HookWidget {
     // final dutyBirthDayController = useTextEditingController(text: now.toString());
     final dutyTaxRegNumberController =
         useTextEditingController(text: params["taxRegNumber"]);
-    final rectifyTime = useState(
-        CZTimeUtils.formatDateTime(params["birthDay"], format: "yyyy-MM-dd"));
+    final rectifyTime =
+        useState(CZTimeUtils.formatDateTime(params["birthDay"]));
     debugPrint("MyDate:${rectifyTime.value}");
     debugPrint("MyDate1:" +
         DateTime.parse(rectifyTime.value).millisecondsSinceEpoch.toString());
@@ -79,16 +80,16 @@ class OcrDetailPage extends HookWidget {
                         name: "Birthday",
                         text: rectifyTime.value,
                         tapBlock: () {
-                          // DatePicker.showDatePicker(context,
-                          //     showTitleActions: true, onChanged: (date) {
-                          //   print('change $date');
-                          // }, onConfirm: (date) {
-                          //   print('confirm $date');
-                          //   rectifyTime.value = CZTimeUtils.formatDate(date);
-                          // },
-                          //     currentTime:
-                          //         CZTimeUtils.stringToDate(rectifyTime.value),
-                          //     locale: LocaleType.en);
+                          DatePicker.showDatePicker(context,
+                              showTitleActions: true, onChanged: (date) {
+                            print('change $date');
+                          }, onConfirm: (date) {
+                            print('confirm $date');
+                            rectifyTime.value = CZTimeUtils.formatDate(date);
+                          },
+                              currentTime:
+                                  CZTimeUtils.stringToDate(rectifyTime.value),
+                              locale: LocaleType.en);
                         }),
                     CreditInputInfoWidget(
                       name: "Taxregnumber",

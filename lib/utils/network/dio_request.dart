@@ -112,6 +112,8 @@ class HttpRequest {
         return response.data;
       }
     } on DioException catch (e) {
+      CZLoading.dismiss();
+      CZLoading.toast("Permintaan jaringan gagal");
       return Future.error('Permintaan jaringan gagal');
     }
   }
@@ -178,6 +180,8 @@ class HttpRequest {
         return response.data;
       }
     } on DioException catch (e) {
+      CZLoading.dismiss();
+      CZLoading.toast("Permintaan jaringan gagal");
       return Future.error('Permintaan jaringan gagal');
     }
   }

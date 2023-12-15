@@ -1,15 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 class CZTimeUtils {
-  static String formatDateTime(int timestamp, {String? format}) {
+  static String formatDateTime(int timestamp, {String format = 'yyyy-MM-dd'}) {
     var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
-    format ?? 'yyyy-MM-dd HH:mm:ss';
+    debugPrint("format:$format");
     var formatter = DateFormat(format);
     return formatter.format(date);
   }
 
-  static String formatDate(DateTime date, {String? format}) {
-    format ?? 'yyyy-MM-dd';
+  static String formatDate(DateTime date, {String format = 'yyyy-MM-dd'}) {
     var formatter = DateFormat(format);
     return formatter.format(date);
   }
