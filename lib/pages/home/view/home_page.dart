@@ -297,11 +297,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     GestureDetector(
                       behavior: HitTestBehavior.translucent,
-                      onTap: () {
+                      onTap: () async {
                         CZLoading.loading();
-                        HomeController().requestIncompleteForm().then((value) {
-                          CZLoading.dismiss();
-                        });
+                        await HomeController().requestIncompleteForm();
+                        CZLoading.dismiss();
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(

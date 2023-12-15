@@ -1,11 +1,21 @@
 import 'package:intl/intl.dart';
 
 class CZTimeUtils {
-  static String formatDateTime(int timestamp,{String? format}) {
+  static String formatDateTime(int timestamp, {String? format}) {
     var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
     format ?? 'yyyy-MM-dd HH:mm:ss';
     var formatter = DateFormat(format);
     return formatter.format(date);
+  }
+
+  static String formatDate(DateTime date, {String? format}) {
+    format ?? 'yyyy-MM-dd';
+    var formatter = DateFormat(format);
+    return formatter.format(date);
+  }
+
+  static DateTime stringToDate(String dateStr) {
+    return DateTime.parse(dateStr);
   }
 
   static int dateToTimestamp(String date, {isMicroseconds = false}) {
@@ -20,6 +30,7 @@ class CZTimeUtils {
   static String timestampToDateStr(int timestamp, {onlyNeedDate = false}) {
     DateTime dataTime = timestampToDate(timestamp);
     String dateTime = dataTime.toString();
+
     ///clean.000
     dateTime = dateTime.substring(0, dateTime.length - 4);
     if (onlyNeedDate) {
@@ -31,6 +42,7 @@ class CZTimeUtils {
 
   static DateTime timestampToDate(int timestamp) {
     DateTime dateTime = DateTime.now();
+
     ///13
     if (timestamp.toString().length == 13) {
       dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp);

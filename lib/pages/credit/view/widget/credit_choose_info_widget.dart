@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreditChooseInfoWidget extends StatelessWidget {
+  final String name;
+  final String text;
   final Function() tapBlock;
-  const CreditChooseInfoWidget({Key? key, required this.tapBlock})
+  const CreditChooseInfoWidget(
+      {Key? key,
+      required this.tapBlock,
+      required this.name,
+      required this.text})
       : super(key: key);
 
   @override
@@ -12,7 +18,7 @@ class CreditChooseInfoWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'xxx',
+          name,
           style: TextStyle(
               fontSize: 15.sp,
               color: const Color(0xFF000000),
@@ -34,7 +40,7 @@ class CreditChooseInfoWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'xxx',
+                    text,
                     style: TextStyle(
                         fontSize: 15.sp,
                         color: const Color(0xFF000000),

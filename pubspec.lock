@@ -158,6 +158,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.7.0-stable"
+  flutter_datetime_picker:
+    dependency: "direct dev"
+    description:
+      name: flutter_datetime_picker
+      sha256: "8e695c63c769350e541951227c2775190ec73ceda774a315b1dc9a99d5facfe5"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.5.1"
   flutter_easyloading:
     dependency: "direct dev"
     description:
@@ -166,6 +174,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.5"
+  flutter_hooks:
+    dependency: "direct dev"
+    description:
+      name: flutter_hooks
+      sha256: "2b969bb449330a547150827dfe0376f1c2374035ed7c6eb879b385def4d5e614"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.16.0"
   flutter_image_compress:
     dependency: "direct dev"
     description:
@@ -182,6 +198,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.0.6"
+  flutter_riverpod:
+    dependency: transitive
+    description:
+      name: flutter_riverpod
+      sha256: "2885685ad4ff8c62e84b6295cc13c24c733164006edd2b4ac1204beec0e35e54"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.14.0+3"
   flutter_screenutil:
     dependency: "direct dev"
     description:
@@ -216,6 +240,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: "70776c4541e5cacfe45bcaf00fe79137b8c61aa34fb5765a05ce6c57fd72c6e9"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.14.3"
   get:
     dependency: "direct dev"
     description:
@@ -232,6 +264,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.1"
+  hooks_riverpod:
+    dependency: "direct dev"
+    description:
+      name: hooks_riverpod
+      sha256: "1a538a03566ba07266d2bf9966c2b0397d5aeb1ed29f2b02cb1e541fe71fc483"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.14.0+3"
   http:
     dependency: transitive
     description:
@@ -264,6 +304,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.6.7"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.8.1"
   launch_review:
     dependency: "direct dev"
     description:
@@ -472,6 +520,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.2.1"
+  riverpod:
+    dependency: transitive
+    description:
+      name: riverpod
+      sha256: "13cbe0e17b659f38027986df967b3eaf7f42c519786352167fc3db1be44eae07"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.14.0+3"
   scrollable_positioned_list:
     dependency: "direct dev"
     description:
@@ -509,6 +565,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.11.0"
+  state_notifier:
+    dependency: transitive
+    description:
+      name: state_notifier
+      sha256: "8fe42610f179b843b12371e40db58c9444f8757f8b69d181c97e50787caed289"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.7.2+1"
   stream_channel:
     dependency: transitive
     description:

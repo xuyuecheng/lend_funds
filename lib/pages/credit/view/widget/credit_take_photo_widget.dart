@@ -4,18 +4,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreditTakePhotoWidget extends StatelessWidget {
-  final String title;
+  final int type;
   final Function() takePhotoBlock;
-  final String? imgFile;
+  final String? showFile;
+  final String? uploadFile;
   const CreditTakePhotoWidget(
       {Key? key,
-      required this.title,
+      required this.type,
       required this.takePhotoBlock,
-      this.imgFile})
+      this.showFile,
+      this.uploadFile})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String title = "";
+    String take_background_image = "";
+    if (type == 1) {
+      title = "ID Card Front";
+      take_background_image = "assets/credit/aadhear_front_backg.png";
+    } else if (type == 2) {
+      title = "ID Card Back";
+      take_background_image = "assets/credit/aadhear_back_backg.png";
+    } else {
+      title = "Pan Card";
+      take_background_image = "assets/credit/pan_front_backg.png";
+    }
     return GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: () {
@@ -28,40 +42,43 @@ class CreditTakePhotoWidget extends StatelessWidget {
               Container(
                 width: 157.w,
                 height: 89.w,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      child: (imgFile == null || imgFile?.length == 0)
-                          ? Image.asset(
-                              'assets/credit/credit_camera_backg_icon.png',
-                              width: 157.w,
-                              height: 89.w)
-                          : Image.file(
-                              File(imgFile!),
-                              height: 89.w,
-                              width: 157.w,
-                              fit: BoxFit.fill,
-                              errorBuilder: (BuildContext context, Object error,
-                                      StackTrace? stackTrace) =>
-                                  const Center(
-                                      child:
-                                          Text('Format Foto Tidak Didukung')),
-                            ),
-                    ),
-                    Positioned(
-                      left: (157 - 44) / 2,
-                      top: (89 - 38) / 2,
-                      child: (imgFile == null)
-                          ? Image.asset(
-                              'assets/credit/credit_camera_big_icon.png',
-                              width: 44.w,
-                              height: 38.w)
-                          : SizedBox.shrink(),
-                    ),
-                  ],
-                ),
+                child: (showFile == null || showFile?.length == 0)
+                    ? Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          Image.asset(
+                            take_background_image,
+                            width: 157.w,
+                            height: 89.w,
+                            fit: BoxFit.fill,
+                          ),
+                          Image.asset(
+                            'assets/credit/credit_camera_big_icon.png',
+                            width: 44.w,
+                            height: 38.w,
+                            fit: BoxFit.fill,
+                          )
+                        ],
+                      )
+                    : Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          Image.file(
+                            File(showFile!),
+                            height: 89.w,
+                            width: 157.w,
+                            fit: BoxFit.fill,
+                          ),
+                          Image.asset(
+                            (uploadFile == null || uploadFile?.length == 0)
+                                ? 'assets/credit/ocr_error_flag.png'
+                                : 'assets/credit/ocr_correct_flag.png',
+                            width: 42.w,
+                            height: 42.w,
+                            fit: BoxFit.fill,
+                          )
+                        ],
+                      ),
               ),
               SizedBox(
                 height: 15.h,

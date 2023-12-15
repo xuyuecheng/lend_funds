@@ -6,9 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/camera/views/camera_kpt.dart';
 import 'package:lend_funds/pages/credit/controller/ocr_controller.dart';
+import 'package:lend_funds/pages/credit/view/ocr_detail_page.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_take_photo_widget.dart';
+import 'package:lend_funds/pages/home/controller/home_controller.dart';
 import 'package:lend_funds/utils/image/ImageCompressUtil.dart';
-import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 
 class OcrPage extends StatefulWidget {
@@ -104,18 +105,20 @@ class _OcrPageState extends State<OcrPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CreditTakePhotoWidget(
-                  title: "ID Card Front",
+                  type: 1,
                   takePhotoBlock: () async {
                     _navigateFrontCameraPage(context);
                   },
-                  imgFile: resultFront,
+                  showFile: resultFront,
+                  uploadFile: loadFront,
                 ),
                 CreditTakePhotoWidget(
-                  title: "ID Card Back",
+                  type: 2,
                   takePhotoBlock: () async {
                     _navigateBackCameraPage(context);
                   },
-                  imgFile: resultBack,
+                  showFile: resultBack,
+                  uploadFile: loadBack,
                 ),
               ],
             ),
@@ -136,11 +139,12 @@ class _OcrPageState extends State<OcrPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CreditTakePhotoWidget(
-                  title: "Pan Card",
+                  type: 3,
                   takePhotoBlock: () {
                     _navigatePanCameraPage(context);
                   },
-                  imgFile: resultPan,
+                  showFile: resultPan,
+                  uploadFile: loadPan,
                 ),
               ],
             ),
@@ -155,7 +159,7 @@ class _OcrPageState extends State<OcrPage> {
                   borderRadius: BorderRadius.circular(5.w)),
               child: TextButton(
                 onPressed: () {
-                  Get.toNamed(CZRouteConfig.ocrDetail);
+                  _navigateOcrDetailPage();
                 },
                 child: Text("Next step",
                     style: TextStyle(
@@ -211,8 +215,10 @@ class _OcrPageState extends State<OcrPage> {
       CZLoading.loading(status: '');
       await OcrController.to.uploadFile(resultFront ?? "").then((value) {
         CZLoading.dismiss();
-        loadFront = value;
-        debugPrint("loadFront:${loadFront}");
+        if (value["status"] == 0) {
+          loadFront = value['model']["ossUrl"];
+          debugPrint("loadFront:${loadFront}");
+        }
       });
       if (loadFront != null && loadFront!.length > 0) {
         CZLoading.loading(status: '');
@@ -263,8 +269,10 @@ class _OcrPageState extends State<OcrPage> {
       CZLoading.loading(status: '');
       await OcrController.to.uploadFile(resultBack ?? "").then((value) {
         CZLoading.dismiss();
-        loadBack = value;
-        debugPrint("loadBack:${loadBack}");
+        if (value["status"] == 0) {
+          loadBack = value['model']["ossUrl"];
+          debugPrint("loadBack:${loadBack}");
+        }
       });
       if (loadBack != null && loadBack!.length > 0) {
         CZLoading.loading(status: '');
@@ -299,8 +307,10 @@ class _OcrPageState extends State<OcrPage> {
       CZLoading.loading(status: '');
       await OcrController.to.uploadFile(resultPan ?? "").then((value) {
         CZLoading.dismiss();
-        loadPan = value;
-        debugPrint("loadPan:${loadPan}");
+        if (value["status"] == 0) {
+          loadPan = value['model']["ossUrl"];
+          debugPrint("loadPan:${loadPan}");
+        }
       });
       if (loadPan != null && loadPan!.length > 0) {
         CZLoading.loading(status: '');
@@ -337,5 +347,36 @@ class _OcrPageState extends State<OcrPage> {
   Future<XFile> testCompressAndGetFile(String path, String targetPath) async {
     ImageCompressUtil imageCompressUtil = ImageCompressUtil();
     return imageCompressUtil.imageCompressAndGetFile(File(path));
+  }
+
+  _navigateOcrDetailPage() async {
+    if (loadFront == null || loadFront!.isEmpty) {
+      CZLoading.toast("please upload The AadhaarFront");
+      return;
+    }
+    if (loadBack == null || loadBack!.isEmpty) {
+      CZLoading.toast("please upload The AadhaarBack");
+      return;
+    }
+    if (loadPan == null || loadPan!.isEmpty) {
+      CZLoading.toast("please upload The PanCardFront");
+      return;
+    }
+
+    Map<String, dynamic> params = <String, dynamic>{};
+    params["idCard"] = idCard;
+    params["realName"] = realName;
+    params["birthDay"] = birthDay;
+    params["taxRegNumber"] = taxRegNumber;
+    params["idCardImageFront"] = loadFront;
+    params["idCardImageBack"] = loadBack;
+    params["idCardImagePan"] = loadPan;
+    debugPrint("params:$params");
+    var result = await Get.to(() => OcrDetailPage(params: params));
+    if (result != null && result) {
+      CZLoading.loading();
+      await HomeController.to.requestIncompleteForm(isOff: true);
+      CZLoading.dismiss();
+    }
   }
 }

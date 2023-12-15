@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:lend_funds/pages/credit/view/bank_page.dart';
 import 'package:lend_funds/pages/credit/view/contact_page.dart';
 import 'package:lend_funds/pages/credit/view/liveness_detection_page.dart';
-import 'package:lend_funds/pages/credit/view/ocr_detail_page.dart';
 import 'package:lend_funds/pages/credit/view/personal_info_page.dart';
 import 'package:lend_funds/pages/credit/view/work_information_page.dart';
 import 'package:lend_funds/pages/expection_pages/unknown_route.dart';
@@ -46,8 +45,8 @@ class CZRouteConfig {
   static const splash = '/splash';
   //Home
   static const home = '/home';
-  static const uploadPersonalInforma = '/home/uploadPersonalInforma';
-  static const ocrDetail = '/home/credit/ocrDetail';
+  // static const uploadPersonalInforma = '/home/uploadPersonalInforma';
+  // static const ocrDetail = '/home/credit/ocrDetail';
   static const personalInforma = '/home/personalInforma';
   static const workInforma = '/home/workInforma';
   static const creditBaseInfo = '/home/credit/baseInfo';
@@ -98,7 +97,7 @@ class CZRouteConfig {
     // GetPage(
     //     name: uploadPersonalInforma,
     //     page: () => const UploadPersonalInforPage()),
-    GetPage(name: ocrDetail, page: () => const OcrDetailPage()),
+    // GetPage(name: ocrDetail, page: () => const OcrDetailPage()),
     GetPage(name: personalInforma, page: () => const PersonalInfoPage()),
     GetPage(name: workInforma, page: () => const WorkInformationPage()),
     // GetPage(name: credit, page: () => const CZCreditPage()),

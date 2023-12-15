@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/network/dio_config.dart';
 import '../../../utils/network/dio_request.dart';
-import '../../../utils/toast/toast_utils.dart';
 
 class OcrController extends GetxController {
   static OcrController get to => Get.find();
@@ -22,11 +20,7 @@ class OcrController extends GetxController {
   Future uploadFile(String filePath) async {
     dynamic result =
         await HttpRequest.uploadFile(InterfaceConfig.uploadFile, filePath);
-    if (result['status'] == 0) {
-      return result['model']["ossUrl"];
-    } else {
-      return null;
-    }
+    return result;
   }
 
   Future ocrIdentifyFront(String url) async {
@@ -36,11 +30,7 @@ class OcrController extends GetxController {
         "model": {"url": url, "cardType": "FRONT"}
       },
     );
-    if (result['status'] == 0) {
-      return result;
-    } else {
-      return null;
-    }
+    return result;
   }
 
   Future ocrIdentifyBack(String url) async {
@@ -50,11 +40,7 @@ class OcrController extends GetxController {
         "model": {"url": url, "cardType": "BACK"}
       },
     );
-    if (result['status'] == 0) {
-      return result;
-    } else {
-      return null;
-    }
+    return result;
   }
 
   Future ocrIdentifyPan(String url) async {
@@ -64,35 +50,14 @@ class OcrController extends GetxController {
         "model": {"url": url, "cardType": "PAN"}
       },
     );
-    if (result['status'] == 0) {
-      return result;
-    } else {
-      return null;
-    }
+    return result;
   }
 
-  Future submitKtpInfo({Map<String, dynamic>? params}) async {
-    CZLoading.loading(status: '');
-    try {
-      dynamic result = await HttpRequest.request(
-        InterfaceConfig.submitOcrInfo,
-        params: params,
-      );
-      if (kDebugMode) {
-        print("HttpRequest.submitOcrInfo.params:${params.toString()}");
-        print("HttpRequest.submitOcrInfo:${result.toString()}");
-      }
-      CZLoading.dismiss();
-      if (result['status'] == 0) {
-        // CZCreditMixinController.to.requestNextPage(step: 1);
-        return result;
-      } else {
-        return Future.error('e');
-      }
-    } catch (e) {
-      CZLoading.dismiss();
-      CZLoading.toast(e.toString());
-      return Future.error(e);
-    }
+  Future submitOcrInfo({Map<String, dynamic>? params}) async {
+    dynamic result = await HttpRequest.request(
+      InterfaceConfig.submitOcrInfo,
+      params: params,
+    );
+    return result;
   }
 }

@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/credit/controller/ocr_controller.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_choose_info_widget.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_input_info_widget.dart';
-import 'package:lend_funds/utils/route/route_config.dart';
+import 'package:lend_funds/utils/time/time_utils.dart';
+import 'package:lend_funds/utils/toast/toast_utils.dart';
 
-class OcrDetailPage extends StatefulWidget {
-  const OcrDetailPage({Key? key}) : super(key: key);
-
-  @override
-  State<OcrDetailPage> createState() => _OcrDetailPageState();
-}
-
-class _OcrDetailPageState extends State<OcrDetailPage> {
-  @override
-  void initState() {
-    super.initState();
-    //...
-  }
+class OcrDetailPage extends HookWidget {
+  final Map<String, dynamic> params;
+  const OcrDetailPage({Key? key, required this.params}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final dutyIdCardController =
+        useTextEditingController(text: params["idCard"]);
+    final dutyRealNameController =
+        useTextEditingController(text: params["realName"]);
+    // DateTime now = DateTime.fromMillisecondsSinceEpoch(params["birthDay"]);
+    // final currTime = useState(now);
+    // final dutyBirthDayController = useTextEditingController(text: now.toString());
+    final dutyTaxRegNumberController =
+        useTextEditingController(text: params["taxRegNumber"]);
+    final rectifyTime = useState(
+        CZTimeUtils.formatDateTime(params["birthDay"], format: "yyyy-MM-dd"));
+    debugPrint("MyDate:${rectifyTime.value}");
+    debugPrint("MyDate1:" +
+        DateTime.parse(rectifyTime.value).millisecondsSinceEpoch.toString());
+    final focusNodes = List.generate(4, (index) => useFocusNode());
+
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
@@ -58,13 +67,34 @@ class _OcrDetailPageState extends State<OcrDetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 16.5.h),
-                    CreditInputInfoWidget(),
-                    CreditInputInfoWidget(),
-                    CreditChooseInfoWidget(tapBlock: () {
-                      debugPrint("12");
-                      showDefaultYearPicker(context);
-                    }),
-                    CreditInputInfoWidget(),
+                    CreditInputInfoWidget(
+                        name: "Idcard",
+                        inputController: dutyIdCardController,
+                        focusNode: focusNodes[0]),
+                    CreditInputInfoWidget(
+                        name: "Realname",
+                        inputController: dutyRealNameController,
+                        focusNode: focusNodes[1]),
+                    CreditChooseInfoWidget(
+                        name: "Birthday",
+                        text: rectifyTime.value,
+                        tapBlock: () {
+                          // DatePicker.showDatePicker(context,
+                          //     showTitleActions: true, onChanged: (date) {
+                          //   print('change $date');
+                          // }, onConfirm: (date) {
+                          //   print('confirm $date');
+                          //   rectifyTime.value = CZTimeUtils.formatDate(date);
+                          // },
+                          //     currentTime:
+                          //         CZTimeUtils.stringToDate(rectifyTime.value),
+                          //     locale: LocaleType.en);
+                        }),
+                    CreditInputInfoWidget(
+                      name: "Taxregnumber",
+                      inputController: dutyTaxRegNumberController,
+                      focusNode: focusNodes[3],
+                    ),
                     SizedBox(height: 12.h),
                     Container(
                       width: 345.w,
@@ -75,7 +105,14 @@ class _OcrDetailPageState extends State<OcrDetailPage> {
                             borderRadius: BorderRadius.circular(5.w)),
                         child: TextButton(
                           onPressed: () {
-                            Get.toNamed(CZRouteConfig.personalInforma);
+                            _ocrInfo(
+                                dutyIdCardController.text.toString(),
+                                dutyRealNameController.text.toString(),
+                                dutyTaxRegNumberController.text.toString(),
+                                rectifyTime.value,
+                                params["idCardImageFront"],
+                                params["idCardImageBack"],
+                                params["idCardImagePan"]);
                           },
                           child: Text("Next step",
                               style: TextStyle(
@@ -97,28 +134,48 @@ class _OcrDetailPageState extends State<OcrDetailPage> {
     );
   }
 
-  void showDefaultYearPicker(BuildContext context) async {
-    //设置默认显示的日期为当前
-    DateTime initialDate = DateTime.now();
-    final DateTime? dateTime = await showDatePicker(
-      context: context,
-      //定义控件打开时默认选择日期
-      initialDate: initialDate,
-      //定义控件最早可以选择的日期
-      firstDate: DateTime(1900, 1),
-      //定义控件最晚可以选择的日期
-      lastDate: initialDate,
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          child: child!,
-        );
-      },
-    );
-    if (dateTime != null && dateTime != initialDate) {
-      debugPrint("${dateTime.year}-${dateTime.month}-${dateTime.day}");
+  _ocrInfo(
+      String idCard,
+      String realName,
+      String taxRegNumber,
+      String birthDay,
+      String idCardImageFront,
+      String idCardImageBack,
+      String idCardImagePan) async {
+    if (idCard.isEmpty) {
+      CZLoading.toast("Please enter idCard");
+      return;
     }
+    if (realName.isEmpty) {
+      CZLoading.toast("please enter realName");
+      return;
+    }
+    if (taxRegNumber.isEmpty) {
+      CZLoading.toast("please enter taxRegNumber");
+      return;
+    }
+    if (birthDay.isEmpty) {
+      CZLoading.toast("please enter birthDay");
+      return;
+    }
+
+    CZLoading.loading();
+    await OcrController.to.submitOcrInfo(params: {
+      "model": {
+        "idCard": idCard,
+        "realName": realName,
+        "taxRegNumber": taxRegNumber,
+        "birthDay": DateTime.parse(birthDay).millisecondsSinceEpoch.toString(),
+        "idCardImageFront": idCardImageFront,
+        "idCardImageBack": idCardImageBack,
+        "idCardImagePan": idCardImagePan,
+      }
+    }).then((value) {
+      CZLoading.dismiss();
+      if (value["status"] == 0) {
+        //返回上个页面
+        Get.back(result: true);
+      }
+    });
   }
 }

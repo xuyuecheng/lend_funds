@@ -55,7 +55,8 @@ class InterfaceConfig {
   //ocr识别
   static const String ocr = 'transfection/general-significance-deathy';
   //ocr信息提交
-  static const String submitOcrInfo = 'form/save_base_info';
+  static const String submitOcrInfo =
+      'isogamy/tulipwood-fraenulum-afreet/phantasmic-smartless';
   //检测设备信息上报情况
   static const String checkUpload = 'device/check_upload';
   //上报设备信息
