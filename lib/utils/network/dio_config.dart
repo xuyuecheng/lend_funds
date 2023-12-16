@@ -43,7 +43,7 @@ class InterfaceConfig {
   static const String formList =
       'dissyllable/smallboy-dishearteningly-unexamining/rheda-polysepalous';
   //表单指定表单
-  static const String getOneFormFlow = 'form/get_one_form_flow';
+  static const String getOneFormFlow = 'fieldstone-agonising/snakebite-oke';
   //获取省市区三级联动
   static const String addressList = 'form/address_list';
   //获取产品信息

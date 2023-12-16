@@ -4,11 +4,7 @@
 // import 'package:financial_app/pages/webview/webview_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/credit/view/bank_page.dart';
-import 'package:lend_funds/pages/credit/view/contact_page.dart';
 import 'package:lend_funds/pages/credit/view/liveness_detection_page.dart';
-import 'package:lend_funds/pages/credit/view/personal_info_page.dart';
-import 'package:lend_funds/pages/credit/view/work_information_page.dart';
 import 'package:lend_funds/pages/expection_pages/unknown_route.dart';
 import 'package:lend_funds/pages/home/view/home_page.dart';
 import 'package:lend_funds/pages/login/view/login_page.dart';
@@ -24,31 +20,13 @@ class CZRouteConfig {
   static const splash = '/splash';
   //Home
   static const home = '/home';
-  static const personalInforma = '/home/personalInforma';
-  static const workInforma = '/home/workInforma';
-  static const creditBaseInfo = '/home/credit/baseInfo';
-  static const ktp = '/home/credit/ktp';
-  static const contacts = '/home/credit/contacts';
-  static const bank = '/home/credit/bank';
   static const livenessDetection = '/home/credit/livenessDetection';
-  static const aliveError = '/home/credit/alive/error';
-  static const quotaAssessment = '/home/credit/quotaAssessment';
-  static const loanVerify = '/home/credit/loanVerify';
-  static const repaymentPlant = '/home/credit/loanVerify/repaymentPlant';
 
   //order
   static const order = '/order';
-  static const repayPlan = '/repay/plan';
-  static const repayDetail = '/repay/plan/detail';
 
   //Mine
   static const mine = '/mine';
-  static const mineBank = '/mine/bank';
-  static const mineAboutUs = '/mine/aboutUs';
-  static const mineFaq = '/mine/faq';
-  static const mineSetting = '/mine/setting';
-  static const mineOrder = '/mine/order';
-  static const mineMessage = '/mine/message';
 
   //login
   static const login = '/login';
@@ -70,10 +48,6 @@ class CZRouteConfig {
     GetPage(name: home, page: () => const HomePage()),
     GetPage(name: login, page: () => const LoginPage()),
     GetPage(name: loginCode, page: () => const ValidateCodePage()),
-    GetPage(name: personalInforma, page: () => const PersonalInfoPage()),
-    GetPage(name: workInforma, page: () => const WorkInformationPage()),
-    GetPage(name: contacts, page: () => const ContactPage()),
-    GetPage(name: bank, page: () => const BankPage()),
     GetPage(name: livenessDetection, page: () => const LivenessDetectionPage()),
     GetPage(name: order, page: () => const OrderPage()),
     GetPage(

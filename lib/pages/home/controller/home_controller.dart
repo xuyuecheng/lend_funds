@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/credit/view/basic_page.dart';
 import 'package:lend_funds/pages/credit/view/ocr_page.dart';
-import 'package:lend_funds/pages/credit/view/work_information_page.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/network/dio_request.dart';
 
@@ -59,12 +59,26 @@ class HomeController extends GetxController with StateMixin<Map> {
                   ));
             }
           } else if (formType.trim() == "BASIC") {
-            if (isOff) {
-              Get.off(() => WorkInformationPage());
-            } else {
-              Get.to(() => WorkInformationPage());
-            }
-            // _getBasicForm(context, formId);
+            await requestBasicForm(formId: formId).then((value) {
+              if (value["status"] == 0) {
+                List<dynamic>? forms = value["model"].containsKey("forms")
+                    ? value["model"]["forms"]
+                    : null;
+                if (forms != null && forms.length > 0) {
+                  if (isOff) {
+                    Get.off(() => BasicPage(
+                          formId: formId,
+                          forms: forms,
+                        ));
+                  } else {
+                    Get.to(() => BasicPage(
+                          formId: formId,
+                          forms: forms,
+                        ));
+                  }
+                }
+              }
+            });
           } else if (formType.trim() == "ALIVE") {
             // await AppRouter.navigate(context, AppRoute.form_alive,
             //     params: {"formId": formId, "formName": formName}, finishSelf: true);
@@ -72,6 +86,15 @@ class HomeController extends GetxController with StateMixin<Map> {
         }
       }
     }
+    return result;
+  }
+
+  Future<Map<String, dynamic>> requestBasicForm(
+      {required String formId}) async {
+    Map<String, dynamic> result =
+        await HttpRequest.request(InterfaceConfig.getOneFormFlow, params: {
+      "model": {"formId": formId, "nodeType": "NODE1"}
+    });
     return result;
   }
 }
