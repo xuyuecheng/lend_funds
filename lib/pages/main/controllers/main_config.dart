@@ -1,7 +1,6 @@
 import 'package:easy_refresh/easy_refresh.dart';
 // import 'package:financial_app/pages/main/controllers/main_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:lend_funds/pages/home/view/home_page.dart';
 import 'package:lend_funds/pages/mine/view/mine_page.dart';
@@ -39,7 +38,7 @@ class CZMainConfig {
   ];
 
   static CZBeforeRunAppConfig() async {
-    await ScreenUtil.ensureScreenSize();
+    // await ScreenUtil.ensureScreenSize();
     await GetStorage.init('lend_funds');
     WidgetsFlutterBinding.ensureInitialized();
   }
