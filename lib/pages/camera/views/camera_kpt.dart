@@ -1,8 +1,9 @@
 import 'package:camera/camera.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_constraintlayout/flutter_constraintlayout.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lend_funds/pages/camera/views/widget/camera_permission_dialog.dart';
+import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../main.dart';
 
@@ -17,7 +18,6 @@ class CameraKpt extends StatefulWidget {
 
 class _CameraKptState extends State<CameraKpt> {
   late CameraController controller;
-  GlobalKey iconKey = GlobalKey();
 
   _initController() {
     controller =
@@ -29,11 +29,33 @@ class _CameraKptState extends State<CameraKpt> {
       setState(() {});
     }).catchError((Object e) {
       if (e is CameraException) {
+        debugPrint('code:${e.code},description:${e.description}');
         switch (e.code) {
           case 'CameraAccessDenied':
-            debugPrint("CameraAccessDenied");
+            debugPrint('You have denied camera access.');
+            break;
+          case 'CameraAccessDeniedWithoutPrompt':
+            // iOS only
+            cameraPermissionDialog();
+            debugPrint('Please go to Settings app to enable camera access.');
+            break;
+          case 'CameraAccessRestricted':
+            // iOS only
+            debugPrint('Camera access is restricted.');
+            break;
+          case 'AudioAccessDenied':
+            debugPrint('You have denied audio access.');
+            break;
+          case 'AudioAccessDeniedWithoutPrompt':
+            // iOS only
+            debugPrint('Please go to Settings app to enable audio access.');
+            break;
+          case 'AudioAccessRestricted':
+            // iOS only
+            debugPrint('Audio access is restricted.');
             break;
           default:
+            debugPrint("sdfdsf");
             break;
         }
       }
@@ -54,59 +76,73 @@ class _CameraKptState extends State<CameraKpt> {
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.value.isInitialized) {
-      return Container(key: iconKey);
-    }
-    return MaterialApp(
-        home: ConstraintLayout(width: 1.sw, height: matchParent, children: [
-      CameraPreview(controller).applyConstraint(
-        width: 1.sw,
-        height: 1.sh,
-        topLeftTo: parent,
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: _cameraPreviewWidget(),
+          ),
+          _captureControlRowWidget(),
+        ],
       ),
-      Image.asset(
-        'assets/credit/credit_ktp_mask.png',
-        height: 448.w,
-        width: 250.w,
-      ).applyConstraint(
-          id: cId("mask"), width: 1.sw, topRightTo: parent.topMargin(120.h)),
-      IconButton(
-        iconSize: 70.w,
-        icon: const Icon(Icons.radio_button_checked_rounded),
-        color: Colors.white,
-        onPressed:
-            controller.value.isInitialized && !controller.value.isRecordingVideo
+    );
+  }
+
+  ///相机工具栏
+  Widget _captureControlRowWidget() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, //均匀放置
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          IconButton(
+            iconSize: 40.w,
+            icon: Icon(Icons.clear_rounded),
+            color: Colors.blue,
+            onPressed: () {
+              Navigator.pop(context, null);
+            },
+          ),
+          IconButton(
+            iconSize: 40.w,
+            icon: Icon(Icons.camera_alt),
+            color: Colors.blue,
+            onPressed: controller.value.isInitialized &&
+                    !controller.value.isRecordingVideo
                 ? onTakePictureButtonPressed
                 : null,
-      ).applyConstraint(
-          width: 1.sw, topCenterTo: cId("mask").topMargin(448.w + 30.h)),
-    ]));
+          ),
+          IconButton(
+            iconSize: 40.w,
+            icon: Icon(Icons.verified_outlined),
+            color: Colors.transparent,
+            onPressed: () {},
+          )
+        ],
+      ),
+    );
+  }
+
+  ///预览窗口
+  Widget _cameraPreviewWidget() {
+    if (!controller.value.isInitialized) {
+      return SizedBox.shrink();
+    } else {
+      return CameraPreview(controller);
+    }
   }
 
   Future<void> onTakePictureButtonPressed() async {
     Navigator.pop(context, await controller.takePicture());
-
-    // takePicture().then((value) {
-    //
-    //   if (kDebugMode) {
-    //     print("takePicture:${value?.path}");
-    //   }
-    //   onBackPressed(value!);
-    // });
   }
 
-  void onBackPressed(XFile xFile) {
-    Navigator.pop(context, xFile);
-  }
-
-  Future<XFile?> takePicture() async {
-    try {
-      return await controller.takePicture();
-    } on CameraException catch (e) {
-      if (kDebugMode) {
-        print("CameraException:$e");
-      }
-    }
-    return null;
+  void cameraPermissionDialog() {
+    CZDialogUtil.show(CameraPermissionDialog(confirmBlock: () {
+      CZDialogUtil.dismiss();
+      openAppSettings();
+    }, cancelBlock: () {
+      CZDialogUtil.dismiss();
+    }));
   }
 }
