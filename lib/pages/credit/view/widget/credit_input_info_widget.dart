@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,9 +7,18 @@ class CreditInputInfoWidget extends HookWidget {
   final TextEditingController? inputController;
   final FocusNode? focusNode;
   final String name;
-  const CreditInputInfoWidget(
-      {Key? key, this.inputController, this.focusNode, required this.name})
-      : super(key: key);
+  final String? hint;
+  final bool require;
+  final int numberSize;
+  const CreditInputInfoWidget({
+    Key? key,
+    this.inputController,
+    this.focusNode,
+    required this.name,
+    this.hint,
+    this.require = false,
+    this.numberSize = 100,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +40,17 @@ class CreditInputInfoWidget extends HookWidget {
               color: Color(0xffF1F2F2),
               borderRadius: BorderRadius.circular(5.w)),
           child: TextFormField(
+              keyboardType: require ? TextInputType.number : TextInputType.text,
+              inputFormatters: <TextInputFormatter>[
+                LengthLimitingTextInputFormatter(numberSize) //限制长度
+              ],
               style: TextStyle(
                   fontSize: 15.sp,
                   color: const Color(0xFF000000),
                   fontWeight: FontWeight.w500),
               // controller: _phoneController,
               decoration: InputDecoration(
-                hintText: "Please enter $name",
+                hintText: hint ?? "Please enter $name",
                 hintStyle: TextStyle(
                     fontSize: 15.sp,
                     color: Colors.grey,

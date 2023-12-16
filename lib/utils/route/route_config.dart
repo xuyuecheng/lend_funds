@@ -18,35 +18,12 @@ import 'package:lend_funds/pages/main/views/splash.dart';
 import 'package:lend_funds/pages/order/view/order_page.dart';
 import 'package:lend_funds/pages/webview/webview_utils.dart';
 
-// import '../../pages/credit/views/credit_alive_error.dart';
-// import '../../pages/credit/views/credit_base_info.dart';
-// import '../../pages/credit/views/credit_contacts.dart';
-// import '../../pages/credit/views/credit_ktp.dart';
-// import '../../pages/credit/views/credit_loan_verify.dart';
-// import '../../pages/credit/views/credit_quota_assessment.dart';
-// import '../../pages/credit/views/credit_repayment_plan.dart';
-// import '../../pages/expection_pages/unknown_route.dart';
-// import '../../pages/home/views/home.dart';
-// import '../../pages/login/views/login.dart';
-// import '../../pages/login/views/login_code.dart';
-// import '../../pages/main/views/main.dart';
-// import '../../pages/mine/views/mine_about_us.dart';
-// import '../../pages/mine/views/mine_bank.dart';
-// import '../../pages/mine/views/mine_faq.dart';
-// import '../../pages/mine/views/mine_order.dart';
-// import '../../pages/mine/views/mine_setting.dart';
-// import '../../pages/repay/views/repay.dart';
-// import '../../pages/repay/views/repay_order_detail.dart';
-// import '../../pages/repay/views/repay_plan.dart';
-
 class CZRouteConfig {
   //Main
   static const main = '/';
   static const splash = '/splash';
   //Home
   static const home = '/home';
-  // static const uploadPersonalInforma = '/home/uploadPersonalInforma';
-  // static const ocrDetail = '/home/credit/ocrDetail';
   static const personalInforma = '/home/personalInforma';
   static const workInforma = '/home/workInforma';
   static const creditBaseInfo = '/home/credit/baseInfo';
@@ -91,35 +68,14 @@ class CZRouteConfig {
     GetPage(name: splash, page: () => const Splash()),
     GetPage(name: main, page: () => const MainPage()),
     GetPage(name: home, page: () => const HomePage()),
-    // GetPage(name: mine, page: () => const CZMinePage()),
     GetPage(name: login, page: () => const LoginPage()),
     GetPage(name: loginCode, page: () => const ValidateCodePage()),
-    // GetPage(
-    //     name: uploadPersonalInforma,
-    //     page: () => const UploadPersonalInforPage()),
-    // GetPage(name: ocrDetail, page: () => const OcrDetailPage()),
     GetPage(name: personalInforma, page: () => const PersonalInfoPage()),
     GetPage(name: workInforma, page: () => const WorkInformationPage()),
-    // GetPage(name: credit, page: () => const CZCreditPage()),
-    // GetPage(name: creditBaseInfo, page: () => const CZCreditBaseInfoPage()),
-    // GetPage(name: ktp, page: () => const CZKtpPage()),
     GetPage(name: contacts, page: () => const ContactPage()),
     GetPage(name: bank, page: () => const BankPage()),
     GetPage(name: livenessDetection, page: () => const LivenessDetectionPage()),
-    // GetPage(name: aliveError, page: () => const CZAliveErrorPage()),
-    // GetPage(name: quotaAssessment, page: () => const CZQuotaAssessmentPage()),
-    // GetPage(name: loanVerify, page: () => const CZCreditLoanVerifyPage()),
-    // GetPage(
-    //     name: repaymentPlant, page: () => const CZCreditRepaymentPlanPage()),
-    // GetPage(name: mineBank, page: () => const BankPage()),
-    // GetPage(name: mineOrder, page: () => const OrderPage()),
-    // GetPage(name: mineMessage, page: () => const MineMessageMain()),
-    // GetPage(name: mineFaq, page: () => const FaqPage()),
-    // GetPage(name: mineAboutUs, page: () => const AboutUsPage()),
-    // GetPage(name: mineSetting, page: () => const SettingPage()),
     GetPage(name: order, page: () => const OrderPage()),
-    // GetPage(name: repayPlan, page: () => const CZRepayPlanPage()),
-    // GetPage(name: repayDetail, page: () => const CZRepayOrderDetailPage()),
     GetPage(
         name: webView,
         page: () => CZWebView(

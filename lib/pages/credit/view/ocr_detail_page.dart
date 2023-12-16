@@ -19,9 +19,6 @@ class OcrDetailPage extends HookWidget {
         useTextEditingController(text: params["idCard"]);
     final dutyRealNameController =
         useTextEditingController(text: params["realName"]);
-    // DateTime now = DateTime.fromMillisecondsSinceEpoch(params["birthDay"]);
-    // final currTime = useState(now);
-    // final dutyBirthDayController = useTextEditingController(text: now.toString());
     final dutyTaxRegNumberController =
         useTextEditingController(text: params["taxRegNumber"]);
     final rectifyTime =
@@ -69,9 +66,10 @@ class OcrDetailPage extends HookWidget {
                   children: [
                     SizedBox(height: 16.5.h),
                     CreditInputInfoWidget(
-                        name: "Idcard",
-                        inputController: dutyIdCardController,
-                        focusNode: focusNodes[0]),
+                      name: "Idcard",
+                      inputController: dutyIdCardController,
+                      focusNode: focusNodes[0],
+                    ),
                     CreditInputInfoWidget(
                         name: "Realname",
                         inputController: dutyRealNameController,
