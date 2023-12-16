@@ -113,8 +113,8 @@ class HttpRequest {
       }
     } on DioException catch (e) {
       CZLoading.dismiss();
-      CZLoading.toast("Permintaan jaringan gagal");
-      return Future.error('Permintaan jaringan gagal');
+      CZLoading.toast("Network request failed");
+      return Future.error('Network request failed');
     }
   }
 
@@ -181,8 +181,8 @@ class HttpRequest {
       }
     } on DioException catch (e) {
       CZLoading.dismiss();
-      CZLoading.toast("Permintaan jaringan gagal");
-      return Future.error('Permintaan jaringan gagal');
+      CZLoading.toast("Network request failed");
+      return Future.error('Network request failed');
     }
   }
 
