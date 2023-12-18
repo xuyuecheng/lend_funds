@@ -4,7 +4,6 @@
 // import 'package:financial_app/pages/webview/webview_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/credit/view/liveness_detection_page.dart';
 import 'package:lend_funds/pages/expection_pages/unknown_route.dart';
 import 'package:lend_funds/pages/home/view/home_page.dart';
 import 'package:lend_funds/pages/login/view/login_page.dart';
@@ -20,7 +19,7 @@ class CZRouteConfig {
   static const splash = '/splash';
   //Home
   static const home = '/home';
-  static const livenessDetection = '/home/credit/livenessDetection';
+  // static const livenessDetection = '/home/credit/livenessDetection';
 
   //order
   static const order = '/order';
@@ -48,7 +47,7 @@ class CZRouteConfig {
     GetPage(name: home, page: () => const HomePage()),
     GetPage(name: login, page: () => const LoginPage()),
     GetPage(name: loginCode, page: () => const ValidateCodePage()),
-    GetPage(name: livenessDetection, page: () => const LivenessDetectionPage()),
+    // GetPage(name: livenessDetection, page: () => const AlivePage()),
     GetPage(name: order, page: () => const OrderPage()),
     GetPage(
         name: webView,

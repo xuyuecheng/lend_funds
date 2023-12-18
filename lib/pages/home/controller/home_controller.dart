@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/credit/view/alive_page.dart';
 import 'package:lend_funds/pages/credit/view/basic_page.dart';
 import 'package:lend_funds/pages/credit/view/ocr_page.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
@@ -85,8 +86,17 @@ class HomeController extends GetxController with StateMixin<Map> {
               }
             });
           } else if (formType.trim() == "ALIVE") {
-            // await AppRouter.navigate(context, AppRoute.form_alive,
-            //     params: {"formId": formId, "formName": formName}, finishSelf: true);
+            if (isOff) {
+              Get.off(() => AlivePage(
+                    formId: formId,
+                    formName: formName,
+                  ));
+            } else {
+              Get.to(() => AlivePage(
+                    formId: formId,
+                    formName: formName,
+                  ));
+            }
           }
         }
       }

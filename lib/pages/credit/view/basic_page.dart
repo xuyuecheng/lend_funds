@@ -167,7 +167,7 @@ class BasicPage extends HookWidget {
                   children: [
                     SizedBox(height: 12.h),
                     (formType == "contact")
-                        ? Container()
+                        ? (mGetContactWidget(context, contents[0]))
                         : (contents.isNotEmpty
                             ? Column(
                                 children: contents.map((e) {
@@ -396,6 +396,67 @@ class BasicPage extends HookWidget {
     if (response["status"] == 0) {
       HomeController.to.requestIncompleteForm(isOff: true);
     }
+  }
+
+  Widget mGetContactWidget(BuildContext context, dynamic content) {
+    dynamic props = content.containsKey("props") ? content["props"] : null;
+
+    List<Widget> widgetList = [];
+    for (int index = 0; index < count!; index++) {
+      int poIndex = index * 2;
+      widgetList.add(Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CreditInputTitleWidget(name: "Contact Person ${index + 1}"),
+          CreditInputInfoWidget(
+              name: nameLabel ?? "",
+              inputController: nameUseTextEditingController[index],
+              focusNode: focusNodes[poIndex]),
+          CreditInputInfoWidget(
+              name: phoneLabel ?? "",
+              inputController: phoneUseTextEditingController[index],
+              numberSize: phoneSize,
+              hint: phonePlaceholder != null ? phonePlaceholder : null,
+              require: true,
+              focusNode: focusNodes[poIndex + 1]),
+          CreditChooseInfoWidget(
+            name: relationLabel ?? "",
+            text: contactFormUseState[index].value.name,
+            tapBlock: () {
+              focusNodes.forEach((element) => element.unfocus());
+              if (props != null) {
+                List<dynamic> relationList =
+                    this.props.containsKey("relationList")
+                        ? this.props["relationList"]
+                        : null;
+                List<SysCodeEntity> sysCodeEntityList = [];
+                if (relationList != null) {
+                  sysCodeEntityList = relationList
+                      .map<SysCodeEntity>(
+                          (value) => SysCodeEntity.fromJson(value))
+                      .toList();
+                }
+                myBottomSheet.showCupertinoModalBottomSheet(
+                  enableDrag: false,
+                  context: context,
+                  builder: (context) => SupervisionDictSheet(
+                    sysCodes: sysCodeEntityList,
+                    onSelect: (sysCodeEntityList) => {
+                      mySelect(
+                          contactFormUseState[index], sysCodeEntityList.first)
+                    },
+                  ),
+                );
+              }
+            },
+          )
+        ],
+      ));
+      if (index != count! - 1) {
+        widgetList.add(SizedBox(height: 7.5));
+      }
+    }
+    return count != 0 ? Column(children: widgetList) : SizedBox.shrink();
   }
 
   Widget mGetWidget(BuildContext context, dynamic content, int index) {

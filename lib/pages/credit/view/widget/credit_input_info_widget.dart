@@ -72,3 +72,25 @@ class CreditInputInfoWidget extends HookWidget {
     );
   }
 }
+
+class CreditInputTitleWidget extends StatelessWidget {
+  final String? name;
+
+  const CreditInputTitleWidget({Key? key, this.name}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(name ?? "",
+            style: TextStyle(
+                fontSize: 25,
+                color: const Color(0xFF000000),
+                fontWeight: FontWeight.w600)),
+        SizedBox(
+          height: 12,
+        ),
+      ],
+    );
+  }
+}

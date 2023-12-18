@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class LivenessDetectionPage extends StatefulWidget {
-  const LivenessDetectionPage({Key? key}) : super(key: key);
+class AlivePage extends StatefulWidget {
+  final String formId;
+  final String formName;
+  const AlivePage({Key? key, required this.formId, required this.formName})
+      : super(key: key);
 
   @override
-  State<LivenessDetectionPage> createState() => _LivenessDetectionPageState();
+  State<AlivePage> createState() => _AlivePageState();
 }
 
-class _LivenessDetectionPageState extends State<LivenessDetectionPage> {
+class _AlivePageState extends State<AlivePage> {
   @override
   void initState() {
     super.initState();
