@@ -68,10 +68,13 @@ class HomeController extends GetxController with StateMixin<Map> {
                 if (forms != null && forms.length > 0) {
                   if (isOff) {
                     debugPrint("Get.off(() => BasicPage(");
-                    Get.off(() => BasicPage(
-                          formId: formId,
-                          forms: forms,
-                        ));
+                    Get.off(
+                      () => BasicPage(
+                        formId: formId,
+                        forms: forms,
+                      ),
+                      preventDuplicates: false,
+                    );
                   } else {
                     Get.to(() => BasicPage(
                           formId: formId,

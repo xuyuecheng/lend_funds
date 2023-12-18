@@ -452,7 +452,7 @@ class BasicPage extends HookWidget {
         tapBlock: () {
           //获取地址信息
           focusNodes.forEach((element) => element.unfocus());
-          // _getJobInfo(listFormUseState[index], "");
+          _getJobInfo(listFormUseState[index], "");
         },
       );
     } else {
@@ -506,6 +506,69 @@ class BasicPage extends HookWidget {
       _getAddressInfo(round, sysCodeEntity.id ?? "");
     } else {
       address2 = sysCodeEntity.id;
+      sysCodeEntity.name = round.value.name + "\n" + sysCodeEntity.name;
+    }
+    sysCodeEntity.firstName = round.value.firstName;
+    round.value = sysCodeEntity;
+  }
+
+  _getJobInfo(dynamic round, String id) async {
+    CZLoading.loading();
+    List<dynamic>? models = await getJobInfo();
+    CZLoading.dismiss();
+    List<SysCodeEntity> sysCodeEntityList = [];
+    if (models != null) {
+      sysCodeEntityList = models
+          .map<SysCodeEntity>((value) => SysCodeEntity.fromJson(value))
+          .toList();
+    }
+    //展示地址第一级
+    Future.delayed(Duration(milliseconds: 500)).then((value) => {
+          myBottomSheet.showCupertinoModalBottomSheet(
+            enableDrag: false,
+            context: mContext!,
+            builder: (mContext) => SupervisionDictSheet(
+              sysCodes: sysCodeEntityList,
+              onSelect: (sysCodeEntityList) =>
+                  {myJobSelect(round, sysCodeEntityList.first)},
+            ),
+          )
+        });
+  }
+
+  getJobInfo() async {
+    dynamic result = await HttpRequest.request(
+      InterfaceConfig.job_info,
+    );
+    return result["model"];
+  }
+
+  myJobSelect(dynamic round, SysCodeEntity sysCodeEntity) {
+    if (sysCodeEntity.sysCodeEntityList != null &&
+        sysCodeEntity.sysCodeEntityList!.length > 0) {
+      job1 = sysCodeEntity.id;
+      job2 = "";
+      //展示工作第二级
+      List<SysCodeEntity> sysCodeEntityList = [];
+      if (sysCodeEntity.sysCodeEntityList != null) {
+        sysCodeEntityList = sysCodeEntity.sysCodeEntityList!
+            .map<SysCodeEntity>((value) => SysCodeEntity.fromJson(value))
+            .toList();
+      }
+      Future.delayed(Duration(milliseconds: 500)).then((value) => {
+            // showCode(round,sysCodeEntityList)
+            myBottomSheet.showCupertinoModalBottomSheet(
+              enableDrag: false,
+              context: mContext!,
+              builder: (mContext) => SupervisionDictSheet(
+                sysCodes: sysCodeEntityList,
+                onSelect: (sysCodeEntityList) =>
+                    {myJobSelect(round, sysCodeEntityList.first)},
+              ),
+            )
+          });
+    } else {
+      job2 = sysCodeEntity.id;
       sysCodeEntity.name = round.value.name + "\n" + sysCodeEntity.name;
     }
     sysCodeEntity.firstName = round.value.firstName;

@@ -59,6 +59,7 @@ class InterfaceConfig {
   static const String submitOcrInfo =
       'isogamy/tulipwood-fraenulum-afreet/phantasmic-smartless';
   static const String address_info = "dominee-elucidation/ek-fatness-melodrame";
+  static const String job_info = "tamburlaine/tatami/controvert";
   //检测设备信息上报情况
   static const String checkUpload = 'device/check_upload';
   //上报设备信息
