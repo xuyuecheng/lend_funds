@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/credit/view/basic_page.dart';
 import 'package:lend_funds/pages/credit/view/ocr_page.dart';
@@ -66,6 +67,7 @@ class HomeController extends GetxController with StateMixin<Map> {
                     : null;
                 if (forms != null && forms.length > 0) {
                   if (isOff) {
+                    debugPrint("Get.off(() => BasicPage(");
                     Get.off(() => BasicPage(
                           formId: formId,
                           forms: forms,

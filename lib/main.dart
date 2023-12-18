@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lend_funds/pages/main/controllers/main_config.dart';
 import 'package:lend_funds/utils/controller/controller_utils.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
@@ -12,7 +13,7 @@ late List<CameraDescription> cameras;
 void main() async {
   await CZMainConfig.CZBeforeRunAppConfig();
   cameras = await availableCameras();
-  runApp(const App());
+  runApp(ProviderScope(child: App()));
 }
 
 class App extends StatefulWidget {

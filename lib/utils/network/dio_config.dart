@@ -49,7 +49,8 @@ class InterfaceConfig {
   //获取产品信息
   static const String product = 'product/get_product';
   //提交表单
-  static const String submitForm = 'form/submit_form';
+  static const String submitForm =
+      'warsaw-coitus/hylophagous-meniscoid/jingoism';
   //上传文件
   static const String uploadFile = 'gannet/insphere/roentgenise-peccancy';
   //ocr识别
@@ -57,6 +58,7 @@ class InterfaceConfig {
   //ocr信息提交
   static const String submitOcrInfo =
       'isogamy/tulipwood-fraenulum-afreet/phantasmic-smartless';
+  static const String address_info = "dominee-elucidation/ek-fatness-melodrame";
   //检测设备信息上报情况
   static const String checkUpload = 'device/check_upload';
   //上报设备信息

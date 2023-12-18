@@ -376,6 +376,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.9.1"
+  modal_bottom_sheet:
+    dependency: "direct dev"
+    description:
+      path: modal_bottom_sheet
+      ref: main
+      resolved-ref: "3e8c3682be91a4a86ee73f39606901d5eb033f0b"
+      url: "https://github.com/followthemoney1/modal_bottom_sheet.git"
+    source: git
+    version: "2.1.2+1"
   package_info_plus:
     dependency: "direct dev"
     description:

@@ -78,6 +78,12 @@ dev_dependencies:
   hooks_riverpod: ^0.14.0
   flutter_hooks: ^0.16.0
   flutter_datetime_picker_plus: ^2.1.0
+  # 底部弹出框
+  modal_bottom_sheet:
+    git:
+      url: https://github.com/followthemoney1/modal_bottom_sheet.git
+      ref: main
+      path: modal_bottom_sheet
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

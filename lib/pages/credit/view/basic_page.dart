@@ -1,8 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/credit/view/widget/credit_choose_info_widget.dart';
+import 'package:lend_funds/pages/credit/view/widget/credit_input_info_widget.dart';
+import 'package:lend_funds/pages/credit/view/widget/dict_sheet.dart';
+import 'package:lend_funds/pages/home/controller/home_controller.dart';
 import 'package:lend_funds/utils/entity/syscode_entity.dart';
+import 'package:lend_funds/utils/network/dio_config.dart';
+import 'package:lend_funds/utils/network/dio_request.dart';
+import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart' as myBottomSheet;
 
 class BasicPage extends HookWidget {
   final String formId;
@@ -36,12 +46,8 @@ class BasicPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     mContext = context;
-    // final theme = Theme.of(context);
-    // final refreshController =
-    // useMemoized(() => RefreshController(initialRefresh: true));
-
     String formName = "";
-    String columnField;
+    String columnField = "";
     if (forms.length > 0) {
       contents = forms[0].containsKey("content") ? forms[0]["content"] : null;
       formName = forms[0].containsKey("formName") ? forms[0]["formName"] : null;
@@ -122,66 +128,395 @@ class BasicPage extends HookWidget {
         }
       }
     }
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: BackButton(
-            color: Colors.black,
-            onPressed: () {
-              Get.back();
-            }),
-        title: Text(
-          // widget.formName,
-          formName,
-          style: TextStyle(
-              fontSize: 17.5.sp,
-              color: const Color(0xFF000000),
-              fontWeight: FontWeight.w500),
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: BackButton(
+              color: Colors.black,
+              onPressed: () {
+                Get.back();
+              }),
+          title: Text(
+            // widget.formName,
+            formName,
+            style: TextStyle(
+                fontSize: 17.5.sp,
+                color: const Color(0xFF000000),
+                fontWeight: FontWeight.w500),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        // padding: EdgeInsets.symmetric(horizontal: 15.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              color: Color(0xffF1F2F2),
-              height: 15.h,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 25.h),
-                  Container(
-                    width: 345.w,
-                    height: 50.h,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: const Color(0xFF003C6A),
-                          borderRadius: BorderRadius.circular(5.w)),
-                      child: TextButton(
-                        onPressed: () {
-                          // Get.toNamed(CZRouteConfig.contacts);
-                        },
-                        child: Text("Next step",
-                            style: TextStyle(
-                                fontSize: 17.5.sp,
-                                color: const Color(0xFFFFFFFF),
-                                fontWeight: FontWeight.w500)),
+        body: SingleChildScrollView(
+          // padding: EdgeInsets.symmetric(horizontal: 15.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                color: Color(0xffF1F2F2),
+                height: 15.h,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 12.h),
+                    (formType == "contact")
+                        ? Container()
+                        : (contents.isNotEmpty
+                            ? Column(
+                                children: contents.map((e) {
+                                  int index = contents.indexOf(e);
+                                  return mGetWidget(context, e, index);
+                                }).toList(),
+                              )
+                            : SizedBox.shrink()),
+                    SizedBox(height: 25.h),
+                    Container(
+                      width: 345.w,
+                      height: 50.h,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: const Color(0xFF003C6A),
+                            borderRadius: BorderRadius.circular(5.w)),
+                        child: TextButton(
+                          onPressed: () {
+                            focusNodes.forEach((element) => element.unfocus());
+                            if ((columnField == "formBank")) {
+                              List titleList = [];
+                              List contentList = [];
+                              for (var i = 0; i < contents.length; i++) {
+                                String name = contents[i].containsKey("name")
+                                    ? contents[i]["name"]
+                                    : null;
+                                String type = contents[i].containsKey("type")
+                                    ? contents[i]["type"]
+                                    : null;
+                                titleList.add(name ?? "");
+                                if (type == "select") {
+                                  contentList.add(listFormUseState[i]
+                                          .value
+                                          .name
+                                          .toString() ??
+                                      "");
+                                } else {
+                                  contentList.add(
+                                      listUseTextEditingController[i]
+                                              .text
+                                              .toString() ??
+                                          "");
+                                }
+                              }
+                              debugPrint("titleList:$titleList");
+                              debugPrint("contentList:$contentList");
+                              // //弹窗
+                              // showDialog(
+                              //     context: context,
+                              //     builder: (_) => BankDialog(
+                              //       titleList: titleList,
+                              //       contentList: contentList,
+                              //       onConfirm: () {
+                              //         _submitInfo();
+                              //       },
+                              //     ),
+                              //     barrierDismissible: false);
+                            } else {
+                              //提交
+                              _submitInfo();
+                            }
+                          },
+                          child: Text("Next step",
+                              style: TextStyle(
+                                  fontSize: 17.5.sp,
+                                  color: const Color(0xFFFFFFFF),
+                                  fontWeight: FontWeight.w500)),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 52.h),
-                ],
-              ),
-            )
-          ],
+                    SizedBox(height: 52.h),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
+        backgroundColor: Colors.white,
       ),
-      backgroundColor: Colors.white,
     );
+  }
+
+  _submitInfo() async {
+    focusNodes.forEach((element) => element.unfocus());
+    Map<String, dynamic> params = <String, dynamic>{};
+    Map<String, dynamic> mParams = <String, dynamic>{};
+    Map<String, dynamic> model = <String, dynamic>{};
+    Map<String, dynamic> submitData = <String, dynamic>{};
+    Map<String, dynamic> address = <String, dynamic>{};
+    Map<String, dynamic> job = <String, dynamic>{};
+    Map<String, dynamic> bigAddress = <String, dynamic>{};
+    Map<String, dynamic> detailAddress = <String, dynamic>{};
+    List<Map<String, dynamic>> userEmerges = [];
+    model["formId"] = formId;
+
+    String bankNumberContentStr = "";
+    String bankNumberAgainContentStr = "";
+    if (formType == "contact") {
+      for (int i = 0; i < count!; i++) {
+        Map<String, dynamic> userEmerge = <String, dynamic>{};
+        if (nameUseTextEditingController[i].text.toString() == null ||
+            nameUseTextEditingController[i].text.toString().length == 0) {
+          CZLoading.toast("$nameLabel Can not be empty");
+          return;
+        }
+        if (phoneUseTextEditingController[i].text.toString() == null ||
+            phoneUseTextEditingController[i].text.toString().length == 0) {
+          CZLoading.toast("$phoneLabel Can not be empty");
+          return;
+        }
+        if (contactFormUseState[i].value.name == null ||
+            contactFormUseState[i].value.name.length == 0) {
+          CZLoading.toast("$relationLabel Can not be empty");
+          return;
+        }
+        userEmerge["name"] = nameUseTextEditingController[i].text.toString();
+        userEmerge["phone"] = phoneUseTextEditingController[i].text.toString();
+        userEmerge["relation"] = contactFormUseState[i].value.id;
+        userEmerges.add(userEmerge);
+      }
+      submitData[contactId ?? ""] = userEmerges;
+    } else {
+      for (var i = 0; i < contents.length; i++) {
+        String id = contents[i].containsKey("id") ? contents[i]["id"] : null;
+        String name =
+            contents[i].containsKey("name") ? contents[i]["name"] : null;
+        String type =
+            contents[i].containsKey("type") ? contents[i]["type"] : null;
+
+        if (type == "select") {
+          if (listFormUseState[i].value.id.toString().isEmpty) {
+            CZLoading.toast("$name Can not be empty");
+            return;
+          }
+          List<String> ids = id.split(".");
+          if (ids.length > 1) {
+            var param = submitData[ids.first];
+            if (param == null) {
+              mParams[ids.last] = listFormUseState[i].value.id;
+              submitData[ids.first] = mParams;
+            } else {
+              param[ids.last] = listFormUseState[i].value.id;
+              submitData[ids.first] = param;
+            }
+          } else {
+            submitData[id] = listFormUseState[i].value.id;
+          }
+        } else if (type == "jobType") {
+          if ((job1 == null || job1?.length == 0) ||
+              (job2 == null || job2?.length == 0)) {
+            CZLoading.toast("$name Can not be empty");
+            return;
+          }
+          print("jobType:$id");
+          job["workType"] = job1;
+          job["profession"] = job2;
+          submitData[id] = job;
+        } else if (type == "addressType") {
+          if ((address1 == null || address1?.length == 0) ||
+              (address2 == null || address2?.length == 0)) {
+            CZLoading.toast("$name Can not be empty");
+            return;
+          }
+          print("addressf.l:$id");
+          List<String> ids = id.split(".");
+          bigAddress["province"] = address1;
+          bigAddress["city"] = address2;
+          address[ids.last] = bigAddress;
+          var param = submitData[ids.first];
+          if (param == null) {
+            submitData[ids.first] = address;
+          } else {
+            param[ids.last] = bigAddress;
+            submitData[ids.first] = param;
+          }
+        } else {
+          if (listUseTextEditingController[i].text.toString().isEmpty) {
+            CZLoading.toast("$name Can not be empty");
+            return;
+          }
+
+          if (name == "Bank Number") {
+            bankNumberContentStr =
+                listUseTextEditingController[i].text.toString();
+          }
+          if (name == "Confirm Bank Number") {
+            bankNumberAgainContentStr =
+                listUseTextEditingController[i].text.toString();
+          }
+          List<String> ids = id.split(".");
+          if (ids.length > 1) {
+            var param = submitData[ids.first];
+            if (param == null) {
+              detailAddress[ids.last] =
+                  listUseTextEditingController[i].text.toString();
+              submitData[ids.first] = detailAddress;
+            } else {
+              if (ids.last != "bankCardAgainTemp") {
+                param[ids.last] =
+                    listUseTextEditingController[i].text.toString();
+              }
+              submitData[ids.first] = param;
+            }
+          } else {
+            submitData[id] = listUseTextEditingController[i].text.toString();
+          }
+        }
+      }
+    }
+    model["submitData"] = submitData;
+    params["model"] = model;
+
+    print("submitInfo:" + json.encode(params));
+    debugPrint("bankNumberContentStr:$bankNumberContentStr");
+    debugPrint("bankNumberAgainContentStr:$bankNumberAgainContentStr");
+    if (bankNumberContentStr.isNotEmpty &&
+        bankNumberAgainContentStr.isNotEmpty &&
+        bankNumberContentStr != bankNumberAgainContentStr) {
+      CZLoading.toast(
+          "the two bank numbers are not the same. please input again,thanks");
+      return;
+    }
+    CZLoading.loading();
+    final response = await submitInfo(params);
+    CZLoading.dismiss();
+    if (response["status"] == 0) {
+      HomeController.to.requestIncompleteForm(isOff: true);
+    }
+  }
+
+  Widget mGetWidget(BuildContext context, dynamic content, int index) {
+    String type = content.containsKey("type") ? content["type"] : null;
+    String name = content.containsKey("name") ? content["name"] : null;
+    List<dynamic>? options =
+        content.containsKey("options") ? content["options"] : null;
+    List<SysCodeEntity> sysCodeEntityList = [];
+    if (options != null) {
+      sysCodeEntityList = options
+          .map<SysCodeEntity>((value) => SysCodeEntity.fromJson(value))
+          .toList();
+      print("sysCodeEntityList:" + sysCodeEntityList.length.toString());
+    }
+    listFormUseState[index].value.firstName = name;
+    if (type == "select") {
+      return CreditChooseInfoWidget(
+        name: name,
+        text: listFormUseState[index].value.name,
+        tapBlock: () {
+          focusNodes.forEach((element) => element.unfocus());
+          myBottomSheet.showCupertinoModalBottomSheet(
+            enableDrag: false,
+            context: context,
+            builder: (context) => SupervisionDictSheet(
+              sysCodes: sysCodeEntityList,
+              onSelect: (sysCodeEntityList) =>
+                  {mySelect(listFormUseState[index], sysCodeEntityList.first)},
+            ),
+          );
+        },
+      );
+    } else if (type == "number") {
+      return CreditInputInfoWidget(
+        name: name,
+        inputController: listUseTextEditingController[index],
+        require: true,
+        focusNode: focusNodes[index],
+      );
+    } else if (type == "addressType") {
+      return CreditChooseInfoWidget(
+        name: name,
+        text: listFormUseState[index].value.name,
+        tapBlock: () {
+          //获取地址信息
+          focusNodes.forEach((element) => element.unfocus());
+          _getAddressInfo(listFormUseState[index], "");
+        },
+      );
+    } else if (type == "jobType") {
+      return CreditChooseInfoWidget(
+        name: name,
+        text: listFormUseState[index].value.name,
+        tapBlock: () {
+          //获取地址信息
+          focusNodes.forEach((element) => element.unfocus());
+          // _getJobInfo(listFormUseState[index], "");
+        },
+      );
+    } else {
+      return CreditInputInfoWidget(
+        name: name,
+        inputController: listUseTextEditingController[index],
+        focusNode: focusNodes[index],
+      );
+    }
+  }
+
+  mySelect(dynamic round, SysCodeEntity sysCodeEntity) {
+    sysCodeEntity.firstName = round.value.firstName;
+    round.value = sysCodeEntity;
+  }
+
+  _getAddressInfo(dynamic round, String id) async {
+    CZLoading.loading();
+    List<dynamic>? models = await getAddressInfo(round, id);
+    CZLoading.dismiss();
+    List<SysCodeEntity> sysCodeEntityList = [];
+    if (models != null) {
+      sysCodeEntityList = models
+          .map<SysCodeEntity>((value) => SysCodeEntity.fromJson(value))
+          .toList();
+    }
+    //展示地址第一级
+    await myBottomSheet.showCupertinoModalBottomSheet(
+      enableDrag: false,
+      context: mContext!,
+      builder: (mContext) => SupervisionDictSheet(
+        sysCodes: sysCodeEntityList,
+        onSelect: (sysCodeEntityList) =>
+            {myAddressSelect(round, sysCodeEntityList.first)},
+      ),
+    );
+  }
+
+  Future getAddressInfo(dynamic round, String id) async {
+    dynamic result = await HttpRequest.request(
+      InterfaceConfig.address_info,
+      params: {"model": id},
+    );
+    return result["model"];
+  }
+
+  myAddressSelect(dynamic round, SysCodeEntity sysCodeEntity) {
+    if (sysCodeEntity.haveChild != null && sysCodeEntity.haveChild == true) {
+      address1 = sysCodeEntity.id;
+      address2 = "";
+      _getAddressInfo(round, sysCodeEntity.id ?? "");
+    } else {
+      address2 = sysCodeEntity.id;
+      sysCodeEntity.name = round.value.name + "\n" + sysCodeEntity.name;
+    }
+    sysCodeEntity.firstName = round.value.firstName;
+    round.value = sysCodeEntity;
+  }
+
+  Future submitInfo(Map<String, dynamic> params) async {
+    dynamic result = await HttpRequest.request(
+      InterfaceConfig.submitForm,
+      params: params,
+    );
+    return result;
   }
 }
