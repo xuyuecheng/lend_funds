@@ -143,7 +143,6 @@ class BasicPage extends HookWidget {
                 Get.back();
               }),
           title: Text(
-            // widget.formName,
             formName,
             style: TextStyle(
                 fontSize: 17.5.sp,
@@ -192,7 +191,7 @@ class BasicPage extends HookWidget {
                               List titleList = [];
                               List contentList = [];
                               for (var i = 0; i < contents.length; i++) {
-                                String name = contents[i].containsKey("name")
+                                String? name = contents[i].containsKey("name")
                                     ? contents[i]["name"]
                                     : null;
                                 String type = contents[i].containsKey("type")
@@ -201,16 +200,14 @@ class BasicPage extends HookWidget {
                                 titleList.add(name ?? "");
                                 if (type == "select") {
                                   contentList.add(listFormUseState[i]
-                                          .value
-                                          .name
-                                          .toString() ??
-                                      "");
+                                      .value
+                                      .name
+                                      .toString());
                                 } else {
                                   contentList.add(
                                       listUseTextEditingController[i]
-                                              .text
-                                              .toString() ??
-                                          "");
+                                          .text
+                                          .toString());
                                 }
                               }
                               debugPrint("titleList:$titleList");
@@ -224,18 +221,6 @@ class BasicPage extends HookWidget {
                                   },
                                 ),
                               );
-
-                              // //弹窗
-                              // showDialog(
-                              //     context: context,
-                              //     builder: (_) => BankDialog(
-                              //       titleList: titleList,
-                              //       contentList: contentList,
-                              //       onConfirm: () {
-                              //         _submitInfo();
-                              //       },
-                              //     ),
-                              //     barrierDismissible: false);
                             } else {
                               //提交
                               _submitInfo();
@@ -279,13 +264,11 @@ class BasicPage extends HookWidget {
     if (formType == "contact") {
       for (int i = 0; i < count!; i++) {
         Map<String, dynamic> userEmerge = <String, dynamic>{};
-        if (nameUseTextEditingController[i].text.toString() == null ||
-            nameUseTextEditingController[i].text.toString().length == 0) {
+        if (nameUseTextEditingController[i].text.toString().length == 0) {
           CZLoading.toast("$nameLabel Can not be empty");
           return;
         }
-        if (phoneUseTextEditingController[i].text.toString() == null ||
-            phoneUseTextEditingController[i].text.toString().length == 0) {
+        if (phoneUseTextEditingController[i].text.toString().length == 0) {
           CZLoading.toast("$phoneLabel Can not be empty");
           return;
         }
@@ -438,7 +421,7 @@ class BasicPage extends HookWidget {
             tapBlock: () {
               focusNodes.forEach((element) => element.unfocus());
               if (props != null) {
-                List<dynamic> relationList =
+                List<dynamic>? relationList =
                     this.props.containsKey("relationList")
                         ? this.props["relationList"]
                         : null;

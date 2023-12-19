@@ -30,7 +30,7 @@ class CameraPermissionDialog extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.5.w),
                 child: Text(
-                    "Please go to Settings app to enable camera access.",
+                    "User has previously denied the camera access request. Go to Settings to enable camera access.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         height: 2,
@@ -55,7 +55,7 @@ class CameraPermissionDialog extends StatelessWidget {
                         onPressed: () {
                           confirmBlock();
                         },
-                        child: Text("Confirm",
+                        child: Text("Go",
                             style: TextStyle(
                                 fontSize: 20.sp,
                                 color: const Color(0xFFFFFFFF),
