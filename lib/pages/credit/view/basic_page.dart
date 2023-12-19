@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/credit/view/widget/bank_dialog.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_choose_info_widget.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_input_info_widget.dart';
 import 'package:lend_funds/pages/credit/view/widget/dict_sheet.dart';
@@ -214,6 +215,16 @@ class BasicPage extends HookWidget {
                               }
                               debugPrint("titleList:$titleList");
                               debugPrint("contentList:$contentList");
+                              CZDialogUtil.show(
+                                BankDialog(
+                                  titleList: titleList,
+                                  contentList: contentList,
+                                  onConfirm: () {
+                                    _submitInfo();
+                                  },
+                                ),
+                              );
+
                               // //弹窗
                               // showDialog(
                               //     context: context,
@@ -394,7 +405,9 @@ class BasicPage extends HookWidget {
     final response = await submitInfo(params);
     CZLoading.dismiss();
     if (response["status"] == 0) {
-      HomeController.to.requestIncompleteForm(isOff: true);
+      CZLoading.loading();
+      await HomeController.to.requestIncompleteForm(isOff: true);
+      CZLoading.dismiss();
     }
   }
 
