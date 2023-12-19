@@ -1,6 +1,7 @@
 // import 'package:financial_app/pages/mine/controllers/mine_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lend_funds/pages/home/controller/home_controller.dart';
 import 'package:lend_funds/utils/eventbus/eventbus.dart';
 
 // import '../../home/controllers/home_controller.dart';
@@ -74,7 +75,8 @@ class _MainPageState extends State<MainPage> {
     switch (index) {
       case 0:
         {
-          // HomeController.to.refreshData();
+          HomeController.to.getIncompleteForm();
+          HomeController.to.getProductList();
         }
         break;
       case 1:

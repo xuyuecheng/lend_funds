@@ -47,7 +47,7 @@ class InterfaceConfig {
   //获取省市区三级联动
   static const String addressList = 'form/address_list';
   //获取产品信息
-  static const String product = 'product/get_product';
+  static const String product_list = 'lacing-washy/ctn-fives';
   //提交表单
   static const String submitForm =
       'warsaw-coitus/hylophagous-meniscoid/jingoism';
@@ -67,7 +67,7 @@ class InterfaceConfig {
   //AppList
   static const String appList = 'device/upload_app_info';
   //活体检测
-  static const String liveCheck = 'form/liveness_check';
+  static const String alive = 'cheyenne/cadaster/tentaculiform';
   //活体授权
   static const String authLicense = 'form/auth_license';
   //获取用户额度

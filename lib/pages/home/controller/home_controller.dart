@@ -9,9 +9,9 @@ import 'package:lend_funds/utils/network/dio_request.dart';
 class HomeController extends GetxController with StateMixin<Map> {
   static HomeController get to => Get.find();
   List forms = [];
+  List productList = [];
   @override
   void onReady() {
-    getIncompleteForm();
     super.onReady();
   }
 
@@ -20,6 +20,18 @@ class HomeController extends GetxController with StateMixin<Map> {
       if (value['status'] == 0) {
         //成功
         forms = value['model']['forms'];
+        update();
+      }
+    });
+  }
+
+  void getProductList() {
+    requestProductList().then((value) {
+      if (value['status'] == 0) {
+        //成功
+        productList = value["page"].containsKey("content")
+            ? value["page"]["content"]
+            : [];
         update();
       }
     });
@@ -98,6 +110,9 @@ class HomeController extends GetxController with StateMixin<Map> {
                   ));
             }
           }
+        } else {
+          //返回首页
+          Get.back();
         }
       }
     }
@@ -110,6 +125,13 @@ class HomeController extends GetxController with StateMixin<Map> {
         await HttpRequest.request(InterfaceConfig.getOneFormFlow, params: {
       "model": {"formId": formId, "nodeType": "NODE1"}
     });
+    return result;
+  }
+
+  Future<Map<String, dynamic>> requestProductList() async {
+    Map<String, dynamic> result = await HttpRequest.request(
+        InterfaceConfig.product_list,
+        params: {"query": {}});
     return result;
   }
 }
