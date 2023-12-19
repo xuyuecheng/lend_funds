@@ -247,11 +247,7 @@ class _HomePageState extends State<HomePage> {
                     ).applyConstraint(
                         id: cId('cont3'),
                         topCenterTo: parent.topMargin(291.5.h)),
-                    vc.forms.isNotEmpty
-                        ? _createRecommend()
-                        : vc.productList.isNotEmpty
-                            ? _createProducts()
-                            : SizedBox.shrink(),
+                    vc.forms.isNotEmpty ? _createRecommend() : _createProducts()
                   ],
                 ),
               )),
