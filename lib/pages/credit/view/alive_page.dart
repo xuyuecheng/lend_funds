@@ -69,7 +69,7 @@ class _AlivePageState extends State<AlivePage> {
                         onPressed: () {
                           // Get.toNamed(CZRouteConfig.contacts);
                         },
-                        child: Text("Submit",
+                        child: Text("Next step",
                             style: TextStyle(
                                 fontSize: 17.5.sp,
                                 color: const Color(0xFFFFFFFF),
