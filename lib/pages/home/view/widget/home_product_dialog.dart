@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lend_funds/utils/toast/toast_utils.dart';
 
 class HomeProductDialog extends StatelessWidget {
+  final List itemList;
   final Function() confirmBlock;
-  const HomeProductDialog({Key? key, required this.confirmBlock})
+  const HomeProductDialog(
+      {Key? key, required this.confirmBlock, required this.itemList})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Map itemData = itemList[0];
+    dynamic name = itemData.containsKey("name") ? itemData["name"] : null;
+    dynamic productId =
+        itemData.containsKey("productId") ? itemData["productId"] : null;
+    dynamic amount =
+        itemData.containsKey("amount") ? itemData["amount"] : "amount";
+    dynamic repayAmount = itemData.containsKey("repayAmount")
+        ? itemData["repayAmount"]
+        : "repayAmount";
+    dynamic adminAmount =
+        itemData.containsKey("adminAmount") ? itemData["adminAmount"] : "0";
+    dynamic actualAmount =
+        itemData.containsKey("actualAmount") ? itemData["actualAmount"] : "0";
+    dynamic term = itemData.containsKey("term") ? itemData["term"] : "120";
+    dynamic interestAmount =
+        itemData.containsKey("interestAmount") ? itemData["interestAmount"] : 1;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -27,7 +46,8 @@ class HomeProductDialog extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: Text("You have applied for 1 loan products",
+                child: Text(
+                    "You have applied for ${itemList.length} loan products",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 17.5.sp,
@@ -56,7 +76,7 @@ class HomeProductDialog extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Product NO:",
+                        Text("Product NO:$productId",
                             style: TextStyle(
                                 fontSize: 20.sp,
                                 color: const Color(0xFF000000),
@@ -87,12 +107,12 @@ class HomeProductDialog extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Go Rupee",
+                        Text(name,
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 color: const Color(0xFF000000),
                                 fontWeight: FontWeight.w500)),
-                        Text("7 DAY",
+                        Text("$term",
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 color: const Color(0xFF000000),
@@ -110,7 +130,7 @@ class HomeProductDialog extends StatelessWidget {
                                 fontSize: 15.sp,
                                 color: const Color(0xFF000000),
                                 fontWeight: FontWeight.w500)),
-                        Text("Daily interest rate:",
+                        Text("Total service charge:",
                             style: TextStyle(
                                 fontSize: 15.sp,
                                 color: const Color(0xFF000000),
@@ -123,12 +143,12 @@ class HomeProductDialog extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("₹ 9000",
+                        Text("₹ ${amount.toString()}",
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 color: const Color(0xFF000000),
                                 fontWeight: FontWeight.w500)),
-                        Text("0.10%",
+                        Text("₹ ${adminAmount.toString()}",
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 color: const Color(0xFF000000),
@@ -141,7 +161,7 @@ class HomeProductDialog extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("GST：",
+                        Text("Interest：",
                             style: TextStyle(
                                 fontSize: 15.sp,
                                 color: const Color(0xFF000000),
@@ -159,12 +179,12 @@ class HomeProductDialog extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("₹ 481",
+                        Text("₹ ${interestAmount.toString()}",
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 color: const Color(0xFF000000),
                                 fontWeight: FontWeight.w500)),
-                        Text("₹ 5848",
+                        Text("₹ ${actualAmount.toString()}",
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 color: const Color(0xFF000000),
@@ -177,7 +197,7 @@ class HomeProductDialog extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Total interest and service fee：",
+                        Text("Repayment amount：",
                             style: TextStyle(
                                 fontSize: 15.sp,
                                 color: const Color(0xFF000000),
@@ -190,7 +210,7 @@ class HomeProductDialog extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("₹ 2671",
+                        Text("₹ ${repayAmount.toString()}",
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 color: const Color(0xFF000000),
@@ -204,20 +224,49 @@ class HomeProductDialog extends StatelessWidget {
                 height: 23.5.h,
               ),
               Container(
-                width: 325.w,
                 height: 40.h,
-                decoration: BoxDecoration(
-                    color: const Color(0xFF003C6A),
-                    borderRadius: BorderRadius.circular(5.w)),
-                child: TextButton(
-                  onPressed: () {
-                    confirmBlock();
-                  },
-                  child: Text("Confirm",
-                      style: TextStyle(
-                          fontSize: 22.5.sp,
-                          color: const Color(0xFFFFFFFF),
-                          fontWeight: FontWeight.w500)),
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {
+                        CZDialogUtil.dismiss();
+                      },
+                      child: Container(
+                          alignment: Alignment.center,
+                          width: 150.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                              color: const Color(0xFF003C6A),
+                              borderRadius: BorderRadius.circular(5.w)),
+                          child: Text("Cancel",
+                              style: TextStyle(
+                                  fontSize: 22.5.sp,
+                                  color: const Color(0xFFFFFFFF),
+                                  fontWeight: FontWeight.w500))),
+                    ),
+                    GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {
+                        confirmBlock();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 150.w,
+                        height: 40.h,
+                        decoration: BoxDecoration(
+                            color: const Color(0xFF003C6A),
+                            borderRadius: BorderRadius.circular(5.w)),
+                        child: Text("Confirm",
+                            style: TextStyle(
+                                fontSize: 22.5.sp,
+                                color: const Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w500)),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(

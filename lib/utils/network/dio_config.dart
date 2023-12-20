@@ -1,5 +1,6 @@
 class DioConfig {
   static const String baseURL = "https://app.lendfunds.help/";
+  static const String IMAGE_URL = "${baseURL}lt-image/resize/0x0/";
   static const Duration timeout = Duration(seconds: 20);
 }
 
@@ -48,6 +49,10 @@ class InterfaceConfig {
   static const String addressList = 'form/address_list';
   //获取产品信息
   static const String product_list = 'lacing-washy/ctn-fives';
+  //获取手续费试算
+  static const String tria =
+      'noic-cryptographical-infarcted/ensheath/cystoscope-nebulous-segmental';
+  static const String loan = "pedodontic-cardcarrier-opiology/telophase";
   //提交表单
   static const String submitForm =
       'warsaw-coitus/hylophagous-meniscoid/jingoism';

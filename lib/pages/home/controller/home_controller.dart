@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/credit/view/alive_page.dart';
@@ -32,6 +35,7 @@ class HomeController extends GetxController with StateMixin<Map> {
         productList = value["page"].containsKey("content")
             ? value["page"]["content"]
             : [];
+        log("productList:${json.encode(productList)}");
         update();
       }
     });
@@ -132,6 +136,22 @@ class HomeController extends GetxController with StateMixin<Map> {
     Map<String, dynamic> result = await HttpRequest.request(
         InterfaceConfig.product_list,
         params: {"query": {}});
+    return result;
+  }
+
+  Future<Map<String, dynamic>> requestTrialData(List productIds) async {
+    Map<String, dynamic> result =
+        await HttpRequest.request(InterfaceConfig.tria, params: {
+      "model": {"productIds": productIds}
+    });
+    return result;
+  }
+
+  Future<Map<String, dynamic>> requestLoanData(List productIds) async {
+    Map<String, dynamic> result =
+        await HttpRequest.request(InterfaceConfig.loan, params: {
+      "model": {"productIds": productIds}
+    });
     return result;
   }
 }

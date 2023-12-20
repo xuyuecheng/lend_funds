@@ -19,7 +19,6 @@ class CZRouteConfig {
   static const splash = '/splash';
   //Home
   static const home = '/home';
-  // static const livenessDetection = '/home/credit/livenessDetection';
 
   //order
   static const order = '/order';
@@ -47,7 +46,6 @@ class CZRouteConfig {
     GetPage(name: home, page: () => const HomePage()),
     GetPage(name: login, page: () => const LoginPage()),
     GetPage(name: loginCode, page: () => const ValidateCodePage()),
-    // GetPage(name: livenessDetection, page: () => const AlivePage()),
     GetPage(name: order, page: () => const OrderPage()),
     GetPage(
         name: webView,

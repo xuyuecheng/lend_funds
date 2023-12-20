@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/home/controller/home_controller.dart';
 import 'package:lend_funds/pages/home/view/widget/home_product_dialog.dart';
+import 'package:lend_funds/utils/eventbus/eventbus.dart';
+import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -372,7 +374,21 @@ class _HomePageState extends State<HomePage> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              // final item = vc.payObject["content"][index];
+              final item = HomeController.to.productList[index];
+              String id = item.containsKey("id") ? item["id"] : "";
+              String name = item.containsKey("name") ? item["name"] : "loan";
+              String icon = item.containsKey("icon") ? item["icon"] : "icon";
+              dynamic amount =
+                  item.containsKey("amount") ? item["amount"] : "amount";
+              dynamic serviceAmount = item.containsKey("serviceAmount")
+                  ? item["serviceAmount"]
+                  : "0";
+              dynamic term = item.containsKey("term") ? item["term"] : "0";
+              dynamic dayRate =
+                  item.containsKey("dayRate") ? item["dayRate"] : 1;
+              print("dayRate:${dayRate.toString()}");
+              dynamic interest = amount * dayRate * term;
+              print("IMAGE_URL:" + "${DioConfig.IMAGE_URL}$icon");
               return Container(
                 padding:
                     EdgeInsets.symmetric(horizontal: 11.w, vertical: 8.5.h),
@@ -390,24 +406,32 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Row(
                           children: [
-                            Image.asset(
-                              'assets/lend_funds_logo.png',
+                            Container(
                               width: 27.5.w,
                               height: 27.5.w,
+                              decoration: new BoxDecoration(
+                                //设置四周圆角 角度
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(0)),
+                              ),
+                              child: Image.network(
+                                  "${DioConfig.IMAGE_URL}$icon",
+                                  width: 60,
+                                  height: 60),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Loan on",
+                                Text(name,
                                     style: TextStyle(
                                         fontSize: 15.sp,
                                         color: const Color(0xFF161616),
                                         fontWeight: FontWeight.w500)),
-                                Text("Loan within 30 mins",
-                                    style: TextStyle(
-                                        fontSize: 7.5.sp,
-                                        color: const Color(0xFF929292),
-                                        fontWeight: FontWeight.w500)),
+                                // Text("Loan within 30 mins",
+                                //     style: TextStyle(
+                                //         fontSize: 7.5.sp,
+                                //         color: const Color(0xFF929292),
+                                //         fontWeight: FontWeight.w500)),
                               ],
                             )
                           ],
@@ -415,10 +439,7 @@ class _HomePageState extends State<HomePage> {
                         GestureDetector(
                           behavior: HitTestBehavior.translucent,
                           onTap: () {
-                            CZDialogUtil.show(
-                                HomeProductDialog(confirmBlock: () {
-                              CZDialogUtil.dismiss();
-                            }));
+                            _getTrialData(productIds: [id]);
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(
@@ -440,8 +461,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Row(
                       children: [
-                        Expanded(
-                            child: Column(
+                        Column(
                           children: [
                             Text("Loan amount",
                                 style: TextStyle(
@@ -451,33 +471,17 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               height: 3.h,
                             ),
-                            Text("₹ 200,000",
+                            Text("₹ ${amount.toString()}",
                                 style: TextStyle(
                                     fontSize: 15.sp,
                                     color: const Color(0xFF000000),
                                     fontWeight: FontWeight.w500))
                           ],
-                        )),
-                        Expanded(
-                            child: Column(
-                          children: [
-                            Text("Repayment amount",
-                                style: TextStyle(
-                                    fontSize: 10.sp,
-                                    color: const Color(0xFF000000),
-                                    fontWeight: FontWeight.w500)),
-                            SizedBox(
-                              height: 3.h,
-                            ),
-                            Text("₹ 200,000",
-                                style: TextStyle(
-                                    fontSize: 15.sp,
-                                    color: const Color(0xFF000000),
-                                    fontWeight: FontWeight.w500))
-                          ],
-                        )),
-                        Expanded(
-                            child: Column(
+                        ),
+                        SizedBox(
+                          width: 30.w,
+                        ),
+                        Column(
                           children: [
                             Text("loan term",
                                 style: TextStyle(
@@ -487,13 +491,67 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               height: 3.h,
                             ),
-                            Text("95 days",
+                            Text("${term.toString()} DAYS",
                                 style: TextStyle(
                                     fontSize: 15.sp,
                                     color: const Color(0xFF000000),
                                     fontWeight: FontWeight.w500))
                           ],
-                        )),
+                        )
+                        // Expanded(
+                        //     child: Column(
+                        //   children: [
+                        //     Text("Loan amount",
+                        //         style: TextStyle(
+                        //             fontSize: 10.sp,
+                        //             color: const Color(0xFF000000),
+                        //             fontWeight: FontWeight.w500)),
+                        //     SizedBox(
+                        //       height: 3.h,
+                        //     ),
+                        //     Text("₹ ${amount.toString()}",
+                        //         style: TextStyle(
+                        //             fontSize: 15.sp,
+                        //             color: const Color(0xFF000000),
+                        //             fontWeight: FontWeight.w500))
+                        //   ],
+                        // )),
+                        // Expanded(
+                        //     child: Column(
+                        //   children: [
+                        //     Text("Repayment amount",
+                        //         style: TextStyle(
+                        //             fontSize: 10.sp,
+                        //             color: const Color(0xFF000000),
+                        //             fontWeight: FontWeight.w500)),
+                        //     SizedBox(
+                        //       height: 3.h,
+                        //     ),
+                        //     Text("₹ ${repayAmount.toString()}",
+                        //         style: TextStyle(
+                        //             fontSize: 15.sp,
+                        //             color: const Color(0xFF000000),
+                        //             fontWeight: FontWeight.w500))
+                        //   ],
+                        // )),
+                        // Expanded(
+                        //     child: Column(
+                        //   children: [
+                        //     Text("loan term",
+                        //         style: TextStyle(
+                        //             fontSize: 10.sp,
+                        //             color: const Color(0xFF000000),
+                        //             fontWeight: FontWeight.w500)),
+                        //     SizedBox(
+                        //       height: 3.h,
+                        //     ),
+                        //     Text("${term.toString()} DAYS",
+                        //         style: TextStyle(
+                        //             fontSize: 15.sp,
+                        //             color: const Color(0xFF000000),
+                        //             fontWeight: FontWeight.w500))
+                        //   ],
+                        // )),
                       ],
                     ),
                     SizedBox(
@@ -506,7 +564,7 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                       height: 5.h,
                     ),
-                    Text("Daily interest rate from 0.05%",
+                    Text("Daily interest rate from ${dayRate * 100}%",
                         style: TextStyle(
                             fontSize: 15.sp,
                             color: const Color(0xFF000000),
@@ -525,5 +583,32 @@ class _HomePageState extends State<HomePage> {
       ),
     ).applyConstraint(
         id: cId('cont4'), topLeftTo: parent.topMargin(412.h).leftMargin(15.w));
+  }
+
+  //试算
+  _getTrialData({required List productIds}) async {
+    CZLoading.loading();
+    final response = await HomeController.to.requestTrialData(productIds);
+    CZLoading.dismiss();
+    if (response["status"] == 0) {
+      List<dynamic>? item =
+          response.containsKey("model") ? response["model"] : null;
+      print("item:${item.toString()}");
+      if (item != null && item.length > 0) {
+        CZDialogUtil.show(HomeProductDialog(
+            itemList: item,
+            confirmBlock: () async {
+              CZLoading.loading();
+              final response =
+                  await HomeController.to.requestLoanData(productIds);
+              CZLoading.dismiss();
+              if (response["status"] == 0) {
+                CZDialogUtil.dismiss();
+                //跳转到订单列表
+                EventBus().emit(EventBus.changeToOrderTab, null);
+              }
+            }));
+      }
+    }
   }
 }
