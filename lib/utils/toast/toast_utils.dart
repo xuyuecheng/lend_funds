@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -7,7 +5,6 @@ import 'package:get/get.dart';
 class CZToastConfig {
   static setEasyLoading() {
     EasyLoading.instance
-
       ..displayDuration = const Duration(milliseconds: 2000)
       ..indicatorType = EasyLoadingIndicatorType.ring
       ..indicatorColor = Colors.white
@@ -20,7 +17,7 @@ class CZToastConfig {
       ..maskColor = Colors.transparent
       ..userInteractions = true
       ..dismissOnTap = false;
-      // ..customAnimation = CustomAnimation();
+    // ..customAnimation = CustomAnimation();
     //   ..displayDuration = const Duration(milliseconds: 2000)
     //   ..indicatorType = EasyLoadingIndicatorType.fadingCircle
     //   ..loadingStyle = EasyLoadingStyle.dark
@@ -38,7 +35,6 @@ class CZToastConfig {
     //   ..dismissOnTap = false;
     // // ..customAnimation = CustomAnimation();
   }
-
 }
 
 class CZLoading {
@@ -52,9 +48,10 @@ class CZLoading {
 
   static toast(String v) {
     EasyLoading.instance
-      ..backgroundColor = const Color(0xFF88D6B9)
+      ..backgroundColor = const Color(0xFF7D7D7D)
       ..radius = 8.0
-      ..contentPadding = const EdgeInsets.symmetric(horizontal:25,vertical: 10);
+      ..contentPadding =
+          const EdgeInsets.symmetric(horizontal: 25, vertical: 10);
     EasyLoading.showToast(v);
   }
 

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_constraintlayout/flutter_constraintlayout.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +10,6 @@ import 'package:lend_funds/pages/mine/view/widget/delete_account_dialog.dart';
 import 'package:lend_funds/utils/const/translate.dart';
 import 'package:lend_funds/utils/eventbus/eventbus.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/preload.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
