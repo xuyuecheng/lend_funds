@@ -54,4 +54,5 @@ class InterfaceConfig {
   static const String alive = 'cheyenne/cadaster/tentaculiform';
   //删除用户
   static const String del = 'semiagricultural/shotty-eudaimonism';
+  static const String order_list = "omnidirectional/tropocollagen-preharvest";
 }

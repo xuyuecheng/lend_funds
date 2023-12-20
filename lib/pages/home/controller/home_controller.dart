@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/credit/view/alive_page.dart';
 import 'package:lend_funds/pages/credit/view/basic_page.dart';
@@ -35,7 +35,9 @@ class HomeController extends GetxController with StateMixin<Map> {
         productList = value["page"].containsKey("content")
             ? value["page"]["content"]
             : [];
-        log("productList:${json.encode(productList)}");
+        if (kDebugMode) {
+          log("productList:${json.encode(productList)}");
+        }
         update();
       }
     });
