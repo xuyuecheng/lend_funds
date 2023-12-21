@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lend_funds/pages/feedback/feedback_list_page.dart';
 import 'package:lend_funds/pages/repay/repay_rollover_page.dart';
 import 'package:lend_funds/pages/repay/repay_upi_page.dart';
 import 'package:lend_funds/utils/base/base_view_model.dart';
@@ -105,7 +106,9 @@ class _RepayPageState extends State<RepayPage> {
                                   height: 30)),
                           onPressed: () async {
                             //跳转到反馈界面
-                            // await AppRouter.navigate(context, AppRoute.feed_list, params: {"thirdOrderId" : orderId}, finishSelf: false);
+                            Get.to(() => FeedbackListPage(
+                                  thirdOrderId: orderId,
+                                ));
                           },
                         ),
                       ),
@@ -354,7 +357,6 @@ getRolloverPlan(BuildContext context, String orderId) async {
     // dynamic delayAmount = response.model.containsKey("delayAmount") ? response.model["delayAmount"] : null;
     Get.to(() => RepayRolloverPage(
         model: response["model"], id: orderId, type: "DELAY"));
-    // await AppRouter.navigate(context, AppRoute.rollover_repay, params: {"model" : response.model, "id" : orderId, "type" : "DELAY"}, finishSelf: false);
   }
 }
 

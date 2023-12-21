@@ -62,4 +62,10 @@ class InterfaceConfig {
       "spectrofluorometer-dragoness-leavings/rhodoplast-diurnally";
   static const String rollover_plan =
       "lacerna/buckthorn-bullshot/touraine-coreopsis";
+  static const String feedback_list =
+      "swati-viduity/magicube-geniture-whaleman";
+  static const String feedback_type =
+      "cellulated/apneusis-compile-emplane/mesophile";
+  static const String feedback_submit =
+      "mistakable-corruptibility/undignify-titubate-bight";
 }

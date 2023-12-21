@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lend_funds/pages/feedback/feedback_list_page.dart';
 import 'package:lend_funds/pages/repay/repay_page.dart';
 import 'package:lend_funds/utils/base/base_view_model.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
@@ -137,8 +138,9 @@ class _OrderListPageState extends State<OrderListPage> {
                                         ),
                                         onPressed: () {
                                           //跳转到反馈界面
-                                          debugPrint("跳转到反馈界面");
-                                          // AppRouter.navigate(context, AppRoute.feed_list, params: {"thirdOrderId" : id}, finishSelf: false);
+                                          Get.to(() => FeedbackListPage(
+                                                thirdOrderId: id,
+                                              ));
                                         },
                                       ),
                                     ),
@@ -257,7 +259,6 @@ class _OrderListPageState extends State<OrderListPage> {
                                         onPressed: () {
                                           if (mStatus == "LOAN_SUCCESS") {
                                             //跳转到付款方式选择界面
-                                            debugPrint("跳转到付款方式选择界面");
                                             getPlan(context, id);
                                           }
                                         },
@@ -333,8 +334,6 @@ getPlan(BuildContext context, String orderId) async {
   CZLoading.dismiss();
   if (response["status"] == 0) {
     //跳转
-    debugPrint("跳转付款页面");
-    // await AppRouter.navigate(context, AppRoute.repay, params: {"model" : response.model}, finishSelf: false);
     Get.to(() => RepayPage(
           model: response["model"],
         ));
