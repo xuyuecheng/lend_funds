@@ -61,5 +61,5 @@ class InterfaceConfig {
   static const String upi_url =
       "spectrofluorometer-dragoness-leavings/rhodoplast-diurnally";
   static const String rollover_plan =
-      "modernity/alimentative-chrp-airfoil/benignly-smudgy-milky";
+      "lacerna/buckthorn-bullshot/touraine-coreopsis";
 }
