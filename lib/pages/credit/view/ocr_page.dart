@@ -194,7 +194,7 @@ class _OcrPageState extends State<OcrPage> {
           ],
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffF1F2F3),
     );
   }
 

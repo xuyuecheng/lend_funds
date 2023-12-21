@@ -1,10 +1,17 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lend_funds/pages/repay/repay_page.dart';
 import 'package:lend_funds/utils/base/base_view_model.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/network/dio_request.dart';
 import 'package:lend_funds/utils/time/time_utils.dart';
+import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class OrderListPage extends StatefulWidget {
@@ -130,6 +137,7 @@ class _OrderListPageState extends State<OrderListPage> {
                                         ),
                                         onPressed: () {
                                           //跳转到反馈界面
+                                          debugPrint("跳转到反馈界面");
                                           // AppRouter.navigate(context, AppRoute.feed_list, params: {"thirdOrderId" : id}, finishSelf: false);
                                         },
                                       ),
@@ -249,7 +257,8 @@ class _OrderListPageState extends State<OrderListPage> {
                                         onPressed: () {
                                           if (mStatus == "LOAN_SUCCESS") {
                                             //跳转到付款方式选择界面
-                                            // getPlan(context, id);
+                                            debugPrint("跳转到付款方式选择界面");
+                                            getPlan(context, id);
                                           }
                                         },
                                       ),
@@ -311,6 +320,40 @@ class BasicFormModel extends BaseListModel<dynamic> {
     List<dynamic> contents = response["page"].containsKey("content")
         ? response["page"]["content"]
         : [];
+    if (kDebugMode) {
+      log("orderList:${json.encode(contents)}");
+    }
     return contents;
+  }
+}
+
+getPlan(BuildContext context, String orderId) async {
+  CZLoading.loading();
+  final response = await context.read(planProvider(orderId)).loadPlanData();
+  CZLoading.dismiss();
+  if (response["status"] == 0) {
+    //跳转
+    debugPrint("跳转付款页面");
+    // await AppRouter.navigate(context, AppRoute.repay, params: {"model" : response.model}, finishSelf: false);
+    Get.to(() => RepayPage(
+          model: response["model"],
+        ));
+  }
+}
+
+final planProvider = ChangeNotifierProvider.autoDispose
+    .family((ref, orderId) => PlanModel(orderId.toString()));
+
+class PlanModel extends BaseModel {
+  final String orderId;
+
+  PlanModel(this.orderId);
+
+  loadPlanData() async {
+    final response =
+        await HttpRequest.request(InterfaceConfig.repayment_plan, params: {
+      "model": {"orderId": orderId}
+    });
+    return response;
   }
 }

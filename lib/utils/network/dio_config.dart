@@ -55,4 +55,11 @@ class InterfaceConfig {
   //删除用户
   static const String del = 'semiagricultural/shotty-eudaimonism';
   static const String order_list = "omnidirectional/tropocollagen-preharvest";
+  static const String repayment_plan =
+      "modernity/alimentative-chrp-airfoil/benignly-smudgy-milky";
+  static const String upi = "sideroscope/quirkish/plot-disparate-rancho";
+  static const String upi_url =
+      "spectrofluorometer-dragoness-leavings/rhodoplast-diurnally";
+  static const String rollover_plan =
+      "modernity/alimentative-chrp-airfoil/benignly-smudgy-milky";
 }
