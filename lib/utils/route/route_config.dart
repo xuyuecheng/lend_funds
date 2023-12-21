@@ -10,7 +10,6 @@ import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/pages/login/view/validate_code_page.dart';
 import 'package:lend_funds/pages/main/views/main.dart';
 import 'package:lend_funds/pages/main/views/splash.dart';
-import 'package:lend_funds/pages/order/view/order_page.dart';
 import 'package:lend_funds/pages/webview/webview_utils.dart';
 
 class CZRouteConfig {
@@ -19,9 +18,6 @@ class CZRouteConfig {
   static const splash = '/splash';
   //Home
   static const home = '/home';
-
-  //order
-  static const order = '/order';
 
   //Mine
   static const mine = '/mine';
@@ -46,7 +42,6 @@ class CZRouteConfig {
     GetPage(name: home, page: () => const HomePage()),
     GetPage(name: login, page: () => const LoginPage()),
     GetPage(name: loginCode, page: () => const ValidateCodePage()),
-    GetPage(name: order, page: () => const OrderPage()),
     GetPage(
         name: webView,
         page: () => CZWebView(
