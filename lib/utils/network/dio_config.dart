@@ -11,14 +11,15 @@ class AppConfig {
   static const String AESPadding = 'PKCS5Padding';
 
   static const String privacyStatementURL =
-      "${DioConfig.baseURL}html/agreement/PRIVATE.html";
+      "${DioConfig.baseURL}eurychoric-pornocracy-swiple/deuteranopia-filibeg-spadebone/toxoplasma-counterreconnaissance-headrest/l5fjys.html";
   static const String competenceAgreements =
       "${DioConfig.baseURL}html/agreement/AUTHORITY.html";
   static const String termsAgreement =
-      "${DioConfig.baseURL}html/agreement/TERM.html";
+      "${DioConfig.baseURL}eurychoric-pornocracy-swiple/deuteranopia-filibeg-spadebone/toxoplasma-counterreconnaissance-headrest/5kiq5o.html";
   static const String securityProtocol =
       "${DioConfig.baseURL}html/xxx/xxx.html";
-  static const String aboutUs = "${DioConfig.baseURL}html/xxx/xxx.html";
+  static const String aboutUs =
+      "${DioConfig.baseURL}eurychoric-pornocracy-swiple/deuteranopia-filibeg-spadebone/toxoplasma-counterreconnaissance-headrest/hcnihk.html";
 }
 
 class InterfaceConfig {

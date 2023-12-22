@@ -169,7 +169,7 @@ class _MinePageState extends State<MinePage> {
                   GestureDetector(
                     behavior: HitTestBehavior.opaque,
                     onTap: () {
-                      _makeEmailCall("1252552308@qq.com");
+                      _makeEmailCall("bcvuwagdak@gmail.com");
                     },
                     child: MineItem(
                         title: "Customer service",
