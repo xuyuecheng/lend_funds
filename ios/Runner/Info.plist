@@ -45,13 +45,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Do you allow this App to access your album? Images for feedback</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This APP requires your consent to save images to the album</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Do you allow this App to access your album? Images for feedback</string>
+	<string>Access the camera to take IDs, take pictures of faces, and upload user feedback images,</string>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>Obtain the rights to mark to provide you with better and safer personalized services and content, without consent we will not use for other purposes; After opening, you can also go to the system "Settings - Privacy" at any time to close</string>
+	<string>Obtain the rights to mark to provide you with better and safer personalized services and content, without consent we will not use for other purposes; After opening, you can also go to the system &quot;Settings - Privacy&quot; at any time to close</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
