@@ -30,7 +30,6 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
   @override
   Widget build(BuildContext context) {
     final refreshController = RefreshController(initialRefresh: true);
-
     return Consumer(builder: (_, watch, __) {
       model = watch(basicProvider(widget.thirdOrderId));
       return Scaffold(
@@ -212,7 +211,11 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                       var result = await Get.to(() => FeedbackPage(
                             thirdOrderId: widget.thirdOrderId,
                           ));
-                      if (result != null && result) {}
+                      if (result != null && result) {
+                        await model.refresh();
+                        refreshController.refreshCompleted();
+                        refreshController.loadComplete();
+                      }
                     },
                     child: Text("Submit Questions",
                         style: TextStyle(
