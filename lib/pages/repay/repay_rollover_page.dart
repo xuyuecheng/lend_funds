@@ -8,6 +8,7 @@ import 'package:lend_funds/utils/base/base_view_model.dart';
 import 'package:lend_funds/utils/entity/syscode_entity.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/network/dio_request.dart';
+import 'package:lend_funds/utils/theme/screen_utils.dart';
 import 'package:lend_funds/utils/time/time_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:lend_funds/utils/vm/app_model.dart';
@@ -25,16 +26,12 @@ class RepayRolloverPage extends HookWidget {
   var rolloverState;
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     dynamic delayAmount =
         model.containsKey("delayAmount") ? model["delayAmount"] : null;
     dynamic expiryTime =
         model.containsKey("expiryTime") ? model["expiryTime"] : null;
     dynamic loanAmount =
         model.containsKey("loanAmount") ? model["loanAmount"] : null;
-    // dynamic expiryTime = model.containsKey("expiryTime") ? model["expiryTime"] : null;
-    // expiryTime = MyDate.format("yyyy-MM-dd HH:mm:ss", DateTime.fromMillisecondsSinceEpoch(expiryTime)).toString();
     expiryTime =
         "${CZTimeUtils.formatDateTime(expiryTime, format: "yyyy-MM-dd HH:mm:ss")}";
     dynamic delayTerm =
@@ -42,161 +39,188 @@ class RepayRolloverPage extends HookWidget {
     dynamic delayTimes =
         model.containsKey("delayTimes") ? model["delayTimes"] : null;
     return Scaffold(
-        backgroundColor: Color(0xffF1F2F3),
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: BackButton(
-              color: Colors.black,
-              onPressed: () {
-                Get.back();
-              }),
-          title: Text(
-            "Lend Funds",
-            style: TextStyle(
-                fontSize: 17.5.sp,
-                color: const Color(0xFF000000),
-                fontWeight: FontWeight.w500),
-          ),
-          centerTitle: true,
+      backgroundColor: Color(0xffF1F2F3),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: BackButton(
+            color: Colors.black,
+            onPressed: () {
+              Get.back();
+            }),
+        title: Text(
+          "Rollover",
+          style: TextStyle(
+              fontSize: 17.5.sp,
+              color: const Color(0xFF000000),
+              fontWeight: FontWeight.w500),
         ),
-        body: CustomScrollView(slivers: [
-          SliverToBoxAdapter(
-            child: Container(
-              padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 15.h),
+        child: Column(
+          children: [
+            Container(
+              width: CZScreenUtils.screenWidth - 30.w,
+              decoration: BoxDecoration(
+                  color: const Color(0xFFffffff),
+                  borderRadius: BorderRadius.circular(5.w)),
               child: Column(
                 children: [
-                  Row(children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: MaterialButton(
-                          color: Color.fromRGBO(54, 65, 225, 1),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20))),
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Column(
-                            children: [
-                              Text("Repayment amount",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15)),
-                              Text("₹ ${loanAmount.toString()}",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ]),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: const BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20)),
-                      color: Color.fromRGBO(240, 240, 240, 1),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Delayed date",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 13)),
-                            SizedBox(
-                              height: 4.h,
-                            ),
-                            Text(
-                              "${expiryTime.toString()}",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.black),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text("Extend time",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 13)),
-                            SizedBox(
-                              height: 4.h,
-                            ),
-                            Text("${delayTerm.toString()}",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text("Recording delay(max.10000)",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 13)),
-                            Text("${delayTimes.toString()}",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                      ],
-                    ),
+                  SizedBox(
+                    height: 3.h,
+                  ),
+                  Text(
+                    "Repayment amount",
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        color: const Color(0xFF000000),
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 8.h,
+                  ),
+                  Text(
+                    "₹ ${loanAmount.toString()}",
+                    style: TextStyle(
+                        fontSize: 50.sp,
+                        color: const Color(0xFF003C6A),
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 8.h,
                   ),
                 ],
               ),
             ),
-          ),
-        ]),
-        bottomNavigationBar: Container(
-          height: 150,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "*This loan is provided by a third-party company\nSmall Credit",
-                textAlign: TextAlign.center,
-                style: theme.textTheme.caption,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 0, vertical: 0),
-                      child: MaterialButton(
-                        color: Color.fromRGBO(54, 65, 225, 1),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(0))),
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Text(
-                            "Need to repay loan ₹ ${delayAmount.toString()}",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        onPressed: () {
-                          Get.to(() => RepayUpiPage(
-                              amount: delayAmount.toString(),
-                              id: id,
-                              type: "DELAY"));
-                          // AppRouter.navigate(context, AppRoute.upi_repay, params: {"amount" : delayAmount.toString(), "id" : id, "type" : "DELAY"}, finishSelf: false);
-                        },
+            SizedBox(
+              height: 15.h,
+            ),
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                decoration: BoxDecoration(
+                    color: const Color(0xFFffffff),
+                    borderRadius: BorderRadius.circular(5.w)),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Delayed date:",
+                            style: TextStyle(
+                                fontSize: 12.5.sp,
+                                color: const Color(0xFF000000),
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            "${expiryTime.toString()}",
+                            style: TextStyle(
+                                fontSize: 12.5.sp,
+                                color: const Color(0xFF9F9F9F),
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
                       ),
+                      padding: EdgeInsets.symmetric(vertical: 11.h),
                     ),
-                  ),
-                ],
+                    Container(
+                      height: 0.25.h,
+                      color: Color(0xffC5C3C3),
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Extend time:",
+                            style: TextStyle(
+                                fontSize: 12.5.sp,
+                                color: const Color(0xFF000000),
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            "${delayTerm.toString()} DAY",
+                            style: TextStyle(
+                                fontSize: 12.5.sp,
+                                color: const Color(0xFF9F9F9F),
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 11.h),
+                    ),
+                    Container(
+                      height: 0.25.h,
+                      color: Color(0xffC5C3C3),
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Recording delay(max.10000):",
+                            style: TextStyle(
+                                fontSize: 12.5.sp,
+                                color: const Color(0xFF000000),
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            "${delayTimes.toString()} Time",
+                            style: TextStyle(
+                                fontSize: 12.5.sp,
+                                color: const Color(0xFF9F9F9F),
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 11.h),
+                    ),
+                  ],
+                )),
+            SizedBox(
+              height: 15.h,
+            ),
+            Container(
+              height: 50.h,
+              width: CZScreenUtils.screenWidth - 30.w,
+              decoration: BoxDecoration(
+                  color: const Color(0xFF003C6A),
+                  borderRadius: BorderRadius.circular(5.w)),
+              child: TextButton(
+                onPressed: () {
+                  Get.to(() => RepayUpiPage(
+                      amount: delayAmount.toString(), id: id, type: "DELAY"));
+                },
+                child: Text("Need to repay loan ₹ ${delayAmount.toString()}",
+                    style: TextStyle(
+                        fontSize: 17.5.sp,
+                        color: const Color(0xFFFFFFFF),
+                        fontWeight: FontWeight.w500)),
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 25.h),
+        child: Text(
+          "This loan is provided by a third-party company Lend Funds",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 10.sp,
+              color: const Color(0xFF9B9B9B),
+              fontWeight: FontWeight.w400),
+        ),
+      ),
+    );
   }
 
   myUpiSelect(BuildContext context, SysCodeEntity sysCodeEntity) {

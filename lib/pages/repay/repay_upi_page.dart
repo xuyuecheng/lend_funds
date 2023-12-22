@@ -8,6 +8,7 @@ import 'package:lend_funds/utils/base/base_view_model.dart';
 import 'package:lend_funds/utils/entity/syscode_entity.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/network/dio_request.dart';
+import 'package:lend_funds/utils/theme/screen_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:lend_funds/utils/vm/app_model.dart';
 import 'package:lend_funds/utils/vm/repo_provider.dart';
@@ -24,7 +25,6 @@ class RepayUpiPage extends HookWidget {
   var upiState;
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     upiState = useState(SysCodeEntity("", "UPI", "", "", false, null));
     return Scaffold(
       backgroundColor: Color(0xffF1F2F3),
@@ -44,110 +44,128 @@ class RepayUpiPage extends HookWidget {
         ),
         centerTitle: true,
       ),
-      body: CustomScrollView(slivers: [
-        SliverToBoxAdapter(
-          child: Container(
-            padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-            child: Column(
-              children: [
-                Row(children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: MaterialButton(
-                        color: Color.fromRGBO(54, 65, 225, 1),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20))),
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Column(
-                          children: [
-                            Text("Repayment amount",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15)),
-                            Text("₹ ${amount.toString()}",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                        onPressed: () {},
-                      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 15.h),
+        child: Column(
+          children: [
+            Container(
+              width: CZScreenUtils.screenWidth - 30.w,
+              decoration: BoxDecoration(
+                  color: const Color(0xFFffffff),
+                  borderRadius: BorderRadius.circular(5.w)),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 3.h,
+                  ),
+                  Text(
+                    "Repayment amount",
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        color: const Color(0xFF000000),
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 8.h,
+                  ),
+                  Text(
+                    "₹ ${amount.toString()}",
+                    style: TextStyle(
+                        fontSize: 50.sp,
+                        color: const Color(0xFF003C6A),
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 8.h,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Container(
+                width: CZScreenUtils.screenWidth - 30.w,
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                decoration: BoxDecoration(
+                    color: const Color(0xFFffffff),
+                    borderRadius: BorderRadius.circular(5.w)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 7.5.h,
                     ),
-                  ),
-                ]),
-                Container(
-                  padding: const EdgeInsets.only(left: 20),
-                  decoration: const BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20)),
-                    color: Color.fromRGBO(240, 240, 240, 1),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    Text(
+                      "Choose your payment mode",
+                      style: TextStyle(
+                          fontSize: 20.sp,
+                          color: const Color(0xFF999999),
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      height: 11.5.h,
+                    ),
+                    GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        _getUpi(context, id);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 15.w, vertical: 8.5.h),
+                        decoration: BoxDecoration(
+                            color: const Color(0xFFF1F1F1),
+                            borderRadius: BorderRadius.circular(5.w)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(height: 15),
                             Text(
-                              "Choose your payment mode:",
+                              "Please Choose",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.black),
+                                  fontSize: 20.sp,
+                                  color: const Color(0xFF161616),
+                                  fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text("Please Choose",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 13)),
                             Container(
-                              child: Padding(
-                                padding: const EdgeInsets.all(15),
-                                child: MaterialButton(
-                                  color: Color.fromRGBO(54, 65, 225, 1),
-                                  shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 50),
-                                  child: Text("${upiState.value.name}",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                          fontSize: 20)),
-                                  onPressed: () {
-                                    _getUpi(context, id);
-                                  },
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15.w, vertical: 3.5.h),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4.5.w),
+                                border: Border.all(
+                                  color: Color(0xff003C6A),
+                                  width: 1.w,
                                 ),
                               ),
-                            ),
-                            SizedBox(height: 10),
+                              child: Text(
+                                "${upiState.value.name}",
+                                style: TextStyle(
+                                    fontSize: 20.sp,
+                                    color: const Color(0xFF003C6A),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+                    ),
+                    SizedBox(
+                      height: 14.h,
+                    ),
+                  ],
+                )),
+          ],
         ),
-      ]),
+      ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 25.h),
         child: Text(
-          "*This loan is provided by a third-party company\nSmall Credit",
+          "This loan is provided by a third-party company Lend Funds",
           textAlign: TextAlign.center,
-          style: theme.textTheme.caption,
+          style: TextStyle(
+              fontSize: 10.sp,
+              color: const Color(0xFF9B9B9B),
+              fontWeight: FontWeight.w400),
         ),
       ),
     );
