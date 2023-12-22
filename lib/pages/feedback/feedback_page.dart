@@ -337,21 +337,23 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               "Please enter questions and suggestions");
                           return;
                         }
-                        if (result == null || result!.isEmpty) {
-                          CZLoading.toast("please take a picture");
-                          return;
-                        }
+                        // if (result == null || result!.isEmpty) {
+                        //   CZLoading.toast("please take a picture");
+                        //   return;
+                        // }
 
                         Map<String, dynamic> params =
                             new Map<String, dynamic>();
-                        var ossUrl = await _uploadFile(context);
-                        if (ossUrl != null && ossUrl.toString().length > 0) {
-                          params["thirdOrderId"] = widget.thirdOrderId;
-                          params["typeId"] = sysCodeEntity?.id;
-                          params["content"] = textEditingController.value.text;
-                          params["image"] = ossUrl;
-                          _submitData(context, params);
+                        if (result != null && result!.isNotEmpty) {
+                          var ossUrl = await _uploadFile(context);
+                          if (ossUrl != null && ossUrl.toString().length > 0) {
+                            params["image"] = ossUrl;
+                          }
                         }
+                        params["thirdOrderId"] = widget.thirdOrderId;
+                        params["typeId"] = sysCodeEntity?.id;
+                        params["content"] = textEditingController.value.text;
+                        _submitData(context, params);
                       },
                       child: Text("Submit",
                           style: TextStyle(
@@ -437,15 +439,8 @@ class SubmitModel extends BaseListModel<dynamic> {
 
   loadMyData() async {
     this.loading = true;
-    final response =
-        await HttpRequest.request(InterfaceConfig.feedback_submit, params: {
-      "model": {
-        "thirdOrderId": params["thirdOrderId"],
-        "typeId": params["typeId"],
-        "content": params["content"],
-        "images": [params["image"]]
-      }
-    });
+    final response = await HttpRequest.request(InterfaceConfig.feedback_submit,
+        params: {"model": params});
     return response;
   }
 
