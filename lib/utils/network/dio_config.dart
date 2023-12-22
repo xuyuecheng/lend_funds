@@ -12,8 +12,6 @@ class AppConfig {
 
   static const String privacyStatementURL =
       "${DioConfig.baseURL}eurychoric-pornocracy-swiple/deuteranopia-filibeg-spadebone/toxoplasma-counterreconnaissance-headrest/l5fjys.html";
-  static const String competenceAgreements =
-      "${DioConfig.baseURL}html/agreement/AUTHORITY.html";
   static const String termsAgreement =
       "${DioConfig.baseURL}eurychoric-pornocracy-swiple/deuteranopia-filibeg-spadebone/toxoplasma-counterreconnaissance-headrest/5kiq5o.html";
   static const String securityProtocol =
