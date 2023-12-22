@@ -347,7 +347,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         if (result != null && result!.isNotEmpty) {
                           var ossUrl = await _uploadFile(context);
                           if (ossUrl != null && ossUrl.toString().length > 0) {
-                            params["image"] = ossUrl;
+                            params["images"] = [ossUrl];
                           }
                         }
                         params["thirdOrderId"] = widget.thirdOrderId;
