@@ -3,6 +3,7 @@ typedef void EventCallback(arg);
 
 class EventBus {
   static String changeToOrderTab = "changeToOrderTab"; //切换到订单tab
+  static String refreshOrderList = "refreshOrderList"; //刷新全部的订单列表
 
   //私有构造函数
   EventBus._internal();

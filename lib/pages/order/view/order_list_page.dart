@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lend_funds/pages/feedback/feedback_list_page.dart';
 import 'package:lend_funds/pages/repay/repay_page.dart';
 import 'package:lend_funds/utils/base/base_view_model.dart';
+import 'package:lend_funds/utils/eventbus/eventbus.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/network/dio_request.dart';
 import 'package:lend_funds/utils/theme/screen_utils.dart';
@@ -26,15 +27,33 @@ class OrderListPage extends StatefulWidget {
 
 class _OrderListPageState extends State<OrderListPage> {
   var model;
+  late RefreshController refreshController;
+
+  @override
+  void dispose() {
+    //...
+    EventBus().off(EventBus.refreshOrderList);
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
     //...
+    //监听事件
+    EventBus().on(EventBus.refreshOrderList, (arg) async {
+      //全部的才会刷新
+      if (widget.status == "") {
+        await model.refresh();
+        refreshController.refreshCompleted();
+        refreshController.loadComplete();
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final refreshController = RefreshController(initialRefresh: true);
+    refreshController = RefreshController(initialRefresh: true);
     return Consumer(builder: (_, watch, __) {
       model = watch(basicFormProvider(widget.status));
       return Scaffold(

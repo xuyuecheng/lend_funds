@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:lend_funds/pages/home/controller/home_controller.dart';
 import 'package:lend_funds/pages/home/view/widget/home_product_dialog.dart';
 import 'package:lend_funds/pages/order/view/order_page.dart';
+import 'package:lend_funds/utils/eventbus/eventbus.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -608,6 +609,7 @@ class _HomePageState extends State<HomePage> {
                 Get.to(() => OrderPage(
                       canReturn: true,
                     ));
+                EventBus().emit(EventBus.refreshOrderList, null);
               }
             }));
       }
