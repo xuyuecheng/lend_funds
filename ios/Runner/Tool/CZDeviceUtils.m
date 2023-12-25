@@ -53,7 +53,7 @@ static CZDeviceUtils *_CZDeviceUtils = nil;
     __weak typeof(self) weakSelf = self;
     [self.deviceChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
       if ([@"getDeviceInfo" isEqualToString:call.method]) {
-          result(@{@"AID":[CZDeviceUtils getDeviceUuid],@"GAID":[CZDeviceUtils getIDFA]});
+          result(@{@"AID":[CZDeviceUtils getIDFV],@"GAID":[CZDeviceUtils getIDFA]});
 //          result([FlutterError errorWithCode:@"UNAVAILABLE"
 //                                     message:@"device info unavailable"
 //                                     details:nil]);
@@ -183,4 +183,8 @@ static CZDeviceUtils *_CZDeviceUtils = nil;
     return idfa;
 }
 
++ (NSString*)getIDFV {
+    NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString] ? : @"";
+    return idfv;
+}
 @end
