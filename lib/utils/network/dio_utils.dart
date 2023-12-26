@@ -26,9 +26,14 @@ class DioUtils {
     String gaid = '';
     String aid = '';
     if (Platform.isIOS) {
-      Map deviceInfo = await CZDeviceUtils.getCZDeviceInfo();
-      gaid = deviceInfo['GAID'];
-      aid = deviceInfo['AID'];
+      // Map deviceInfo = await CZDeviceUtils.getCZDeviceInfo();
+      // gaid = deviceInfo['GAID'];
+      // aid = deviceInfo['AID'];
+      gaid = await CZDeviceUtils().getIdfa();
+      if (kDebugMode) {
+        print("gaid:$gaid");
+      }
+      aid = await CZDeviceUtils().getIdfv();
     } else {
       gaid = await FinancialPlugin().getGoogleGaId();
       if (kDebugMode) {

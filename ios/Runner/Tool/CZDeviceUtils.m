@@ -48,15 +48,16 @@ static CZDeviceUtils *_CZDeviceUtils = nil;
     FlutterViewController* controller = (FlutterViewController*)[[[UIApplication sharedApplication] windows] firstObject].rootViewController;
     // 2.获取MethodChannel(方法通道)
     self.deviceChannel = [FlutterMethodChannel
-                                            methodChannelWithName:@"com.rupee.rain/device"
+                                            methodChannelWithName:@"lend_funds_plugin"
                                             binaryMessenger:controller.binaryMessenger];
     __weak typeof(self) weakSelf = self;
     [self.deviceChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
       if ([@"getDeviceInfo" isEqualToString:call.method]) {
           result(@{@"AID":[CZDeviceUtils getIDFV],@"GAID":[CZDeviceUtils getIDFA]});
-//          result([FlutterError errorWithCode:@"UNAVAILABLE"
-//                                     message:@"device info unavailable"
-//                                     details:nil]);
+      } else if ([@"getIdfa" isEqualToString:call.method]) {
+          result([CZDeviceUtils getIDFA]);
+      } else if ([@"getIdfv" isEqualToString:call.method]) {
+          result([CZDeviceUtils getIDFV]);
       } else if ([@"jumpContacts" isEqualToString:call.method]) {
           [weakSelf jumpContacts];
       } else {
