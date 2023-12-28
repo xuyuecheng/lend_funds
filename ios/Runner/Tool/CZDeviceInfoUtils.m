@@ -74,7 +74,7 @@ static CZDeviceInfoUtils *_CZDeviceInfoUtils = nil;
     NSDictionary *devFile = self.getDevFile;
     NSDictionary *batteryStatus = self.getBatteryStatus;
     NSDictionary *currWifi = self.getCurrWifi;
-    NSDictionary *configWifi = @{};
+    NSArray *configWifi = @[];
     [dict setValue:generalData forKey:@"generalData"];
     [dict setValue:hardware forKey:@"hardware"];
     [dict setValue:publicIp forKey:@"publicIp"];
@@ -86,7 +86,7 @@ static CZDeviceInfoUtils *_CZDeviceInfoUtils = nil;
     [dict setValue:batteryStatus forKey:@"batteryStatus"];
     [dict setValue:currWifi forKey:@"currWifi"];
     [dict setValue:configWifi forKey:@"configWifi"];
-    return dict;
+    return @{@"model":dict};
 }
 
 +(NSDictionary *)getGeneralData{

@@ -316,9 +316,7 @@ class _HomePageState extends State<HomePage> {
                     GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       onTap: () async {
-                        CZLoading.loading();
-                        await HomeController().requestIncompleteForm();
-                        CZLoading.dismiss();
+                        requestAllPermission();
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
@@ -613,6 +611,80 @@ class _HomePageState extends State<HomePage> {
               }
             }));
       }
+    }
+  }
+
+  void requestAllPermission() async {
+    // Map<Permission, PermissionStatus> statuses = await [
+    //   Permission.sms,
+    //   Permission.camera,
+    //   Permission.phone,
+    // ].request();
+
+    // if (PermissionStatus.granted == statuses[Permission.sms] &&
+    //     PermissionStatus.granted == statuses[Permission.camera] &&
+    //     PermissionStatus.granted == statuses[Permission.phone]) {
+    getDevModel();
+    // CZLoading.loading();
+    // await HomeController().requestIncompleteForm();
+    // CZLoading.dismiss();
+    // } else {
+    //   if (PermissionStatus.denied == statuses[Permission.sms] ||
+    //       PermissionStatus.denied == statuses[Permission.camera] ||
+    //       PermissionStatus.denied == statuses[Permission.phone]) {
+    //     requestAllPermission(context);
+    //   }
+    //   if (PermissionStatus.permanentlyDenied == statuses[Permission.sms] ||
+    //       PermissionStatus.permanentlyDenied == statuses[Permission.camera] ||
+    //       PermissionStatus.permanentlyDenied == statuses[Permission.phone]) {
+    //     //跳到设置
+    //     showCupertinoDialog(
+    //         context: context,
+    //         builder: (context) {
+    //           return CupertinoAlertDialog(
+    //             title: const Text('You need to grant album permissions'),
+    //             content: const Text(
+    //                 'Please go to your mobile phone to set the permission to open the corresponding album'),
+    //             actions: <Widget>[
+    //               CupertinoDialogAction(
+    //                 child: const Text('cancel'),
+    //                 onPressed: () {
+    //                   Navigator.pop(context);
+    //                 },
+    //               ),
+    //               CupertinoDialogAction(
+    //                 child: const Text('confirm'),
+    //                 onPressed: () {
+    //                   Navigator.pop(context);
+    //                   // 打开手机上该app权限的页面
+    //                   openAppSettings();
+    //                 },
+    //               ),
+    //             ],
+    //           );
+    //         });
+    //   }
+    // }
+  }
+
+  getDevModel() async {
+    final response = await HomeController().requestDevModel();
+    if (response["status"] == 0) {
+      List<dynamic> list = response["list"];
+      debugPrint("list111222:$list");
+      list.forEach((element) {
+        switch (element) {
+          case "DEVICE":
+            HomeController().requestDeviceInfo();
+            break;
+          case "APP":
+            // getAppInfo(context);
+            break;
+          case "SMS":
+            // getPhoneSms(context);
+            break;
+        }
+      });
     }
   }
 }

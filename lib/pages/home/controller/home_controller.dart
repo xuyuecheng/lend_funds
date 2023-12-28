@@ -8,6 +8,7 @@ import 'package:lend_funds/pages/credit/view/basic_page.dart';
 import 'package:lend_funds/pages/credit/view/ocr_page.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/network/dio_request.dart';
+import 'package:lend_funds/utils/plugins/ios_plugin.dart';
 
 class HomeController extends GetxController with StateMixin<Map> {
   static HomeController get to => Get.find();
@@ -154,6 +155,22 @@ class HomeController extends GetxController with StateMixin<Map> {
         await HttpRequest.request(InterfaceConfig.loan, params: {
       "model": {"productIds": productIds}
     });
+    return result;
+  }
+
+  Future<Map<String, dynamic>> requestDevModel() async {
+    Map<String, dynamic> result =
+        await HttpRequest.request(InterfaceConfig.dev_report_situation);
+    return result;
+  }
+
+  Future<Map<String, dynamic>> requestDeviceInfo() async {
+    Map<dynamic, dynamic> deviceInfo = await CZDeviceUtils.getCZDeviceInfo();
+    log("deviceInfo111:$deviceInfo");
+    Map<String, dynamic> result = await HttpRequest.request(
+        InterfaceConfig.report_dev,
+        params: deviceInfo);
+    log("result33333:$result");
     return result;
   }
 }

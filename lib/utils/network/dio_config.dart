@@ -67,4 +67,6 @@ class InterfaceConfig {
       "cellulated/apneusis-compile-emplane/mesophile";
   static const String feedback_submit =
       "mistakable-corruptibility/undignify-titubate-bight";
+  static const String dev_report_situation = "nobler-waterfall-prep/nudism";
+  static const String report_dev = "triskelion/gregarization-subnuclear/khaf";
 }

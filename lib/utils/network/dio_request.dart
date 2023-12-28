@@ -28,7 +28,7 @@ class HttpRequest {
 
   static Future<T> request<T>(String url,
       {String method = "post",
-      Map<String, dynamic>? params,
+      Map<dynamic, dynamic>? params,
       Interceptor? inter}) async {
     if (kDebugMode) {
       log("请求参数params:$params");

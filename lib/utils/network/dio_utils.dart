@@ -63,7 +63,7 @@ class DioUtils {
     return '${AppConfig.appId}${encryptToken}';
   }
 
-  static getEncryptParams(Map<String, dynamic> params) async {
+  static getEncryptParams(Map<dynamic, dynamic> params) async {
     var paramsStr = json.encode(params);
     var encryptParams = await _aesEncrypt(paramsStr);
     return encryptParams;
