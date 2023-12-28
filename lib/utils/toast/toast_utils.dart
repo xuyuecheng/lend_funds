@@ -15,7 +15,7 @@ class CZToastConfig {
       ..progressColor = Colors.green
       ..textColor = Colors.white
       ..maskColor = Colors.transparent
-      ..userInteractions = true
+      ..userInteractions = false
       ..dismissOnTap = false;
     // ..customAnimation = CustomAnimation();
     //   ..displayDuration = const Duration(milliseconds: 2000)

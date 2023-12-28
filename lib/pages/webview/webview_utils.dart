@@ -52,19 +52,21 @@ class _CZWebViewState extends State<CZWebView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: BackButton(
-              color: Colors.black,
-              onPressed: () {
-                // Get.until((route) => route.settings.name == CZRouteConfig.main);
-                Get.back();
-              }),
-          title: Text(
-            // 'Riwayat Pinjaman',
-            title,
-            style: TextStyle(fontSize: 16.sp, color: const Color(0xFF333333)),
-          ),
-          centerTitle: true),
+        backgroundColor: Colors.white,
+        leading: BackButton(
+            color: Colors.black,
+            onPressed: () {
+              Get.back();
+            }),
+        title: Text(
+          title,
+          style: TextStyle(
+              fontSize: 17.5.sp,
+              color: const Color(0xFF000000),
+              fontWeight: FontWeight.w500),
+        ),
+        centerTitle: true,
+      ),
       backgroundColor: const Color.fromARGB(245, 245, 245, 245),
       body: _isLoading
           ? Container(
