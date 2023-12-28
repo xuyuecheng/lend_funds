@@ -1,5 +1,5 @@
 //
-//  CZDeviceUtils.h
+//  CZDeviceInfoUtils.h
 //  Runner
 //
 //  Created by 陈浩 on 2023/6/15.
@@ -9,15 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CZDeviceUtils : NSObject
+@interface CZDeviceInfoUtils : NSObject
 
 + (instancetype)sharedManager;
 
-- (void)getDeviceInfo;
-
-+ (NSString*)getIDFA;
-
-+ (NSString*)getIDFV;
++ (NSDictionary*) getDeviceInfo;
 @end
 
 NS_ASSUME_NONNULL_END

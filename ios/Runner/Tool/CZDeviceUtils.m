@@ -9,7 +9,7 @@
 #import <Flutter/Flutter.h>
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import <AdSupport/AdSupport.h>
-
+#import "CZDeviceInfoUtils.h"
 static NSString* kDeviceUdidKey = @"com.rupee.rain.udid.device";
 static NSString *kDeviceUuid = @"deviceUuid";
 // 单例对象
@@ -53,7 +53,7 @@ static CZDeviceUtils *_CZDeviceUtils = nil;
     __weak typeof(self) weakSelf = self;
     [self.deviceChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
       if ([@"getDeviceInfo" isEqualToString:call.method]) {
-          result(@{@"AID":[CZDeviceUtils getIDFV],@"GAID":[CZDeviceUtils getIDFA]});
+          result(CZDeviceInfoUtils.getDeviceInfo);
       } else if ([@"getIdfa" isEqualToString:call.method]) {
           result([CZDeviceUtils getIDFA]);
       } else if ([@"getIdfv" isEqualToString:call.method]) {
