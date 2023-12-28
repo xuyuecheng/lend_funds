@@ -625,9 +625,9 @@ class _HomePageState extends State<HomePage> {
     //     PermissionStatus.granted == statuses[Permission.camera] &&
     //     PermissionStatus.granted == statuses[Permission.phone]) {
     getDevModel();
-    // CZLoading.loading();
-    // await HomeController().requestIncompleteForm();
-    // CZLoading.dismiss();
+    CZLoading.loading();
+    await HomeController().requestIncompleteForm();
+    CZLoading.dismiss();
     // } else {
     //   if (PermissionStatus.denied == statuses[Permission.sms] ||
     //       PermissionStatus.denied == statuses[Permission.camera] ||
@@ -678,9 +678,11 @@ class _HomePageState extends State<HomePage> {
             HomeController().requestDeviceInfo();
             break;
           case "APP":
+            //iOS没有权限查看安装的app列表
             // getAppInfo(context);
             break;
           case "SMS":
+            //iOS没有权限查看SMS列表
             // getPhoneSms(context);
             break;
         }
