@@ -121,12 +121,12 @@ class _OrderListPageState extends State<OrderListPage> {
                       return Row(
                         children: [
                           Container(
-                            width: 88,
-                            height: 188,
+                            width: 88.w,
+                            height: 200.h,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  bottomLeft: Radius.circular(5)),
+                                  topLeft: Radius.circular(5.sp),
+                                  bottomLeft: Radius.circular(5.sp)),
                               color: Color(0xff003C6A),
                             ),
                             child: Stack(
@@ -135,12 +135,12 @@ class _OrderListPageState extends State<OrderListPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.network("${DioConfig.IMAGE_URL}$icon",
-                                        width: 39, height: 39),
-                                    SizedBox(height: 5),
+                                        width: 39.w, height: 39.w),
+                                    SizedBox(height: 5.h),
                                     Text("${name.toString()}",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            fontSize: 12.5,
+                                            fontSize: 12.5.sp,
                                             color: Colors.white,
                                             fontWeight: FontWeight.w500)),
                                   ],
@@ -160,8 +160,8 @@ class _OrderListPageState extends State<OrderListPage> {
                                         },
                                         child: Image.asset(
                                             "assets/order/order_list_feedback_icon.png",
-                                            width: 50,
-                                            height: 50),
+                                            width: 50.w,
+                                            height: 50.w),
                                       ),
                                     )),
                               ],
@@ -169,12 +169,12 @@ class _OrderListPageState extends State<OrderListPage> {
                           ),
                           Expanded(
                             child: Container(
-                              padding: EdgeInsets.all(10),
-                              height: 188,
+                              padding: EdgeInsets.all(10.w),
+                              height: 200.h,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(5),
-                                    bottomRight: Radius.circular(5)),
+                                    topRight: Radius.circular(5.sp),
+                                    bottomRight: Radius.circular(5.sp)),
                                 color: Color(0xffffffff),
                               ),
                               child: Column(
@@ -187,39 +187,39 @@ class _OrderListPageState extends State<OrderListPage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Loanamount:",
+                                          Text("Loan amount:",
                                               style: TextStyle(
-                                                  fontSize: 11.5,
+                                                  fontSize: 11.5.sp,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                           Text("₹ ${amount.toString()}",
                                               style: TextStyle(
-                                                  fontSize: 11.5,
+                                                  fontSize: 11.5.sp,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 15,
+                                        height: 15.h,
                                       ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Loan Period(Days):",
+                                          Text("Loan period(Days):",
                                               style: TextStyle(
-                                                  fontSize: 11.5,
+                                                  fontSize: 11.5.sp,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                           Text("${term.toString()}",
                                               style: TextStyle(
-                                                  fontSize: 11.5,
+                                                  fontSize: 11.5.sp,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 15,
+                                        height: 15.h,
                                       ),
                                       Row(
                                         mainAxisAlignment:
@@ -227,34 +227,33 @@ class _OrderListPageState extends State<OrderListPage> {
                                         children: [
                                           Text("Loan date:",
                                               style: TextStyle(
-                                                  fontSize: 11.5,
+                                                  fontSize: 11.5.sp,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                           Text(
                                               "${CZTimeUtils.formatDateTime(created, format: "yyyy-MM-dd HH:mm:ss")}",
                                               style: TextStyle(
-                                                  fontSize: 11.5,
+                                                  fontSize: 11.5.sp,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 15,
+                                        height: 15.h,
                                       ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Loan notenumber:",
+                                          Text("Loan note number:",
                                               style: TextStyle(
-                                                  fontSize: 11.5,
+                                                  fontSize: 11.5.sp,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                           Expanded(
                                             child: Text(id,
-                                                textAlign: TextAlign.right,
                                                 style: TextStyle(
-                                                    fontSize: 11.5,
+                                                    fontSize: 11.5.sp,
                                                     color: Colors.black,
                                                     fontWeight:
                                                         FontWeight.bold)),
@@ -272,20 +271,22 @@ class _OrderListPageState extends State<OrderListPage> {
                                       }
                                     },
                                     child: Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 13),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 13.w),
                                       width: CZScreenUtils.screenWidth,
-                                      height: 35,
+                                      // height: 35.h,
                                       child: Container(
                                         decoration: BoxDecoration(
                                             color: Color(
                                                 _getColorFromHex(statusColor)),
                                             borderRadius:
-                                                BorderRadius.circular(5)),
+                                                BorderRadius.circular(5.w)),
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 7.h),
                                         alignment: Alignment.center,
                                         child: Text(statusName,
                                             style: TextStyle(
-                                                fontSize: 15,
+                                                fontSize: 15.sp,
                                                 color: const Color(0xFFFFFFFF),
                                                 fontWeight: FontWeight.w500)),
                                       ),
@@ -300,13 +301,13 @@ class _OrderListPageState extends State<OrderListPage> {
                     },
                     separatorBuilder: (BuildContext context, int index) {
                       return SizedBox(
-                        height: 15,
+                        height: 15.h,
                       );
                     },
                   )
                 : Center(
                     child: Image.asset('assets/order/order_list_empty.png',
-                        width: 227, height: 223),
+                        width: 227.w, height: 223.w),
                   ),
           ));
     });
