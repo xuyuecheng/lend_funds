@@ -117,33 +117,36 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 25.h,
               ),
-              Container(
-                width: 1.sw,
-                height: 50.h,
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  if (_phoneController.text.isEmpty) {
+                    CZLoading.toast("please input phone");
+                    return;
+                  }
+                  FocusScope.of(context).unfocus();
+                  LoginController.to.sendPhoneCode(params: {
+                    "model": {
+                      'phone': _phoneController.text,
+                      "phoneCode": "+91"
+                    }
+                  }).then((value) {
+                    if (value['status'] == 0) {
+                      LoginController.to.phoneStr = _phoneController.text;
+                      Get.toNamed(CZRouteConfig.loginCode);
+                    }
+                  }).catchError((e) {});
+                },
                 child: Container(
-                  decoration: BoxDecoration(
-                      color: const Color(0xFF003C6A),
-                      borderRadius: BorderRadius.circular(10.w)),
-                  child: TextButton(
-                    onPressed: () {
-                      if (_phoneController.text.isEmpty) {
-                        CZLoading.toast("please input");
-                        return;
-                      }
-                      FocusScope.of(context).unfocus();
-                      LoginController.to.sendPhoneCode(params: {
-                        "model": {
-                          'phone': _phoneController.text,
-                          "phoneCode": "+91"
-                        }
-                      }).then((value) {
-                        if (value['status'] == 0) {
-                          LoginController.to.phoneStr = _phoneController.text;
-                          Get.toNamed(CZRouteConfig.loginCode);
-                        }
-                      }).catchError((e) {});
-                    },
+                  width: 1.sw,
+                  // height: 50.h,
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: const Color(0xFF003C6A),
+                        borderRadius: BorderRadius.circular(10.w)),
+                    padding: EdgeInsets.symmetric(vertical: 7.h),
+                    alignment: Alignment.center,
                     child: Text("Next step",
                         style: TextStyle(
                             fontSize: 26.sp,

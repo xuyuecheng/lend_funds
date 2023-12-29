@@ -121,12 +121,12 @@ class _OrderListPageState extends State<OrderListPage> {
                       return Row(
                         children: [
                           Container(
-                            width: 88.w,
-                            height: 188.h,
+                            width: 88,
+                            height: 188,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(5.sp),
-                                  bottomLeft: Radius.circular(5.sp)),
+                                  topLeft: Radius.circular(5),
+                                  bottomLeft: Radius.circular(5)),
                               color: Color(0xff003C6A),
                             ),
                             child: Stack(
@@ -135,12 +135,12 @@ class _OrderListPageState extends State<OrderListPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.network("${DioConfig.IMAGE_URL}$icon",
-                                        width: 39.w, height: 39.w),
-                                    SizedBox(height: 5.h),
+                                        width: 39, height: 39),
+                                    SizedBox(height: 5),
                                     Text("${name.toString()}",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            fontSize: 12.5.sp,
+                                            fontSize: 12.5,
                                             color: Colors.white,
                                             fontWeight: FontWeight.w500)),
                                   ],
@@ -160,8 +160,8 @@ class _OrderListPageState extends State<OrderListPage> {
                                         },
                                         child: Image.asset(
                                             "assets/order/order_list_feedback_icon.png",
-                                            width: 50.w,
-                                            height: 50.w),
+                                            width: 50,
+                                            height: 50),
                                       ),
                                     )),
                               ],
@@ -169,12 +169,12 @@ class _OrderListPageState extends State<OrderListPage> {
                           ),
                           Expanded(
                             child: Container(
-                              padding: EdgeInsets.all(10.w),
-                              height: 188.h,
+                              padding: EdgeInsets.all(10),
+                              height: 188,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(5.sp),
-                                    bottomRight: Radius.circular(5.sp)),
+                                    topRight: Radius.circular(5),
+                                    bottomRight: Radius.circular(5)),
                                 color: Color(0xffffffff),
                               ),
                               child: Column(
@@ -189,18 +189,18 @@ class _OrderListPageState extends State<OrderListPage> {
                                         children: [
                                           Text("Loanamount:",
                                               style: TextStyle(
-                                                  fontSize: 11.5.sp,
+                                                  fontSize: 11.5,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                           Text("₹ ${amount.toString()}",
                                               style: TextStyle(
-                                                  fontSize: 11.5.sp,
+                                                  fontSize: 11.5,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 15.h,
+                                        height: 15,
                                       ),
                                       Row(
                                         mainAxisAlignment:
@@ -208,18 +208,18 @@ class _OrderListPageState extends State<OrderListPage> {
                                         children: [
                                           Text("Loan Period(Days):",
                                               style: TextStyle(
-                                                  fontSize: 11.5.sp,
+                                                  fontSize: 11.5,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                           Text("${term.toString()}",
                                               style: TextStyle(
-                                                  fontSize: 11.5.sp,
+                                                  fontSize: 11.5,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 15.h,
+                                        height: 15,
                                       ),
                                       Row(
                                         mainAxisAlignment:
@@ -227,19 +227,19 @@ class _OrderListPageState extends State<OrderListPage> {
                                         children: [
                                           Text("Loan date:",
                                               style: TextStyle(
-                                                  fontSize: 11.5.sp,
+                                                  fontSize: 11.5,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                           Text(
                                               "${CZTimeUtils.formatDateTime(created, format: "yyyy-MM-dd HH:mm:ss")}",
                                               style: TextStyle(
-                                                  fontSize: 11.5.sp,
+                                                  fontSize: 11.5,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 15.h,
+                                        height: 15,
                                       ),
                                       Row(
                                         mainAxisAlignment:
@@ -247,13 +247,14 @@ class _OrderListPageState extends State<OrderListPage> {
                                         children: [
                                           Text("Loan notenumber:",
                                               style: TextStyle(
-                                                  fontSize: 11.5.sp,
+                                                  fontSize: 11.5,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
                                           Expanded(
                                             child: Text(id,
+                                                textAlign: TextAlign.right,
                                                 style: TextStyle(
-                                                    fontSize: 11.5.sp,
+                                                    fontSize: 11.5,
                                                     color: Colors.black,
                                                     fontWeight:
                                                         FontWeight.bold)),
@@ -262,27 +263,29 @@ class _OrderListPageState extends State<OrderListPage> {
                                       ),
                                     ],
                                   ),
-                                  Container(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 13.w),
-                                    width: CZScreenUtils.screenWidth,
-                                    height: 35.h,
+                                  GestureDetector(
+                                    behavior: HitTestBehavior.translucent,
+                                    onTap: () {
+                                      if (mStatus == "LOAN_SUCCESS") {
+                                        //跳转到付款方式选择界面
+                                        getPlan(context, id);
+                                      }
+                                    },
                                     child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Color(
-                                              _getColorFromHex(statusColor)),
-                                          borderRadius:
-                                              BorderRadius.circular(5.w)),
-                                      child: TextButton(
-                                        onPressed: () {
-                                          if (mStatus == "LOAN_SUCCESS") {
-                                            //跳转到付款方式选择界面
-                                            getPlan(context, id);
-                                          }
-                                        },
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 13),
+                                      width: CZScreenUtils.screenWidth,
+                                      height: 35,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Color(
+                                                _getColorFromHex(statusColor)),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
                                         child: Text(statusName,
                                             style: TextStyle(
-                                                fontSize: 15.sp,
+                                                fontSize: 15,
                                                 color: const Color(0xFFFFFFFF),
                                                 fontWeight: FontWeight.w500)),
                                       ),
@@ -297,13 +300,13 @@ class _OrderListPageState extends State<OrderListPage> {
                     },
                     separatorBuilder: (BuildContext context, int index) {
                       return SizedBox(
-                        height: 15.h,
+                        height: 15,
                       );
                     },
                   )
                 : Center(
                     child: Image.asset('assets/order/order_list_empty.png',
-                        width: 227.w, height: 223.w),
+                        width: 227, height: 223),
                   ),
           ));
     });
