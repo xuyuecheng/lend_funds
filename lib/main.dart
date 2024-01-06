@@ -14,7 +14,6 @@ void main() async {
   await CZMainConfig.CZBeforeRunAppConfig();
   cameras = await availableCameras();
   runApp(ProviderScope(child: App()));
-  //add test1
 }
 
 class App extends StatefulWidget {
