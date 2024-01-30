@@ -1,4 +1,4 @@
-package com.example.lend_funds;
+package com.fund.funds.lucky.go.loan;
 
 import io.flutter.embedding.android.FlutterActivity;
 
