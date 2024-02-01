@@ -335,18 +335,22 @@ class BasicFormModel extends BaseListModel<dynamic> {
     Map<String, dynamic> params;
     if (status.length > 0) {
       params = {
-        "query": {"status": status, "pageNo": this.page, "pageSize": 10}
+        "queryBQDz08": {
+          "statusE8iqlh": status,
+          "pageNowNjald": this.page,
+          "pageSizeUTP2dN": 10
+        }
       };
     } else {
       params = {
-        "query": {"pageNo": this.page, "pageSize": 10}
+        "queryBQDz08": {"pageNowNjald": this.page, "pageSizeUTP2dN": 10}
       };
     }
 
     final response =
         await HttpRequest.request(InterfaceConfig.order_list, params: params);
-    List<dynamic> contents = response["page"].containsKey("content")
-        ? response["page"]["content"]
+    List<dynamic> contents = response["pageLosuN4"].containsKey("contentCxb7jm")
+        ? response["pageLosuN4"]["contentCxb7jm"]
         : [];
     if (kDebugMode) {
       log("orderList:${json.encode(contents)}");
@@ -359,7 +363,7 @@ getPlan(BuildContext context, String orderId) async {
   CZLoading.loading();
   final response = await context.read(planProvider(orderId)).loadPlanData();
   CZLoading.dismiss();
-  if (response["status"] == 0) {
+  if (response["statusE8iqlh"] == 0) {
     //跳转
     Get.to(() => RepayPage(
           model: response["model"],

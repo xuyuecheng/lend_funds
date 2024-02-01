@@ -22,38 +22,34 @@ class AppConfig {
 
 class InterfaceConfig {
   //短信验证码
-  static const String phoneCode =
-      'zap-cropless-euphobia/osf-metapolitics-subcontraoctave';
+  static const String phoneCode = 'send/verification_code';
   //登录/注册
-  static const String userLogin = 'curacao/regardless/cadent-electrofishing';
-  //表单获取
-  static const String formList =
-      'dissyllable/smallboy-dishearteningly-unexamining/rheda-polysepalous';
+  static const String userLogin = 'login/interface';
+  //获取一个未完成表单
+  static const String formList = 'get/form_process';
   //表单指定表单
-  static const String getOneFormFlow = 'fieldstone-agonising/snakebite-oke';
+  static const String getOneFormFlow = 'feedback_list';
   //获取产品信息
-  static const String product_list = 'lacing-washy/ctn-fives';
+  static const String product_list = 'get/product_information';
   //获取手续费试算
   static const String tria =
       'noic-cryptographical-infarcted/ensheath/cystoscope-nebulous-segmental';
   static const String loan = "pedodontic-cardcarrier-opiology/telophase";
   //提交表单
-  static const String submitForm =
-      'warsaw-coitus/hylophagous-meniscoid/jingoism';
+  static const String submitForm = 'submit/form';
   //上传文件
-  static const String uploadFile = 'gannet/insphere/roentgenise-peccancy';
+  static const String uploadFile = 'upload/document';
   //ocr识别
-  static const String ocr = 'transfection/general-significance-deathy';
+  static const String ocr = 'ocr/user_check';
   //ocr信息提交
-  static const String submitOcrInfo =
-      'isogamy/tulipwood-fraenulum-afreet/phantasmic-smartless';
+  static const String submitOcrInfo = 'submit/user_info';
   static const String address_info = "dominee-elucidation/ek-fatness-melodrame";
   static const String job_info = "tamburlaine/tatami/controvert";
   //活体检测
   static const String alive = 'cheyenne/cadaster/tentaculiform';
   //删除用户
   static const String del = 'semiagricultural/shotty-eudaimonism';
-  static const String order_list = "omnidirectional/tropocollagen-preharvest";
+  static const String order_list = "get/user/orders_by_page";
   static const String repayment_plan =
       "modernity/alimentative-chrp-airfoil/benignly-smudgy-milky";
   static const String upi = "sideroscope/quirkish/plot-disparate-rancho";
@@ -67,6 +63,8 @@ class InterfaceConfig {
       "cellulated/apneusis-compile-emplane/mesophile";
   static const String feedback_submit =
       "mistakable-corruptibility/undignify-titubate-bight";
-  static const String dev_report_situation = "nobler-waterfall-prep/nudism";
-  static const String report_dev = "triskelion/gregarization-subnuclear/khaf";
+  //检测设备信息上报情况
+  static const String dev_report_situation = "check/report_device_information";
+  //上报设备信息
+  static const String report_dev = "upload/equipment";
 }

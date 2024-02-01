@@ -590,7 +590,7 @@ class _HomePageState extends State<HomePage> {
     CZLoading.loading();
     final response = await HomeController.to.requestTrialData(productIds);
     CZLoading.dismiss();
-    if (response["status"] == 0) {
+    if (response["statusE8iqlh"] == 0) {
       List<dynamic>? item =
           response.containsKey("model") ? response["model"] : null;
       print("item:${item.toString()}");
@@ -602,7 +602,7 @@ class _HomePageState extends State<HomePage> {
               final response =
                   await HomeController.to.requestLoanData(productIds);
               CZLoading.dismiss();
-              if (response["status"] == 0) {
+              if (response["statusE8iqlh"] == 0) {
                 CZDialogUtil.dismiss();
                 //跳转到订单列表
                 Get.to(() => OrderPage(
@@ -670,8 +670,8 @@ class _HomePageState extends State<HomePage> {
 
   getDevModel() async {
     final response = await HomeController().requestDevModel();
-    if (response["status"] == 0) {
-      List<dynamic> list = response["list"];
+    if (response["statusE8iqlh"] == 0) {
+      List<dynamic> list = response["listNPJAeA"];
       debugPrint("list111222:$list");
       list.forEach((element) {
         switch (element) {

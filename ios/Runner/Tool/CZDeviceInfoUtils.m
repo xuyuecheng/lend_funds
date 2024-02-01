@@ -75,169 +75,169 @@ static CZDeviceInfoUtils *_CZDeviceInfoUtils = nil;
     NSDictionary *batteryStatus = self.getBatteryStatus;
     NSDictionary *currWifi = self.getCurrWifi;
     NSArray *configWifi = @[];
-    [dict setValue:generalData forKey:@"generalData"];
-    [dict setValue:hardware forKey:@"hardware"];
-    [dict setValue:publicIp forKey:@"publicIp"];
-    [dict setValue:simCard forKey:@"simCard"];
-    [dict setValue:otherData forKey:@"otherData"];
-    [dict setValue:location forKey:@"location"];
-    [dict setValue:storage forKey:@"storage"];
-    [dict setValue:devFile forKey:@"devFile"];
-    [dict setValue:batteryStatus forKey:@"batteryStatus"];
-    [dict setValue:currWifi forKey:@"currWifi"];
-    [dict setValue:configWifi forKey:@"configWifi"];
-    return @{@"model":dict};
+    [dict setValue:generalData forKey:@"generalDataCbw4j2"];
+    [dict setValue:hardware forKey:@"hardwareshZccz"];
+    [dict setValue:publicIp forKey:@"publicIpyeOakN"];
+    [dict setValue:simCard forKey:@"simCardlqMEZf"];
+    [dict setValue:otherData forKey:@"otherDatau7YSHK"];
+    [dict setValue:location forKey:@"locationfwQn24"];
+    [dict setValue:storage forKey:@"storageuTosYG"];
+    [dict setValue:devFile forKey:@"devFilej9tCrF"];
+    [dict setValue:batteryStatus forKey:@"batteryStatuslDRugQ"];
+    [dict setValue:currWifi forKey:@"currWifiLloy16"];
+    [dict setValue:configWifi forKey:@"configWifiucSQNF"];
+    return @{@"modelU8mV9A":dict};
 }
 
 +(NSDictionary *)getGeneralData{
     return  @{
-        @"andId":[CZDeviceUtils getIDFV],
-        @"phoneType":@"",
-        @"mnc":self.getMnc,
-        @"gaid":[CZDeviceUtils getIDFA],
-        @"dns":@"",
-        @"language":self.getDeviceLanguage,
-        @"mcc":self.getMcc,
-        @"networkOperator":@"",
+        @"andIda8Da85":[CZDeviceUtils getIDFV],
+        @"phoneTypeT8t1XN":@"",
+        @"mncXihCRh":self.getMnc,
+        @"gaidkgXLB7":[CZDeviceUtils getIDFA],
+        @"dnsiqpJ6o":@"",
+        @"languageXDduTh":self.getDeviceLanguage,
+        @"mccEZIYdH":self.getMcc,
+        @"networkOperatorz7WYI7":@"",
         @"networkOperatorName":self.getNetworkOperatorName,
-        @"localeIso3Language":self.getLocaleIso3Language,
-        @"localeDisplayLanguage":@"",
-        @"imei":@"",
-        @"phoneNumber":@"",
-        @"networkType":self.getNetName,
-        @"timeZoneId":self.getTimeZoneId,
-        @"localeIso3Country":@"",
+        @"localeIso3LanguageReFQaF":self.getLocaleIso3Language,
+        @"localeDisplayLanguageSklNRK":@"",
+        @"imeiIYTirF":@"",
+        @"phoneNumberl6YZEE":@"",
+        @"networkTypegkqh5l":self.getNetName,
+        @"timeZoneIdcK23TV":self.getTimeZoneId,
+        @"localeIso3CountryAsnKI4":@"",
     };
 }
 
 +(NSDictionary *)getHardware{
     return  @{
-        @"deviceName":[[UIDevice currentDevice] name],
-        @"brand":@"Apple",
-        @"product":@"",
-        @"model":[[UIDevice currentDevice] model],
-        @"release":[[UIDevice currentDevice] systemVersion],
-        @"cpuType":self.getCPUType,
-        @"sdkVersion":@"",
-        @"serialNumber":@"",
-        @"physicalSize":@"",
-        @"manufacturer":@"",
-        @"display":@"",
-        @"fingerprint":@"",
-        @"abis":@[],
-        @"board":@"",
-        @"buildId":@"",
-        @"host":@"",
-        @"type":@"",
-        @"buildUser":@"",
-        @"cpuAbi":@"",
-        @"cpuAbi2":@"",
-        @"bootloader":@"",
-        @"hardware":@"",
-        @"baseOS":@"",
-        @"radioVersion":@"",
-        @"sdCardPath":@"",
-        @"internalTotalSize":self.getTotalMemory,
-        @"internalAvailableSize":self.getFreeMemory,
-        @"externalTotalSize":self.getTotalDiskSpace,
-        @"externalAvailableSize":self.getFreeDiskSpace,
-        @"sdCardInfo":@{},
+        @"deviceNameVlHKdf":[[UIDevice currentDevice] name],
+        @"brandcW0g8g":@"Apple",
+        @"productI8T9N3":@"",
+        @"modelU8mV9A":[[UIDevice currentDevice] model],
+        @"releases1OMDC":[[UIDevice currentDevice] systemVersion],
+        @"cpuTypeqxjuJC":self.getCPUType,
+        @"sdkVersionAZVEkJ":@"",
+        @"serialNumberMYvlMN":@"",
+        @"physicalSizebroJOD":@"",
+        @"manufacturerSu3DFB":@"",
+        @"displaymh1Iu1":@"",
+        @"fingerprintcgzBn3":@"",
+        @"abistHGENT":@[],
+        @"boardQIvTBC":@"",
+        @"buildIdfIzSX8":@"",
+        @"hostYXZkpJ":@"",
+        @"typeIVyt6h":@"",
+        @"buildUserFdbNYb":@"",
+        @"cpuAbibgZnBU":@"",
+        @"cpuAbi2ONqYXh":@"",
+        @"bootloaderdS2w1y":@"",
+        @"hardwareshZccz":@"",
+        @"baseOSZz0ead":@"",
+        @"radioVersionokW2pY":@"",
+        @"sdCardPathrlvRKQ":@"",
+        @"internalTotalSizeMYH8gU":self.getTotalMemory,
+        @"internalAvailableSizemBk9wi":self.getFreeMemory,
+        @"externalTotalSizeIu2yqm":self.getTotalDiskSpace,
+        @"externalAvailableSizeqRHB1m":self.getFreeDiskSpace,
+        @"sdCardInfoSfMU1D":@{},
     };
 }
 
 +(NSDictionary *)getPublicIp{
     return  @{
-        @"intranetIp":self.getDeviceIPAddresses,
+        @"intranetIpFF12Jy":self.getDeviceIPAddresses,
     };
 }
 
 +(NSDictionary *)getSimCard{
     return  @{
-        @"mobileDataEnabled": self.simCardNumInPhone>0 ? @(YES):@(NO),
-        @"mobileData":@(YES),
-        @"serialNumber":@"",
-        @"simCardReady":@(YES),
-        @"countryIso":self.getLocaleIso3Language,
-        @"dataNetworkType":@"",
-        @"operatorName":self.getNetworkOperatorName,
-        @"operator":@"",
+        @"mobileDataEnabledP4qFJi": self.simCardNumInPhone>0 ? @(YES):@(NO),
+        @"mobileDataBgDTm0":@(YES),
+        @"serialNumberMYvlMN":@"",
+        @"simCardReadyDIZg4E":@(YES),
+        @"countryIsoUf8REy":self.getLocaleIso3Language,
+        @"dataNetworkTypefWyovG":@"",
+        @"operatorNamepMId7j":self.getNetworkOperatorName,
+        @"operatorFTVNcV":@"",
     };
 }
 
 +(NSDictionary *)getOtherData{
     return @{
-        @"hasRoot":@"",
-        @"lastBootTime":@"",
-        @"keyboard":@"",
-        @"simulator":@(NO),
-        @"adbEnabled":@(NO),
-        @"dbm":self.getSignalLevel,
-        @"imageNum":@"",
-        @"screenWidth":@([UIScreen mainScreen].bounds.size.width),
-        @"screenHeight":@([UIScreen mainScreen].bounds.size.height),
-        @"screenDensity":@([UIScreen mainScreen].scale),
-        @"screenDensityDpi":@"",
-        @"cpuNumber":self.getCPUCount,
-        @"appFreeMemory":@"",
-        @"appAvailableMemory":@"",
-        @"appMaxMemory":@"",
-        @"maxBattery":@"",
-        @"levelBattery":@"",
-        @"totalBootTimeWake":self.getDeviceModel,
-        @"totalBootTime":@"",
+        @"hasRootOQVsGS":@"",
+        @"lastBootTimeKL3WDl":@"",
+        @"keyboardPdFl3Y":@"",
+        @"simulatorDlnIj1":@(NO),
+        @"adbEnabledexy7ID":@(NO),
+        @"dbmlGYZDM":self.getSignalLevel,
+        @"imageNumatB9Ni":@"",
+        @"screenWidthfQFwXO":@([UIScreen mainScreen].bounds.size.width),
+        @"screenHeightT21iar":@([UIScreen mainScreen].bounds.size.height),
+        @"screenDensityZTvcGH":@([UIScreen mainScreen].scale),
+        @"screenDensityDpivhAYoX":@"",
+        @"cpuNumberce4wrg":self.getCPUCount,
+        @"appFreeMemoryJhIwEV":@"",
+        @"appAvailableMemoryCF50wY":@"",
+        @"appMaxMemorylXBi91":@"",
+        @"maxBatteryITuC8t":@"",
+        @"levelBatteryuLBq55":@"",
+        @"totalBootTimeWakeaV7OGl":self.getDeviceModel,
+        @"totalBootTimeHnoiOg":@"",
     };
 }
 
 +(NSDictionary *)getLocation{
     return @{
-        @"gps":@{
-            @"latitude":@"",
-            @"longitude":@"",
+        @"gpsnU23GV":@{
+            @"latitudeAvnzut":@"",
+            @"longitudesIDO4W":@"",
         },
     };
 }
 
 +(NSDictionary *)getStorage{
     return @{
-        @"ramTotalSize":self.getTotalMemory,
-        @"ramUsableSize":self.getFreeMemory,
-        @"memoryCardSize":@"",
-        @"memoryCardSizeUse":@"",
-        @"mainStorage":@"",
-        @"externalStorage":@"",
-        @"internalStorageUsable":self.getFreeDiskSpace,
-        @"internalStorageTotal":self.getFreeDiskSpace,
+        @"ramTotalSizeOnbeXg":self.getTotalMemory,
+        @"ramUsableSizeprn6kk":self.getFreeMemory,
+        @"memoryCardSizelFXUtg":@"",
+        @"memoryCardSizeUseQvW766":@"",
+        @"mainStorageQdF0BK":@"",
+        @"externalStorageR0VtD0":@"",
+        @"internalStorageUsableSgXO96":self.getFreeDiskSpace,
+        @"internalStorageTotalbkOcGj":self.getFreeDiskSpace,
     };
 }
 
 +(NSDictionary *)getDevFile{
     return @{
-        @"audioExternal":@"",
-        @"audioInternal":@"",
-        @"downloadFiles":@"",
-        @"imagesExternal":@"",
-        @"imagesInternal":@"",
-        @"videoExternal":@"",
-        @"videoInternal":@"",
+        @"audioExternalIJSGjp":@"",
+        @"audioInternalgSd2ce":@"",
+        @"downloadFilescQDL7l":@"",
+        @"imagesExternalMI79gp":@"",
+        @"imagesInternalPcUu78":@"",
+        @"videoExternalprT0Lx":@"",
+        @"videoInternalwEHDw0":@"",
     };
 }
 
 +(NSDictionary *)getBatteryStatus{
     return @{
-        @"batteryPct":@"",
-        @"isUsbCharge":@"",
-        @"isAcCharge":@"",
-        @"isCharging":@"",
+        @"batteryPctgI42Et":@"",
+        @"isUsbChargeW1MXzD":@"",
+        @"isAcChargevFy5ZO":@"",
+        @"isChargingX9iwLO":@"",
     };
 }
 
 +(NSDictionary *)getCurrWifi{
     return @{
-        @"name":@"",
-        @"bssid":@"",
-        @"ssid":@"",
-        @"mac":self.getMacAddress,
-        @"ip":self.getDeviceIPAddresses,
+        @"nameyJEzwD":@"",
+        @"bssidTwL8VA":@"",
+        @"ssidnVwsGl":@"",
+        @"macB9zkMg":self.getMacAddress,
+        @"ipawa25v":self.getDeviceIPAddresses,
     };
 }
 

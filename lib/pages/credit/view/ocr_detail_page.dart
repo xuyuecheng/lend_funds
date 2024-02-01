@@ -16,13 +16,13 @@ class OcrDetailPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final dutyIdCardController =
-        useTextEditingController(text: params["idCard"]);
+        useTextEditingController(text: params["idCardLpsFQr"]);
     final dutyRealNameController =
-        useTextEditingController(text: params["realName"]);
+        useTextEditingController(text: params["userNameeRu4G3"]);
     final dutyTaxRegNumberController =
-        useTextEditingController(text: params["taxRegNumber"]);
+        useTextEditingController(text: params["taxRegNumberXgH70W"]);
     final rectifyTime =
-        useState(CZTimeUtils.formatDateTime(params["birthDay"]));
+        useState(CZTimeUtils.formatDateTime(params["birthDayclwqbz"]));
     debugPrint("MyDate:${rectifyTime.value}");
     debugPrint("MyDate1:" +
         DateTime.parse(rectifyTime.value).millisecondsSinceEpoch.toString());
@@ -109,9 +109,9 @@ class OcrDetailPage extends HookWidget {
                                 dutyRealNameController.text.toString(),
                                 dutyTaxRegNumberController.text.toString(),
                                 rectifyTime.value,
-                                params["idCardImageFront"],
-                                params["idCardImageBack"],
-                                params["idCardImagePan"]);
+                                params["idCardImageFrontRvZMet"],
+                                params["idCardImageBackexYcGa"],
+                                params["idCardImagePanRkLgYd"]);
                           },
                           child: Text("Next step",
                               style: TextStyle(
@@ -160,18 +160,19 @@ class OcrDetailPage extends HookWidget {
 
     CZLoading.loading();
     await OcrController.to.submitOcrInfo(params: {
-      "model": {
-        "idCard": idCard,
-        "realName": realName,
-        "taxRegNumber": taxRegNumber,
-        "birthDay": DateTime.parse(birthDay).millisecondsSinceEpoch.toString(),
-        "idCardImageFront": idCardImageFront,
-        "idCardImageBack": idCardImageBack,
-        "idCardImagePan": idCardImagePan,
+      "modelU8mV9A": {
+        "idCardLpsFQr": idCard,
+        "userNameeRu4G3": realName,
+        "taxRegNumberXgH70W": taxRegNumber,
+        "birthDayclwqbz":
+            DateTime.parse(birthDay).millisecondsSinceEpoch.toString(),
+        "idCardImageFrontRvZMet": idCardImageFront,
+        "idCardImageBackexYcGa": idCardImageBack,
+        "idCardImagePanRkLgYd": idCardImagePan,
       }
     }).then((value) {
       CZLoading.dismiss();
-      if (value["status"] == 0) {
+      if (value["statusE8iqlh"] == 0) {
         //返回上个页面
         Get.back(result: true);
       }

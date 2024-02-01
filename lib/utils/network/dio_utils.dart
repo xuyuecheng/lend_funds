@@ -63,6 +63,47 @@ class DioUtils {
     return '${AppConfig.appId}${encryptToken}';
   }
 
+  static Future<Map<String, dynamic>> getHeadersMap() async {
+    PackageInfo packageInfo = await CZPackageUtils.getPackageInfo();
+    String gaid = '';
+    String aid = '';
+    if (Platform.isIOS) {
+      gaid = await CZDeviceUtils().getIdfa();
+      if (kDebugMode) {
+        print("gaid:$gaid");
+      }
+      aid = await CZDeviceUtils().getIdfv();
+    } else {
+      gaid = await FinancialPlugin().getGoogleGaId();
+      if (kDebugMode) {
+        print("getGoogleGaId:$gaid");
+      }
+      aid = await FinancialPlugin().getAndroidId();
+    }
+
+    Map<String, dynamic> tokenHeaders = {
+      HttpHeaders.acceptHeader: 'application/json',
+      HttpHeaders.contentTypeHeader: 'application/json',
+      'OS': DioUtils.getPlatform,
+      'RVISFYql': packageInfo.packageName,
+      'VERSIONwPhn7w': packageInfo.version,
+      'GAIDZ3j2Lq': gaid,
+      'androidIdXyTXS9': aid,
+      'appIdOKya4i': AppConfig.appId,
+    };
+    if (kDebugMode) {
+      // log("请求头tokenHeaders:$tokenHeaders");
+    }
+    dynamic user = CZStorage.getUserInfo();
+    if (user != null) {
+      tokenHeaders['loginAuthoazNb2'] = user['accountUnDcbi']['tokene8PAV1'];
+    }
+    if (kDebugMode) {
+      log("请求头tokenHeaders:$tokenHeaders");
+    }
+    return tokenHeaders;
+  }
+
   static getEncryptParams(Map<dynamic, dynamic> params) async {
     var paramsStr = json.encode(params);
     var encryptParams = await _aesEncrypt(paramsStr);

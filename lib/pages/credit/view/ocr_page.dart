@@ -215,23 +215,23 @@ class _OcrPageState extends State<OcrPage> {
       CZLoading.loading();
       await OcrController.to.uploadFile(resultFront ?? "").then((value) {
         CZLoading.dismiss();
-        if (value["status"] == 0) {
-          loadFront = value['model']["ossUrl"];
+        if (value["statusE8iqlh"] == 0) {
+          loadFront = value['modelU8mV9A']["ossUrl"];
           debugPrint("loadFront:${loadFront}");
         }
       });
       if (loadFront != null && loadFront!.length > 0) {
         CZLoading.loading();
         Map response = await OcrController.to.ocrIdentifyFront(loadFront ?? "");
-        if (response["status"] == 0) {
-          idCard = response["model"].containsKey("idCard")
-              ? response["model"]["idCard"]
+        if (response["statusE8iqlh"] == 0) {
+          idCard = response["modelU8mV9A"].containsKey("idCardLpsFQr")
+              ? response["modelU8mV9A"]["idCardLpsFQr"]
               : null;
-          realName = response["model"].containsKey("realName")
-              ? response["model"]["realName"]
+          realName = response["modelU8mV9A"].containsKey("userNameeRu4G3")
+              ? response["modelU8mV9A"]["userNameeRu4G3"]
               : null;
-          birthDay = response["model"].containsKey("birthDay")
-              ? response["model"]["birthDay"]
+          birthDay = response["modelU8mV9A"].containsKey("birthDayclwqbz")
+              ? response["modelU8mV9A"]["birthDayclwqbz"]
               : null;
           if (idCard == null || realName == null || birthDay == null) {
             loadFront = null;
@@ -245,7 +245,7 @@ class _OcrPageState extends State<OcrPage> {
           loadFront = null;
           // resultFront = null;
           CZLoading.dismiss();
-          CZLoading.toast(response["message"]);
+          CZLoading.toast(response["msgEsmut7"]);
           setState(() {});
         }
       }
@@ -269,22 +269,22 @@ class _OcrPageState extends State<OcrPage> {
       CZLoading.loading();
       await OcrController.to.uploadFile(resultBack ?? "").then((value) {
         CZLoading.dismiss();
-        if (value["status"] == 0) {
-          loadBack = value['model']["ossUrl"];
+        if (value["statusE8iqlh"] == 0) {
+          loadBack = value['modelU8mV9A']["ossUrl"];
           debugPrint("loadBack:${loadBack}");
         }
       });
       if (loadBack != null && loadBack!.length > 0) {
         CZLoading.loading();
         Map response = await OcrController.to.ocrIdentifyBack(loadBack ?? "");
-        if (response["status"] == 0) {
+        if (response["statusE8iqlh"] == 0) {
           CZLoading.dismiss();
           setState(() {});
         } else {
           loadBack = null;
           // resultBack = null;
           CZLoading.dismiss();
-          CZLoading.toast(response["message"]);
+          CZLoading.toast(response["msgEsmut7"]);
           setState(() {});
         }
       }
@@ -307,23 +307,24 @@ class _OcrPageState extends State<OcrPage> {
       CZLoading.loading();
       await OcrController.to.uploadFile(resultPan ?? "").then((value) {
         CZLoading.dismiss();
-        if (value["status"] == 0) {
-          loadPan = value['model']["ossUrl"];
+        if (value["statusE8iqlh"] == 0) {
+          loadPan = value['modelU8mV9A']["ossUrl"];
           debugPrint("loadPan:${loadPan}");
         }
       });
       if (loadPan != null && loadPan!.length > 0) {
         CZLoading.loading();
         Map response = await OcrController.to.ocrIdentifyFront(loadPan ?? "");
-        if (response["status"] == 0) {
-          taxRegNumber = response["model"].containsKey("taxRegNumber")
-              ? response["model"]["taxRegNumber"]
+        if (response["statusE8iqlh"] == 0) {
+          taxRegNumber =
+              response["modelU8mV9A"].containsKey("taxRegNumberXgH70W")
+                  ? response["modelU8mV9A"]["taxRegNumberXgH70W"]
+                  : null;
+          realName = response["modelU8mV9A"].containsKey("userNameeRu4G3")
+              ? response["modelU8mV9A"]["userNameeRu4G3"]
               : null;
-          realName = response["model"].containsKey("realName")
-              ? response["model"]["realName"]
-              : null;
-          birthDay = response["model"].containsKey("birthDay")
-              ? response["model"]["birthDay"]
+          birthDay = response["modelU8mV9A"].containsKey("birthDayclwqbz")
+              ? response["modelU8mV9A"]["birthDayclwqbz"]
               : null;
           if (taxRegNumber == null || realName == null || birthDay == null) {
             loadPan = null;
@@ -337,7 +338,7 @@ class _OcrPageState extends State<OcrPage> {
           loadPan = null;
           // resultPan = null;
           CZLoading.dismiss();
-          CZLoading.toast(response["message"]);
+          CZLoading.toast(response["msgEsmut7"]);
           setState(() {});
         }
       }
@@ -364,13 +365,13 @@ class _OcrPageState extends State<OcrPage> {
     }
 
     Map<String, dynamic> params = <String, dynamic>{};
-    params["idCard"] = idCard;
-    params["realName"] = realName;
-    params["birthDay"] = birthDay;
-    params["taxRegNumber"] = taxRegNumber;
-    params["idCardImageFront"] = loadFront;
-    params["idCardImageBack"] = loadBack;
-    params["idCardImagePan"] = loadPan;
+    params["idCardLpsFQr"] = idCard;
+    params["userNameeRu4G3"] = realName;
+    params["birthDayclwqbz"] = birthDay;
+    params["taxRegNumberXgH70W"] = taxRegNumber;
+    params["idCardImageFrontRvZMet"] = loadFront;
+    params["idCardImageBackexYcGa"] = loadBack;
+    params["idCardImagePanRkLgYd"] = loadPan;
     debugPrint("params:$params");
     var result = await Get.to(() => OcrDetailPage(params: params));
     if (result != null && result) {

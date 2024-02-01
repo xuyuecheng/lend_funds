@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dio/src/form_data.dart' as form;
@@ -34,15 +33,10 @@ class HttpRequest {
       log("请求参数params:$params");
     }
     // 1.创建单独配置
-    String token = await DioUtils.getToken();
+    Map<String, dynamic> map = await DioUtils.getHeadersMap();
     final options = Options(
       method: method,
-      headers: {
-        HttpHeaders.acceptHeader: 'application/json',
-        HttpHeaders.contentTypeHeader: 'application/json',
-        'OS': DioUtils.getPlatform,
-        'Token': token,
-      },
+      headers: map,
     );
     // 全局拦截器
     // 创建默认的全局拦截器
@@ -78,7 +72,8 @@ class HttpRequest {
     dio.interceptors.addAll(inters);
     String encryptParams = '';
     if (params != null) {
-      encryptParams = await DioUtils.getEncryptParams(params!);
+      // encryptParams = await DioUtils.getEncryptParams(params!);
+      encryptParams = json.encode(params);
     }
     // 2.发送网络请求
     try {
@@ -94,8 +89,8 @@ class HttpRequest {
         if (kDebugMode) {
           log("返回结果result:$result");
         }
-        if (result != null && result['status'] != null) {
-          if (result['status'] == 1012) {
+        if (result != null && result["statusE8iqlh"] != null) {
+          if (result["statusE8iqlh"] == 1012) {
             //跳转登录页面
             if (LoginController.to.isHaveLoginPage == false) {
               LoginController.to.phoneStr = '';
@@ -103,8 +98,9 @@ class HttpRequest {
               Get.offAll(() => LoginPage());
             }
             LoginController.to.isHaveLoginPage = true;
-          } else if (result['status'] != 1012 && result['status'] != 0) {
-            CZLoading.toast(result["message"]);
+          } else if (result["statusE8iqlh"] != 1012 &&
+              result["statusE8iqlh"] != 0) {
+            CZLoading.toast(result["msgEsmut7"]);
           }
         }
         return result;
@@ -120,15 +116,10 @@ class HttpRequest {
 
   static Future<T> uploadFile<T>(String url, String filePath) async {
     // 1.创建单独配置
-    String token = await DioUtils.getToken();
+    Map<String, dynamic> map = await DioUtils.getHeadersMap();
     final options = Options(
       method: "post",
-      headers: {
-        HttpHeaders.acceptHeader: 'application/json',
-        HttpHeaders.contentTypeHeader: 'application/json',
-        'OS': DioUtils.getPlatform,
-        'Token': token,
-      },
+      headers: map,
     );
 
     // 全局拦截器
@@ -162,8 +153,8 @@ class HttpRequest {
         } else {
           result = await DioUtils.responseDecrypt(response.data);
         }
-        if (result != null && result['status'] != null) {
-          if (result['status'] == 1012) {
+        if (result != null && result["statusE8iqlh"] != null) {
+          if (result["statusE8iqlh"] == 1012) {
             //跳转登录页面
             if (LoginController.to.isHaveLoginPage == false) {
               LoginController.to.phoneStr = '';
@@ -171,8 +162,9 @@ class HttpRequest {
               Get.offAll(() => LoginPage());
             }
             LoginController.to.isHaveLoginPage = true;
-          } else if (result['status'] != 1012 && result['status'] != 0) {
-            CZLoading.toast(result["message"]);
+          } else if (result["statusE8iqlh"] != 1012 &&
+              result["statusE8iqlh"] != 0) {
+            CZLoading.toast(result["msgEsmut7"]);
           }
         }
         return result;

@@ -50,8 +50,12 @@ class BasicPage extends HookWidget {
     String formName = "";
     String columnField = "";
     if (forms.length > 0) {
-      contents = forms[0].containsKey("content") ? forms[0]["content"] : null;
-      formName = forms[0].containsKey("formName") ? forms[0]["formName"] : null;
+      contents = forms[0].containsKey("contentCxb7jm")
+          ? forms[0]["contentCxb7jm"]
+          : null;
+      formName = forms[0].containsKey("formNameQCVJjC")
+          ? forms[0]["formNameQCVJjC"]
+          : null;
       columnField =
           forms[0].containsKey("columnField") ? forms[0]["columnField"] : null;
       print("contents:${contents.length},formName:$formName");
@@ -257,7 +261,7 @@ class BasicPage extends HookWidget {
     Map<String, dynamic> bigAddress = <String, dynamic>{};
     Map<String, dynamic> detailAddress = <String, dynamic>{};
     List<Map<String, dynamic>> userEmerges = [];
-    model["formId"] = formId;
+    model["formIdrS92EN"] = formId;
 
     String bankNumberContentStr = "";
     String bankNumberAgainContentStr = "";
@@ -371,8 +375,8 @@ class BasicPage extends HookWidget {
         }
       }
     }
-    model["submitData"] = submitData;
-    params["model"] = model;
+    model["submitDatavf7pYW"] = submitData;
+    params["modelU8mV9A"] = model;
 
     print("submitInfo:" + json.encode(params));
     debugPrint("bankNumberContentStr:$bankNumberContentStr");
@@ -387,7 +391,7 @@ class BasicPage extends HookWidget {
     CZLoading.loading();
     final response = await submitInfo(params);
     CZLoading.dismiss();
-    if (response["status"] == 0) {
+    if (response["statusE8iqlh"] == 0) {
       CZLoading.loading();
       await HomeController.to.requestIncompleteForm(isOff: true);
       CZLoading.dismiss();

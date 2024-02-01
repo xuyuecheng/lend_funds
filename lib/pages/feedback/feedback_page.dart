@@ -397,7 +397,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     CZLoading.loading();
     var response = await context.read(submitProvider(params)).loadMyData();
     CZLoading.dismiss();
-    if (response["status"] == 0) {
+    if (response["statusE8iqlh"] == 0) {
       Get.back(result: true);
     }
   }
@@ -461,7 +461,7 @@ class FileModel extends BaseModel {
     final response =
         await HttpRequest.uploadFile(InterfaceConfig.uploadFile, filePath);
 
-    if (response["status"] == 0) {
+    if (response["statusE8iqlh"] == 0) {
       String? ossUrl = response["model"].containsKey("ossUrl")
           ? response["model"]["ossUrl"]
           : null;

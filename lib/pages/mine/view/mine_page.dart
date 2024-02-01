@@ -43,7 +43,9 @@ class _MinePageState extends State<MinePage> {
         print("getUserInfo:${userInfo.toString()}");
       }
 
-      var user = userInfo.containsKey("user") ? userInfo["user"] : null;
+      var user = userInfo.containsKey("accountUnDcbi")
+          ? userInfo["accountUnDcbi"]
+          : null;
       if (user != null) {
         phone = user.containsKey("phone") ? user["phone"] : "Halo";
       }
@@ -195,7 +197,7 @@ class _MinePageState extends State<MinePage> {
                                     DeleteAccountDialog(confirmBlock: () {
                                   CZDialogUtil.dismiss();
                                   MineController.to.requestDel().then((value) {
-                                    if (value['status'] == 0) {
+                                    if (value["statusE8iqlh"] == 0) {
                                       CZStorage.removeUserInfo();
                                       Get.offAll(() => LoginPage());
                                     }

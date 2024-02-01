@@ -169,7 +169,7 @@ class _AlivePageState extends State<AlivePage> {
       CZLoading.loading();
       var response = await aliveIdentify(base64Image);
       CZLoading.dismiss();
-      if (response["status"] == 0) {
+      if (response["statusE8iqlh"] == 0) {
         CZLoading.loading();
         await HomeController.to.requestIncompleteForm(isOff: true);
         CZLoading.dismiss();

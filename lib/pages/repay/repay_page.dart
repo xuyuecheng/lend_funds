@@ -439,7 +439,7 @@ getRolloverPlan(BuildContext context, String orderId) async {
   final response =
       await context.read(rolloverPlanProvider(orderId)).loadPlanData();
   CZLoading.dismiss();
-  if (response["status"] == 0) {
+  if (response["statusE8iqlh"] == 0) {
     // dynamic delayAmount = response.model.containsKey("delayAmount") ? response.model["delayAmount"] : null;
     Get.to(() => RepayRolloverPage(
         model: response["model"], id: orderId, type: "DELAY"));

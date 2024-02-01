@@ -21,9 +21,9 @@ class HomeController extends GetxController with StateMixin<Map> {
 
   void getIncompleteForm() {
     requestIncompleteForm(isJump: false).then((value) {
-      if (value['status'] == 0) {
+      if (value["statusE8iqlh"] == 0) {
         //成功
-        forms = value['model']['forms'];
+        forms = value['modelU8mV9A']['formsfSvjf4'];
         update();
       }
     });
@@ -31,10 +31,10 @@ class HomeController extends GetxController with StateMixin<Map> {
 
   void getProductList() {
     requestProductList().then((value) {
-      if (value['status'] == 0) {
+      if (value["statusE8iqlh"] == 0) {
         //成功
-        productList = value["page"].containsKey("content")
-            ? value["page"]["content"]
+        productList = value["pageLosuN4"].containsKey("contentCxb7jm")
+            ? value["pageLosuN4"]["contentCxb7jm"]
             : [];
         if (kDebugMode) {
           log("productList:${json.encode(productList)}");
@@ -48,24 +48,25 @@ class HomeController extends GetxController with StateMixin<Map> {
     Map<String, dynamic> result = await HttpRequest.request(
       InterfaceConfig.formList,
       params: {
-        "model": {"nodeType": "NODE1"}
+        "modelU8mV9A": {"nodeTypef7sFbO": "NODE1"}
       },
     );
-    if (result['status'] == 0) {
+    if (result["statusE8iqlh"] == 0) {
       //成功
       if (isJump) {
         ///跳转页面
-        List<dynamic> forms = result["model"]["forms"];
+        List<dynamic> forms = result["modelU8mV9A"]["formsfSvjf4"];
         if (forms.length > 0) {
           print(forms[0]);
-          String formId =
-              forms[0].containsKey("formId") ? forms[0]["formId"] : "formId";
-          String formType = forms[0].containsKey("formType")
-              ? forms[0]["formType"]
-              : "formType";
-          String formName = forms[0].containsKey("formName")
-              ? forms[0]["formName"]
-              : "formName";
+          String formId = forms[0].containsKey("formIdrS92EN")
+              ? forms[0]["formIdrS92EN"]
+              : "formIdrS92EN";
+          String formType = forms[0].containsKey("formTypeh6IHG0")
+              ? forms[0]["formTypeh6IHG0"]
+              : "formTypeh6IHG0";
+          String formName = forms[0].containsKey("formNameQCVJjC")
+              ? forms[0]["formNameQCVJjC"]
+              : "formNameQCVJjC";
           if (formType.trim() == "OCR") {
             print("navigate.formId:$formId");
             if (isOff) {
@@ -81,10 +82,11 @@ class HomeController extends GetxController with StateMixin<Map> {
             }
           } else if (formType.trim() == "BASIC") {
             await requestBasicForm(formId: formId).then((value) {
-              if (value["status"] == 0) {
-                List<dynamic>? forms = value["model"].containsKey("forms")
-                    ? value["model"]["forms"]
-                    : null;
+              if (value["statusE8iqlh"] == 0) {
+                List<dynamic>? forms =
+                    value["modelU8mV9A"].containsKey("formsfSvjf4")
+                        ? value["modelU8mV9A"]["formsfSvjf4"]
+                        : null;
                 if (forms != null && forms.length > 0) {
                   if (isOff) {
                     debugPrint("Get.off(() => BasicPage(");
@@ -130,7 +132,7 @@ class HomeController extends GetxController with StateMixin<Map> {
       {required String formId}) async {
     Map<String, dynamic> result =
         await HttpRequest.request(InterfaceConfig.getOneFormFlow, params: {
-      "model": {"formId": formId, "nodeType": "NODE1"}
+      "modelU8mV9A": {"formIdrS92EN": formId, "nodeTypef7sFbO": "NODE1"}
     });
     return result;
   }
@@ -138,7 +140,7 @@ class HomeController extends GetxController with StateMixin<Map> {
   Future<Map<String, dynamic>> requestProductList() async {
     Map<String, dynamic> result = await HttpRequest.request(
         InterfaceConfig.product_list,
-        params: {"query": {}});
+        params: {"queryBQDz08": {}});
     return result;
   }
 
