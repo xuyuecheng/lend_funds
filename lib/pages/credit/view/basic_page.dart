@@ -61,11 +61,15 @@ class BasicPage extends HookWidget {
       print("contents:${contents.length},formName:$formName");
 
       if (contents.length > 0) {
-        formType = contents[0].containsKey("type") ? contents[0]["type"] : null;
+        formType = contents[0].containsKey("typeIVyt6h")
+            ? contents[0]["typeIVyt6h"]
+            : null;
         if (formType == "contact") {
           props =
               contents[0].containsKey("props") ? contents[0]["props"] : null;
-          contactId = contents[0].containsKey("id") ? contents[0]["id"] : null;
+          contactId = contents[0].containsKey("idxQEzsQ")
+              ? contents[0]["idxQEzsQ"]
+              : null;
           dynamic fieldConf =
               props.containsKey("fieldConf") ? props["fieldConf"] : null;
           count = fieldConf.containsKey("count") ? fieldConf["count"] : 0;
