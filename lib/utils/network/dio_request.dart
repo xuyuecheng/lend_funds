@@ -87,7 +87,7 @@ class HttpRequest {
           result = await DioUtils.responseDecrypt(response.data);
         }
         if (kDebugMode) {
-          log("返回结果result:$result");
+          log("return-result:$result");
         }
         if (result != null && result["statusE8iqlh"] != null) {
           if (result["statusE8iqlh"] == 1012) {

@@ -314,7 +314,7 @@ class _OcrPageState extends State<OcrPage> {
       });
       if (loadPan != null && loadPan!.length > 0) {
         CZLoading.loading();
-        Map response = await OcrController.to.ocrIdentifyFront(loadPan ?? "");
+        Map response = await OcrController.to.ocrIdentifyPan(loadPan ?? "");
         if (response["statusE8iqlh"] == 0) {
           taxRegNumber =
               response["modelU8mV9A"].containsKey("taxRegNumberXgH70W")

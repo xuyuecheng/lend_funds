@@ -22,7 +22,7 @@ class HomeController extends GetxController with StateMixin<Map> {
   void getIncompleteForm() {
     requestIncompleteForm(isJump: false).then((value) {
       if (value["statusE8iqlh"] == 0) {
-        //成功
+        //success
         forms = value['modelU8mV9A']['formsfSvjf4'];
         update();
       }
@@ -32,7 +32,7 @@ class HomeController extends GetxController with StateMixin<Map> {
   void getProductList() {
     requestProductList().then((value) {
       if (value["statusE8iqlh"] == 0) {
-        //成功
+        //success
         productList = value["pageLosuN4"].containsKey("contentCxb7jm")
             ? value["pageLosuN4"]["contentCxb7jm"]
             : [];
@@ -52,9 +52,9 @@ class HomeController extends GetxController with StateMixin<Map> {
       },
     );
     if (result["statusE8iqlh"] == 0) {
-      //成功
+      //success
       if (isJump) {
-        ///跳转页面
+        ///jump page
         List<dynamic> forms = result["modelU8mV9A"]["formsfSvjf4"];
         if (forms.length > 0) {
           print(forms[0]);
@@ -87,6 +87,7 @@ class HomeController extends GetxController with StateMixin<Map> {
                     value["modelU8mV9A"].containsKey("formsfSvjf4")
                         ? value["modelU8mV9A"]["formsfSvjf4"]
                         : null;
+                log("forms567:${json.encode(forms)}");
                 if (forms != null && forms.length > 0) {
                   if (isOff) {
                     debugPrint("Get.off(() => BasicPage(");
