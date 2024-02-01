@@ -460,8 +460,10 @@ class BasicPage extends HookWidget {
   }
 
   Widget mGetWidget(BuildContext context, dynamic content, int index) {
-    String type = content.containsKey("type") ? content["type"] : null;
-    String name = content.containsKey("name") ? content["name"] : null;
+    String type =
+        content.containsKey("typeIVyt6h") ? content["typeIVyt6h"] : null;
+    String name =
+        content.containsKey("nameyJEzwD") ? content["nameyJEzwD"] : null;
     List<dynamic>? options =
         content.containsKey("options") ? content["options"] : null;
     List<SysCodeEntity> sysCodeEntityList = [];
@@ -601,7 +603,7 @@ class BasicPage extends HookWidget {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.job_info,
     );
-    return result["model"];
+    return result["modelU8mV9A"];
   }
 
   myJobSelect(dynamic round, SysCodeEntity sysCodeEntity) {
