@@ -289,11 +289,15 @@ class BasicPage extends HookWidget {
       submitData[contactId ?? ""] = userEmerges;
     } else {
       for (var i = 0; i < contents.length; i++) {
-        String id = contents[i].containsKey("id") ? contents[i]["id"] : null;
-        String name =
-            contents[i].containsKey("name") ? contents[i]["name"] : null;
-        String type =
-            contents[i].containsKey("type") ? contents[i]["type"] : null;
+        String id = contents[i].containsKey("idxQEzsQ")
+            ? contents[i]["idxQEzsQ"]
+            : null;
+        String name = contents[i].containsKey("nameyJEzwD")
+            ? contents[i]["nameyJEzwD"]
+            : null;
+        String type = contents[i].containsKey("typeIVyt6h")
+            ? contents[i]["typeIVyt6h"]
+            : null;
 
         if (type == "select") {
           if (listFormUseState[i].value.id.toString().isEmpty) {
@@ -331,7 +335,7 @@ class BasicPage extends HookWidget {
           }
           print("addressf.l:$id");
           List<String> ids = id.split(".");
-          bigAddress["province"] = address1;
+          bigAddress["state"] = address1;
           bigAddress["city"] = address2;
           address[ids.last] = bigAddress;
           var param = submitData[ids.first];
@@ -557,9 +561,9 @@ class BasicPage extends HookWidget {
   Future getAddressInfo(dynamic round, String id) async {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.address_info,
-      params: {"model": id},
+      params: {"modelU8mV9A": id},
     );
-    return result["model"];
+    return result["modelU8mV9A"];
   }
 
   myAddressSelect(dynamic round, SysCodeEntity sysCodeEntity) {

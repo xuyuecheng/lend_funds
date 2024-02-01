@@ -43,7 +43,7 @@ class InterfaceConfig {
   static const String ocr = 'ocr/user_check';
   //ocr信息提交
   static const String submitOcrInfo = 'submit/user_info';
-  static const String address_info = "dominee-elucidation/ek-fatness-melodrame";
+  static const String address_info = "get/address";
   static const String job_info = "get/job_information";
   //活体检测
   static const String alive = 'cheyenne/cadaster/tentaculiform';
