@@ -169,7 +169,7 @@ class _AlivePageState extends State<AlivePage> {
       CZLoading.loading();
       var response = await aliveIdentify(base64Image);
       CZLoading.dismiss();
-      if (response["status"] == 0) {
+      if (response["statusE8iqlh"] == 0) {
         CZLoading.loading();
         await HomeController.to.requestIncompleteForm(isOff: true);
         CZLoading.dismiss();
@@ -194,7 +194,10 @@ class _AlivePageState extends State<AlivePage> {
   Future aliveIdentify(String faceInfo) async {
     Map<String, dynamic> result =
         await HttpRequest.request(InterfaceConfig.alive, params: {
-      "model": {"faceInfo": faceInfo, "livenessType": "ACC_H5"}
+      "modelU8mV9A": {
+        "faceInfosYTghz": faceInfo,
+        "livenessTypeBB31oo": "ACC_H5"
+      }
     });
     return result;
   }

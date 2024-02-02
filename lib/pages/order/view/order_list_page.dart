@@ -91,30 +91,35 @@ class _OrderListPageState extends State<OrderListPage> {
                     itemBuilder: (context, index) {
                       final item = model.data[index];
                       dynamic id = item.containsKey("id") ? item["id"] : "";
-                      dynamic term =
-                          item.containsKey("term") ? item["term"] : "120";
-                      dynamic product =
-                          item.containsKey("product") ? item["product"] : null;
-                      dynamic amount =
-                          item.containsKey("amount") ? item["amount"] : null;
-                      dynamic created =
-                          item.containsKey("created") ? item["created"] : null;
+                      dynamic term = item.containsKey("termvXWr1o")
+                          ? item["termvXWr1o"]
+                          : "120";
+                      dynamic product = item.containsKey("productI8T9N3")
+                          ? item["productI8T9N3"]
+                          : null;
+                      dynamic amount = item.containsKey("amountVmVZsg")
+                          ? item["amountVmVZsg"]
+                          : null;
+                      dynamic created = item.containsKey("createdfouYQX")
+                          ? item["createdfouYQX"]
+                          : null;
                       dynamic statusName = item.containsKey("statusName")
                           ? item["statusName"]
                           : null;
                       dynamic statusColor = item.containsKey("statusColor")
                           ? item["statusColor"]
                           : null;
-                      dynamic mStatus =
-                          item.containsKey("status") ? item["status"] : null;
+                      dynamic mStatus = item.containsKey("statusE8iqlh")
+                          ? item["statusE8iqlh"]
+                          : null;
                       dynamic name;
                       dynamic icon;
                       if (product != null) {
-                        name = product.containsKey("name")
-                            ? product["name"]
+                        name = product.containsKey("nameyJEzwD")
+                            ? product["nameyJEzwD"]
                             : null;
-                        icon = product.containsKey("icon")
-                            ? product["icon"]
+                        icon = product.containsKey("iconKzUZic")
+                            ? product["iconKzUZic"]
                             : null;
                       }
                       print("IMAGE_URL:" + "${DioConfig.IMAGE_URL}$icon");
@@ -335,18 +340,22 @@ class BasicFormModel extends BaseListModel<dynamic> {
     Map<String, dynamic> params;
     if (status.length > 0) {
       params = {
-        "query": {"status": status, "pageNo": this.page, "pageSize": 10}
+        "queryBQDz08": {
+          "statusE8iqlh": status,
+          "pageNowNjald": this.page,
+          "pageSizeUTP2dN": 10
+        }
       };
     } else {
       params = {
-        "query": {"pageNo": this.page, "pageSize": 10}
+        "queryBQDz08": {"pageNowNjald": this.page, "pageSizeUTP2dN": 10}
       };
     }
 
     final response =
         await HttpRequest.request(InterfaceConfig.order_list, params: params);
-    List<dynamic> contents = response["page"].containsKey("content")
-        ? response["page"]["content"]
+    List<dynamic> contents = response["pageLosuN4"].containsKey("contentCxb7jm")
+        ? response["pageLosuN4"]["contentCxb7jm"]
         : [];
     if (kDebugMode) {
       log("orderList:${json.encode(contents)}");
@@ -359,10 +368,10 @@ getPlan(BuildContext context, String orderId) async {
   CZLoading.loading();
   final response = await context.read(planProvider(orderId)).loadPlanData();
   CZLoading.dismiss();
-  if (response["status"] == 0) {
+  if (response["statusE8iqlh"] == 0) {
     //跳转
     Get.to(() => RepayPage(
-          model: response["model"],
+          model: response["modelU8mV9A"],
         ));
   }
 }
@@ -378,7 +387,7 @@ class PlanModel extends BaseModel {
   loadPlanData() async {
     final response =
         await HttpRequest.request(InterfaceConfig.repayment_plan, params: {
-      "model": {"orderId": orderId}
+      "modelU8mV9A": {"orderIdN1N7lN": orderId}
     });
     return response;
   }

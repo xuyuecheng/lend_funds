@@ -15,22 +15,25 @@ class SysCodeEntity {
       this.sysCodeEntityList);
 
   SysCodeEntity.fromJson(Map<String, dynamic> json) {
-    if (json.containsKey("curName")) {
-      this.name = json.containsKey("curName") ? json["curName"] : null;
+    if (json.containsKey("curNameW6iDby")) {
+      this.name =
+          json.containsKey("curNameW6iDby") ? json["curNameW6iDby"] : null;
     } else {
-      this.name = json.containsKey("name") ? json["name"] : null;
+      this.name = json.containsKey("nameyJEzwD") ? json["nameyJEzwD"] : null;
     }
     this.value = json.containsKey("value") ? json["value"] : null;
-    this.id = json.containsKey("id") ? json["id"] : null;
-    this.haveChild = json.containsKey("haveChild") ? json["haveChild"] : null;
+    this.id = json.containsKey("idxQEzsQ") ? json["idxQEzsQ"] : null;
+    this.haveChild =
+        json.containsKey("haveChildSzi86C") ? json["haveChildSzi86C"] : null;
     this.sysCodeEntityList =
-        json.containsKey("children") ? json["children"] : null;
+        json.containsKey("childrenYGaJBx") ? json["childrenYGaJBx"] : null;
     this.methodName =
-        json.containsKey("methodName") ? json["methodName"] : null;
+        json.containsKey("methodNameLQYFZT") ? json["methodNameLQYFZT"] : null;
     this.methodCode =
-        json.containsKey("methodCode") ? json["methodCode"] : null;
-    this.repayMethod =
-        json.containsKey("repayMethod") ? json["repayMethod"] : null;
+        json.containsKey("methodCoderBLztN") ? json["methodCoderBLztN"] : null;
+    this.repayMethod = json.containsKey("repayMethodFujhvV")
+        ? json["repayMethodFujhvV"]
+        : null;
     if (value == null && id != null) {
       value = id;
     }

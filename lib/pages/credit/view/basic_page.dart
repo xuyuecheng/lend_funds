@@ -50,18 +50,26 @@ class BasicPage extends HookWidget {
     String formName = "";
     String columnField = "";
     if (forms.length > 0) {
-      contents = forms[0].containsKey("content") ? forms[0]["content"] : null;
-      formName = forms[0].containsKey("formName") ? forms[0]["formName"] : null;
+      contents = forms[0].containsKey("contentCxb7jm")
+          ? forms[0]["contentCxb7jm"]
+          : null;
+      formName = forms[0].containsKey("formNameQCVJjC")
+          ? forms[0]["formNameQCVJjC"]
+          : null;
       columnField =
           forms[0].containsKey("columnField") ? forms[0]["columnField"] : null;
       print("contents:${contents.length},formName:$formName");
 
       if (contents.length > 0) {
-        formType = contents[0].containsKey("type") ? contents[0]["type"] : null;
+        formType = contents[0].containsKey("typeIVyt6h")
+            ? contents[0]["typeIVyt6h"]
+            : null;
         if (formType == "contact") {
           props =
               contents[0].containsKey("props") ? contents[0]["props"] : null;
-          contactId = contents[0].containsKey("id") ? contents[0]["id"] : null;
+          contactId = contents[0].containsKey("idxQEzsQ")
+              ? contents[0]["idxQEzsQ"]
+              : null;
           dynamic fieldConf =
               props.containsKey("fieldConf") ? props["fieldConf"] : null;
           count = fieldConf.containsKey("count") ? fieldConf["count"] : 0;
@@ -96,19 +104,19 @@ class BasicPage extends HookWidget {
           //插入一条数据在银行卡号码后面
           if (columnField == "formBank") {
             Map<String, dynamic> map = {
-              "name": "Confirm Bank Number",
-              "id": "userBank.bankCardAgainTemp",
-              "type": "text",
+              "nameyJEzwD": "Confirm Bank Number",
+              "idxQEzsQ": "userBank.bankCardAgainTemp",
+              "typeIVyt6h": "number",
               "required": true,
             };
             bool hadBankNumAgainData = false;
             int bankNumberIndex = 0;
             for (int index = 0; index < contents.length; index++) {
               Map item = contents[index];
-              if (item["name"] == "Confirm Bank Number") {
+              if (item["nameyJEzwD"] == "Confirm Bank Number") {
                 hadBankNumAgainData = true;
               }
-              if (item["name"] == "Bank Number") {
+              if (item["nameyJEzwD"] == "Bank Number") {
                 bankNumberIndex = index;
               }
             }
@@ -191,12 +199,14 @@ class BasicPage extends HookWidget {
                               List titleList = [];
                               List contentList = [];
                               for (var i = 0; i < contents.length; i++) {
-                                String? name = contents[i].containsKey("name")
-                                    ? contents[i]["name"]
-                                    : null;
-                                String type = contents[i].containsKey("type")
-                                    ? contents[i]["type"]
-                                    : null;
+                                String? name =
+                                    contents[i].containsKey("nameyJEzwD")
+                                        ? contents[i]["nameyJEzwD"]
+                                        : null;
+                                String type =
+                                    contents[i].containsKey("typeIVyt6h")
+                                        ? contents[i]["typeIVyt6h"]
+                                        : null;
                                 titleList.add(name ?? "");
                                 if (type == "select") {
                                   contentList.add(listFormUseState[i]
@@ -257,7 +267,7 @@ class BasicPage extends HookWidget {
     Map<String, dynamic> bigAddress = <String, dynamic>{};
     Map<String, dynamic> detailAddress = <String, dynamic>{};
     List<Map<String, dynamic>> userEmerges = [];
-    model["formId"] = formId;
+    model["formIdrS92EN"] = formId;
 
     String bankNumberContentStr = "";
     String bankNumberAgainContentStr = "";
@@ -285,11 +295,15 @@ class BasicPage extends HookWidget {
       submitData[contactId ?? ""] = userEmerges;
     } else {
       for (var i = 0; i < contents.length; i++) {
-        String id = contents[i].containsKey("id") ? contents[i]["id"] : null;
-        String name =
-            contents[i].containsKey("name") ? contents[i]["name"] : null;
-        String type =
-            contents[i].containsKey("type") ? contents[i]["type"] : null;
+        String id = contents[i].containsKey("idxQEzsQ")
+            ? contents[i]["idxQEzsQ"]
+            : null;
+        String name = contents[i].containsKey("nameyJEzwD")
+            ? contents[i]["nameyJEzwD"]
+            : null;
+        String type = contents[i].containsKey("typeIVyt6h")
+            ? contents[i]["typeIVyt6h"]
+            : null;
 
         if (type == "select") {
           if (listFormUseState[i].value.id.toString().isEmpty) {
@@ -327,7 +341,7 @@ class BasicPage extends HookWidget {
           }
           print("addressf.l:$id");
           List<String> ids = id.split(".");
-          bigAddress["province"] = address1;
+          bigAddress["state"] = address1;
           bigAddress["city"] = address2;
           address[ids.last] = bigAddress;
           var param = submitData[ids.first];
@@ -371,8 +385,8 @@ class BasicPage extends HookWidget {
         }
       }
     }
-    model["submitData"] = submitData;
-    params["model"] = model;
+    model["submitDatavf7pYW"] = submitData;
+    params["modelU8mV9A"] = model;
 
     print("submitInfo:" + json.encode(params));
     debugPrint("bankNumberContentStr:$bankNumberContentStr");
@@ -387,7 +401,7 @@ class BasicPage extends HookWidget {
     CZLoading.loading();
     final response = await submitInfo(params);
     CZLoading.dismiss();
-    if (response["status"] == 0) {
+    if (response["statusE8iqlh"] == 0) {
       CZLoading.loading();
       await HomeController.to.requestIncompleteForm(isOff: true);
       CZLoading.dismiss();
@@ -456,8 +470,10 @@ class BasicPage extends HookWidget {
   }
 
   Widget mGetWidget(BuildContext context, dynamic content, int index) {
-    String type = content.containsKey("type") ? content["type"] : null;
-    String name = content.containsKey("name") ? content["name"] : null;
+    String type =
+        content.containsKey("typeIVyt6h") ? content["typeIVyt6h"] : null;
+    String name =
+        content.containsKey("nameyJEzwD") ? content["nameyJEzwD"] : null;
     List<dynamic>? options =
         content.containsKey("options") ? content["options"] : null;
     List<SysCodeEntity> sysCodeEntityList = [];
@@ -551,9 +567,9 @@ class BasicPage extends HookWidget {
   Future getAddressInfo(dynamic round, String id) async {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.address_info,
-      params: {"model": id},
+      params: {"modelU8mV9A": id},
     );
-    return result["model"];
+    return result["modelU8mV9A"];
   }
 
   myAddressSelect(dynamic round, SysCodeEntity sysCodeEntity) {
@@ -597,7 +613,7 @@ class BasicPage extends HookWidget {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.job_info,
     );
-    return result["model"];
+    return result["modelU8mV9A"];
   }
 
   myJobSelect(dynamic round, SysCodeEntity sysCodeEntity) {

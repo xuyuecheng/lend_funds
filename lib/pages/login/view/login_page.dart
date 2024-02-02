@@ -126,12 +126,12 @@ class _LoginPageState extends State<LoginPage> {
                   }
                   FocusScope.of(context).unfocus();
                   LoginController.to.sendPhoneCode(params: {
-                    "model": {
-                      'phone': _phoneController.text,
-                      "phoneCode": "+91"
+                    "modelU8mV9A": {
+                      'phonedD1cuP': _phoneController.text,
+                      "countryCodesA4GLm": "+91"
                     }
                   }).then((value) {
-                    if (value['status'] == 0) {
+                    if (value["statusE8iqlh"] == 0) {
                       LoginController.to.phoneStr = _phoneController.text;
                       Get.toNamed(CZRouteConfig.loginCode);
                     }

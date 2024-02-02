@@ -135,12 +135,14 @@ class _ValidateCodePageState extends State<ValidateCodePage> {
   void _sendSubmitted(value) {
     debugPrint("value111:$value");
     LoginController.to.requestUserLogin(params: {
-      'phone': LoginController.to.phoneStr,
-      'code': value,
-      "phoneCode": "+91"
+      'phonedD1cuP': LoginController.to.phoneStr,
+      'otpYsMR7y': value,
+      "countryCodesA4GLm": "+91"
     }).then((value) {
-      CZStorage.saveUserInfo(value);
-      Get.offAllNamed(CZRouteConfig.main);
+      if (value["statusE8iqlh"] == 0) {
+        CZStorage.saveUserInfo(value);
+        Get.offAllNamed(CZRouteConfig.main);
+      }
     }, onError: (err) {});
   }
 

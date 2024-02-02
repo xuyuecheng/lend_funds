@@ -83,20 +83,22 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                       itemBuilder: (context, index) {
                         final item = model.data[index];
                         print("item:$item");
-                        dynamic created = item.containsKey("created")
-                            ? item["created"]
+                        dynamic created = item.containsKey("createdfouYQX")
+                            ? item["createdfouYQX"]
                             : null;
                         dynamic modified = item.containsKey("modified")
                             ? item["modified"]
                             : null;
-                        dynamic content = item.containsKey("content")
-                            ? item["content"]
+                        dynamic content = item.containsKey("contentCxb7jm")
+                            ? item["contentCxb7jm"]
                             : null;
-                        dynamic replyContent = item.containsKey("replyContent")
-                            ? item["replyContent"]
+                        dynamic replyContent =
+                            item.containsKey("replyContentmxfAU7")
+                                ? item["replyContentmxfAU7"]
+                                : null;
+                        List<dynamic>? images = item.containsKey("imagesTBfcXb")
+                            ? item["imagesTBfcXb"]
                             : null;
-                        List<dynamic>? images =
-                            item.containsKey("images") ? item["images"] : null;
                         var imageFirst = "";
                         if (images != null && images.length > 0) {
                           imageFirst = images[0];
@@ -253,14 +255,14 @@ class BasicModel extends BaseListModel<dynamic> {
 
     final response =
         await HttpRequest.request(InterfaceConfig.feedback_list, params: {
-      "query": {
-        "thirdOrderId": thirdOrderId,
-        "pageNo": this.page,
-        "pageSize": 10
+      "queryBQDz08": {
+        "thirdOrderIdq8jvtj": thirdOrderId,
+        "pageNowNjald": this.page,
+        "pageSizeUTP2dN": 10
       }
     });
-    List<dynamic> contents = response["page"].containsKey("content")
-        ? response["page"]["content"]
+    List<dynamic> contents = response["pageLosuN4"].containsKey("contentCxb7jm")
+        ? response["pageLosuN4"]["contentCxb7jm"]
         : null;
     return contents;
   }

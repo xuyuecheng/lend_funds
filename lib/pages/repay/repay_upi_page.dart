@@ -179,11 +179,11 @@ class RepayUpiPage extends HookWidget {
   myUpiUrlSelect(BuildContext context, SysCodeEntity sysCodeEntity) {
     upiState.value = sysCodeEntity;
     Map<String, dynamic> params = {
-      "model": {
-        "orderId": id,
-        "repayMethod": sysCodeEntity.repayMethod,
-        "methodCode": sysCodeEntity.methodCode,
-        "repayType": type
+      "modelU8mV9A": {
+        "orderIdN1N7lN": id,
+        "repayMethodFujhvV": sysCodeEntity.repayMethod,
+        "methodCoderBLztN": sysCodeEntity.methodCode,
+        "repayTypeWdc4g6": type
       }
     };
     _getUpiUrl(context, params);
@@ -217,7 +217,7 @@ class RepayUpiPage extends HookWidget {
     dynamic model = await mContext.read(upiUrlProvider).getUpiUrl(params);
     CZLoading.dismiss();
     dynamic repayCode =
-        model.containsKey("repayCode") ? model["repayCode"] : null;
+        model.containsKey("repayCodes0suow") ? model["repayCodes0suow"] : null;
     print("repayCode:$repayCode");
     final Uri _url = Uri.parse(repayCode);
     if (!await launchUrl(_url)) {
@@ -240,9 +240,9 @@ class UpiModel extends BaseModel {
 
   getUpi(String id) async {
     final response = await HttpRequest.request(InterfaceConfig.upi, params: {
-      "model": {"orderId": id}
+      "modelU8mV9A": {"orderIdN1N7lN": id}
     });
-    return response["model"];
+    return response["modelU8mV9A"];
   }
 }
 
@@ -262,6 +262,6 @@ class UpiUrlModel extends BaseModel {
   getUpiUrl(Map<String, dynamic> params) async {
     final response =
         await HttpRequest.request(InterfaceConfig.upi_url, params: params);
-    return response["model"];
+    return response["modelU8mV9A"];
   }
 }

@@ -27,7 +27,7 @@ class OcrController extends GetxController {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.ocr,
       params: {
-        "model": {"url": url, "cardType": "FRONT"}
+        "modelU8mV9A": {"urlB5K9pj": url, "cardTypeSIKoLx": "FRONT"}
       },
     );
     return result;
@@ -37,7 +37,7 @@ class OcrController extends GetxController {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.ocr,
       params: {
-        "model": {"url": url, "cardType": "BACK"}
+        "modelU8mV9A": {"urlB5K9pj": url, "cardTypeSIKoLx": "BACK"}
       },
     );
     return result;
@@ -47,7 +47,7 @@ class OcrController extends GetxController {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.ocr,
       params: {
-        "model": {"url": url, "cardType": "PAN"}
+        "modelU8mV9A": {"urlB5K9pj": url, "cardTypeSIKoLx": "PAN"}
       },
     );
     return result;

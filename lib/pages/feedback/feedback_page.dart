@@ -347,12 +347,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         if (result != null && result!.isNotEmpty) {
                           var ossUrl = await _uploadFile(context);
                           if (ossUrl != null && ossUrl.toString().length > 0) {
-                            params["images"] = [ossUrl];
+                            params["imagesTBfcXb"] = [ossUrl];
                           }
                         }
-                        params["thirdOrderId"] = widget.thirdOrderId;
-                        params["typeId"] = sysCodeEntity?.id;
-                        params["content"] = textEditingController.value.text;
+                        params["thirdOrderIdq8jvtj"] = widget.thirdOrderId;
+                        params["typeIdflzCog"] = sysCodeEntity?.id;
+                        params["contentCxb7jm"] =
+                            textEditingController.value.text;
                         _submitData(context, params);
                       },
                       child: Text("Submit",
@@ -373,7 +374,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     CZLoading.loading();
 
     final response = await context.read(basicProvider(thirdOrderId)).loadData();
-    List<dynamic>? list = response["list"];
+    List<dynamic>? list = response["listNPJAeA"];
     CZLoading.dismiss();
     if (list != null && list.isNotEmpty) {
       List<SysCodeEntity> sysCodeEntityList = [];
@@ -397,7 +398,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     CZLoading.loading();
     var response = await context.read(submitProvider(params)).loadMyData();
     CZLoading.dismiss();
-    if (response["status"] == 0) {
+    if (response["statusE8iqlh"] == 0) {
       Get.back(result: true);
     }
   }
@@ -424,7 +425,7 @@ class BasicModel extends BaseListModel<dynamic> {
     this.loading = true;
 
     final response = await HttpRequest.request(InterfaceConfig.feedback_type,
-        params: {"id": thirdOrderId});
+        params: {"idxQEzsQ": thirdOrderId});
     return response;
   }
 }
@@ -440,7 +441,7 @@ class SubmitModel extends BaseListModel<dynamic> {
   loadMyData() async {
     this.loading = true;
     final response = await HttpRequest.request(InterfaceConfig.feedback_submit,
-        params: {"model": params});
+        params: {"modelU8mV9A": params});
     return response;
   }
 
@@ -461,9 +462,9 @@ class FileModel extends BaseModel {
     final response =
         await HttpRequest.uploadFile(InterfaceConfig.uploadFile, filePath);
 
-    if (response["status"] == 0) {
-      String? ossUrl = response["model"].containsKey("ossUrl")
-          ? response["model"]["ossUrl"]
+    if (response["statusE8iqlh"] == 0) {
+      String? ossUrl = response["modelU8mV9A"].containsKey("ossUrl")
+          ? response["modelU8mV9A"]["ossUrl"]
           : null;
       print("ossUrl:$ossUrl");
       return ossUrl;
