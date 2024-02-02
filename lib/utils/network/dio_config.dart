@@ -49,11 +49,9 @@ class InterfaceConfig {
   //删除用户
   static const String del = 'delete_user';
   static const String order_list = "get/user/orders_by_page";
-  static const String repayment_plan =
-      "modernity/alimentative-chrp-airfoil/benignly-smudgy-milky";
-  static const String upi = "sideroscope/quirkish/plot-disparate-rancho";
-  static const String upi_url =
-      "spectrofluorometer-dragoness-leavings/rhodoplast-diurnally";
+  static const String repayment_plan = "get/order_repayment_plan";
+  static const String upi = "get/order/repayment_method";
+  static const String upi_url = "order_repayment";
   static const String rollover_plan =
       "lacerna/buckthorn-bullshot/touraine-coreopsis";
   static const String feedback_list =

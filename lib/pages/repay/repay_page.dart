@@ -31,30 +31,32 @@ class _RepayPageState extends State<RepayPage> {
   Widget build(BuildContext context) {
     return Consumer(builder: (_, watch, __) {
       print("model：${widget.model}");
-      dynamic loanAmount = widget.model.containsKey("loanAmount")
-          ? widget.model["loanAmount"]
+      dynamic loanAmount = widget.model.containsKey("loanAmountfBtogO")
+          ? widget.model["loanAmountfBtogO"]
           : null;
-      dynamic orderId =
-          widget.model.containsKey("orderId") ? widget.model["orderId"] : null;
-      dynamic bankCard = widget.model.containsKey("bankCard")
-          ? widget.model["bankCard"]
+      dynamic orderId = widget.model.containsKey("orderIdN1N7lN")
+          ? widget.model["orderIdN1N7lN"]
           : null;
-      dynamic expiryTime = widget.model.containsKey("expiryTime")
-          ? widget.model["expiryTime"]
+      dynamic bankCard = widget.model.containsKey("bankAccounttaar2N")
+          ? widget.model["bankAccounttaar2N"]
           : null;
-      dynamic adminAmount = widget.model.containsKey("adminAmount")
-          ? widget.model["adminAmount"]
+      dynamic expiryTime = widget.model.containsKey("expiryTimegE1p5H")
+          ? widget.model["expiryTimegE1p5H"]
           : null;
-      dynamic phone =
-          widget.model.containsKey("phone") ? widget.model["phone"] : null;
-      dynamic loanTerm = widget.model.containsKey("loanTerm")
-          ? widget.model["loanTerm"]
+      dynamic adminAmount = widget.model.containsKey("adminAmountlSq4P1")
+          ? widget.model["adminAmountlSq4P1"]
           : null;
-      dynamic interestAmount = widget.model.containsKey("interestAmount")
-          ? widget.model["interestAmount"]
+      dynamic phone = widget.model.containsKey("phonedD1cuP")
+          ? widget.model["phonedD1cuP"]
           : null;
-      dynamic overdueDays = widget.model.containsKey("overdueDays")
-          ? widget.model["overdueDays"]
+      dynamic loanTerm = widget.model.containsKey("loanTermvVw2io")
+          ? widget.model["loanTermvVw2io"]
+          : null;
+      dynamic interestAmount = widget.model.containsKey("interestAmountGMh3bF")
+          ? widget.model["interestAmountGMh3bF"]
+          : null;
+      dynamic overdueDays = widget.model.containsKey("overdueDaysTbFmj3")
+          ? widget.model["overdueDaysTbFmj3"]
           : null;
       return Scaffold(
         backgroundColor: Color(0xffF1F2F3),

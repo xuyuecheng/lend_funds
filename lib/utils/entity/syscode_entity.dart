@@ -27,11 +27,12 @@ class SysCodeEntity {
     this.sysCodeEntityList =
         json.containsKey("childrenYGaJBx") ? json["childrenYGaJBx"] : null;
     this.methodName =
-        json.containsKey("methodName") ? json["methodName"] : null;
+        json.containsKey("methodNameLQYFZT") ? json["methodNameLQYFZT"] : null;
     this.methodCode =
-        json.containsKey("methodCode") ? json["methodCode"] : null;
-    this.repayMethod =
-        json.containsKey("repayMethod") ? json["repayMethod"] : null;
+        json.containsKey("methodCoderBLztN") ? json["methodCoderBLztN"] : null;
+    this.repayMethod = json.containsKey("repayMethodFujhvV")
+        ? json["repayMethodFujhvV"]
+        : null;
     if (value == null && id != null) {
       value = id;
     }

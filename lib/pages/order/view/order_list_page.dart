@@ -91,30 +91,35 @@ class _OrderListPageState extends State<OrderListPage> {
                     itemBuilder: (context, index) {
                       final item = model.data[index];
                       dynamic id = item.containsKey("id") ? item["id"] : "";
-                      dynamic term =
-                          item.containsKey("term") ? item["term"] : "120";
-                      dynamic product =
-                          item.containsKey("product") ? item["product"] : null;
-                      dynamic amount =
-                          item.containsKey("amount") ? item["amount"] : null;
-                      dynamic created =
-                          item.containsKey("created") ? item["created"] : null;
+                      dynamic term = item.containsKey("termvXWr1o")
+                          ? item["termvXWr1o"]
+                          : "120";
+                      dynamic product = item.containsKey("productI8T9N3")
+                          ? item["productI8T9N3"]
+                          : null;
+                      dynamic amount = item.containsKey("amountVmVZsg")
+                          ? item["amountVmVZsg"]
+                          : null;
+                      dynamic created = item.containsKey("createdfouYQX")
+                          ? item["createdfouYQX"]
+                          : null;
                       dynamic statusName = item.containsKey("statusName")
                           ? item["statusName"]
                           : null;
                       dynamic statusColor = item.containsKey("statusColor")
                           ? item["statusColor"]
                           : null;
-                      dynamic mStatus =
-                          item.containsKey("status") ? item["status"] : null;
+                      dynamic mStatus = item.containsKey("statusE8iqlh")
+                          ? item["statusE8iqlh"]
+                          : null;
                       dynamic name;
                       dynamic icon;
                       if (product != null) {
-                        name = product.containsKey("name")
-                            ? product["name"]
+                        name = product.containsKey("nameyJEzwD")
+                            ? product["nameyJEzwD"]
                             : null;
-                        icon = product.containsKey("icon")
-                            ? product["icon"]
+                        icon = product.containsKey("iconKzUZic")
+                            ? product["iconKzUZic"]
                             : null;
                       }
                       print("IMAGE_URL:" + "${DioConfig.IMAGE_URL}$icon");
@@ -366,7 +371,7 @@ getPlan(BuildContext context, String orderId) async {
   if (response["statusE8iqlh"] == 0) {
     //跳转
     Get.to(() => RepayPage(
-          model: response["model"],
+          model: response["modelU8mV9A"],
         ));
   }
 }
@@ -382,7 +387,7 @@ class PlanModel extends BaseModel {
   loadPlanData() async {
     final response =
         await HttpRequest.request(InterfaceConfig.repayment_plan, params: {
-      "model": {"orderId": orderId}
+      "modelU8mV9A": {"orderIdN1N7lN": orderId}
     });
     return response;
   }
