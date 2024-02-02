@@ -6,10 +6,7 @@ import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/pages/mine/controller/mine_controller.dart';
 import 'package:lend_funds/pages/mine/view/widget/custom_mine_item.dart';
 import 'package:lend_funds/pages/mine/view/widget/delete_account_dialog.dart';
-import 'package:lend_funds/utils/const/translate.dart';
 import 'package:lend_funds/utils/eventbus/eventbus.dart';
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -160,22 +157,22 @@ class _MinePageState extends State<MinePage> {
                             //       content: "",
                             //       needContent: -1),
                             // ),
-                            GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () {
-                                Get.toNamed(CZRouteConfig.webView, parameters: {
-                                  'title': Translate.aboutUs,
-                                  'url': AppConfig.aboutUs,
-                                });
-                              },
-                              child: MineItem(
-                                  title: "About us",
-                                  path: "assets/mine/mine_about_us_icon.png",
-                                  color: Color.fromRGBO(245, 236, 255, 1),
-                                  isRequired: true,
-                                  content: "",
-                                  needContent: -1),
-                            ),
+                            // GestureDetector(
+                            //   behavior: HitTestBehavior.opaque,
+                            //   onTap: () {
+                            //     Get.toNamed(CZRouteConfig.webView, parameters: {
+                            //       'title': Translate.aboutUs,
+                            //       'url': AppConfig.aboutUs,
+                            //     });
+                            //   },
+                            //   child: MineItem(
+                            //       title: "About us",
+                            //       path: "assets/mine/mine_about_us_icon.png",
+                            //       color: Color.fromRGBO(245, 236, 255, 1),
+                            //       isRequired: true,
+                            //       content: "",
+                            //       needContent: -1),
+                            // ),
                             GestureDetector(
                               behavior: HitTestBehavior.opaque,
                               onTap: () {
