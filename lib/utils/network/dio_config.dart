@@ -14,8 +14,8 @@ class AppConfig {
       "${DioConfig.baseURL}eurychoric-pornocracy-swiple/deuteranopia-filibeg-spadebone/toxoplasma-counterreconnaissance-headrest/l5fjys.html";
   static const String termsAgreement =
       "${DioConfig.baseURL}eurychoric-pornocracy-swiple/deuteranopia-filibeg-spadebone/toxoplasma-counterreconnaissance-headrest/5kiq5o.html";
-  static const String securityProtocol =
-      "${DioConfig.baseURL}html/xxx/xxx.html";
+  static const String permission =
+      "${DioConfig.baseURL}eurychoric-pornocracy-swiple/deuteranopia-filibeg-spadebone/toxoplasma-counterreconnaissance-headrest/mzfxpk.html";
   static const String aboutUs =
       "${DioConfig.baseURL}eurychoric-pornocracy-swiple/deuteranopia-filibeg-spadebone/toxoplasma-counterreconnaissance-headrest/hcnihk.html";
 }

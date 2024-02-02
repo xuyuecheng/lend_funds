@@ -143,23 +143,23 @@ class _MinePageState extends State<MinePage> {
                                 needContent: -1,
                               ),
                             ),
-                            GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () {
-                                Get.toNamed(CZRouteConfig.webView, parameters: {
-                                  'title': Translate.securityProtocol,
-                                  'url': AppConfig.securityProtocol,
-                                });
-                              },
-                              child: MineItem(
-                                  title: "Security protocol",
-                                  path:
-                                      "assets/mine/mine_security_protocol_icon.png",
-                                  color: Color.fromRGBO(255, 241, 229, 1),
-                                  isRequired: true,
-                                  content: "",
-                                  needContent: -1),
-                            ),
+                            // GestureDetector(
+                            //   behavior: HitTestBehavior.opaque,
+                            //   onTap: () {
+                            //     Get.toNamed(CZRouteConfig.webView, parameters: {
+                            //       'title': Translate.securityProtocol,
+                            //       'url': AppConfig.securityProtocol,
+                            //     });
+                            //   },
+                            //   child: MineItem(
+                            //       title: "Security protocol",
+                            //       path:
+                            //           "assets/mine/mine_security_protocol_icon.png",
+                            //       color: Color.fromRGBO(255, 241, 229, 1),
+                            //       isRequired: true,
+                            //       content: "",
+                            //       needContent: -1),
+                            // ),
                             GestureDetector(
                               behavior: HitTestBehavior.opaque,
                               onTap: () {
