@@ -104,19 +104,19 @@ class BasicPage extends HookWidget {
           //插入一条数据在银行卡号码后面
           if (columnField == "formBank") {
             Map<String, dynamic> map = {
-              "name": "Confirm Bank Number",
-              "id": "userBank.bankCardAgainTemp",
-              "type": "text",
+              "nameyJEzwD": "Confirm Bank Number",
+              "idxQEzsQ": "userBank.bankCardAgainTemp",
+              "typeIVyt6h": "number",
               "required": true,
             };
             bool hadBankNumAgainData = false;
             int bankNumberIndex = 0;
             for (int index = 0; index < contents.length; index++) {
               Map item = contents[index];
-              if (item["name"] == "Confirm Bank Number") {
+              if (item["nameyJEzwD"] == "Confirm Bank Number") {
                 hadBankNumAgainData = true;
               }
-              if (item["name"] == "Bank Number") {
+              if (item["nameyJEzwD"] == "Bank Number") {
                 bankNumberIndex = index;
               }
             }
@@ -199,12 +199,14 @@ class BasicPage extends HookWidget {
                               List titleList = [];
                               List contentList = [];
                               for (var i = 0; i < contents.length; i++) {
-                                String? name = contents[i].containsKey("name")
-                                    ? contents[i]["name"]
-                                    : null;
-                                String type = contents[i].containsKey("type")
-                                    ? contents[i]["type"]
-                                    : null;
+                                String? name =
+                                    contents[i].containsKey("nameyJEzwD")
+                                        ? contents[i]["nameyJEzwD"]
+                                        : null;
+                                String type =
+                                    contents[i].containsKey("typeIVyt6h")
+                                        ? contents[i]["typeIVyt6h"]
+                                        : null;
                                 titleList.add(name ?? "");
                                 if (type == "select") {
                                   contentList.add(listFormUseState[i]
