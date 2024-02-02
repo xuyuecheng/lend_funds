@@ -2,18 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lend_funds/pages/repay/repay_upi_page.dart';
-import 'package:lend_funds/utils/base/base_view_model.dart';
-import 'package:lend_funds/utils/entity/syscode_entity.dart';
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/network/dio_request.dart';
 import 'package:lend_funds/utils/theme/screen_utils.dart';
 import 'package:lend_funds/utils/time/time_utils.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
-import 'package:lend_funds/utils/vm/app_model.dart';
-import 'package:lend_funds/utils/vm/repo_provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class RepayRolloverPage extends HookWidget {
   final dynamic model;
@@ -26,18 +17,22 @@ class RepayRolloverPage extends HookWidget {
   var rolloverState;
   @override
   Widget build(BuildContext context) {
-    dynamic delayAmount =
-        model.containsKey("delayAmount") ? model["delayAmount"] : null;
-    dynamic expiryTime =
-        model.containsKey("expiryTime") ? model["expiryTime"] : null;
-    dynamic loanAmount =
-        model.containsKey("loanAmount") ? model["loanAmount"] : null;
+    dynamic delayAmount = model.containsKey("delayAmountk18tFe")
+        ? model["delayAmountk18tFe"]
+        : null;
+    dynamic expiryTime = model.containsKey("expiryTimegE1p5H")
+        ? model["expiryTimegE1p5H"]
+        : null;
+    dynamic loanAmount = model.containsKey("loanAmountfBtogO")
+        ? model["loanAmountfBtogO"]
+        : null;
     expiryTime =
         "${CZTimeUtils.formatDateTime(expiryTime, format: "yyyy-MM-dd HH:mm:ss")}";
     dynamic delayTerm =
-        model.containsKey("delayTerm") ? model["delayTerm"] : null;
-    dynamic delayTimes =
-        model.containsKey("delayTimes") ? model["delayTimes"] : null;
+        model.containsKey("delayTermUO5Grw") ? model["delayTermUO5Grw"] : null;
+    dynamic delayTimes = model.containsKey("delayTimesp1w7Cd")
+        ? model["delayTimesp1w7Cd"]
+        : null;
     return Scaffold(
       backgroundColor: Color(0xffF1F2F3),
       appBar: AppBar(
@@ -221,76 +216,5 @@ class RepayRolloverPage extends HookWidget {
         ),
       ),
     );
-  }
-
-  myUpiSelect(BuildContext context, SysCodeEntity sysCodeEntity) {
-    rolloverState.value = sysCodeEntity;
-    myUpiUrlSelect(context, sysCodeEntity);
-  }
-
-  myUpiUrlSelect(BuildContext context, SysCodeEntity sysCodeEntity) {
-    rolloverState.value = sysCodeEntity;
-    Map<String, dynamic> params = {
-      "model": {
-        "orderId": id,
-        "repayMethod": sysCodeEntity.repayMethod,
-        "methodCode": sysCodeEntity.methodCode,
-        "repayType": type
-      }
-    };
-    _getUpiUrl(context, params);
-  }
-
-  _getUpiUrl(BuildContext mContext, Map<String, dynamic> params) async {
-    CZLoading.loading();
-    dynamic model = await mContext.read(upiUrlProvider).getUpiUrl(params);
-    CZLoading.dismiss();
-    dynamic repayCode =
-        model.containsKey("repayCode") ? model["repayCode"] : null;
-    print("repayCode:$repayCode");
-    final Uri _url = Uri.parse(repayCode);
-    if (!await launchUrl(_url)) {
-      throw Exception('Could not launch $_url');
-    }
-  }
-}
-
-final upiProvider = ChangeNotifierProvider.autoDispose(
-    (ref) => UpiModel(ref.watch(appProvider))..init());
-
-class UpiModel extends BaseModel {
-  AppModel appModel;
-
-  UpiModel(this.appModel);
-
-  init() async {
-    notifyListeners();
-  }
-
-  getUpi(String id) async {
-    final response = await HttpRequest.request(InterfaceConfig.upi, params: {
-      "model": {"orderId": id}
-    });
-    return response.model;
-  }
-}
-
-final upiUrlProvider = ChangeNotifierProvider.autoDispose(
-    (ref) => UpiUrlModel(ref.watch(appProvider))..init());
-
-class UpiUrlModel extends BaseModel {
-  AppModel appModel;
-
-  UpiUrlModel(this.appModel);
-
-  init() async {
-    notifyListeners();
-  }
-
-//{"model": {"orderId": id,"repayMethod": id,"methodCode": id,"repayType": id}}
-  getUpiUrl(Map<String, dynamic> params) async {
-    final response =
-        await HttpRequest.request(InterfaceConfig.upi_url, params: params);
-    return response.model;
   }
 }

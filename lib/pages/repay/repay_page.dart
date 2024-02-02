@@ -444,7 +444,7 @@ getRolloverPlan(BuildContext context, String orderId) async {
   if (response["statusE8iqlh"] == 0) {
     // dynamic delayAmount = response.model.containsKey("delayAmount") ? response.model["delayAmount"] : null;
     Get.to(() => RepayRolloverPage(
-        model: response["model"], id: orderId, type: "DELAY"));
+        model: response["modelU8mV9A"], id: orderId, type: "DELAY"));
   }
 }
 
@@ -459,7 +459,7 @@ class RolloverPlanModel extends BaseModel {
   loadPlanData() async {
     final response =
         await HttpRequest.request(InterfaceConfig.rollover_plan, params: {
-      "model": {"orderId": orderId}
+      "modelU8mV9A": {"orderIdN1N7lN": orderId}
     });
     return response;
   }
