@@ -53,12 +53,9 @@ class InterfaceConfig {
   static const String upi = "get/order/repayment_method";
   static const String upi_url = "order_repayment";
   static const String rollover_plan = "calculation/exhibition_period";
-  static const String feedback_list =
-      "swati-viduity/magicube-geniture-whaleman";
-  static const String feedback_type =
-      "cellulated/apneusis-compile-emplane/mesophile";
-  static const String feedback_submit =
-      "mistakable-corruptibility/undignify-titubate-bight";
+  static const String feedback_list = "get/swati/magicube";
+  static const String feedback_type = "question/type";
+  static const String feedback_submit = "submit/feedback";
   //检测设备信息上报情况
   static const String dev_report_situation = "check/report_device_information";
   //上报设备信息

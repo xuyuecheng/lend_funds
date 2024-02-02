@@ -15,8 +15,9 @@ class SysCodeEntity {
       this.sysCodeEntityList);
 
   SysCodeEntity.fromJson(Map<String, dynamic> json) {
-    if (json.containsKey("curName")) {
-      this.name = json.containsKey("curName") ? json["curName"] : null;
+    if (json.containsKey("curNameW6iDby")) {
+      this.name =
+          json.containsKey("curNameW6iDby") ? json["curNameW6iDby"] : null;
     } else {
       this.name = json.containsKey("nameyJEzwD") ? json["nameyJEzwD"] : null;
     }
