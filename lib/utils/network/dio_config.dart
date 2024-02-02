@@ -46,7 +46,7 @@ class InterfaceConfig {
   static const String address_info = "get/address";
   static const String job_info = "get/job_information";
   //活体检测
-  static const String alive = 'cheyenne/cadaster/tentaculiform';
+  static const String alive = 'face/liveness/verification';
   //删除用户
   static const String del = 'semiagricultural/shotty-eudaimonism';
   static const String order_list = "get/user/orders_by_page";

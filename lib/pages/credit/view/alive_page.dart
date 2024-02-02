@@ -194,7 +194,10 @@ class _AlivePageState extends State<AlivePage> {
   Future aliveIdentify(String faceInfo) async {
     Map<String, dynamic> result =
         await HttpRequest.request(InterfaceConfig.alive, params: {
-      "model": {"faceInfo": faceInfo, "livenessType": "ACC_H5"}
+      "modelU8mV9A": {
+        "faceInfosYTghz": faceInfo,
+        "livenessTypeBB31oo": "ACC_H5"
+      }
     });
     return result;
   }
