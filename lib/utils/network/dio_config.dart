@@ -32,9 +32,8 @@ class InterfaceConfig {
   //获取产品信息
   static const String product_list = 'get/product_information';
   //获取手续费试算
-  static const String tria =
-      'noic-cryptographical-infarcted/ensheath/cystoscope-nebulous-segmental';
-  static const String loan = "pedodontic-cardcarrier-opiology/telophase";
+  static const String tria = 'calculate/handling_fee';
+  static const String loan = "loan/apply";
   //提交表单
   static const String submitForm = 'submit/form';
   //上传文件
@@ -48,7 +47,7 @@ class InterfaceConfig {
   //活体检测
   static const String alive = 'face/liveness/verification';
   //删除用户
-  static const String del = 'semiagricultural/shotty-eudaimonism';
+  static const String del = 'delete_user';
   static const String order_list = "get/user/orders_by_page";
   static const String repayment_plan =
       "modernity/alimentative-chrp-airfoil/benignly-smudgy-milky";

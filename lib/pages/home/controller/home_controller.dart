@@ -148,7 +148,7 @@ class HomeController extends GetxController with StateMixin<Map> {
   Future<Map<String, dynamic>> requestTrialData(List productIds) async {
     Map<String, dynamic> result =
         await HttpRequest.request(InterfaceConfig.tria, params: {
-      "model": {"productIds": productIds}
+      "modelU8mV9A": {"productIdskwFhTC": productIds}
     });
     return result;
   }
@@ -156,7 +156,7 @@ class HomeController extends GetxController with StateMixin<Map> {
   Future<Map<String, dynamic>> requestLoanData(List productIds) async {
     Map<String, dynamic> result =
         await HttpRequest.request(InterfaceConfig.loan, params: {
-      "model": {"productIds": productIds}
+      "modelU8mV9A": {"productIdskwFhTC": productIds}
     });
     return result;
   }

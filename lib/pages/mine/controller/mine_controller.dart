@@ -16,7 +16,9 @@ class MineController extends GetxController {
     var userInfo = CZStorage.getUserInfo();
     var phone = "Halo";
     if (userInfo != null) {
-      var user = userInfo.containsKey("user") ? userInfo["user"] : null;
+      var user = userInfo.containsKey("accountUnDcbi")
+          ? userInfo["accountUnDcbi"]
+          : null;
       if (user != null) {
         phone = user.containsKey("phone") ? user["phone"] : "Halo";
       }

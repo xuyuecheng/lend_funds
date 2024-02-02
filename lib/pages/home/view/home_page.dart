@@ -376,17 +376,22 @@ class _HomePageState extends State<HomePage> {
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               final item = HomeController.to.productList[index];
-              String id = item.containsKey("id") ? item["id"] : "";
-              String name = item.containsKey("name") ? item["name"] : "loan";
-              String icon = item.containsKey("icon") ? item["icon"] : "icon";
-              dynamic amount =
-                  item.containsKey("amount") ? item["amount"] : "amount";
-              dynamic serviceAmount = item.containsKey("serviceAmount")
-                  ? item["serviceAmount"]
+              String id = item.containsKey("idxQEzsQ") ? item["idxQEzsQ"] : "";
+              String name =
+                  item.containsKey("nameyJEzwD") ? item["nameyJEzwD"] : "loan";
+              String icon = item.containsKey("iconKzUZic")
+                  ? item["iconKzUZic"]
+                  : "iconKzUZic";
+              dynamic amount = item.containsKey("amountVmVZsg")
+                  ? item["amountVmVZsg"]
+                  : "amountVmVZsg";
+              dynamic serviceAmount = item.containsKey("serviceAmountyNv9UA")
+                  ? item["serviceAmountyNv9UA"]
                   : "0";
-              dynamic term = item.containsKey("term") ? item["term"] : "0";
+              dynamic term =
+                  item.containsKey("termvXWr1o") ? item["termvXWr1o"] : "0";
               dynamic dayRate =
-                  item.containsKey("dayRate") ? item["dayRate"] : 1;
+                  item.containsKey("dayRatepSGZ9K") ? item["dayRatepSGZ9K"] : 1;
               print("dayRate:${dayRate.toString()}");
               dynamic interest = amount * dayRate * term;
               print("IMAGE_URL:" + "${DioConfig.IMAGE_URL}$icon");
@@ -592,7 +597,7 @@ class _HomePageState extends State<HomePage> {
     CZLoading.dismiss();
     if (response["statusE8iqlh"] == 0) {
       List<dynamic>? item =
-          response.containsKey("model") ? response["model"] : null;
+          response.containsKey("modelU8mV9A") ? response["modelU8mV9A"] : null;
       print("item:${item.toString()}");
       if (item != null && item.length > 0) {
         CZDialogUtil.show(HomeProductDialog(

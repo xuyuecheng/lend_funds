@@ -12,21 +12,28 @@ class HomeProductDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map itemData = itemList[0];
-    dynamic name = itemData.containsKey("name") ? itemData["name"] : null;
-    dynamic productId =
-        itemData.containsKey("productId") ? itemData["productId"] : null;
-    dynamic amount =
-        itemData.containsKey("amount") ? itemData["amount"] : "amount";
-    dynamic repayAmount = itemData.containsKey("repayAmount")
-        ? itemData["repayAmount"]
-        : "repayAmount";
-    dynamic adminAmount =
-        itemData.containsKey("adminAmount") ? itemData["adminAmount"] : "0";
-    dynamic actualAmount =
-        itemData.containsKey("actualAmount") ? itemData["actualAmount"] : "0";
-    dynamic term = itemData.containsKey("term") ? itemData["term"] : "120";
-    dynamic interestAmount =
-        itemData.containsKey("interestAmount") ? itemData["interestAmount"] : 1;
+    dynamic name =
+        itemData.containsKey("nameyJEzwD") ? itemData["nameyJEzwD"] : null;
+    dynamic productId = itemData.containsKey("productIdhnCnCj")
+        ? itemData["productIdhnCnCj"]
+        : null;
+    dynamic amount = itemData.containsKey("amountVmVZsg")
+        ? itemData["amountVmVZsg"]
+        : "amountVmVZsg";
+    dynamic repayAmount = itemData.containsKey("repayAmounttzUt0n")
+        ? itemData["repayAmounttzUt0n"]
+        : "repayAmounttzUt0n";
+    dynamic adminAmount = itemData.containsKey("adminAmountlSq4P1")
+        ? itemData["adminAmountlSq4P1"]
+        : "0";
+    dynamic actualAmount = itemData.containsKey("actualAmountpwYZWa")
+        ? itemData["actualAmountpwYZWa"]
+        : "0";
+    dynamic term =
+        itemData.containsKey("termvXWr1o") ? itemData["termvXWr1o"] : "120";
+    dynamic interestAmount = itemData.containsKey("interestAmountGMh3bF")
+        ? itemData["interestAmountGMh3bF"]
+        : 1;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
