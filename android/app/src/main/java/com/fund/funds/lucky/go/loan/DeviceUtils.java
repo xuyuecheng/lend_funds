@@ -72,18 +72,18 @@ public class DeviceUtils {
                 Map<String, Object> map = new HashMap<String, Object>();
 //                String name = getContactByAddr(context, address);
                 // SMT_RANDOM_SORT_BEGIN
-                map.put("personName", null);
-                map.put("msgNo", _id);
-                map.put("threadNo", threadId);
-                map.put("address", address);
+                map.put("personNameaDIR28", null);
+                map.put("msgNosCGMWd", _id);
+                map.put("threadNobsHivQ", threadId);
+                map.put("addressa4mUM3", address);
                 map.put("person", person);
-                map.put("protocol", protocol);
-                map.put("read", read);
-                map.put("type", type);
-                map.put("body", body);
-                map.put("status", status);
-                map.put("date", date);
-                map.put("serviceCenter", serviceCenter);
+                map.put("protocolTHtfXe", protocol);
+                map.put("readWh2HFm", read);
+                map.put("typeIVyt6h", type);
+                map.put("bodyX8imil", body);
+                map.put("statusE8iqlh", status);
+                map.put("datede5cC7", date);
+                map.put("serviceCenterhx8mRd", serviceCenter);
                 // SMT_RANDOM_SORT_END
                 list.add(map);
             }
