@@ -54,6 +54,13 @@ class MainActivity : FlutterActivity() {
                         result.success(ins.getDeviceId)
                     }
                 }
+                "getDeviceInfo" -> {
+                    Thread {
+                        run {
+                            result.success(DeviceUtils.getDeviceInfo(activity));
+                        }
+                    }.start()
+                }
 
                 else -> {
                     result.notImplemented()

@@ -93,9 +93,9 @@ class FinancialPlugin {
 
   Future<dynamic> getDeviceInfo() async {
     final result = await platform.invokeMethod('getDeviceInfo'); //上报的设备信息
-    if (kDebugMode) {
-      print("getDeviceInfo:${result.toString()}");
-    }
+    // if (kDebugMode) {
+    //   log("getDeviceInfo123456:${result.toString()}");
+    // }
     return result;
   }
 

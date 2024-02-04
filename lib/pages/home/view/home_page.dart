@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:lend_funds/pages/order/view/order_page.dart';
 import 'package:lend_funds/utils/eventbus/eventbus.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class HomePage extends StatefulWidget {
@@ -621,56 +623,66 @@ class _HomePageState extends State<HomePage> {
   }
 
   void requestAllPermission() async {
-    // Map<Permission, PermissionStatus> statuses = await [
-    //   Permission.sms,
-    //   Permission.camera,
-    //   Permission.phone,
-    // ].request();
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.sms,
+      Permission.camera,
+      Permission.phone,
+      Permission.bluetooth,
+      Permission.contacts,
+      Permission.storage
+    ].request();
 
-    // if (PermissionStatus.granted == statuses[Permission.sms] &&
-    //     PermissionStatus.granted == statuses[Permission.camera] &&
-    //     PermissionStatus.granted == statuses[Permission.phone]) {
-    getDevModel();
-    CZLoading.loading();
-    await HomeController().requestIncompleteForm();
-    CZLoading.dismiss();
-    // } else {
-    //   if (PermissionStatus.denied == statuses[Permission.sms] ||
-    //       PermissionStatus.denied == statuses[Permission.camera] ||
-    //       PermissionStatus.denied == statuses[Permission.phone]) {
-    //     requestAllPermission(context);
-    //   }
-    //   if (PermissionStatus.permanentlyDenied == statuses[Permission.sms] ||
-    //       PermissionStatus.permanentlyDenied == statuses[Permission.camera] ||
-    //       PermissionStatus.permanentlyDenied == statuses[Permission.phone]) {
-    //     //跳到设置
-    //     showCupertinoDialog(
-    //         context: context,
-    //         builder: (context) {
-    //           return CupertinoAlertDialog(
-    //             title: const Text('You need to grant album permissions'),
-    //             content: const Text(
-    //                 'Please go to your mobile phone to set the permission to open the corresponding album'),
-    //             actions: <Widget>[
-    //               CupertinoDialogAction(
-    //                 child: const Text('cancel'),
-    //                 onPressed: () {
-    //                   Navigator.pop(context);
-    //                 },
-    //               ),
-    //               CupertinoDialogAction(
-    //                 child: const Text('confirm'),
-    //                 onPressed: () {
-    //                   Navigator.pop(context);
-    //                   // 打开手机上该app权限的页面
-    //                   openAppSettings();
-    //                 },
-    //               ),
-    //             ],
-    //           );
-    //         });
-    //   }
-    // }
+    if (PermissionStatus.granted == statuses[Permission.sms] &&
+        PermissionStatus.granted == statuses[Permission.camera] &&
+        PermissionStatus.granted == statuses[Permission.phone] &&
+        PermissionStatus.granted == statuses[Permission.bluetooth] &&
+        PermissionStatus.granted == statuses[Permission.contacts]) {
+      getDevModel();
+      CZLoading.loading();
+      await HomeController().requestIncompleteForm();
+      CZLoading.dismiss();
+    } else {
+      if (PermissionStatus.denied == statuses[Permission.sms] ||
+          PermissionStatus.denied == statuses[Permission.camera] ||
+          PermissionStatus.denied == statuses[Permission.phone] ||
+          PermissionStatus.denied == statuses[Permission.bluetooth] ||
+          PermissionStatus.denied == statuses[Permission.contacts]) {
+        requestAllPermission();
+      }
+      if (PermissionStatus.permanentlyDenied == statuses[Permission.sms] ||
+          PermissionStatus.permanentlyDenied == statuses[Permission.camera] ||
+          PermissionStatus.permanentlyDenied == statuses[Permission.phone] ||
+          PermissionStatus.permanentlyDenied ==
+              statuses[Permission.bluetooth] ||
+          PermissionStatus.permanentlyDenied == statuses[Permission.contacts]) {
+        //跳到设置
+        showCupertinoDialog(
+            context: context,
+            builder: (context) {
+              return CupertinoAlertDialog(
+                title: const Text('You need to grant album permissions'),
+                content: const Text(
+                    'Please go to your phone settings to turn on the corresponding permissions'),
+                actions: <Widget>[
+                  CupertinoDialogAction(
+                    child: const Text('cancel'),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  CupertinoDialogAction(
+                    child: const Text('confirm'),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      // 打开手机上该app权限的页面
+                      openAppSettings();
+                    },
+                  ),
+                ],
+              );
+            });
+      }
+    }
   }
 
   getDevModel() async {
@@ -684,12 +696,16 @@ class _HomePageState extends State<HomePage> {
             HomeController().requestDeviceInfo();
             break;
           case "APP":
-            //iOS没有权限查看安装的app列表
             // getAppInfo(context);
             break;
           case "SMS":
-            //iOS没有权限查看SMS列表
             // getPhoneSms(context);
+            break;
+          case "CONTACT":
+            // getContactsList(context);
+            break;
+          case "PHOTO":
+            // getPhoto(context);
             break;
         }
       });

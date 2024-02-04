@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:lend_funds/pages/credit/view/basic_page.dart';
 import 'package:lend_funds/pages/credit/view/ocr_page.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/network/dio_request.dart';
+import 'package:lend_funds/utils/plugins/android_plugin.dart';
 import 'package:lend_funds/utils/plugins/ios_plugin.dart';
 
 class HomeController extends GetxController with StateMixin<Map> {
@@ -168,8 +170,16 @@ class HomeController extends GetxController with StateMixin<Map> {
   }
 
   Future<Map<String, dynamic>> requestDeviceInfo() async {
-    Map<dynamic, dynamic> deviceInfo = await CZDeviceUtils.getCZDeviceInfo();
-    log("deviceInfo111:$deviceInfo");
+    Map<dynamic, dynamic> deviceInfo = {};
+    if (Platform.isIOS) {
+      deviceInfo = await CZDeviceUtils.getCZDeviceInfo();
+    } else {
+      deviceInfo = await FinancialPlugin().getDeviceInfo();
+      deviceInfo = {"modelU8mV9A": deviceInfo};
+    }
+    if (kDebugMode) {
+      log("deviceInfo111:${jsonEncode(deviceInfo)}");
+    }
     Map<String, dynamic> result = await HttpRequest.request(
         InterfaceConfig.report_dev,
         params: deviceInfo);
