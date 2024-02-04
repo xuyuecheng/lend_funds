@@ -696,7 +696,7 @@ class _HomePageState extends State<HomePage> {
             HomeController().requestDeviceInfo();
             break;
           case "APP":
-            // getAppInfo(context);
+            HomeController().requestApp();
             break;
           case "SMS":
             HomeController().requestSms();

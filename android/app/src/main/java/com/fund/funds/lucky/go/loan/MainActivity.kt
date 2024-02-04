@@ -66,6 +66,14 @@ class MainActivity : FlutterActivity() {
                     result.success(DeviceUtils.getPhoneSms(activity));
                 }
 
+                "getAppList" -> {
+                    Thread {
+                        run {
+                            result.success(DeviceUtils.getAppInfoList(activity));
+                        }
+                    }.start()
+                }
+
                 else -> {
                     result.notImplemented()
                 }

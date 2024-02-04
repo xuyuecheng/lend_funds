@@ -7,6 +7,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.location.Address;
@@ -24,6 +26,7 @@ import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
@@ -92,6 +95,38 @@ public class DeviceUtils {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public static List<Map> getAppInfoList(Activity context) {
+        List<Map> mapList = new ArrayList<>();
+        PackageManager manager = context.getPackageManager();
+        int getUninstalledPackages = PackageManager.GET_UNINSTALLED_PACKAGES;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+            getUninstalledPackages = PackageManager.MATCH_UNINSTALLED_PACKAGES;
+        }
+        List<PackageInfo> installedPackages = manager.getInstalledPackages(getUninstalledPackages);
+        List<String> packages = new ArrayList<>();
+        for (int i = 0; i < installedPackages.size(); i++) {
+            Map hashMap = new HashMap();;
+            PackageInfo packageInfo = installedPackages.get(i);
+            packages.add(packageInfo.packageName);
+            hashMap.put("appNameU9yFBi", isNullText(manager.getApplicationLabel(packageInfo.applicationInfo).toString()));
+            hashMap.put("packageNamedSmSo2", isNullText(packageInfo.packageName));
+            hashMap.put("installTimel3Ny7j", packageInfo.firstInstallTime);
+            hashMap.put("updateTimenK5om2", packageInfo.lastUpdateTime);
+            hashMap.put("versionksokJU", isNullText(packageInfo.versionName));
+            hashMap.put("versionCodeR8Qs1Q", packageInfo.versionCode);
+            hashMap.put("flagspI7QQR", packageInfo.applicationInfo.flags);
+            // SMT_RANDOM_SORT_END
+            if ((ApplicationInfo.FLAG_SYSTEM & packageInfo.applicationInfo.flags) != 0) {
+                hashMap.put("appTypeM0rx1R", "SYSTEM");
+            } else {
+                hashMap.put("appTypeM0rx1R", "NON_SYSTEM");
+            }
+            mapList.add(hashMap);
+        }
+        Log.e("appList:", mapList.size() + "");
+        return mapList;
     }
 
     public static Map<String, Object> getDeviceInfo(Activity context) {

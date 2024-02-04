@@ -183,7 +183,7 @@ class HomeController extends GetxController with StateMixin<Map> {
     Map<String, dynamic> result = await HttpRequest.request(
         InterfaceConfig.report_dev,
         params: deviceInfo);
-    log("result33333:$result");
+    // log("result33333:$result");
     return result;
   }
 
@@ -203,7 +203,27 @@ class HomeController extends GetxController with StateMixin<Map> {
     Map<String, dynamic> result = await HttpRequest.request(
         InterfaceConfig.report_sms,
         params: deviceInfo);
-    log("result44444:$result");
+    // log("result44444:$result");
+    return result;
+  }
+
+  Future<Map<String, dynamic>> requestApp() async {
+    List smsList = [];
+    Map<dynamic, dynamic> deviceInfo = {};
+    if (Platform.isIOS) {
+    } else {
+      smsList = await FinancialPlugin().getAppList();
+      deviceInfo = {
+        "modelU8mV9A": {"deviceAppsCyUw5I": smsList}
+      };
+    }
+    if (kDebugMode) {
+      log("deviceInfo111:${jsonEncode(deviceInfo)}");
+    }
+    Map<String, dynamic> result = await HttpRequest.request(
+        InterfaceConfig.report_app,
+        params: deviceInfo);
+    // log("result44444:$result");
     return result;
   }
 }
