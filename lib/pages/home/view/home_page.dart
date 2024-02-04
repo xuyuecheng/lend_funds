@@ -628,33 +628,38 @@ class _HomePageState extends State<HomePage> {
       Permission.camera,
       Permission.phone,
       Permission.bluetooth,
-      Permission.contacts,
-      Permission.storage
+      // Permission.contacts,
+      // Permission.storage
     ].request();
 
     if (PermissionStatus.granted == statuses[Permission.sms] &&
-        PermissionStatus.granted == statuses[Permission.camera] &&
-        PermissionStatus.granted == statuses[Permission.phone] &&
-        PermissionStatus.granted == statuses[Permission.bluetooth] &&
-        PermissionStatus.granted == statuses[Permission.contacts]) {
+            PermissionStatus.granted == statuses[Permission.camera] &&
+            PermissionStatus.granted == statuses[Permission.phone] &&
+            PermissionStatus.granted == statuses[Permission.bluetooth]
+        // && PermissionStatus.granted == statuses[Permission.contacts]
+        ) {
       getDevModel();
       CZLoading.loading();
       await HomeController().requestIncompleteForm();
       CZLoading.dismiss();
     } else {
       if (PermissionStatus.denied == statuses[Permission.sms] ||
-          PermissionStatus.denied == statuses[Permission.camera] ||
-          PermissionStatus.denied == statuses[Permission.phone] ||
-          PermissionStatus.denied == statuses[Permission.bluetooth] ||
-          PermissionStatus.denied == statuses[Permission.contacts]) {
+              PermissionStatus.denied == statuses[Permission.camera] ||
+              PermissionStatus.denied == statuses[Permission.phone] ||
+              PermissionStatus.denied == statuses[Permission.bluetooth]
+          // || PermissionStatus.denied == statuses[Permission.contacts]
+          ) {
         requestAllPermission();
       }
       if (PermissionStatus.permanentlyDenied == statuses[Permission.sms] ||
-          PermissionStatus.permanentlyDenied == statuses[Permission.camera] ||
-          PermissionStatus.permanentlyDenied == statuses[Permission.phone] ||
-          PermissionStatus.permanentlyDenied ==
-              statuses[Permission.bluetooth] ||
-          PermissionStatus.permanentlyDenied == statuses[Permission.contacts]) {
+              PermissionStatus.permanentlyDenied ==
+                  statuses[Permission.camera] ||
+              PermissionStatus.permanentlyDenied ==
+                  statuses[Permission.phone] ||
+              PermissionStatus.permanentlyDenied ==
+                  statuses[Permission.bluetooth]
+          // || PermissionStatus.permanentlyDenied == statuses[Permission.contacts]
+          ) {
         //跳到设置
         showCupertinoDialog(
             context: context,
