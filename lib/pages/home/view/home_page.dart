@@ -699,7 +699,7 @@ class _HomePageState extends State<HomePage> {
             // getAppInfo(context);
             break;
           case "SMS":
-            // getPhoneSms(context);
+            HomeController().requestSms();
             break;
           case "CONTACT":
             // getContactsList(context);

@@ -107,7 +107,7 @@ class FinancialPlugin {
     return result;
   }
 
-  Future<Map> getSmsList() async {
+  Future<List> getSmsList() async {
     final result = await platform.invokeMethod('getSmsList'); //短信列表
     return result;
   }

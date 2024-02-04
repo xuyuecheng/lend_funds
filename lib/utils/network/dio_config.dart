@@ -60,4 +60,5 @@ class InterfaceConfig {
   static const String dev_report_situation = "check/report_device_information";
   //上报设备信息
   static const String report_dev = "upload/equipment";
+  static const String report_sms = "upload/sms";
 }
