@@ -5,43 +5,12 @@ import android.content.Context
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.android.installreferrer.api.ReferrerDetails
+import com.google.firebase.FirebaseApp
+import io.branch.referral.Branch
 
 
 @SuppressLint("NewApi")
 object SDKExt {
-//    fun uploadFirebaseToken(callback: ((map: HashMap<String, Any>) -> Unit)? = null) {
-//        FirebaseMessaging.getInstance().token.addOnCompleteListener(object :
-//            OnCompleteListener<String> {
-//            override fun onComplete(@NonNull task: Task<String?>) {
-//
-//                if (!task.isComplete || !task.isSuccessful)
-//                    return
-//                val token: String = task.result.toString()
-//                if (token.isNotEmpty()) {
-//                    val mFirebaseMessaging: HashMap<String, Any> = HashMap()
-//                    mFirebaseMessaging["model"] = token
-//                    callback?.invoke(mFirebaseMessaging)
-//                }
-//            }
-//        })
-//    }
-//
-//    fun uploadInstanceId(
-//        context: Context,
-//        callback: ((map: HashMap<String, Any>) -> Unit)? = null
-//    ) {
-//        FirebaseAnalytics.getInstance(context).appInstanceId.addOnCompleteListener(
-//            OnCompleteListener { task ->
-//                if (!task.isComplete || !task.isSuccessful) return@OnCompleteListener
-//                val id = task.result
-//                if (id != null && id.isNotEmpty()) {
-//                    val aasdas: HashMap<String, Any> = HashMap()
-//                    aasdas["model"] = id
-//                    callback?.invoke(aasdas)
-//                }
-//            })
-//    }
-
     fun initInstallReferrer(
         context: Context,
         callback: ((map: HashMap<String, Any>) -> Unit)? = null
@@ -98,88 +67,10 @@ object SDKExt {
         })
     }
 
-//    fun initBranch(context: Context) {
-//        Branch.enableLogging()
-//        Branch.getAutoInstance(context)
-//        FirebaseApp.initializeApp(context)
-//    }
-
-
-//    private const val firstInstallKey = "firstInstall"
-//    private const val storeWebKey = "web_params"
-//    const val webReplaceUrl = "loan_web_url:"
-//    var result: String by preferences("", storeWebKey)
-//    var firstKey: Boolean by preferences(false, firstInstallKey)
-//
-//    fun getChannelParameters(
-//        context: Context,
-//        callback: ((map: HashMap<Any, Any>) -> Unit)? = null
-//    ) {
-//        val handler = Handler()
-//        val count = intArrayOf(0)
-//
-//        val runnable: Runnable = object : Runnable {
-//            override fun run() {
-//                if (result.isEmpty()) {
-//                    val nMap: HashMap<Any, Any> = HashMap()
-//                    val clipboardManager: ClipboardManager =
-//                        context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-//                    val clipData: ClipData? = clipboardManager.primaryClip
-//                    if (clipData != null) {
-//                        for (i in 0 until clipData.itemCount) {
-//                            val item: ClipData.Item = clipData.getItemAt(i)
-//                            if (item != null) {
-//                                var copiedText: String = item.text.toString()
-//                                if (copiedText.startsWith(webReplaceUrl) && copiedText.contains("?")) {
-//                                    copiedText =
-//                                        copiedText.replaceFirst(webReplaceUrl.toRegex(), "")
-//                                    val uri: Uri = Uri.parse(copiedText)
-//                                    if (uri != null) {
-//                                        val parameterNames: Set<String> =
-//                                            uri.queryParameterNames
-//                                        for (paramName in parameterNames) {
-//                                            val paramValue: String? =
-//                                                uri.getQueryParameter(paramName)
-//                                            if (paramValue != null) {
-//                                                nMap[paramName] = paramValue
-//                                            }
-//                                        }
-//                                        result = nMap.toJson().toString()
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                count[0]++
-//                if (count[0] < 10 && result.isEmpty()) {
-//                    handler.postDelayed(this, 2000)
-//                    return
-//                }
-//                val b: Boolean = firstKey
-//
-//                var fbMap: HashMap<Any, Any> = HashMap<Any, Any>()
-//                if (result.isNotEmpty()) {
-//                    fbMap = result.toMap<Any, Any>()
-//                }
-//                if (!b) {
-//                    fbMap["fbInstall"] = true
-//                }
-//                val map: HashMap<Any, Any> = HashMap()
-//                map["model"] = fbMap
-//                Log.e("getChannelParameters:", map.toJson().toString())
-//                ExecutionModule_ExecutorFactory.executor().execute {
-//                    callback?.invoke(map)
-//                }
-//            }
-//
-//        }
-//        handler.postDelayed(runnable, 1000)
-//    }
-//
-//    fun setFirstKey(
-//    ) {
-//        firstKey = true
-//    }
+    fun initBranch(context: Context) {
+        Branch.enableLogging()
+        Branch.getAutoInstance(context)
+        FirebaseApp.initializeApp(context)
+    }
 }
 
