@@ -94,6 +94,12 @@ class MainActivity : FlutterActivity() {
                     uploadInstanceId();
                 }
 
+                "installReferrer" ->{
+                    SDKExt.initInstallReferrer(this, callback = {
+                        result.success(it)
+                    })
+                }
+
                 else -> {
                     result.notImplemented()
                 }

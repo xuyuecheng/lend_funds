@@ -39,4 +39,20 @@ class HttpController {
       }
     }
   }
+
+  static Future requestUploadInstallReferrer() async {
+    if (Platform.isAndroid) {
+      var installReferrer = await FinancialPlugin.getInstallReferrer();
+      if (kDebugMode) {
+        print("installReferrer123:$installReferrer");
+      }
+      if (installReferrer != null) {
+        Map<String, dynamic> result = await HttpRequest.request(
+            InterfaceConfig.report_installReferrer,
+            params: installReferrer);
+        // log("result55555:$result");
+        return result;
+      }
+    }
+  }
 }

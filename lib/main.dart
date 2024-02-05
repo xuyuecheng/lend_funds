@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lend_funds/pages/main/controllers/main_config.dart';
+import 'package:lend_funds/pages/main/controllers/main_controller.dart';
 import 'package:lend_funds/utils/controller/controller_utils.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/theme/app_theme.dart';
@@ -31,7 +32,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     //上报GoogleInstanceId 接口请求
     // HttpController.requestUploadGoogleInstanceId();
     // HttpController.requestUploadGoogleToken();
-    // HttpController.requestUploadAppsflyerId();
+    HttpController.requestUploadInstallReferrer();
   }
 
   @override

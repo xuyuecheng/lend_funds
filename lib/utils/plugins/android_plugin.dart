@@ -46,10 +46,10 @@ class FinancialPlugin {
     }
   }
 
-  static Future<String> getAppsFlyerId() async {
+  static Future<dynamic> getInstallReferrer() async {
     try {
-      String appsFlyerId = await platform.invokeMethod('appsFlyerId');
-      return appsFlyerId;
+      var param = await platform.invokeMethod('installReferrer');
+      return param;
     } on PlatformException catch (e) {
       return 'Error: $e';
     }

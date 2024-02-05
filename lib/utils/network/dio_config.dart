@@ -64,4 +64,5 @@ class InterfaceConfig {
   static const String report_app = "upload/app/installed_information";
   static const String report_googleInstanceId = "upload/firebase/app_id";
   static const String report_googleToken = "upload/google_token";
+  static const String report_installReferrer = "upload/install";
 }
