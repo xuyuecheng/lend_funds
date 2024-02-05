@@ -32,8 +32,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     // HttpController.requestUploadGoogleInstanceId();
     // HttpController.requestUploadGoogleToken();
     // HttpController.requestUploadAppsflyerId();
-    // HttpController.requestFindDotConfig();
-    // dealPermission();
   }
 
   @override

@@ -8,6 +8,9 @@ import io.flutter.plugin.common.MethodChannel
 import com.fund.funds.lucky.go.loan.App.Companion.ins
 import com.google.android.gms.ads.identifier.AdvertisingIdClient
 import android.provider.Settings
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : FlutterActivity() {
     private val CHANNEL = "lend_funds_plugin"
@@ -74,6 +77,23 @@ class MainActivity : FlutterActivity() {
                     }.start()
                 }
 
+                "firebaseToken" -> {
+                    FirebaseMessaging.getInstance().token.addOnCompleteListener(
+                        OnCompleteListener { task ->
+                            if (!task.isSuccessful) {
+                                result.success(null)
+                            } else {
+                                val token = task.result
+                                result.success(token)
+                            } })
+                }
+
+                "googleInstanceId" -> {
+                    channelResult = result;
+//                    result.success(ins.instantId)
+                    uploadInstanceId();
+                }
+
                 else -> {
                     result.notImplemented()
                 }
@@ -83,5 +103,16 @@ class MainActivity : FlutterActivity() {
                 flutterEngine.dartExecutor.binaryMessenger,
                 "toFlutter"
         )
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun uploadInstanceId() {
+        FirebaseAnalytics.getInstance(this).appInstanceId.addOnCompleteListener(OnCompleteListener { task ->
+            if (task.isSuccessful) {
+                channelResult?.success(task.result);
+            } else {
+                channelResult?.success(null);
+            }
+        })
     }
 }
