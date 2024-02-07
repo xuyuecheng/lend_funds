@@ -42,7 +42,7 @@ class CreditInputInfoWidget extends HookWidget {
           child: TextFormField(
               keyboardType: require ? TextInputType.number : TextInputType.text,
               inputFormatters: <TextInputFormatter>[
-                LengthLimitingTextInputFormatter(numberSize) //限制长度
+                LengthLimitingTextInputFormatter(numberSize) //
               ],
               style: TextStyle(
                   fontSize: 15.sp,
@@ -55,11 +55,11 @@ class CreditInputInfoWidget extends HookWidget {
                     fontSize: 15.sp,
                     color: Colors.grey,
                     fontWeight: FontWeight.w500),
-                // 未获得焦点下划线设为透明色
+                //
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                 ),
-                //获得焦点下划线设为透明色
+                //
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                 ),

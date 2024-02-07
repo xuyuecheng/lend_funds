@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class CZDeviceUtils {
-  //自己封装的方法
+  //
   static const platform = MethodChannel("lend_funds_plugin");
   var idfa = "";
   var idfv = "";

@@ -64,7 +64,7 @@ class _SplashState extends State<Splash> {
         exit(0);
       }));
     } else {
-      //已经登录了
+      //
       if (CZStorage.getUserInfo() != null) {
         Get.offNamed(CZRouteConfig.initialRoute);
       } else {

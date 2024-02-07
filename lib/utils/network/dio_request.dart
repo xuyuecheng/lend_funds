@@ -30,16 +30,16 @@ class HttpRequest {
       Map<dynamic, dynamic>? params,
       Interceptor? inter}) async {
     if (kDebugMode) {
-      log("请求参数params:$params");
+      log("request-params:$params");
     }
-    // 1.创建单独配置
+    // 1.
     Map<String, dynamic> map = await DioUtils.getHeadersMap();
     final options = Options(
       method: method,
       headers: map,
     );
-    // 全局拦截器
-    // 创建默认的全局拦截器
+    //
+    //
     Interceptor dInter = InterceptorsWrapper(
         onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
       handler.next(options);
@@ -63,19 +63,19 @@ class HttpRequest {
       ));
     }
 
-    // 请求单独拦截器
+    //
     if (inter != null) {
       inters.add(inter);
     }
 
-    // 统一添加到拦截器中
+    //
     dio.interceptors.addAll(inters);
     String encryptParams = '';
     if (params != null) {
       // encryptParams = await DioUtils.getEncryptParams(params!);
       encryptParams = json.encode(params);
     }
-    // 2.发送网络请求
+    // 2.
     try {
       res.Response response =
           await dio.request(url, data: encryptParams, options: options);
@@ -91,7 +91,7 @@ class HttpRequest {
         }
         if (result != null && result["statusE8iqlh"] != null) {
           if (result["statusE8iqlh"] == 1012) {
-            //跳转登录页面
+            //
             if (LoginController.to.isHaveLoginPage == false) {
               LoginController.to.phoneStr = '';
               CZStorage.removeUserInfo();
@@ -115,15 +115,15 @@ class HttpRequest {
   }
 
   static Future<T> uploadFile<T>(String url, String filePath) async {
-    // 1.创建单独配置
+    // 1.
     Map<String, dynamic> map = await DioUtils.getHeadersMap();
     final options = Options(
       method: "post",
       headers: map,
     );
 
-    // 全局拦截器
-    // 创建默认的全局拦截器
+    //
+    //
     Interceptor dInter = InterceptorsWrapper(
         onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
       handler.next(options);
@@ -135,9 +135,9 @@ class HttpRequest {
     });
     List<Interceptor> inters = [dInter];
 
-    // 统一添加到拦截器中
+    //
     dio.interceptors.addAll(inters);
-    // 2.发送网络请求
+    // 2.
     try {
       final fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
       final formData = form.FormData.fromMap({
@@ -155,7 +155,7 @@ class HttpRequest {
         }
         if (result != null && result["statusE8iqlh"] != null) {
           if (result["statusE8iqlh"] == 1012) {
-            //跳转登录页面
+            //
             if (LoginController.to.isHaveLoginPage == false) {
               LoginController.to.phoneStr = '';
               CZStorage.removeUserInfo();

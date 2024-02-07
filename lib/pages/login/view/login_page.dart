@@ -93,11 +93,11 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: 18.sp,
                             color: Colors.grey,
                             fontWeight: FontWeight.w500),
-                        // 未获得焦点下划线设为透明色
+                        //
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent),
                         ),
-                        //获得焦点下划线设为透明色
+                        //
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent),
                         ),

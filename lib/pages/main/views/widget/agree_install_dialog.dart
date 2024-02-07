@@ -45,7 +45,7 @@ class AgreeInstallDialog extends StatelessWidget {
                 child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                      style: TextStyle(height: 2), //设置行间距
+                      style: TextStyle(height: 2), //
                       children: [
                         TextSpan(
                           text:

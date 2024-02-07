@@ -88,12 +88,12 @@ class _CameraKptState extends State<CameraKpt> {
     );
   }
 
-  ///相机工具栏
+  ///
   Widget _captureControlRowWidget() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween, //均匀放置
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, //
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           IconButton(
@@ -124,7 +124,7 @@ class _CameraKptState extends State<CameraKpt> {
     );
   }
 
-  ///预览窗口
+  ///
   Widget _cameraPreviewWidget() {
     if (!controller.value.isInitialized) {
       return SizedBox.shrink();

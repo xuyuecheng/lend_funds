@@ -49,14 +49,14 @@ class DioUtils {
       'AID': aid,
     };
     if (kDebugMode) {
-      // log("请求头tokenHeaders:$tokenHeaders");
+      // log("tokenHeaders:$tokenHeaders");
     }
     dynamic user = CZStorage.getUserInfo();
     if (user != null) {
       tokenHeaders['Auth'] = user['user']['token'];
     }
     if (kDebugMode) {
-      log("请求头tokenHeaders:$tokenHeaders");
+      log("tokenHeaders:$tokenHeaders");
     }
     var tokenStr = json.encode(tokenHeaders);
     var encryptToken = await _aesEncrypt(tokenStr);
@@ -92,14 +92,14 @@ class DioUtils {
       'appIdOKya4i': AppConfig.appId,
     };
     if (kDebugMode) {
-      // log("请求头tokenHeaders:$tokenHeaders");
+      // log("tokenHeaders:$tokenHeaders");
     }
     dynamic user = CZStorage.getUserInfo();
     if (user != null) {
       tokenHeaders['loginAuthoazNb2'] = user['accountUnDcbi']['tokene8PAV1'];
     }
     if (kDebugMode) {
-      log("请求头tokenHeaders:$tokenHeaders");
+      log("tokenHeaders:$tokenHeaders");
     }
     return tokenHeaders;
   }

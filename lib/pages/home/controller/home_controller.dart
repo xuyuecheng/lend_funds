@@ -123,7 +123,7 @@ class HomeController extends GetxController with StateMixin<Map> {
             }
           }
         } else {
-          //返回首页
+          //go back to home
           Get.back();
         }
       }

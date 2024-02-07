@@ -33,14 +33,14 @@ class _CZWebViewState extends State<CZWebView>
           NavigationDelegate(onNavigationRequest: (NavigationRequest request) {
         if (mounted) {
           setState(() {
-            _isLoading = true; // 开始访问页面，更新状态
+            _isLoading = true; //
           });
         }
         return NavigationDecision.navigate;
       }, onPageFinished: (String url) {
         if (mounted) {
           setState(() {
-            _isLoading = false; // 页面加载完成，更新状态
+            _isLoading = false; //页面加载完成，更新状态
           });
         }
       }))
@@ -78,10 +78,9 @@ class _CZWebViewState extends State<CZWebView>
             )
           : WebViewWidget(
               controller: controller,
-              //处理webView不好滑动问题
+              //
               gestureRecognizers: {
-                Factory(
-                    () => VerticalDragGestureRecognizer()), // 指定WebView只处理垂直手势。
+                Factory(() => VerticalDragGestureRecognizer()), //
               },
             ),
     );

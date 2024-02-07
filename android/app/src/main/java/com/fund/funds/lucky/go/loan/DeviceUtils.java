@@ -502,7 +502,7 @@ public class DeviceUtils {
     private static Map getPublicIp(Activity context) {
         Map u = new HashMap();;
         try {
-            // 内网地址
+            //
             ArrayList<NetworkInterface> nilist = Collections.list(NetworkInterface.getNetworkInterfaces());
             for (NetworkInterface ni : nilist) {
                 ArrayList<InetAddress> ialist = Collections.list(ni.getInetAddresses());
@@ -645,23 +645,23 @@ public class DeviceUtils {
             File audioExternalDir = context.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
             int audioExternalFileCount = (audioExternalDir.listFiles() == null) ? 0 : audioExternalDir.listFiles().length;
             u.put("audioExternalIJSGjp", audioExternalFileCount);
-            // 获取图片内部存储文件个数
+            //
             File imagesInternalDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             int imagesInternalFileCount = (imagesInternalDir.listFiles() == null) ? 0 : imagesInternalDir.listFiles().length;
             u.put("imagesInternalPcUu78", imagesInternalFileCount);
-            // 获取图片外部存储文件个数
+            //
             File imagesExternalDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             int imagesExternalFileCount = (imagesExternalDir.listFiles() == null) ? 0 : imagesExternalDir.listFiles().length;
             u.put("imagesExternalMI79gp", imagesExternalFileCount);
-            // 获取视频内部存储文件个数
+            //
             File videoInternalDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
             int videoInternalFileCount = (videoInternalDir.listFiles() == null) ? 0 : videoInternalDir.listFiles().length;
             u.put("videoInternalwEHDw0", videoInternalFileCount);
-            // 获取视频外部存储文件个数
+            //
             File videoExternalDir = context.getExternalFilesDir(Environment.DIRECTORY_MOVIES);
             int videoExternalFileCount = (videoExternalDir.listFiles() == null) ? 0 : videoExternalDir.listFiles().length;
             u.put("videoExternalprT0Lx", videoExternalFileCount);
-            // 获取下载文件个数
+            //
             String downloadDirPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
             File downloadDir = new File(downloadDirPath);
             File[] downloadFiles = downloadDir.listFiles();

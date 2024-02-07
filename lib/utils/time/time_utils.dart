@@ -54,7 +54,7 @@ class CZTimeUtils {
   }
 
   static DateTime _changeTimeDate(time) {
-    ///如果传进来的是字符串 13/16位 而且不包含-
+    ///
     DateTime dateTime = DateTime.now();
     if (time is String) {
       if ((time.length == 13 || time.length == 16) && !time.contains("-")) {

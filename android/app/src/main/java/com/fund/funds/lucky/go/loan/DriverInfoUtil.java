@@ -83,7 +83,7 @@ public class DriverInfoUtil {
         try {
             TelephonyManager tm=(TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             @SuppressLint("MissingPermission")
-            String tel = tm.getLine1Number(); //获取本机号码
+            String tel = tm.getLine1Number(); //
             tel1 = tel;
         }catch (Exception e) {
 
@@ -134,7 +134,7 @@ public class DriverInfoUtil {
             try {
                 TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
                 String operatorNumeric = telephonyManager.getSimOperator();
-                if (operatorNumeric != null && operatorNumeric.length() > 0) { // 判断是否为中国电信或中国卫通运营商
+                if (operatorNumeric != null && operatorNumeric.length() > 0) { //
                     Class<?> c = Class.forName("android.os.SystemProperties");
                     Method get = c.getMethod("get", String.class);
                     String phoneNumber = (String) get.invoke(c, "ro.cdma.icc_line1");

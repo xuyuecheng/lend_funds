@@ -198,7 +198,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               maxLines: 20,
                               keyboardType: TextInputType.text,
                               inputFormatters: <TextInputFormatter>[
-                                LengthLimitingTextInputFormatter(100) //限制长度
+                                LengthLimitingTextInputFormatter(100) //
                               ],
                               style: TextStyle(
                                   fontSize: 15.sp,
@@ -211,12 +211,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                     fontSize: 15.sp,
                                     color: Colors.grey,
                                     fontWeight: FontWeight.w500),
-                                // 未获得焦点下划线设为透明色
+                                //
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.transparent),
                                 ),
-                                //获得焦点下划线设为透明色
+                                //
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.transparent),

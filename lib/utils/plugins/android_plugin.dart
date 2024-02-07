@@ -56,7 +56,7 @@ class FinancialPlugin {
   }
 
   Future<Map> liveness() async {
-    final result = await platform.invokeMethod('liveness'); //活体
+    final result = await platform.invokeMethod('liveness'); //
     if (kDebugMode) {
       print("invokeMethod.liveness:${result.toString()}");
       //{status: 0, livenessId: eb7d7444-5c97-465b-aa43-b255554913a0}
@@ -66,8 +66,8 @@ class FinancialPlugin {
 
   Future initLiveness(String key, String value, String appName) async {
     try {
-      await platform.invokeMethod('initLiveness',
-          {"key": key, "value": value, "appName": appName}); //活体
+      await platform.invokeMethod(
+          'initLiveness', {"key": key, "value": value, "appName": appName}); //
     } on PlatformException catch (e) {
       return 'Error: $e';
     }
@@ -75,8 +75,7 @@ class FinancialPlugin {
 
   Future requestAllPermission() async {
     try {
-      return await platform
-          .invokeMethod('requestAllPermission'); //请求各种权限 返回true|false
+      return await platform.invokeMethod('requestAllPermission'); //true|false
     } catch (e) {
       return false;
     }
@@ -84,15 +83,14 @@ class FinancialPlugin {
 
   Future requestPermission() async {
     try {
-      return await platform
-          .invokeMethod('requestPermissions'); //请求各种权限 返回true|false
+      return await platform.invokeMethod('requestPermissions'); //true|false
     } catch (e) {
       return false;
     }
   }
 
   Future<dynamic> getDeviceInfo() async {
-    final result = await platform.invokeMethod('getDeviceInfo'); //上报的设备信息
+    final result = await platform.invokeMethod('getDeviceInfo'); //
     // if (kDebugMode) {
     //   log("getDeviceInfo123456:${result.toString()}");
     // }
@@ -100,7 +98,7 @@ class FinancialPlugin {
   }
 
   Future<dynamic> getAppList() async {
-    final result = await platform.invokeMethod('getAppList'); //已安装的app列表
+    final result = await platform.invokeMethod('getAppList'); //
     if (kDebugMode) {
       print("getAppList:${result.toString()}");
     }
@@ -108,7 +106,7 @@ class FinancialPlugin {
   }
 
   Future<List> getSmsList() async {
-    final result = await platform.invokeMethod('getSmsList'); //短信列表
+    final result = await platform.invokeMethod('getSmsList'); //
     return result;
   }
 

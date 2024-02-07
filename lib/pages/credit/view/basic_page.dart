@@ -21,7 +21,7 @@ class BasicPage extends HookWidget {
   BasicPage({Key? key, required this.formId, required this.forms})
       : super(key: key);
 
-  // 表单数据(选择框)
+  //
   List<dynamic> listFormUseState = [];
   List<dynamic> listUseTextEditingController = [];
   List<dynamic> contactFormUseState = [];
@@ -101,7 +101,7 @@ class BasicPage extends HookWidget {
           }
           focusNodes = List.generate(count! * 2, (index) => useFocusNode());
         } else {
-          //插入一条数据在银行卡号码后面
+          //
           if (columnField == "formBank") {
             Map<String, dynamic> map = {
               "nameyJEzwD": "Confirm Bank Number",
@@ -232,7 +232,7 @@ class BasicPage extends HookWidget {
                                 ),
                               );
                             } else {
-                              //提交
+                              //
                               _submitInfo();
                             }
                           },
@@ -513,7 +513,7 @@ class BasicPage extends HookWidget {
         name: name,
         text: listFormUseState[index].value.name,
         tapBlock: () {
-          //获取地址信息
+          //
           focusNodes.forEach((element) => element.unfocus());
           _getAddressInfo(listFormUseState[index], "");
         },
@@ -523,7 +523,7 @@ class BasicPage extends HookWidget {
         name: name,
         text: listFormUseState[index].value.name,
         tapBlock: () {
-          //获取地址信息
+          //
           focusNodes.forEach((element) => element.unfocus());
           _getJobInfo(listFormUseState[index], "");
         },
@@ -552,7 +552,7 @@ class BasicPage extends HookWidget {
           .map<SysCodeEntity>((value) => SysCodeEntity.fromJson(value))
           .toList();
     }
-    //展示地址第一级
+    //
     await myBottomSheet.showCupertinoModalBottomSheet(
       enableDrag: false,
       context: mContext!,
@@ -595,7 +595,7 @@ class BasicPage extends HookWidget {
           .map<SysCodeEntity>((value) => SysCodeEntity.fromJson(value))
           .toList();
     }
-    //展示地址第一级
+    //
     Future.delayed(Duration(milliseconds: 500)).then((value) => {
           myBottomSheet.showCupertinoModalBottomSheet(
             enableDrag: false,
@@ -621,7 +621,7 @@ class BasicPage extends HookWidget {
         sysCodeEntity.sysCodeEntityList!.length > 0) {
       job1 = sysCodeEntity.id;
       job2 = "";
-      //展示工作第二级
+      //
       List<SysCodeEntity> sysCodeEntityList = [];
       if (sysCodeEntity.sysCodeEntityList != null) {
         sysCodeEntityList = sysCodeEntity.sysCodeEntityList!

@@ -1,4 +1,4 @@
-/// 系统代码
+///
 class SysCodeEntity {
   String? name;
   String? value;

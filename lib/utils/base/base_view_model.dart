@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
-/// 基础Model
+/// Model
 class BaseModel extends ChangeNotifier {
   List<CancelToken> cancelTokens = [];
 
@@ -24,18 +24,18 @@ class BaseModel extends ChangeNotifier {
   }
 }
 
-/// 基础分页Model
+/// Model
 abstract class BaseListModel<T> extends BaseModel {
   int page = 1;
   List<T> data = [];
   bool loading = true;
 
-  /// 清除数据，当前场景与下拉刷新一致
+  ///
   clear() {
     refresh();
   }
 
-  /// 下拉刷新
+  ///
   refresh() async {
     this.page = 1;
     final list = await loadData();
@@ -47,7 +47,7 @@ abstract class BaseListModel<T> extends BaseModel {
     notifyListeners();
   }
 
-  /// 加载更多
+  ///
   loadMore() async {
     this.page++;
     final list = await loadData();
@@ -58,6 +58,6 @@ abstract class BaseListModel<T> extends BaseModel {
     return list != null && list.isNotEmpty;
   }
 
-  /// 子类覆写该方法并返回数据
+  ///
   Future<dynamic> loadData();
 }

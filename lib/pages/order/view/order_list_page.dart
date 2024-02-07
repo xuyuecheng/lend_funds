@@ -40,9 +40,9 @@ class _OrderListPageState extends State<OrderListPage> {
   void initState() {
     super.initState();
     //...
-    //监听事件
+    //listen event
     EventBus().on(EventBus.refreshOrderList, (arg) async {
-      //全部的才会刷新
+      //all update
       if (widget.status == "") {
         await model.refresh();
         refreshController.refreshCompleted();
@@ -158,7 +158,7 @@ class _OrderListPageState extends State<OrderListPage> {
                                       child: GestureDetector(
                                         behavior: HitTestBehavior.translucent,
                                         onTap: () {
-                                          //跳转到反馈界面
+                                          //
                                           Get.to(() => FeedbackListPage(
                                                 thirdOrderId: id,
                                               ));
@@ -271,7 +271,7 @@ class _OrderListPageState extends State<OrderListPage> {
                                     behavior: HitTestBehavior.translucent,
                                     onTap: () {
                                       if (mStatus == "LOAN_SUCCESS") {
-                                        //跳转到付款方式选择界面
+                                        //
                                         getPlan(context, id);
                                       }
                                     },
@@ -369,7 +369,7 @@ getPlan(BuildContext context, String orderId) async {
   final response = await context.read(planProvider(orderId)).loadPlanData();
   CZLoading.dismiss();
   if (response["statusE8iqlh"] == 0) {
-    //跳转
+    //
     Get.to(() => RepayPage(
           model: response["modelU8mV9A"],
         ));

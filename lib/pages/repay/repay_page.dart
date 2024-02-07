@@ -121,7 +121,7 @@ class _RepayPageState extends State<RepayPage> {
                       child: GestureDetector(
                         behavior: HitTestBehavior.translucent,
                         onTap: () {
-                          //跳转到反馈界面
+                          //
                           Get.to(() => FeedbackListPage(
                                 thirdOrderId: orderId,
                               ));

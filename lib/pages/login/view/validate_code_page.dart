@@ -147,7 +147,7 @@ class _ValidateCodePageState extends State<ValidateCodePage> {
   }
 
   _sendCode() {
-    //开始倒计时
+    //
     startCountdown();
   }
 
@@ -178,9 +178,9 @@ class _ValidateCodePageState extends State<ValidateCodePage> {
     }
   }
 
-  //倒计时方法
+  //
   startCountdown() {
-    //倒计时时间
+    //
     _countdownTime = 60;
     _timer ??= Timer.periodic(const Duration(seconds: 1), call);
   }

@@ -21,7 +21,7 @@ class BankDialog extends StatelessWidget {
               width: 300.w,
               padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
               decoration: new BoxDecoration(
-                  //设置四周圆角 角度
+                  //
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(22.sp),
                       topLeft: Radius.circular(22.sp)),

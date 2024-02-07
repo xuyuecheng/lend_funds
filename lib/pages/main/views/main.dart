@@ -25,7 +25,7 @@ class _MainPageState extends State<MainPage> {
     // MainController.to.requestUpload();
     // MainController.to.getAuthLicense();
     super.initState();
-    //监听事件
+    //listen event
     EventBus().on(EventBus.changeToOrderTab, (arg) {
       setState(() {
         _currentIndex = 1;

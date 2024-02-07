@@ -418,7 +418,7 @@ class _HomePageState extends State<HomePage> {
                               width: 27.5.w,
                               height: 27.5.w,
                               decoration: new BoxDecoration(
-                                //设置四周圆角 角度
+                                //
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(0)),
                               ),
@@ -592,7 +592,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  //试算
+  //
   _getTrialData({required List productIds}) async {
     CZLoading.loading();
     final response = await HomeController.to.requestTrialData(productIds);
@@ -611,7 +611,7 @@ class _HomePageState extends State<HomePage> {
               CZLoading.dismiss();
               if (response["statusE8iqlh"] == 0) {
                 CZDialogUtil.dismiss();
-                //跳转到订单列表
+                //
                 Get.to(() => OrderPage(
                       canReturn: true,
                     ));
@@ -660,7 +660,7 @@ class _HomePageState extends State<HomePage> {
                   statuses[Permission.bluetooth]
           // || PermissionStatus.permanentlyDenied == statuses[Permission.contacts]
           ) {
-        //跳到设置
+        //
         showCupertinoDialog(
             context: context,
             builder: (context) {
@@ -679,7 +679,7 @@ class _HomePageState extends State<HomePage> {
                     child: const Text('confirm'),
                     onPressed: () {
                       Navigator.pop(context);
-                      // 打开手机上该app权限的页面
+                      //
                       openAppSettings();
                     },
                   ),

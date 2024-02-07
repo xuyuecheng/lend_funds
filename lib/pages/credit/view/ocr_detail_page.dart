@@ -173,7 +173,7 @@ class OcrDetailPage extends HookWidget {
     }).then((value) {
       CZLoading.dismiss();
       if (value["statusE8iqlh"] == 0) {
-        //返回上个页面
+        //
         Get.back(result: true);
       }
     });
