@@ -8,25 +8,21 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../utils/theme/colors_utils.dart';
 
-class CZWebView extends StatefulWidget {
-  String? title;
-  CZWebView({Key? key, this.title}) : super(key: key);
+class WebView extends StatefulWidget {
+  String title;
+  String url;
+  WebView({Key? key, this.title = "", this.url = ""}) : super(key: key);
 
   @override
-  State<CZWebView> createState() => _CZWebViewState();
+  State<WebView> createState() => _WebViewState();
 }
 
-class _CZWebViewState extends State<CZWebView>
-    with AutomaticKeepAliveClientMixin {
+class _WebViewState extends State<WebView> with AutomaticKeepAliveClientMixin {
   late final WebViewController controller;
   bool _isLoading = true;
-  late String title;
-  late String url;
 
   @override
   void initState() {
-    title = Get.parameters['title'] ?? '';
-    url = Get.parameters['url'] ?? '';
     controller = WebViewController()
       // ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
@@ -44,7 +40,7 @@ class _CZWebViewState extends State<CZWebView>
           });
         }
       }))
-      ..loadRequest(Uri.parse(url));
+      ..loadRequest(Uri.parse(widget.url));
     super.initState();
   }
 
@@ -59,7 +55,7 @@ class _CZWebViewState extends State<CZWebView>
               Get.back();
             }),
         title: Text(
-          title,
+          widget.title,
           style: TextStyle(
               fontSize: 17.5.sp,
               color: const Color(0xFF000000),

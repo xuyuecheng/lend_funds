@@ -1,12 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/main/views/widget/agree_install_dialog.dart';
+import 'package:lend_funds/pages/webview/permission_webview_page.dart';
+import 'package:lend_funds/utils/const/translate.dart';
+import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -55,14 +54,10 @@ class _SplashState extends State<Splash> {
   void _onInit() async {
     bool installProtol = await CZStorage.getAgreeInstall();
     if (installProtol == false) {
-      CZDialogUtil.show(AgreeInstallDialog(agreeBlock: () {
-        CZDialogUtil.dismiss();
-        CZStorage.saveAgreeInstall(true);
-        Get.offNamed(CZRouteConfig.initialRouteLogin);
-      }, rejectBlock: () {
-        CZDialogUtil.dismiss();
-        exit(0);
-      }));
+      Get.off(() => PermissionWebviewPage(
+            title: Translate.permission,
+            url: AppConfig.privacyStatementURL,
+          ));
     } else {
       //
       if (CZStorage.getUserInfo() != null) {

@@ -1,7 +1,3 @@
-// import 'package:financial_app/pages/credit/views/credit.dart';
-// import 'package:financial_app/pages/mine/views/mine.dart';
-// import 'package:financial_app/pages/mine/views/mine_message_main.dart';
-// import 'package:financial_app/pages/webview/webview_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/expection_pages/unknown_route.dart';
@@ -10,7 +6,6 @@ import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/pages/login/view/validate_code_page.dart';
 import 'package:lend_funds/pages/main/views/main.dart';
 import 'package:lend_funds/pages/main/views/splash.dart';
-import 'package:lend_funds/pages/webview/webview_utils.dart';
 
 class CZRouteConfig {
   //Main
@@ -29,9 +24,6 @@ class CZRouteConfig {
   //Unknown
   static const unknown = '/unknown';
 
-  //web
-  static const webView = '/webView';
-
   static const String initialRoute = main;
   static const String initialRouteLogin = login;
   static const String initialRouteSplash = splash;
@@ -42,11 +34,6 @@ class CZRouteConfig {
     GetPage(name: home, page: () => const HomePage()),
     GetPage(name: login, page: () => const LoginPage()),
     GetPage(name: loginCode, page: () => const ValidateCodePage()),
-    GetPage(
-        name: webView,
-        page: () => CZWebView(
-              title: "123",
-            )),
   ];
 
   static final GetPage onUnknownRoute =
