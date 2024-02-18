@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/login/view/login_page.dart';
 import 'package:lend_funds/pages/mine/controller/mine_controller.dart';
 import 'package:lend_funds/pages/mine/view/widget/custom_mine_item.dart';
 import 'package:lend_funds/pages/mine/view/widget/delete_account_dialog.dart';
@@ -10,6 +9,8 @@ import 'package:lend_funds/utils/eventbus/eventbus.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../login/view/login_new_page.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({Key? key}) : super(key: key);
@@ -196,7 +197,7 @@ class _MinePageState extends State<MinePage> {
                                   MineController.to.requestDel().then((value) {
                                     if (value["statusE8iqlh"] == 0) {
                                       CZStorage.removeUserInfo();
-                                      Get.offAll(() => LoginPage());
+                                      Get.offAll(() => LoginNewPage());
                                     }
                                   });
                                 }, cancelBlock: () {
@@ -224,7 +225,7 @@ class _MinePageState extends State<MinePage> {
                         behavior: HitTestBehavior.translucent,
                         onTap: () {
                           CZStorage.removeUserInfo();
-                          Get.offAll(() => LoginPage());
+                          Get.offAll(() => LoginNewPage());
                         },
                         child: Container(
                           // height: 50.h,

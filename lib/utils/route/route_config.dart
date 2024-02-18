@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/expection_pages/unknown_route.dart';
 import 'package:lend_funds/pages/home/view/home_page.dart';
-import 'package:lend_funds/pages/login/view/login_page.dart';
-import 'package:lend_funds/pages/login/view/validate_code_page.dart';
+import 'package:lend_funds/pages/login/view/login_new_page.dart';
 import 'package:lend_funds/pages/main/views/main.dart';
 import 'package:lend_funds/pages/main/views/splash.dart';
 
@@ -32,8 +31,7 @@ class CZRouteConfig {
     GetPage(name: splash, page: () => const Splash()),
     GetPage(name: main, page: () => const MainPage()),
     GetPage(name: home, page: () => const HomePage()),
-    GetPage(name: login, page: () => const LoginPage()),
-    GetPage(name: loginCode, page: () => const ValidateCodePage()),
+    GetPage(name: login, page: () => const LoginNewPage()),
   ];
 
   static final GetPage onUnknownRoute =

@@ -8,7 +8,7 @@ import 'package:dio/src/response.dart' as res;
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/login/controllers/login_controller.dart';
-import 'package:lend_funds/pages/login/view/login_page.dart';
+import 'package:lend_funds/pages/login/view/login_new_page.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -95,7 +95,7 @@ class HttpRequest {
             if (LoginController.to.isHaveLoginPage == false) {
               LoginController.to.phoneStr = '';
               CZStorage.removeUserInfo();
-              Get.offAll(() => LoginPage());
+              Get.offAll(() => LoginNewPage());
             }
             LoginController.to.isHaveLoginPage = true;
           } else if (result["statusE8iqlh"] != 1012 &&
@@ -159,7 +159,7 @@ class HttpRequest {
             if (LoginController.to.isHaveLoginPage == false) {
               LoginController.to.phoneStr = '';
               CZStorage.removeUserInfo();
-              Get.offAll(() => LoginPage());
+              Get.offAll(() => LoginNewPage());
             }
             LoginController.to.isHaveLoginPage = true;
           } else if (result["statusE8iqlh"] != 1012 &&
