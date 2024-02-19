@@ -3,6 +3,7 @@ import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/common/privacy_agreement.dart';
 import 'package:lend_funds/pages/credit/controller/ocr_controller.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_choose_info_widget.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_input_info_widget.dart';
@@ -50,85 +51,100 @@ class OcrDetailPage extends HookWidget {
           ),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          // padding: EdgeInsets.symmetric(horizontal: 15.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                color: Color(0xffF1F2F2),
-                height: 15.h,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 16.5.h),
-                    CreditInputInfoWidget(
-                      name: "Idcard",
-                      inputController: dutyIdCardController,
-                      focusNode: focusNodes[0],
-                    ),
-                    CreditInputInfoWidget(
-                        name: "Realname",
-                        inputController: dutyRealNameController,
-                        focusNode: focusNodes[1]),
-                    CreditChooseInfoWidget(
-                        name: "Birthday",
-                        text: rectifyTime.value,
-                        tapBlock: () {
-                          DatePicker.showDatePicker(context,
-                              showTitleActions: true, onChanged: (date) {
-                            print('change $date');
-                          }, onConfirm: (date) {
-                            print('confirm $date');
-                            rectifyTime.value = CZTimeUtils.formatDate(date);
-                          },
-                              currentTime:
-                                  CZTimeUtils.stringToDate(rectifyTime.value),
-                              locale: LocaleType.en);
-                        }),
-                    CreditInputInfoWidget(
-                      name: "Taxregnumber",
-                      inputController: dutyTaxRegNumberController,
-                      focusNode: focusNodes[3],
-                    ),
-                    SizedBox(height: 12.h),
-                    Container(
-                      width: 345.w,
-                      height: 50.h,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: const Color(0xFF003C6A),
-                            borderRadius: BorderRadius.circular(5.w)),
-                        child: TextButton(
-                          onPressed: () {
-                            _ocrInfo(
-                                dutyIdCardController.text.toString(),
-                                dutyRealNameController.text.toString(),
-                                dutyTaxRegNumberController.text.toString(),
-                                rectifyTime.value,
-                                params["idCardImageFrontRvZMet"],
-                                params["idCardImageBackexYcGa"],
-                                params["idCardImagePanRkLgYd"]);
-                          },
-                          child: Text("Next step",
-                              style: TextStyle(
-                                  fontSize: 17.5.sp,
-                                  color: const Color(0xFFFFFFFF),
-                                  fontWeight: FontWeight.w500)),
+        body: Column(
+          children: [
+            // MarqueeWidget(),
+            Expanded(
+                child: SingleChildScrollView(
+              // padding: EdgeInsets.symmetric(horizontal: 15.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 11.h,
                         ),
-                      ),
+                        Image.asset(
+                          "assets/credit/progress_ekyc.png",
+                          fit: BoxFit.fill,
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        CreditInputInfoWidget(
+                          name: "Idcard",
+                          inputController: dutyIdCardController,
+                          focusNode: focusNodes[0],
+                        ),
+                        CreditInputInfoWidget(
+                            name: "Realname",
+                            inputController: dutyRealNameController,
+                            focusNode: focusNodes[1]),
+                        CreditChooseInfoWidget(
+                            name: "Birthday",
+                            text: rectifyTime.value,
+                            tapBlock: () {
+                              DatePicker.showDatePicker(context,
+                                  showTitleActions: true, onChanged: (date) {
+                                print('change $date');
+                              }, onConfirm: (date) {
+                                print('confirm $date');
+                                rectifyTime.value =
+                                    CZTimeUtils.formatDate(date);
+                              },
+                                  currentTime: CZTimeUtils.stringToDate(
+                                      rectifyTime.value),
+                                  locale: LocaleType.en);
+                            }),
+                        CreditInputInfoWidget(
+                          name: "Taxregnumber",
+                          inputController: dutyTaxRegNumberController,
+                          focusNode: focusNodes[3],
+                        ),
+                        SizedBox(height: 30.h),
+                        Container(
+                          width: 345.w,
+                          height: 50.h,
+                          decoration: BoxDecoration(
+                              color: const Color(0xFF00A651),
+                              borderRadius: BorderRadius.circular(5.w)),
+                          child: TextButton(
+                            onPressed: () {
+                              _ocrInfo(
+                                  dutyIdCardController.text.toString(),
+                                  dutyRealNameController.text.toString(),
+                                  dutyTaxRegNumberController.text.toString(),
+                                  rectifyTime.value,
+                                  params["idCardImageFrontRvZMet"],
+                                  params["idCardImageBackexYcGa"],
+                                  params["idCardImagePanRkLgYd"]);
+                            },
+                            child: Text("Next",
+                                style: TextStyle(
+                                    fontSize: 25.sp,
+                                    color: const Color(0xFFFFFFFF),
+                                    fontWeight: FontWeight.w700)),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        Center(
+                          child: PrivacyAgreement(),
+                        )
+                      ],
                     ),
-                    SizedBox(height: 52.h),
-                  ],
-                ),
-              )
-            ],
-          ),
+                  )
+                ],
+              ),
+            ))
+          ],
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xffF5F4F2),
       ),
     );
   }

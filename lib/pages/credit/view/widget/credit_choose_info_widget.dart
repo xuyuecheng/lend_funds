@@ -22,7 +22,7 @@ class CreditChooseInfoWidget extends StatelessWidget {
           style: TextStyle(
               fontSize: 15.sp,
               color: const Color(0xFF000000),
-              fontWeight: FontWeight.w500),
+              fontWeight: FontWeight.w700),
         ),
         SizedBox(height: 12.h),
         GestureDetector(
@@ -34,7 +34,7 @@ class CreditChooseInfoWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               height: 44.h,
               decoration: BoxDecoration(
-                  color: Color(0xffF1F2F2),
+                  color: Color(0xffFFFFFF),
                   borderRadius: BorderRadius.circular(5.w)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
