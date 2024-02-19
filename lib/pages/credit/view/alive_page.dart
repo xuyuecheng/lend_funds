@@ -84,6 +84,8 @@ class _AlivePageState extends State<AlivePage> {
 
   @override
   Widget build(BuildContext context) {
+    double cameraWidth = 315;
+    double cameraHeight = 397;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -101,60 +103,90 @@ class _AlivePageState extends State<AlivePage> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: _cameraPreviewWidget(),
-          ),
-          _captureControlRowWidget(),
-        ],
-      ),
-      backgroundColor: Colors.white,
-    );
-  }
-
-  ///
-  Widget _captureControlRowWidget() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween, //
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          IconButton(
-            iconSize: 40.w,
-            icon: Icon(Icons.clear_rounded),
-            color: Colors.transparent,
-            onPressed: () {
-              // Navigator.pop(context, null);
-            },
-          ),
-          IconButton(
-            iconSize: 40.w,
-            icon: Icon(Icons.camera_alt),
-            color: Colors.blue,
-            onPressed: controller.value.isInitialized &&
-                    !controller.value.isRecordingVideo
-                ? onTakePictureButtonPressed
-                : null,
-          ),
-          IconButton(
-            iconSize: 40.w,
-            icon: Icon(Icons.verified_outlined),
-            color: Colors.transparent,
-            onPressed: () {},
+      // body: Column(
+      //   children: <Widget>[
+      //     Expanded(
+      //       child: _cameraPreviewWidget(),
+      //     ),
+      //     _captureControlRowWidget(),
+      //   ],
+      // ),
+      body: Stack(
+        children: [
+          _cameraPreviewWidget(),
+          Center(
+            child: Column(
+              children: [
+                SizedBox(height: 13.5),
+                Image.asset(
+                  "assets/credit/liveness_detection_backgrou.png",
+                  width: cameraWidth,
+                  height: cameraHeight,
+                  fit: BoxFit.fill,
+                ),
+                SizedBox(height: 20),
+                Text("Please make sure it is done by you",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: const Color(0xFF00A651),
+                        fontWeight: FontWeight.w600)),
+                SizedBox(height: 21),
+                GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: controller != null &&
+                            controller.value.isInitialized &&
+                            !controller.value.isRecordingVideo
+                        ? onTakePictureButtonPressed
+                        : null,
+                    child: Container(
+                        alignment: Alignment.center,
+                        width: 176.w,
+                        height: 45.h,
+                        decoration: BoxDecoration(
+                            color: const Color(0xFF00A651),
+                            borderRadius: BorderRadius.circular(5.w)),
+                        child: Image.asset(
+                          "assets/credit/liveness_detection_take_photo.png",
+                          width: 32.w,
+                          height: 28.h,
+                        )))
+              ],
+            ),
           )
         ],
       ),
+      backgroundColor: Color(0xffF5F4F2),
     );
   }
 
   ///
+  // Widget _cameraPreviewWidget() {
+  //   if (!controller.value.isInitialized) {
+  //     return SizedBox.shrink();
+  //   } else {
+  //     return CameraPreview(controller);
+  //   }
+  // }
+  ///预览窗口
   Widget _cameraPreviewWidget() {
-    if (!controller.value.isInitialized) {
-      return SizedBox.shrink();
+    final theme = Theme.of(context);
+    if (controller == null || !controller.value.isInitialized) {
+      return Text(
+        "",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 24.0,
+          fontWeight: FontWeight.w900,
+        ),
+      );
     } else {
+      //调整child到设置的宽高比
       return CameraPreview(controller);
+      // return AspectRatio(
+      //   aspectRatio: controller.value.aspectRatio,
+      //   child: CameraPreview(controller),
+      // );
     }
   }
 
