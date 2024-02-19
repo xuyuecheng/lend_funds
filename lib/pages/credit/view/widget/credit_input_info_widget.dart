@@ -84,11 +84,11 @@ class CreditInputTitleWidget extends StatelessWidget {
       children: [
         Text(name ?? "",
             style: TextStyle(
-                fontSize: 25,
-                color: const Color(0xFF000000),
-                fontWeight: FontWeight.w600)),
+                fontSize: 15.sp,
+                color: const Color(0xFF00A651),
+                fontWeight: FontWeight.w700)),
         SizedBox(
-          height: 12,
+          height: 12.h,
         ),
       ],
     );

@@ -25,7 +25,7 @@ class BankDialog extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(22.sp),
                       topLeft: Radius.circular(22.sp)),
-                  color: Color(0xff003C6A)),
+                  color: Color(0xff00A651)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -53,16 +53,16 @@ class BankDialog extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 0),
                   child: MaterialButton(
-                    color: Color.fromRGBO(235, 236, 252, 1),
+                    color: Color(0xffDBF6E9),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20.sp))),
+                            bottomLeft: Radius.circular(10.sp))),
                     padding: EdgeInsets.symmetric(vertical: 15.h),
-                    child: Text("CANCEL",
+                    child: Text("Cancel",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(54, 65, 225, 1),
-                            fontSize: 15.sp)),
+                            color: Color(0xff00A651),
+                            fontSize: 17.5.sp)),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -73,16 +73,16 @@ class BankDialog extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 0),
                   child: MaterialButton(
-                    color: Color(0xff003C6A),
+                    color: Color(0xff00A651),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(20.sp))),
+                            bottomRight: Radius.circular(10.sp))),
                     padding: EdgeInsets.symmetric(vertical: 15.h),
-                    child: Text("CONTINUE",
+                    child: Text("Continue",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                            fontSize: 15.sp)),
+                            fontSize: 17.5.sp)),
                     onPressed: () {
                       Navigator.pop(context);
                       onConfirm();
