@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/common/privacy_agreement.dart';
 import 'package:lend_funds/pages/credit/view/widget/bank_dialog.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_choose_info_widget.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_input_info_widget.dart';
@@ -159,99 +160,116 @@ class BasicPage extends HookWidget {
           ),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          // padding: EdgeInsets.symmetric(horizontal: 15.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                color: Color(0xffF1F2F2),
-                height: 15.h,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 12.h),
-                    (formType == "contact")
-                        ? (mGetContactWidget(context, contents[0]))
-                        : (contents.isNotEmpty
-                            ? Column(
-                                children: contents.map((e) {
-                                  int index = contents.indexOf(e);
-                                  return mGetWidget(context, e, index);
-                                }).toList(),
-                              )
-                            : SizedBox.shrink()),
-                    SizedBox(height: 25.h),
-                    Container(
-                      width: 345.w,
-                      height: 50.h,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: const Color(0xFF003C6A),
-                            borderRadius: BorderRadius.circular(5.w)),
-                        child: TextButton(
-                          onPressed: () {
-                            focusNodes.forEach((element) => element.unfocus());
-                            if ((columnField == "formBank")) {
-                              List titleList = [];
-                              List contentList = [];
-                              for (var i = 0; i < contents.length; i++) {
-                                String? name =
-                                    contents[i].containsKey("nameyJEzwD")
-                                        ? contents[i]["nameyJEzwD"]
-                                        : null;
-                                String type =
-                                    contents[i].containsKey("typeIVyt6h")
-                                        ? contents[i]["typeIVyt6h"]
-                                        : null;
-                                titleList.add(name ?? "");
-                                if (type == "select") {
-                                  contentList.add(listFormUseState[i]
-                                      .value
-                                      .name
-                                      .toString());
-                                } else {
-                                  contentList.add(
-                                      listUseTextEditingController[i]
-                                          .text
-                                          .toString());
-                                }
-                              }
-                              debugPrint("titleList:$titleList");
-                              debugPrint("contentList:$contentList");
-                              CZDialogUtil.show(
-                                BankDialog(
-                                  titleList: titleList,
-                                  contentList: contentList,
-                                  onConfirm: () {
-                                    _submitInfo();
-                                  },
-                                ),
-                              );
-                            } else {
-                              //
-                              _submitInfo();
-                            }
-                          },
-                          child: Text("Next step",
-                              style: TextStyle(
-                                  fontSize: 17.5.sp,
-                                  color: const Color(0xFFFFFFFF),
-                                  fontWeight: FontWeight.w500)),
+        body: Column(
+          children: [
+            // MarqueeWidget(),
+            Expanded(
+                child: SingleChildScrollView(
+              // padding: EdgeInsets.symmetric(horizontal: 15.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 11.h),
+                        Center(
+                          child: Image.asset(
+                            (columnField == "formBank")
+                                ? "assets/credit/progress_bank.png"
+                                : "assets/credit/progress_information.png",
+                          ),
                         ),
-                      ),
+                        SizedBox(height: 15.h),
+                        (formType == "contact")
+                            ? (mGetContactWidget(context, contents[0]))
+                            : (contents.isNotEmpty
+                                ? Column(
+                                    children: contents.map((e) {
+                                      int index = contents.indexOf(e);
+                                      return mGetWidget(context, e, index);
+                                    }).toList(),
+                                  )
+                                : SizedBox.shrink()),
+                        SizedBox(height: 25.h),
+                        Container(
+                          width: 345.w,
+                          height: 50.h,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: const Color(0xFF00A651),
+                                borderRadius: BorderRadius.circular(5.w)),
+                            child: TextButton(
+                              onPressed: () {
+                                focusNodes
+                                    .forEach((element) => element.unfocus());
+                                if ((columnField == "formBank")) {
+                                  List titleList = [];
+                                  List contentList = [];
+                                  for (var i = 0; i < contents.length; i++) {
+                                    String? name =
+                                        contents[i].containsKey("nameyJEzwD")
+                                            ? contents[i]["nameyJEzwD"]
+                                            : null;
+                                    String type =
+                                        contents[i].containsKey("typeIVyt6h")
+                                            ? contents[i]["typeIVyt6h"]
+                                            : null;
+                                    titleList.add(name ?? "");
+                                    if (type == "select") {
+                                      contentList.add(listFormUseState[i]
+                                          .value
+                                          .name
+                                          .toString());
+                                    } else {
+                                      contentList.add(
+                                          listUseTextEditingController[i]
+                                              .text
+                                              .toString());
+                                    }
+                                  }
+                                  debugPrint("titleList:$titleList");
+                                  debugPrint("contentList:$contentList");
+                                  CZDialogUtil.show(
+                                    BankDialog(
+                                      titleList: titleList,
+                                      contentList: contentList,
+                                      onConfirm: () {
+                                        _submitInfo();
+                                      },
+                                    ),
+                                  );
+                                } else {
+                                  //
+                                  _submitInfo();
+                                }
+                              },
+                              child: Text("Next",
+                                  style: TextStyle(
+                                      fontSize: 25.sp,
+                                      color: const Color(0xFFFFFFFF),
+                                      fontWeight: FontWeight.w700)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        Center(
+                          child: PrivacyAgreement(),
+                        ),
+                        SizedBox(height: 15.h),
+                      ],
                     ),
-                    SizedBox(height: 52.h),
-                  ],
-                ),
-              )
-            ],
-          ),
+                  )
+                ],
+              ),
+            )),
+          ],
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xffF5F4F2),
       ),
     );
   }
