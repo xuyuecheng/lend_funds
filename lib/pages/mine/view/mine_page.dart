@@ -4,11 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/login/view/login_new_page.dart';
 import 'package:lend_funds/pages/mine/controller/mine_controller.dart';
+import 'package:lend_funds/pages/mine/view/widget/delete_account_dialog.dart';
 import 'package:lend_funds/pages/webview/webview.dart';
 import 'package:lend_funds/utils/const/translate.dart';
 import 'package:lend_funds/utils/eventbus/eventbus.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/storage/storage_utils.dart';
+import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MinePage extends StatefulWidget {
@@ -197,6 +199,46 @@ class _MinePageState extends State<MinePage> {
                                   height: 15.h,
                                 ),
                                 Text("Privacy Agreement",
+                                    style: TextStyle(
+                                        fontSize: 7.5.sp,
+                                        color: const Color(0xFF5F5F5F),
+                                        fontWeight: FontWeight.w500)),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                              ],
+                            ),
+                          )),
+                          Expanded(
+                              child: GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onTap: () {
+                              CZDialogUtil.show(
+                                  DeleteAccountDialog(confirmBlock: () {
+                                CZDialogUtil.dismiss();
+                                MineController.to.requestDel().then((value) {
+                                  if (value["statusE8iqlh"] == 0) {
+                                    CZStorage.removeUserInfo();
+                                    Get.offAll(() => LoginNewPage());
+                                  }
+                                });
+                              }, cancelBlock: () {
+                                CZDialogUtil.dismiss();
+                              }));
+                            },
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 17.h,
+                                ),
+                                Image.asset(
+                                    'assets/mine/mine_delete_account_icon.png',
+                                    width: 24.w,
+                                    height: 17.w),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Text("Delete Account",
                                     style: TextStyle(
                                         fontSize: 7.5.sp,
                                         color: const Color(0xFF5F5F5F),
