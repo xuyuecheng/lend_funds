@@ -14,7 +14,7 @@ class DeleteAccountDialog extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: 345.w,
+          width: 288.w,
           decoration: BoxDecoration(
               color: Colors.transparent,
               // borderRadius: BorderRadius.circular(15.w),
@@ -33,23 +33,23 @@ class DeleteAccountDialog extends StatelessWidget {
                     "After deleting your account, all your information on Lend Funds will be deleted and you will no longer be able to use our services. If you want to continue using it, you must re-register.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        height: 2,
+                        // height: 2,
                         fontSize: 12.5.sp,
                         color: const Color(0xFFFFFFFF),
                         fontWeight: FontWeight.normal)),
               ),
               SizedBox(
-                height: 74.w,
+                height: 30.w,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 9.w),
+                padding: EdgeInsets.symmetric(horizontal: 7.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: 154.w,
+                      width: 128.w,
                       decoration: BoxDecoration(
-                          color: const Color(0xFF003C6A),
+                          color: const Color(0xFF00A651),
                           borderRadius: BorderRadius.circular(5.w)),
                       child: TextButton(
                         onPressed: () {
@@ -57,15 +57,15 @@ class DeleteAccountDialog extends StatelessWidget {
                         },
                         child: Text("Confirm",
                             style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 15.sp,
                                 color: const Color(0xFFFFFFFF),
-                                fontWeight: FontWeight.w500)),
+                                fontWeight: FontWeight.w700)),
                       ),
                     ),
                     Container(
-                      width: 154.w,
+                      width: 128.w,
                       decoration: BoxDecoration(
-                          color: const Color(0xFFCFDEEA),
+                          color: const Color(0xFFDBF6E9),
                           borderRadius: BorderRadius.circular(5.w)),
                       child: TextButton(
                         onPressed: () {
@@ -73,9 +73,9 @@ class DeleteAccountDialog extends StatelessWidget {
                         },
                         child: Text("Cancel",
                             style: TextStyle(
-                                fontSize: 20.sp,
-                                color: const Color(0xFF003C6A),
-                                fontWeight: FontWeight.w500)),
+                                fontSize: 15.sp,
+                                color: const Color(0xFF00A651),
+                                fontWeight: FontWeight.w700)),
                       ),
                     ),
                   ],
