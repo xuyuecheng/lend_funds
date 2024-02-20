@@ -31,8 +31,8 @@ class HomeController extends GetxController with StateMixin<Map> {
     });
   }
 
-  void getProductList() {
-    requestProductList().then((value) {
+  Future getProductList() async {
+    await requestProductList().then((value) {
       if (value["statusE8iqlh"] == 0) {
         //success
         productList = value["pageLosuN4"].containsKey("contentCxb7jm")

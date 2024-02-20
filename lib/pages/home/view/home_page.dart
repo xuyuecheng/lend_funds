@@ -546,7 +546,7 @@ class _HomePageState extends State<HomePage> {
                       idleText: "idle",
                     ),
                     onRefresh: () async {
-                      HomeController.to.getProductList();
+                      await HomeController.to.getProductList();
                       refreshController.refreshCompleted();
                       refreshController.loadComplete();
                     },
