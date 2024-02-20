@@ -41,6 +41,16 @@ class HomeController extends GetxController with StateMixin<Map> {
         if (kDebugMode) {
           log("productList:${json.encode(productList)}");
         }
+        if (productList.isNotEmpty) {
+          for (int index = 0; index < productList.length; index++) {
+            Map<String, dynamic> map = productList[index];
+            if (index == 0) {
+              map["hadSelect"] = true;
+            } else {
+              map["hadSelect"] = false;
+            }
+          }
+        }
         update();
       }
     });
