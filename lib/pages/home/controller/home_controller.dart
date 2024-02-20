@@ -14,7 +14,7 @@ import 'package:lend_funds/utils/plugins/ios_plugin.dart';
 
 class HomeController extends GetxController with StateMixin<Map> {
   static HomeController get to => Get.find();
-  List forms = [];
+  List forms = [1]; //数组有值，首页默认展示推荐的UI
   List productList = [];
   @override
   void onReady() {
