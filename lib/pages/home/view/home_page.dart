@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/common/privacy_agreement.dart';
 import 'package:lend_funds/pages/home/controller/home_controller.dart';
-import 'package:lend_funds/pages/home/view/widget/home_product_dialog.dart';
 import 'package:lend_funds/pages/order/view/order_page.dart';
+import 'package:lend_funds/pages/product/product_confirm_page.dart';
 import 'package:lend_funds/pages/webview/webview.dart';
 import 'package:lend_funds/utils/const/translate.dart';
 import 'package:lend_funds/utils/eventbus/eventbus.dart';
@@ -811,27 +811,6 @@ class _HomePageState extends State<HomePage> {
                                                     )
                                                   ],
                                                 ),
-                                                // GestureDetector(
-                                                //   behavior: HitTestBehavior.translucent,
-                                                //   onTap: () {
-                                                //     _getTrialData(productIds: [id]);
-                                                //   },
-                                                //   child: Container(
-                                                //     padding: EdgeInsets.symmetric(
-                                                //         horizontal: 12.5.w,
-                                                //         vertical: 2.h),
-                                                //     decoration: BoxDecoration(
-                                                //         borderRadius:
-                                                //             BorderRadius.circular(3.w),
-                                                //         color: Color(0xff003C6A)),
-                                                //     child: Text("Aplicar",
-                                                //         style: TextStyle(
-                                                //             fontSize: 15.sp,
-                                                //             color:
-                                                //                 const Color(0xFFFFFFFF),
-                                                //             fontWeight: FontWeight.w500)),
-                                                //   ),
-                                                // ),
                                               ],
                                             ),
                                             SizedBox(
@@ -1045,8 +1024,8 @@ class _HomePageState extends State<HomePage> {
                                         _switchSelected
                                             ? "assets/login/login_select_icon.png"
                                             : "assets/login/login_noselect_icon.png",
-                                        width: 15.w,
-                                        height: 15.w),
+                                        width: 18.w,
+                                        height: 18.w),
                                   ),
                                 ),
                                 TextSpan(
@@ -1127,22 +1106,22 @@ class _HomePageState extends State<HomePage> {
           response.containsKey("modelU8mV9A") ? response["modelU8mV9A"] : null;
       print("item:${item.toString()}");
       if (item != null && item.length > 0) {
-        CZDialogUtil.show(HomeProductDialog(
-            itemList: item,
-            confirmBlock: () async {
-              CZLoading.loading();
-              final response =
-                  await HomeController.to.requestLoanData(productIds);
-              CZLoading.dismiss();
-              if (response["statusE8iqlh"] == 0) {
-                CZDialogUtil.dismiss();
-                //
-                Get.to(() => OrderPage(
-                      canReturn: true,
-                    ));
-                EventBus().emit(EventBus.refreshOrderList, null);
-              }
-            }));
+        var result = await Get.to(() => ProductConfirmPage(
+              itemList: item,
+            ));
+        if (result != null && result) {
+          CZLoading.loading();
+          final response = await HomeController.to.requestLoanData(productIds);
+          CZLoading.dismiss();
+          if (response["statusE8iqlh"] == 0) {
+            CZDialogUtil.dismiss();
+            //
+            Get.to(() => OrderPage(
+                  canReturn: true,
+                ));
+            EventBus().emit(EventBus.refreshOrderList, null);
+          }
+        }
       }
     }
   }
