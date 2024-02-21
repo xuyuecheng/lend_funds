@@ -111,7 +111,7 @@ class _OrderListPageState extends State<OrderListPage> {
               child: model.data.isNotEmpty
                   ? ListView.separated(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 15.w, vertical: 15.w),
+                          horizontal: 7.5.w, vertical: 15.w),
                       itemCount: model.data.length ?? 0,
                       itemBuilder: (context, index) {
                         final item = model.data[index];
@@ -148,6 +148,133 @@ class _OrderListPageState extends State<OrderListPage> {
                               : null;
                         }
                         print("IMAGE_URL:" + "${DioConfig.IMAGE_URL}$icon");
+                        return GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            if (mStatus == "LOAN_SUCCESS") {
+                              getPlan(context, id);
+                            }
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                left: 11.5.w,
+                                right: 11.5.w,
+                                top: 11.5.h,
+                                bottom: 11.5.h),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.w),
+                                border: Border.all(
+                                    color: Colors.black,
+                                    width: 0.5.w,
+                                    style: BorderStyle.solid)),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Image.network(
+                                            "${DioConfig.IMAGE_URL}$icon",
+                                            width: 27.w,
+                                            height: 27.w),
+                                        SizedBox(
+                                          width: 10.w,
+                                        ),
+                                        Text("${name.toString()}",
+                                            style: TextStyle(
+                                                fontSize: 15.sp,
+                                                color: Color(0xff000000),
+                                                fontWeight: FontWeight.w500)),
+                                      ],
+                                    ),
+                                    Text(statusName,
+                                        style: TextStyle(
+                                            fontSize: 15.sp,
+                                            color: Color(
+                                                _getColorFromHex(statusColor)),
+                                            fontWeight: FontWeight.w500)),
+                                  ],
+                                ),
+                                SizedBox(height: 11.5.h),
+                                Container(
+                                  height: 0.5.h,
+                                  color: Color(0xffC5C3C3),
+                                ),
+                                SizedBox(height: 11.5.h),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Loanamount:",
+                                        style: TextStyle(
+                                            fontSize: 11.5.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500)),
+                                    Text("₹ ${amount.toString()}",
+                                        style: TextStyle(
+                                            fontSize: 11.5.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500)),
+                                  ],
+                                ),
+                                SizedBox(height: 11.5.h),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Loan Period(Days):",
+                                        style: TextStyle(
+                                            fontSize: 11.5.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500)),
+                                    Text("${term.toString()}",
+                                        style: TextStyle(
+                                            fontSize: 11.5.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500)),
+                                  ],
+                                ),
+                                SizedBox(height: 11.5.h),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Loan date:",
+                                        style: TextStyle(
+                                            fontSize: 11.5.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500)),
+                                    Text(
+                                        "${CZTimeUtils.formatDateTime(created, format: "yyyy-MM-dd HH:mm:ss")}",
+                                        style: TextStyle(
+                                            fontSize: 11.5.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500)),
+                                  ],
+                                ),
+                                SizedBox(height: 11.5.h),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Loan notenumber:",
+                                        style: TextStyle(
+                                            fontSize: 11.5.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500)),
+                                    Text(id,
+                                        style: TextStyle(
+                                            fontSize: 11.5.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500))
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
                         return Row(
                           children: [
                             Container(
