@@ -68,7 +68,7 @@ class _RepayPageState extends State<RepayPage> {
                 Get.back();
               }),
           title: Text(
-            "Lend Funds",
+            "Order Details",
             style: TextStyle(
                 fontSize: 17.5.sp,
                 color: const Color(0xFF000000),

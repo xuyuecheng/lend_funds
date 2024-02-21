@@ -13,7 +13,6 @@ import 'package:lend_funds/utils/base/base_view_model.dart';
 import 'package:lend_funds/utils/eventbus/eventbus.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/network/dio_request.dart';
-import 'package:lend_funds/utils/theme/screen_utils.dart';
 import 'package:lend_funds/utils/time/time_utils.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -271,199 +270,31 @@ class _OrderListPageState extends State<OrderListPage> {
                                             fontWeight: FontWeight.w500))
                                   ],
                                 ),
+                                (mStatus == "LOAN_SUCCESS")
+                                    ? Column(
+                                        children: [
+                                          // SizedBox(height: 11.5.h),
+                                          GestureDetector(
+                                            behavior:
+                                                HitTestBehavior.translucent,
+                                            onTap: () {
+                                              Get.to(() => FeedbackListPage(
+                                                    thirdOrderId: id,
+                                                  ));
+                                            },
+                                            child: Image.asset(
+                                              "assets/order/order_list_feedback_icon.png",
+                                              width: 181,
+                                              height: 43,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    : SizedBox.shrink(),
                               ],
                             ),
                           ),
-                        );
-                        return Row(
-                          children: [
-                            Container(
-                              width: 88.w,
-                              height: 200.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5.sp),
-                                    bottomLeft: Radius.circular(5.sp)),
-                                color: Color(0xff003C6A),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.network(
-                                          "${DioConfig.IMAGE_URL}$icon",
-                                          width: 39.w,
-                                          height: 39.w),
-                                      SizedBox(height: 5.h),
-                                      Text("${name.toString()}",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 12.5.sp,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500)),
-                                    ],
-                                  ),
-                                  Visibility(
-                                      visible: mStatus == "LOAN_SUCCESS",
-                                      child: Positioned(
-                                        left: 0,
-                                        bottom: 0,
-                                        child: GestureDetector(
-                                          behavior: HitTestBehavior.translucent,
-                                          onTap: () {
-                                            //
-                                            Get.to(() => FeedbackListPage(
-                                                  thirdOrderId: id,
-                                                ));
-                                          },
-                                          child: Image.asset(
-                                              "assets/order/order_list_feedback_icon.png",
-                                              width: 50.w,
-                                              height: 50.w),
-                                        ),
-                                      )),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.all(10.w),
-                                height: 200.h,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(5.sp),
-                                      bottomRight: Radius.circular(5.sp)),
-                                  color: Color(0xffffffff),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text("Loan amount:",
-                                                style: TextStyle(
-                                                    fontSize: 11.5.sp,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            Text("₹ ${amount.toString()}",
-                                                style: TextStyle(
-                                                    fontSize: 11.5.sp,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 15.h,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text("Loan period(Days):",
-                                                style: TextStyle(
-                                                    fontSize: 11.5.sp,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            Text("${term.toString()}",
-                                                style: TextStyle(
-                                                    fontSize: 11.5.sp,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 15.h,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text("Loan date:",
-                                                style: TextStyle(
-                                                    fontSize: 11.5.sp,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            Text(
-                                                "${CZTimeUtils.formatDateTime(created, format: "yyyy-MM-dd HH:mm:ss")}",
-                                                style: TextStyle(
-                                                    fontSize: 11.5.sp,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 15.h,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text("Loan note number:",
-                                                style: TextStyle(
-                                                    fontSize: 11.5.sp,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            Expanded(
-                                              child: Text(id,
-                                                  style: TextStyle(
-                                                      fontSize: 11.5.sp,
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold)),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    GestureDetector(
-                                      behavior: HitTestBehavior.translucent,
-                                      onTap: () {
-                                        if (mStatus == "LOAN_SUCCESS") {
-                                          //
-                                          getPlan(context, id);
-                                        }
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 13.w),
-                                        width: CZScreenUtils.screenWidth,
-                                        // height: 35.h,
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Color(_getColorFromHex(
-                                                  statusColor)),
-                                              borderRadius:
-                                                  BorderRadius.circular(5.w)),
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 7.h),
-                                          alignment: Alignment.center,
-                                          child: Text(statusName,
-                                              style: TextStyle(
-                                                  fontSize: 15.sp,
-                                                  color:
-                                                      const Color(0xFFFFFFFF),
-                                                  fontWeight: FontWeight.w500)),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {
