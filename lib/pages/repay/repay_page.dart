@@ -77,7 +77,8 @@ class _RepayPageState extends State<RepayPage> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 15.h),
+          padding: EdgeInsets.only(
+              left: 7.5.w, right: 7.5.w, top: 12.h, bottom: 12.h),
           child: Column(
             children: [
               Container(

@@ -22,7 +22,7 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffF1F2F3),
+        backgroundColor: Color(0xffF5F4F2),
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: BackButton(
@@ -53,11 +53,8 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
                           padding: EdgeInsets.only(
                               left: 7.w, right: 7.w, top: 7.h, bottom: 7.h),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(3.w),
-                              border: Border.all(
-                                  color: Colors.black,
-                                  width: 0.5.w,
-                                  style: BorderStyle.solid)),
+                              borderRadius: BorderRadius.circular(7.5.w),
+                              color: Color(0xffffffff)),
                           child: Column(
                             children: [
                               Text(
@@ -97,7 +94,7 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
                 height: 45,
                 decoration: BoxDecoration(
                     color: const Color(0xFF1A1A1A),
-                    borderRadius: BorderRadius.circular(5)),
+                    borderRadius: BorderRadius.circular(7.5)),
                 child: TextButton(
                   onPressed: () {
                     Get.back(result: true);
@@ -147,9 +144,8 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
         padding:
             EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h, bottom: 10.h),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(3.w),
-            border: Border.all(
-                color: Colors.black, width: 0.5.w, style: BorderStyle.solid)),
+            borderRadius: BorderRadius.circular(7.5.w),
+            color: Color(0xffffffff)),
         child: Column(
           children: [
             Row(

@@ -565,10 +565,7 @@ class _HomePageState extends State<HomePage> {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(7.5.w),
-                                              border: Border.all(
-                                                  color: Colors.black,
-                                                  width: 0.5.w,
-                                                  style: BorderStyle.solid)),
+                                              color: Color(0xffffffff)),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,

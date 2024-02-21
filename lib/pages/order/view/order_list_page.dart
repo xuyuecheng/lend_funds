@@ -77,7 +77,8 @@ class _OrderListPageState extends State<OrderListPage> {
                             fit: BoxFit.fill,
                           ),
                         ),
-                      )
+                      ),
+                      SizedBox(height: 10.h),
                     ],
                   )
                 : SizedBox.shrink(),
@@ -162,10 +163,7 @@ class _OrderListPageState extends State<OrderListPage> {
                                 bottom: 11.5.h),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5.w),
-                                border: Border.all(
-                                    color: Colors.black,
-                                    width: 0.5.w,
-                                    style: BorderStyle.solid)),
+                                color: Color(0xffffffff)),
                             child: Column(
                               children: [
                                 Row(
