@@ -43,7 +43,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
           FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Scaffold(
-            backgroundColor: Color(0xffF1F2F3),
+            backgroundColor: Color(0xffEFF0F3),
             appBar: AppBar(
               backgroundColor: Colors.white,
               leading: BackButton(
@@ -61,30 +61,23 @@ class _FeedbackPageState extends State<FeedbackPage> {
               centerTitle: true,
             ),
             body: SingleChildScrollView(
-              padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 15.h),
+              padding: EdgeInsets.only(
+                  left: 7.5.w, right: 7.5.w, top: 15.h, bottom: 15.h),
               child: Column(
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    width: CZScreenUtils.screenWidth - 30.w,
+                    width: 1.sw,
                     decoration: BoxDecoration(
                         color: const Color(0xFFffffff),
                         borderRadius: BorderRadius.circular(5.w)),
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 5.h,
+                          height: 9.5.h,
                         ),
                         Row(
                           children: [
-                            Container(
-                              color: Color(0xff003C6A),
-                              width: 4.w,
-                              height: 24.5.h,
-                            ),
-                            SizedBox(
-                              width: 2.5.w,
-                            ),
                             Text(
                               "*",
                               style: TextStyle(
@@ -102,7 +95,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           ],
                         ),
                         SizedBox(
-                          height: 12.5.h,
+                          height: 10.5.h,
                         ),
                         GestureDetector(
                             behavior: HitTestBehavior.translucent,
@@ -148,25 +141,25 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    width: CZScreenUtils.screenWidth - 30.w,
+                    width: 1.sw,
                     decoration: BoxDecoration(
                         color: const Color(0xFFffffff),
                         borderRadius: BorderRadius.circular(5.w)),
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 5.h,
+                          height: 9.5.h,
                         ),
                         Row(
                           children: [
-                            Container(
-                              color: Color(0xff003C6A),
-                              width: 4.w,
-                              height: 24.5.h,
-                            ),
-                            SizedBox(
-                              width: 2.5.w,
-                            ),
+                            // Container(
+                            //   color: Color(0xff003C6A),
+                            //   width: 4.w,
+                            //   height: 24.5.h,
+                            // ),
+                            // SizedBox(
+                            //   width: 2.5.w,
+                            // ),
                             Text(
                               "*",
                               style: TextStyle(
@@ -191,7 +184,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               horizontal: 10.w, vertical: 4.h),
                           height: 103.h,
                           decoration: BoxDecoration(
-                              color: Color(0xffF1F2F2),
+                              color: Color(0xffF1F1F1),
                               borderRadius: BorderRadius.circular(5.w)),
                           child: TextFormField(
                               minLines: 1,
@@ -235,25 +228,17 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    width: CZScreenUtils.screenWidth - 30.w,
+                    width: 1.sw,
                     decoration: BoxDecoration(
                         color: const Color(0xFFffffff),
                         borderRadius: BorderRadius.circular(5.w)),
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 5.h,
+                          height: 11.h,
                         ),
                         Row(
                           children: [
-                            Container(
-                              color: Color(0xff003C6A),
-                              width: 4.w,
-                              height: 24.5.h,
-                            ),
-                            SizedBox(
-                              width: 9.w,
-                            ),
                             Text(
                               "Upload Problem Pictures, Only JPG And\nPNG Are supported",
                               style: TextStyle(
@@ -270,7 +255,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           padding: EdgeInsets.symmetric(horizontal: 10.w),
                           height: 88.h,
                           decoration: BoxDecoration(
-                              color: Color(0xffF1F2F2),
+                              color: Color(0xffffffff),
                               borderRadius: BorderRadius.circular(5.w)),
                           child: Row(
                             children: [
@@ -290,8 +275,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                 },
                                 child: Image.asset(
                                     'assets/feedback/feedback_take_photo.png',
-                                    width: 36.w,
-                                    height: 36.w),
+                                    width: 37.w,
+                                    height: 37.w),
                               ),
                               (result != null && result!.isNotEmpty)
                                   ? Image.file(
@@ -318,10 +303,10 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 children: [
                   SizedBox(height: 15.h),
                   Container(
-                    width: CZScreenUtils.screenWidth - 30.w,
+                    width: CZScreenUtils.screenWidth - 15.w,
                     height: 50.h,
                     decoration: BoxDecoration(
-                        color: const Color(0xFF003C6A),
+                        color: const Color(0xFF00A651),
                         borderRadius: BorderRadius.circular(5.w)),
                     child: TextButton(
                       onPressed: () async {

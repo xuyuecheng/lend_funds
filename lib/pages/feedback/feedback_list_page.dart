@@ -33,7 +33,7 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
     return Consumer(builder: (_, watch, __) {
       model = watch(basicProvider(widget.thirdOrderId));
       return Scaffold(
-          backgroundColor: Color(0xffF1F2F3),
+          backgroundColor: Color(0xffEFF0F3),
           appBar: AppBar(
             backgroundColor: Colors.white,
             leading: BackButton(
@@ -205,7 +205,7 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                   width: CZScreenUtils.screenWidth - 30.w,
                   height: 50.h,
                   decoration: BoxDecoration(
-                      color: const Color(0xFF003C6A),
+                      color: const Color(0xFF00A651),
                       borderRadius: BorderRadius.circular(5.w)),
                   child: TextButton(
                     onPressed: () async {
