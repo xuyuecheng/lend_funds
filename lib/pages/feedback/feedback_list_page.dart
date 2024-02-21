@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lend_funds/pages/common/privacy_agreement.dart';
 import 'package:lend_funds/pages/feedback/feedback_page.dart';
 import 'package:lend_funds/utils/base/base_view_model.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
@@ -51,158 +52,166 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
             centerTitle: true,
           ),
           body: SmartRefresher(
-              controller: refreshController,
-              enablePullDown: true,
-              enablePullUp: true,
-              header: MaterialClassicHeader(),
-              footer: ClassicFooter(
-                loadingText: "loading",
-                failedText: "failed",
-                noDataText: "noData",
-                canLoadingText: "",
-                idleText: "idle",
-              ),
-              onRefresh: () async {
-                await model.refresh();
-                refreshController.refreshCompleted();
+            controller: refreshController,
+            enablePullDown: true,
+            enablePullUp: true,
+            header: MaterialClassicHeader(),
+            footer: ClassicFooter(
+              loadingText: "loading",
+              failedText: "failed",
+              noDataText: "noData",
+              canLoadingText: "",
+              idleText: "idle",
+            ),
+            onRefresh: () async {
+              await model.refresh();
+              refreshController.refreshCompleted();
+              refreshController.loadComplete();
+            },
+            onLoading: () async {
+              final hasData = await model.loadMore();
+              if (hasData) {
                 refreshController.loadComplete();
-              },
-              onLoading: () async {
-                final hasData = await model.loadMore();
-                if (hasData) {
-                  refreshController.loadComplete();
-                } else {
-                  refreshController.loadNoData();
-                }
-              },
-              child: model.data.isNotEmpty
-                  ? ListView.separated(
-                      padding: EdgeInsets.symmetric(vertical: 15.h),
-                      shrinkWrap: true,
-                      itemCount: model.data.length ?? 0,
-                      itemBuilder: (context, index) {
-                        final item = model.data[index];
-                        print("item:$item");
-                        dynamic created = item.containsKey("createdfouYQX")
-                            ? item["createdfouYQX"]
-                            : null;
-                        dynamic modified = item.containsKey("modified")
-                            ? item["modified"]
-                            : null;
-                        dynamic content = item.containsKey("contentCxb7jm")
-                            ? item["contentCxb7jm"]
-                            : null;
-                        dynamic replyContent =
-                            item.containsKey("replyContentmxfAU7")
-                                ? item["replyContentmxfAU7"]
-                                : null;
-                        List<dynamic>? images = item.containsKey("imagesTBfcXb")
-                            ? item["imagesTBfcXb"]
-                            : null;
-                        var imageFirst = "";
-                        if (images != null && images.length > 0) {
-                          imageFirst = images[0];
-                        }
-                        return Container(
-                          color: Colors.white,
-                          padding: EdgeInsets.symmetric(horizontal: 15.w),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Text(
-                                replyContent != null
-                                    ? "Reply:${replyContent.toString()}"
-                                    : "Reply:",
-                                style: TextStyle(
-                                    fontSize: 15.sp,
-                                    color: const Color(0xFF000000),
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Text(
-                                content != null
-                                    ? "Question:$content"
-                                    : "Question:",
-                                style: TextStyle(
-                                    fontSize: 15.sp,
-                                    color: const Color(0xFF000000),
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Text(
-                                created != null
-                                    ? "Created time:${CZTimeUtils.formatDateTime(created, format: "yyyy-MM-dd HH:mm:ss")}"
-                                    : "Created time:",
-                                style: TextStyle(
-                                    fontSize: 15.sp,
-                                    color: const Color(0xFF000000),
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Row(
-                                children: [
-                                  // SizedBox(
-                                  //   width: 25,
-                                  // ),
-                                  imageFirst.length > 0
-                                      ? Image.network(
-                                          imageFirst,
-                                          width: 106.w,
-                                          height: 106.w,
-                                        )
-                                      : SizedBox.shrink(),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Text(
-                                created != null
-                                    ? "Reply time:${CZTimeUtils.formatDateTime(modified, format: "yyyy-MM-dd HH:mm:ss")}"
-                                    : "Reply time:",
-                                style: TextStyle(
-                                    fontSize: 15.sp,
-                                    color: const Color(0xFF000000),
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return SizedBox(
-                          height: 15.h,
-                        );
-                      },
-                    )
-                  : Column(
-                      children: [
-                        SizedBox(
-                          height: 91.h,
+              } else {
+                refreshController.loadNoData();
+              }
+            },
+            child: model.data.isNotEmpty
+                ? ListView.separated(
+                    padding: EdgeInsets.symmetric(vertical: 15.h),
+                    shrinkWrap: true,
+                    itemCount: model.data.length ?? 0,
+                    itemBuilder: (context, index) {
+                      final item = model.data[index];
+                      print("item:$item");
+                      dynamic created = item.containsKey("createdfouYQX")
+                          ? item["createdfouYQX"]
+                          : null;
+                      dynamic modified = item.containsKey("modified")
+                          ? item["modified"]
+                          : null;
+                      dynamic content = item.containsKey("contentCxb7jm")
+                          ? item["contentCxb7jm"]
+                          : null;
+                      dynamic replyContent =
+                          item.containsKey("replyContentmxfAU7")
+                              ? item["replyContentmxfAU7"]
+                              : null;
+                      List<dynamic>? images = item.containsKey("imagesTBfcXb")
+                          ? item["imagesTBfcXb"]
+                          : null;
+                      var imageFirst = "";
+                      if (images != null && images.length > 0) {
+                        imageFirst = images[0];
+                      }
+                      return Container(
+                        color: Colors.white,
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Text(
+                              replyContent != null
+                                  ? "Reply:${replyContent.toString()}"
+                                  : "Reply:",
+                              style: TextStyle(
+                                  fontSize: 15.sp,
+                                  color: const Color(0xFF000000),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Text(
+                              content != null
+                                  ? "Question:$content"
+                                  : "Question:",
+                              style: TextStyle(
+                                  fontSize: 15.sp,
+                                  color: const Color(0xFF000000),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Text(
+                              created != null
+                                  ? "Created time:${CZTimeUtils.formatDateTime(created, format: "yyyy-MM-dd HH:mm:ss")}"
+                                  : "Created time:",
+                              style: TextStyle(
+                                  fontSize: 15.sp,
+                                  color: const Color(0xFF000000),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Row(
+                              children: [
+                                // SizedBox(
+                                //   width: 25,
+                                // ),
+                                imageFirst.length > 0
+                                    ? Image.network(
+                                        imageFirst,
+                                        width: 106.w,
+                                        height: 106.w,
+                                      )
+                                    : SizedBox.shrink(),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Text(
+                              created != null
+                                  ? "Reply time:${CZTimeUtils.formatDateTime(modified, format: "yyyy-MM-dd HH:mm:ss")}"
+                                  : "Reply time:",
+                              style: TextStyle(
+                                  fontSize: 15.sp,
+                                  color: const Color(0xFF000000),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                          ],
                         ),
-                        Image.asset('assets/feedback/feedback_list_empty.png',
-                            width: 345.w, height: 345.w),
-                      ],
-                    )),
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: 15.h,
+                      );
+                    },
+                  )
+                : Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Positioned(
+                        top: 116.h,
+                        child: Image.asset(
+                            'assets/feedback/feedback_list_empty.png',
+                            width: 167.w,
+                            height: 181.w),
+                      ),
+                      Positioned(
+                        bottom: 25.h,
+                        child: PrivacyAgreement(),
+                      ),
+                    ],
+                  ),
+          ),
           bottomNavigationBar: Container(
             height: 80.h,
             child: Column(
               children: [
                 SizedBox(height: 15.h),
                 Container(
-                  width: CZScreenUtils.screenWidth - 30.w,
+                  width: CZScreenUtils.screenWidth - 15.w,
                   height: 50.h,
                   decoration: BoxDecoration(
                       color: const Color(0xFF00A651),
