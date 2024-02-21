@@ -33,12 +33,20 @@ class _MainPageState extends State<MainPage> {
         debugPrint("_currentIndex:$_currentIndex");
       });
     });
+    EventBus().on(EventBus.changeToHomeTab, (arg) {
+      setState(() {
+        _currentIndex = 0;
+        _refresh(0);
+        debugPrint("_currentIndex:$_currentIndex");
+      });
+    });
   }
 
   @override
   void dispose() {
     //...
     EventBus().off(EventBus.changeToOrderTab);
+    EventBus().off(EventBus.changeToHomeTab);
     super.dispose();
   }
 
