@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/camera/views/camera_kpt.dart';
 import 'package:lend_funds/pages/common/privacy_agreement.dart';
+import 'package:lend_funds/pages/common/retention_dialog.dart';
 import 'package:lend_funds/pages/credit/controller/ocr_controller.dart';
 import 'package:lend_funds/pages/credit/view/ocr_detail_page.dart';
 import 'package:lend_funds/pages/home/controller/home_controller.dart';
@@ -47,209 +48,68 @@ class _OcrPageState extends State<OcrPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: BackButton(
-            color: Colors.black,
-            onPressed: () {
-              _backEvent();
-            }),
-        title: Text(
-          widget.formName,
-          style: TextStyle(
-              fontSize: 17.5.sp,
-              color: const Color(0xFF000000),
-              fontWeight: FontWeight.w500),
+    return WillPopScope(
+      onWillPop: () async {
+        _backEvent();
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: BackButton(
+              color: Colors.black,
+              onPressed: () {
+                _backEvent();
+              }),
+          title: Text(
+            widget.formName,
+            style: TextStyle(
+                fontSize: 17.5.sp,
+                color: const Color(0xFF000000),
+                fontWeight: FontWeight.w500),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          // MarqueeWidget(),
-          Expanded(
-              child: SingleChildScrollView(
-                  padding:
-                      EdgeInsets.only(left: 16.w, right: 16.w, bottom: 16.w),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 11.h,
-                      ),
-                      Image.asset(
-                        "assets/credit/progress_ekyc.png",
-                        fit: BoxFit.fill,
-                      ),
-                      (isUploadAadhaarCardStep)
-                          ? Column(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 25.h,
-                                    ),
-                                    Text(
-                                        "Please upload the front of your Aadhaar Card",
-                                        style: TextStyle(
-                                            fontSize: 12.5.sp,
-                                            color: const Color(0xFF000000),
-                                            fontWeight: FontWeight.w700)),
-                                    SizedBox(
-                                      height: 15.h,
-                                    ),
-                                    Center(
-                                        child: GestureDetector(
-                                      behavior: HitTestBehavior.translucent,
-                                      onTap: () {
-                                        _navigateFrontCameraPage(context);
-                                      },
-                                      child: Container(
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(6.5.w)),
-                                          width: 193,
-                                          height: 128,
-                                          child: resultFront != null
-                                              ? Stack(
-                                                  alignment:
-                                                      AlignmentDirectional
-                                                          .center,
-                                                  children: [
-                                                    Image.file(
-                                                      File(resultFront!),
-                                                      width: 193,
-                                                      height: 128,
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                    (loadFront != null)
-                                                        ? Positioned(
-                                                            child: Image.asset(
-                                                              "assets/credit/ocr_right_flag.png",
-                                                              width: 64,
-                                                              height: 64,
-                                                              fit: BoxFit.fill,
-                                                            ),
-                                                          )
-                                                        : Image.asset(
-                                                            "assets/credit/image_upload_failed.png",
-                                                            width: 64,
-                                                            height: 64,
-                                                            fit: BoxFit.fill,
-                                                          ),
-                                                  ],
-                                                )
-                                              : Stack(
-                                                  alignment:
-                                                      AlignmentDirectional
-                                                          .center,
-                                                  children: [
-                                                    Image.asset(
-                                                      "assets/credit/aadhear_front_backg.png",
-                                                      width: 193,
-                                                      height: 128,
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                  ],
-                                                )),
-                                    )),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 25.h,
-                                    ),
-                                    Text(
-                                        "Please upload the back of your Aadhaar Card",
-                                        style: TextStyle(
-                                            fontSize: 12.5.sp,
-                                            color: const Color(0xFF000000),
-                                            fontWeight: FontWeight.w700)),
-                                    SizedBox(
-                                      height: 15.h,
-                                    ),
-                                    Center(
-                                        child: GestureDetector(
-                                      behavior: HitTestBehavior.translucent,
-                                      onTap: () {
-                                        _navigateBackCameraPage(context);
-                                      },
-                                      child: Container(
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(6.5.w)),
-                                          width: 193,
-                                          height: 128,
-                                          child: resultBack != null
-                                              ? Stack(
-                                                  alignment:
-                                                      AlignmentDirectional
-                                                          .center,
-                                                  children: [
-                                                    Image.file(
-                                                      File(resultBack!),
-                                                      width: 193,
-                                                      height: 128,
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                    (loadBack != null)
-                                                        ? Positioned(
-                                                            child: Image.asset(
-                                                              "assets/credit/ocr_right_flag.png",
-                                                              width: 64,
-                                                              height: 64,
-                                                              fit: BoxFit.fill,
-                                                            ),
-                                                          )
-                                                        : Image.asset(
-                                                            "assets/credit/image_upload_failed.png",
-                                                            width: 193,
-                                                            height: 128,
-                                                            fit: BoxFit.fill,
-                                                          ),
-                                                  ],
-                                                )
-                                              : Stack(
-                                                  alignment:
-                                                      AlignmentDirectional
-                                                          .center,
-                                                  children: [
-                                                    Image.asset(
-                                                      "assets/credit/aadhear_back_backg.png",
-                                                      width: 193,
-                                                      height: 128,
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                  ],
-                                                )),
-                                    )),
-                                  ],
-                                ),
-                              ],
-                            )
-                          : Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: 25.h,
-                                ),
-                                Text("Please upload the front of your PAN Card",
-                                    style: TextStyle(
-                                        fontSize: 12.5.sp,
-                                        color: const Color(0xFF000000),
-                                        fontWeight: FontWeight.w700)),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                Center(
-                                    child: GestureDetector(
+        body: Column(
+          children: [
+            // MarqueeWidget(),
+            Expanded(
+                child: SingleChildScrollView(
+                    padding:
+                        EdgeInsets.only(left: 16.w, right: 16.w, bottom: 16.w),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 11.h,
+                        ),
+                        Image.asset(
+                          "assets/credit/progress_ekyc.png",
+                          fit: BoxFit.fill,
+                        ),
+                        (isUploadAadhaarCardStep)
+                            ? Column(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 25.h,
+                                      ),
+                                      Text(
+                                          "Please upload the front of your Aadhaar Card",
+                                          style: TextStyle(
+                                              fontSize: 12.5.sp,
+                                              color: const Color(0xFF000000),
+                                              fontWeight: FontWeight.w700)),
+                                      SizedBox(
+                                        height: 15.h,
+                                      ),
+                                      Center(
+                                          child: GestureDetector(
                                         behavior: HitTestBehavior.translucent,
                                         onTap: () {
-                                          _navigatePanCameraPage(context);
+                                          _navigateFrontCameraPage(context);
                                         },
                                         child: Container(
                                             clipBehavior: Clip.antiAlias,
@@ -259,19 +119,19 @@ class _OcrPageState extends State<OcrPage> {
                                                         6.5.w)),
                                             width: 193,
                                             height: 128,
-                                            child: resultPan != null
+                                            child: resultFront != null
                                                 ? Stack(
                                                     alignment:
                                                         AlignmentDirectional
                                                             .center,
                                                     children: [
                                                       Image.file(
-                                                        File(resultPan!),
+                                                        File(resultFront!),
                                                         width: 193,
                                                         height: 128,
                                                         fit: BoxFit.fill,
                                                       ),
-                                                      (loadPan != null)
+                                                      (loadFront != null)
                                                           ? Positioned(
                                                               child:
                                                                   Image.asset(
@@ -296,50 +156,207 @@ class _OcrPageState extends State<OcrPage> {
                                                             .center,
                                                     children: [
                                                       Image.asset(
-                                                        "assets/credit/pan_front_backg.png",
+                                                        "assets/credit/aadhear_front_backg.png",
                                                         width: 193,
                                                         height: 128,
                                                         fit: BoxFit.fill,
                                                       ),
                                                     ],
-                                                  )))),
-                              ],
-                            ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      Container(
-                        width: 345.w,
-                        height: 50.h,
-                        decoration: BoxDecoration(
-                            color: const Color(0xFF00A651),
-                            borderRadius: BorderRadius.circular(5.w)),
-                        child: TextButton(
-                          onPressed: () {
-                            _navigateOcrDetailPage();
-                          },
-                          child: Text("Next",
-                              style: TextStyle(
-                                  fontSize: 25.sp,
-                                  color: const Color(0xFFFFFFFF),
-                                  fontWeight: FontWeight.w700)),
+                                                  )),
+                                      )),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 25.h,
+                                      ),
+                                      Text(
+                                          "Please upload the back of your Aadhaar Card",
+                                          style: TextStyle(
+                                              fontSize: 12.5.sp,
+                                              color: const Color(0xFF000000),
+                                              fontWeight: FontWeight.w700)),
+                                      SizedBox(
+                                        height: 15.h,
+                                      ),
+                                      Center(
+                                          child: GestureDetector(
+                                        behavior: HitTestBehavior.translucent,
+                                        onTap: () {
+                                          _navigateBackCameraPage(context);
+                                        },
+                                        child: Container(
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        6.5.w)),
+                                            width: 193,
+                                            height: 128,
+                                            child: resultBack != null
+                                                ? Stack(
+                                                    alignment:
+                                                        AlignmentDirectional
+                                                            .center,
+                                                    children: [
+                                                      Image.file(
+                                                        File(resultBack!),
+                                                        width: 193,
+                                                        height: 128,
+                                                        fit: BoxFit.fill,
+                                                      ),
+                                                      (loadBack != null)
+                                                          ? Positioned(
+                                                              child:
+                                                                  Image.asset(
+                                                                "assets/credit/ocr_right_flag.png",
+                                                                width: 64,
+                                                                height: 64,
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                              ),
+                                                            )
+                                                          : Image.asset(
+                                                              "assets/credit/image_upload_failed.png",
+                                                              width: 193,
+                                                              height: 128,
+                                                              fit: BoxFit.fill,
+                                                            ),
+                                                    ],
+                                                  )
+                                                : Stack(
+                                                    alignment:
+                                                        AlignmentDirectional
+                                                            .center,
+                                                    children: [
+                                                      Image.asset(
+                                                        "assets/credit/aadhear_back_backg.png",
+                                                        width: 193,
+                                                        height: 128,
+                                                        fit: BoxFit.fill,
+                                                      ),
+                                                    ],
+                                                  )),
+                                      )),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 25.h,
+                                  ),
+                                  Text(
+                                      "Please upload the front of your PAN Card",
+                                      style: TextStyle(
+                                          fontSize: 12.5.sp,
+                                          color: const Color(0xFF000000),
+                                          fontWeight: FontWeight.w700)),
+                                  SizedBox(
+                                    height: 15.h,
+                                  ),
+                                  Center(
+                                      child: GestureDetector(
+                                          behavior: HitTestBehavior.translucent,
+                                          onTap: () {
+                                            _navigatePanCameraPage(context);
+                                          },
+                                          child: Container(
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6.5.w)),
+                                              width: 193,
+                                              height: 128,
+                                              child: resultPan != null
+                                                  ? Stack(
+                                                      alignment:
+                                                          AlignmentDirectional
+                                                              .center,
+                                                      children: [
+                                                        Image.file(
+                                                          File(resultPan!),
+                                                          width: 193,
+                                                          height: 128,
+                                                          fit: BoxFit.fill,
+                                                        ),
+                                                        (loadPan != null)
+                                                            ? Positioned(
+                                                                child:
+                                                                    Image.asset(
+                                                                  "assets/credit/ocr_right_flag.png",
+                                                                  width: 64,
+                                                                  height: 64,
+                                                                  fit: BoxFit
+                                                                      .fill,
+                                                                ),
+                                                              )
+                                                            : Image.asset(
+                                                                "assets/credit/image_upload_failed.png",
+                                                                width: 64,
+                                                                height: 64,
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                              ),
+                                                      ],
+                                                    )
+                                                  : Stack(
+                                                      alignment:
+                                                          AlignmentDirectional
+                                                              .center,
+                                                      children: [
+                                                        Image.asset(
+                                                          "assets/credit/pan_front_backg.png",
+                                                          width: 193,
+                                                          height: 128,
+                                                          fit: BoxFit.fill,
+                                                        ),
+                                                      ],
+                                                    )))),
+                                ],
+                              ),
+                        SizedBox(
+                          height: 30.h,
                         ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      PrivacyAgreement(),
-                    ],
-                  ))),
-        ],
+                        Container(
+                          width: 345.w,
+                          height: 50.h,
+                          decoration: BoxDecoration(
+                              color: const Color(0xFF00A651),
+                              borderRadius: BorderRadius.circular(5.w)),
+                          child: TextButton(
+                            onPressed: () {
+                              _navigateOcrDetailPage();
+                            },
+                            child: Text("Next",
+                                style: TextStyle(
+                                    fontSize: 25.sp,
+                                    color: const Color(0xFFFFFFFF),
+                                    fontWeight: FontWeight.w700)),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        PrivacyAgreement(),
+                      ],
+                    ))),
+          ],
+        ),
+        backgroundColor: Color(0xffF5F4F2),
       ),
-      backgroundColor: Color(0xffF5F4F2),
     );
   }
 
   _backEvent() {
     if (isUploadAadhaarCardStep) {
-      Get.back();
+      CZDialogUtil.show(RetentionDialog());
     } else {
       setState(() {
         isUploadAadhaarCardStep = true;

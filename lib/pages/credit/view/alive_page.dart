@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:lend_funds/main.dart';
 import 'package:lend_funds/pages/camera/views/widget/camera_permission_dialog.dart';
+import 'package:lend_funds/pages/common/retention_dialog.dart';
 import 'package:lend_funds/pages/home/controller/home_controller.dart';
 import 'package:lend_funds/utils/image/ImageCompressUtil.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
@@ -86,78 +86,80 @@ class _AlivePageState extends State<AlivePage> {
   Widget build(BuildContext context) {
     double cameraWidth = 315;
     double cameraHeight = 397;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: BackButton(
-            color: Colors.black,
-            onPressed: () {
-              Get.back();
-            }),
-        title: Text(
-          widget.formName,
-          style: TextStyle(
-              fontSize: 17.5.sp,
-              color: const Color(0xFF000000),
-              fontWeight: FontWeight.w500),
+    return WillPopScope(
+      onWillPop: () async {
+        _backEvent();
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: BackButton(
+              color: Colors.black,
+              onPressed: () {
+                _backEvent();
+              }),
+          title: Text(
+            widget.formName,
+            style: TextStyle(
+                fontSize: 17.5.sp,
+                color: const Color(0xFF000000),
+                fontWeight: FontWeight.w500),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
+        body: Stack(
+          children: [
+            _cameraPreviewWidget(),
+            Center(
+              child: Column(
+                children: [
+                  SizedBox(height: 13.5),
+                  Image.asset(
+                    "assets/credit/liveness_detection_backgrou.png",
+                    width: cameraWidth,
+                    height: cameraHeight,
+                    fit: BoxFit.fill,
+                  ),
+                  SizedBox(height: 20),
+                  Text("Please make sure it is done by you",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: const Color(0xFF00A651),
+                          fontWeight: FontWeight.w600)),
+                  SizedBox(height: 21),
+                  GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: controller != null &&
+                              controller.value.isInitialized &&
+                              !controller.value.isRecordingVideo
+                          ? onTakePictureButtonPressed
+                          : null,
+                      child: Container(
+                          alignment: Alignment.center,
+                          width: 176.w,
+                          height: 45.h,
+                          decoration: BoxDecoration(
+                              color: const Color(0xFF00A651),
+                              borderRadius: BorderRadius.circular(5.w)),
+                          child: Image.asset(
+                            "assets/credit/liveness_detection_take_photo.png",
+                            width: 32.w,
+                            height: 28.h,
+                          )))
+                ],
+              ),
+            )
+          ],
+        ),
+        backgroundColor: Color(0xffF5F4F2),
       ),
-      // body: Column(
-      //   children: <Widget>[
-      //     Expanded(
-      //       child: _cameraPreviewWidget(),
-      //     ),
-      //     _captureControlRowWidget(),
-      //   ],
-      // ),
-      body: Stack(
-        children: [
-          _cameraPreviewWidget(),
-          Center(
-            child: Column(
-              children: [
-                SizedBox(height: 13.5),
-                Image.asset(
-                  "assets/credit/liveness_detection_backgrou.png",
-                  width: cameraWidth,
-                  height: cameraHeight,
-                  fit: BoxFit.fill,
-                ),
-                SizedBox(height: 20),
-                Text("Please make sure it is done by you",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: const Color(0xFF00A651),
-                        fontWeight: FontWeight.w600)),
-                SizedBox(height: 21),
-                GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: controller != null &&
-                            controller.value.isInitialized &&
-                            !controller.value.isRecordingVideo
-                        ? onTakePictureButtonPressed
-                        : null,
-                    child: Container(
-                        alignment: Alignment.center,
-                        width: 176.w,
-                        height: 45.h,
-                        decoration: BoxDecoration(
-                            color: const Color(0xFF00A651),
-                            borderRadius: BorderRadius.circular(5.w)),
-                        child: Image.asset(
-                          "assets/credit/liveness_detection_take_photo.png",
-                          width: 32.w,
-                          height: 28.h,
-                        )))
-              ],
-            ),
-          )
-        ],
-      ),
-      backgroundColor: Color(0xffF5F4F2),
     );
+  }
+
+  _backEvent() {
+    CZDialogUtil.show(RetentionDialog());
   }
 
   ///

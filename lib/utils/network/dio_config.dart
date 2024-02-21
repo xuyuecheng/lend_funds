@@ -1,12 +1,12 @@
 class DioConfig {
-  static const String baseURL = "https://app.lendfunds.help/";
+  static const String baseURL = "https://app.sahayakcash.in/";
   static const String IMAGE_URL = "${baseURL}lt-image/resize/0x0/";
   static const Duration timeout = Duration(seconds: 20);
 }
 
 class AppConfig {
   static const String appId = 'IOAPAOQJ';
-  static const String appName = 'Lend Funds';
+  static const String appName = 'Sahayak Cash';
   static const String AESKey = 'YG7KaTFGcbJKEdZK';
   static const String AESPadding = 'PKCS5Padding';
 
