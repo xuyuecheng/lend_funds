@@ -34,27 +34,6 @@ class SysCodeWidget extends StatelessWidget {
                   GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      debugPrint("Cancel");
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 10.w, vertical: 10.w),
-                      child: Text("Cancel",
-                          style: TextStyle(
-                              fontSize: 15.sp,
-                              color: const Color(0xFFDFDFDF),
-                              fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                  Text("Please choose",
-                      style: TextStyle(
-                          fontSize: 15.sp,
-                          color: const Color(0xFF000000),
-                          fontWeight: FontWeight.bold)),
-                  GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () {
                       debugPrint("OK");
                     },
                     child: Container(
@@ -66,7 +45,28 @@ class SysCodeWidget extends StatelessWidget {
                               color: Colors.transparent,
                               fontWeight: FontWeight.bold)),
                     ),
-                  )
+                  ),
+                  Text("Please choose",
+                      style: TextStyle(
+                          fontSize: 15.sp,
+                          color: const Color(0xFF000000),
+                          fontWeight: FontWeight.bold)),
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      debugPrint("Cancel");
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 10.w),
+                      child: Text("Cancel",
+                          style: TextStyle(
+                              fontSize: 15.sp,
+                              color: const Color(0xFFBEBEBE),
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ),
                 ],
               ),
             ),
