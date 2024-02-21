@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lend_funds/pages/common/privacy_agreement.dart';
 import 'package:lend_funds/pages/feedback/feedback_list_page.dart';
 import 'package:lend_funds/pages/repay/repay_page.dart';
 import 'package:lend_funds/utils/base/base_view_model.dart';
@@ -57,7 +58,7 @@ class _OrderListPageState extends State<OrderListPage> {
     return Consumer(builder: (_, watch, __) {
       model = watch(basicFormProvider(widget.status));
       return Scaffold(
-          backgroundColor: Color(0xffF1F2F3),
+          backgroundColor: Color(0xffEFF0F3),
           body: SmartRefresher(
             controller: refreshController,
             enablePullDown: true,
@@ -310,9 +311,19 @@ class _OrderListPageState extends State<OrderListPage> {
                       );
                     },
                   )
-                : Center(
-                    child: Image.asset('assets/order/order_list_empty.png',
-                        width: 227.w, height: 223.w),
+                : Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Positioned(
+                        top: 100.h,
+                        child: Image.asset('assets/order/order_list_empty.png',
+                            width: 227.w, height: 223.w),
+                      ),
+                      Positioned(
+                        bottom: 25.h,
+                        child: PrivacyAgreement(),
+                      ),
+                    ],
                   ),
           ));
     });

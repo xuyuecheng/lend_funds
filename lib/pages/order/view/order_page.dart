@@ -56,8 +56,8 @@ class _OrderPageState extends State<OrderPage>
         centerTitle: true,
         bottom: TabBar(
           controller: _tabController,
-          indicatorColor: const Color(0xff003C6A),
-          labelColor: const Color(0xff003C6A),
+          indicatorColor: const Color(0xff00A651),
+          labelColor: const Color(0xff00A651),
           unselectedLabelColor: const Color(0xff969696),
           labelStyle: TextStyle(fontSize: 15.sp),
           unselectedLabelStyle: TextStyle(fontSize: 15.sp),
