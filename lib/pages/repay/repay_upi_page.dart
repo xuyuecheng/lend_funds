@@ -9,11 +9,11 @@ import 'package:lend_funds/utils/base/base_view_model.dart';
 import 'package:lend_funds/utils/entity/syscode_entity.dart';
 import 'package:lend_funds/utils/network/dio_config.dart';
 import 'package:lend_funds/utils/network/dio_request.dart';
+import 'package:lend_funds/utils/service/TelAndSmsService.dart';
 import 'package:lend_funds/utils/toast/toast_utils.dart';
 import 'package:lend_funds/utils/vm/app_model.dart';
 import 'package:lend_funds/utils/vm/repo_provider.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart' as myBottomSheet;
-import 'package:url_launcher/url_launcher.dart';
 
 class RepayUpiPage extends HookWidget {
   final dynamic amount;
@@ -217,10 +217,8 @@ class RepayUpiPage extends HookWidget {
     dynamic repayCode =
         model.containsKey("repayCodes0suow") ? model["repayCodes0suow"] : null;
     print("repayCode:$repayCode");
-    final Uri _url = Uri.parse(repayCode);
-    if (!await launchUrl(_url)) {
-      throw Exception('Could not launch $_url');
-    }
+    TelAndSmsService service = getIt<TelAndSmsService>();
+    service.openUrl(repayCode);
   }
 }
 

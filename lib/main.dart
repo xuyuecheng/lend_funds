@@ -8,11 +8,13 @@ import 'package:lend_funds/pages/main/controllers/main_config.dart';
 import 'package:lend_funds/pages/main/controllers/main_controller.dart';
 import 'package:lend_funds/utils/controller/controller_utils.dart';
 import 'package:lend_funds/utils/route/route_config.dart';
+import 'package:lend_funds/utils/service/TelAndSmsService.dart';
 import 'package:lend_funds/utils/theme/app_theme.dart';
 
 late List<CameraDescription> cameras;
 
 void main() async {
+  setUpGetIt();
   await CZMainConfig.CZBeforeRunAppConfig();
   cameras = await availableCameras();
   await GlobalConfig.requestScrollMessage();
