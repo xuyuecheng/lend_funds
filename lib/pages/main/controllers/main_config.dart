@@ -34,7 +34,7 @@ class CZMainConfig {
 
   static CZBeforeRunAppConfig() async {
     // await ScreenUtil.ensureScreenSize();
-    await GetStorage.init('lend_funds');
+    await GetStorage.init('sahayak_cash');
     WidgetsFlutterBinding.ensureInitialized();
   }
 

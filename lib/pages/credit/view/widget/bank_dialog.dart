@@ -44,7 +44,7 @@ class BankDialog extends StatelessWidget {
               color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: bankInfoWidget(),
+                children: _bankInfoWidget(),
               )),
           Container(
             width: 300.w,
@@ -97,7 +97,7 @@ class BankDialog extends StatelessWidget {
     );
   }
 
-  List<Widget> bankInfoWidget() {
+  List<Widget> _bankInfoWidget() {
     List<Widget> widgetList = [];
     for (int index = 0; index < titleList.length; index++) {
       widgetList.add(Text("${titleList[index]}:${contentList[index]}",

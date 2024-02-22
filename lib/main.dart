@@ -17,7 +17,7 @@ void main() async {
   setUpGetIt();
   await CZMainConfig.CZBeforeRunAppConfig();
   cameras = await availableCameras();
-  await GlobalConfig.requestScrollMessage();
+  await GlobalConfig.scrollMessageRequest();
   runApp(ProviderScope(child: App()));
 }
 
@@ -34,9 +34,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     // TODO: implement initState
     super.initState();
     //GoogleInstanceId
-    // HttpController.requestUploadGoogleInstanceId();
-    // HttpController.requestUploadGoogleToken();
-    HttpController.requestUploadInstallReferrer();
+    // HttpController.uploadGoogleInstanceIdRequest();
+    // HttpController.uploadGoogleTokenRequest();
+    HttpController.uploadInstallReferrerRequest();
   }
 
   @override
@@ -44,7 +44,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
     CZMainConfig.init(context);
     return GetMaterialApp(
-      title: 'lend_funds',
+      title: 'sahayak_cash',
       theme: CZAppThemeConfig.themeData,
       initialRoute: CZRouteConfig.initialRouteSplash,
       getPages: CZRouteConfig.getPages,

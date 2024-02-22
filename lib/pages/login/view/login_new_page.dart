@@ -190,7 +190,7 @@ class _LoginNewPageState extends State<LoginNewPage> {
                                 return;
                               }
                               FocusScope.of(context).unfocus();
-                              LoginController.to.sendPhoneCode(params: {
+                              LoginController.to.sendPhoneCodeRequest(params: {
                                 "modelU8mV9A": {
                                   'phonedD1cuP': _phoneController.text,
                                   "countryCodesA4GLm": "+91"

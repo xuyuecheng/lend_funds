@@ -187,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(5.w)),
                                 child: TextButton(
                                   onPressed: () async {
-                                    requestAllPermission();
+                                    _requestAllPermission();
                                   },
                                   child: Text("Apply Now",
                                       style: TextStyle(
@@ -882,7 +882,7 @@ class _HomePageState extends State<HomePage> {
                                     }
                                   }
                                   debugPrint("productIds:$productIds");
-                                  _getTrialData(productIds: productIds);
+                                  getTrialData(productIds: productIds);
                                 },
                                 child: Text("APPLY",
                                     style: TextStyle(
@@ -902,7 +902,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   //
-  _getTrialData({required List productIds}) async {
+  getTrialData({required List productIds}) async {
     CZLoading.loading();
     final response = await HomeController.to.requestTrialData(productIds);
     CZLoading.dismiss();
@@ -931,7 +931,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void requestAllPermission() async {
+  void _requestAllPermission() async {
     Map<Permission, PermissionStatus> statuses = await [
       Permission.sms,
       Permission.camera,
@@ -947,7 +947,7 @@ class _HomePageState extends State<HomePage> {
             PermissionStatus.granted == statuses[Permission.bluetooth]
         // && PermissionStatus.granted == statuses[Permission.contacts]
         ) {
-      getDevModel();
+      _getDevModel();
       CZLoading.loading();
       await HomeController().requestIncompleteForm();
       CZLoading.dismiss();
@@ -958,7 +958,7 @@ class _HomePageState extends State<HomePage> {
               PermissionStatus.denied == statuses[Permission.bluetooth]
           // || PermissionStatus.denied == statuses[Permission.contacts]
           ) {
-        requestAllPermission();
+        _requestAllPermission();
       }
       if (PermissionStatus.permanentlyDenied == statuses[Permission.sms] ||
               PermissionStatus.permanentlyDenied ==
@@ -999,7 +999,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  getDevModel() async {
+  _getDevModel() async {
     final response = await HomeController().requestDevModel();
     if (response["statusE8iqlh"] == 0) {
       List<dynamic> list = response["listNPJAeA"];

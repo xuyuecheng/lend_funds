@@ -147,7 +147,7 @@ class _MinePageState extends State<MinePage> {
                               child: GestureDetector(
                             behavior: HitTestBehavior.translucent,
                             onTap: () {
-                              _makeEmailCall("bcvuwagdak@gmail.com");
+                              _emailCall("bcvuwagdak@gmail.com");
                             },
                             child: Column(
                               children: [
@@ -211,7 +211,9 @@ class _MinePageState extends State<MinePage> {
                               CZDialogUtil.show(
                                   DeleteAccountDialog(confirmBlock: () {
                                 CZDialogUtil.dismiss();
-                                MineController.to.requestDel().then((value) {
+                                MineController.to
+                                    .requestDelAccount()
+                                    .then((value) {
                                   if (value["statusE8iqlh"] == 0) {
                                     CZStorage.removeUserInfo();
                                     Get.offAll(() => LoginNewPage());
@@ -288,7 +290,7 @@ class _MinePageState extends State<MinePage> {
         ));
   }
 
-  Future<void> _makeEmailCall(String emailNumber) async {
+  Future<void> _emailCall(String emailNumber) async {
     TelAndSmsService service = getIt<TelAndSmsService>();
     service.sendEmail(emailNumber);
   }

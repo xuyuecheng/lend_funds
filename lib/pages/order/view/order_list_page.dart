@@ -152,7 +152,7 @@ class _OrderListPageState extends State<OrderListPage> {
                           behavior: HitTestBehavior.translucent,
                           onTap: () {
                             if (mStatus == "LOAN_SUCCESS") {
-                              getPlan(context, id);
+                              _getPlan(context, id);
                             }
                           },
                           child: Container(
@@ -190,7 +190,7 @@ class _OrderListPageState extends State<OrderListPage> {
                                         style: TextStyle(
                                             fontSize: 15.sp,
                                             color: Color(
-                                                _getColorFromHex(statusColor)),
+                                                getColorFromHex(statusColor)),
                                             fontWeight: FontWeight.w500)),
                                   ],
                                 ),
@@ -335,7 +335,7 @@ class _OrderListPageState extends State<OrderListPage> {
     });
   }
 
-  int _getColorFromHex(String hexColor) {
+  int getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll("#", "");
     if (hexColor.length == 6) {
       hexColor = "FF" + hexColor;
@@ -381,9 +381,9 @@ class BasicFormModel extends BaseListModel<dynamic> {
   }
 }
 
-getPlan(BuildContext context, String orderId) async {
+_getPlan(BuildContext context, String orderId) async {
   CZLoading.loading();
-  final response = await context.read(planProvider(orderId)).loadPlanData();
+  final response = await context.read(planProvider(orderId))._loadPlanData();
   CZLoading.dismiss();
   if (response["statusE8iqlh"] == 0) {
     //
@@ -401,7 +401,7 @@ class PlanModel extends BaseModel {
 
   PlanModel(this.orderId);
 
-  loadPlanData() async {
+  _loadPlanData() async {
     final response =
         await HttpRequest.request(InterfaceConfig.repayment_plan, params: {
       "modelU8mV9A": {"orderIdN1N7lN": orderId}

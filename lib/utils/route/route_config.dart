@@ -13,12 +13,8 @@ class CZRouteConfig {
   //Home
   static const home = '/home';
 
-  //Mine
-  static const mine = '/mine';
-
   //login
   static const login = '/login';
-  static const loginCode = '/login/code';
 
   //Unknown
   static const unknown = '/unknown';

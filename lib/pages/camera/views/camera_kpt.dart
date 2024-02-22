@@ -99,7 +99,7 @@ class _CameraKptState extends State<CameraKpt> {
           IconButton(
             iconSize: 40.w,
             icon: Icon(Icons.clear_rounded),
-            color: Colors.blue,
+            color: Color(0xff00A651),
             onPressed: () {
               Navigator.pop(context, null);
             },
@@ -107,7 +107,7 @@ class _CameraKptState extends State<CameraKpt> {
           IconButton(
             iconSize: 40.w,
             icon: Icon(Icons.camera_alt),
-            color: Colors.blue,
+            color: Color(0xff00A651),
             onPressed: controller.value.isInitialized &&
                     !controller.value.isRecordingVideo
                 ? onTakePictureButtonPressed

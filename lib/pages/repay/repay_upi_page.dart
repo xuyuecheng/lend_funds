@@ -98,7 +98,7 @@ class RepayUpiPage extends HookWidget {
                             GestureDetector(
                               behavior: HitTestBehavior.translucent,
                               onTap: () {
-                                _getUpi(context, id);
+                                getUpi(context, id);
                               },
                               child: Container(
                                 padding: EdgeInsets.symmetric(
@@ -169,12 +169,12 @@ class RepayUpiPage extends HookWidget {
         ));
   }
 
-  myUpiSelect(BuildContext context, SysCodeEntity sysCodeEntity) {
+  _myUpiSelect(BuildContext context, SysCodeEntity sysCodeEntity) {
     upiState.value = sysCodeEntity;
-    myUpiUrlSelect(context, sysCodeEntity);
+    _myUpiUrlSelect(context, sysCodeEntity);
   }
 
-  myUpiUrlSelect(BuildContext context, SysCodeEntity sysCodeEntity) {
+  _myUpiUrlSelect(BuildContext context, SysCodeEntity sysCodeEntity) {
     upiState.value = sysCodeEntity;
     Map<String, dynamic> params = {
       "modelU8mV9A": {
@@ -184,12 +184,12 @@ class RepayUpiPage extends HookWidget {
         "repayTypeWdc4g6": type
       }
     };
-    _getUpiUrl(context, params);
+    getUpiUrl(context, params);
   }
 
-  _getUpi(BuildContext mContext, String id) async {
+  getUpi(BuildContext mContext, String id) async {
     CZLoading.loading();
-    dynamic model = await mContext.read(upiProvider).getUpi(id);
+    dynamic model = await mContext.read(upiProvider).getUpiRequest(id);
     List<dynamic>? methods =
         model.containsKey("methods") ? model["methods"] : null;
     CZLoading.dismiss();
@@ -205,14 +205,15 @@ class RepayUpiPage extends HookWidget {
       builder: (mContext) => SupervisionDictSheet(
         sysCodes: sysCodeEntityList,
         onSelect: (sysCodeEntityList) =>
-            {myUpiSelect(mContext, sysCodeEntityList.first)},
+            {_myUpiSelect(mContext, sysCodeEntityList.first)},
       ),
     );
   }
 
-  _getUpiUrl(BuildContext mContext, Map<String, dynamic> params) async {
+  getUpiUrl(BuildContext mContext, Map<String, dynamic> params) async {
     CZLoading.loading();
-    dynamic model = await mContext.read(upiUrlProvider).getUpiUrl(params);
+    dynamic model =
+        await mContext.read(upiUrlProvider).getUpiUrlRequest(params);
     CZLoading.dismiss();
     dynamic repayCode =
         model.containsKey("repayCodes0suow") ? model["repayCodes0suow"] : null;
@@ -234,7 +235,7 @@ class UpiModel extends BaseModel {
     notifyListeners();
   }
 
-  getUpi(String id) async {
+  getUpiRequest(String id) async {
     final response = await HttpRequest.request(InterfaceConfig.upi, params: {
       "modelU8mV9A": {"orderIdN1N7lN": id}
     });
@@ -255,7 +256,7 @@ class UpiUrlModel extends BaseModel {
   }
 
 //{"model": {"orderId": id,"repayMethod": id,"methodCode": id,"repayType": id}}
-  getUpiUrl(Map<String, dynamic> params) async {
+  getUpiUrlRequest(Map<String, dynamic> params) async {
     final response =
         await HttpRequest.request(InterfaceConfig.upi_url, params: params);
     return response["modelU8mV9A"];

@@ -12,7 +12,7 @@ class MineController extends GetxController {
     super.onReady();
   }
 
-  Future requestDel() async {
+  Future requestDelAccount() async {
     var userInfo = CZStorage.getUserInfo();
     var phone = "Halo";
     if (userInfo != null) {

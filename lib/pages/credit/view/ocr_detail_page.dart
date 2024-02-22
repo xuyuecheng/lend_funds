@@ -176,7 +176,7 @@ class OcrDetailPage extends HookWidget {
     }
 
     CZLoading.loading();
-    await OcrController.to.submitOcrInfo(params: {
+    await OcrController.to.submitOcrInfoRequest(params: {
       "modelU8mV9A": {
         "idCardLpsFQr": idCard,
         "userNameeRu4G3": realName,

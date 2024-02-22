@@ -51,7 +51,7 @@ class _OcrPageState extends State<OcrPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        _backEvent();
+        backEvent();
         return false;
       },
       child: Scaffold(
@@ -60,7 +60,7 @@ class _OcrPageState extends State<OcrPage> {
           leading: BackButton(
               color: Colors.black,
               onPressed: () {
-                _backEvent();
+                backEvent();
               }),
           title: Text(
             widget.formName,
@@ -110,7 +110,7 @@ class _OcrPageState extends State<OcrPage> {
                                           child: GestureDetector(
                                         behavior: HitTestBehavior.translucent,
                                         onTap: () {
-                                          _navigateFrontCameraPage(context);
+                                          navigateFrontCameraPage(context);
                                         },
                                         child: Container(
                                             clipBehavior: Clip.antiAlias,
@@ -187,7 +187,7 @@ class _OcrPageState extends State<OcrPage> {
                                           child: GestureDetector(
                                         behavior: HitTestBehavior.translucent,
                                         onTap: () {
-                                          _navigateBackCameraPage(context);
+                                          navigateBackCameraPage(context);
                                         },
                                         child: Container(
                                             clipBehavior: Clip.antiAlias,
@@ -265,7 +265,7 @@ class _OcrPageState extends State<OcrPage> {
                                       child: GestureDetector(
                                           behavior: HitTestBehavior.translucent,
                                           onTap: () {
-                                            _navigatePanCameraPage(context);
+                                            navigatePanCameraPage(context);
                                           },
                                           child: Container(
                                               clipBehavior: Clip.antiAlias,
@@ -333,7 +333,7 @@ class _OcrPageState extends State<OcrPage> {
                               borderRadius: BorderRadius.circular(5.w)),
                           child: TextButton(
                             onPressed: () {
-                              _navigateOcrDetailPage();
+                              navigateOcrDetailPage();
                             },
                             child: Text("Next",
                                 style: TextStyle(
@@ -355,7 +355,7 @@ class _OcrPageState extends State<OcrPage> {
     );
   }
 
-  _backEvent() {
+  backEvent() {
     if (isUploadAadhaarCardStep) {
       CZDialogUtil.show(RetentionDialog());
     } else {
@@ -367,7 +367,7 @@ class _OcrPageState extends State<OcrPage> {
     }
   }
 
-  _navigateFrontCameraPage(BuildContext context) async {
+  navigateFrontCameraPage(BuildContext context) async {
     XFile? imageFile = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const CameraKpt()),
@@ -379,7 +379,7 @@ class _OcrPageState extends State<OcrPage> {
         return;
       }
       resultFront =
-          (await testCompressAndGetFile(resultFront ?? "", resultFront ?? ""))
+          (await _testCompressAndGetFile(resultFront ?? "", resultFront ?? ""))
               .path;
       CZLoading.loading();
       await OcrController.to.uploadFile(resultFront ?? "").then((value) {
@@ -391,7 +391,8 @@ class _OcrPageState extends State<OcrPage> {
       });
       if (loadFront != null && loadFront!.length > 0) {
         CZLoading.loading();
-        Map response = await OcrController.to.ocrIdentifyFront(loadFront ?? "");
+        Map response =
+            await OcrController.to.ocrIdentifyFrontRequest(loadFront ?? "");
         if (response["statusE8iqlh"] == 0) {
           idCard = response["modelU8mV9A"].containsKey("idCardLpsFQr")
               ? response["modelU8mV9A"]["idCardLpsFQr"]
@@ -421,7 +422,7 @@ class _OcrPageState extends State<OcrPage> {
     }
   }
 
-  _navigateBackCameraPage(BuildContext context) async {
+  navigateBackCameraPage(BuildContext context) async {
     XFile? imageFile = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const CameraKpt()),
@@ -433,7 +434,7 @@ class _OcrPageState extends State<OcrPage> {
         return;
       }
       resultBack =
-          (await testCompressAndGetFile(resultBack ?? "", resultBack ?? ""))
+          (await _testCompressAndGetFile(resultBack ?? "", resultBack ?? ""))
               .path;
       CZLoading.loading();
       await OcrController.to.uploadFile(resultBack ?? "").then((value) {
@@ -445,7 +446,8 @@ class _OcrPageState extends State<OcrPage> {
       });
       if (loadBack != null && loadBack!.length > 0) {
         CZLoading.loading();
-        Map response = await OcrController.to.ocrIdentifyBack(loadBack ?? "");
+        Map response =
+            await OcrController.to.ocrIdentifyBackRequest(loadBack ?? "");
         if (response["statusE8iqlh"] == 0) {
           CZLoading.dismiss();
           setState(() {});
@@ -460,7 +462,7 @@ class _OcrPageState extends State<OcrPage> {
     }
   }
 
-  _navigatePanCameraPage(BuildContext context) async {
+  navigatePanCameraPage(BuildContext context) async {
     XFile? imageFile = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const CameraKpt()),
@@ -472,7 +474,8 @@ class _OcrPageState extends State<OcrPage> {
         return;
       }
       resultPan =
-          (await testCompressAndGetFile(resultPan ?? "", resultPan ?? "")).path;
+          (await _testCompressAndGetFile(resultPan ?? "", resultPan ?? ""))
+              .path;
       CZLoading.loading();
       await OcrController.to.uploadFile(resultPan ?? "").then((value) {
         CZLoading.dismiss();
@@ -483,7 +486,8 @@ class _OcrPageState extends State<OcrPage> {
       });
       if (loadPan != null && loadPan!.length > 0) {
         CZLoading.loading();
-        Map response = await OcrController.to.ocrIdentifyPan(loadPan ?? "");
+        Map response =
+            await OcrController.to.ocrIdentifyPanRequest(loadPan ?? "");
         if (response["statusE8iqlh"] == 0) {
           taxRegNumber =
               response["modelU8mV9A"].containsKey("taxRegNumberXgH70W")
@@ -514,12 +518,12 @@ class _OcrPageState extends State<OcrPage> {
     }
   }
 
-  Future<XFile> testCompressAndGetFile(String path, String targetPath) async {
+  Future<XFile> _testCompressAndGetFile(String path, String targetPath) async {
     ImageCompressUtil imageCompressUtil = ImageCompressUtil();
     return imageCompressUtil.imageCompressAndGetFile(File(path));
   }
 
-  _navigateOcrDetailPage() async {
+  navigateOcrDetailPage() async {
     if (isUploadAadhaarCardStep == true) {
       if (loadFront == null || loadFront!.isEmpty) {
         CZLoading.toast("please upload The AadhaarFront");

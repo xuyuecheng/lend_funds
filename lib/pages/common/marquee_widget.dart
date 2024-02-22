@@ -21,7 +21,7 @@ class _MarqueeWidgetState extends State<MarqueeWidget> {
       List<String> loanList = ["5000", "10000", "20000", "25000", "30000"];
       for (int index = 0; index < 10; index++) {
         String message = GlobalConfig.message;
-        String phoneStr = "******" + _randomBit(4);
+        String phoneStr = "******" + randomBit(4);
         int randomIndex = Random().nextInt(5);
         String moneyStr = loanList[randomIndex];
         message = message.replaceAll("#{phone}", phoneStr);
@@ -37,9 +37,6 @@ class _MarqueeWidgetState extends State<MarqueeWidget> {
         visible: (GlobalConfig.message.isNotEmpty),
         child: Column(
           children: [
-            // SizedBox(
-            //   height: 9,
-            // ),
             Container(
               height: 39,
               color: const Color(0xFF000000),
@@ -79,7 +76,7 @@ class _MarqueeWidgetState extends State<MarqueeWidget> {
         ));
   }
 
-  _randomBit(int len) {
+  randomBit(int len) {
     String scopeF = '0123456789'; //首位
     String scopeC = '0123456789'; //中间
     String result = '';

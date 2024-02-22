@@ -195,7 +195,7 @@ class BasicPage extends HookWidget {
                                   ? Column(
                                       children: contents.map((e) {
                                         int index = contents.indexOf(e);
-                                        return mGetWidget(context, e, index);
+                                        return _mGetWidget(context, e, index);
                                       }).toList(),
                                     )
                                   : SizedBox.shrink()),
@@ -428,7 +428,7 @@ class BasicPage extends HookWidget {
       return;
     }
     CZLoading.loading();
-    final response = await submitInfo(params);
+    final response = await submitInfoRequest(params);
     CZLoading.dismiss();
     if (response["statusE8iqlh"] == 0) {
       CZLoading.loading();
@@ -481,7 +481,7 @@ class BasicPage extends HookWidget {
                   builder: (context) => SupervisionDictSheet(
                     sysCodes: sysCodeEntityList,
                     onSelect: (sysCodeEntityList) => {
-                      mySelect(
+                      _mySelect(
                           contactFormUseState[index], sysCodeEntityList.first)
                     },
                   ),
@@ -498,7 +498,7 @@ class BasicPage extends HookWidget {
     return count != 0 ? Column(children: widgetList) : SizedBox.shrink();
   }
 
-  Widget mGetWidget(BuildContext context, dynamic content, int index) {
+  Widget _mGetWidget(BuildContext context, dynamic content, int index) {
     String type =
         content.containsKey("typeIVyt6h") ? content["typeIVyt6h"] : null;
     String name =
@@ -525,7 +525,7 @@ class BasicPage extends HookWidget {
             builder: (context) => SupervisionDictSheet(
               sysCodes: sysCodeEntityList,
               onSelect: (sysCodeEntityList) =>
-                  {mySelect(listFormUseState[index], sysCodeEntityList.first)},
+                  {_mySelect(listFormUseState[index], sysCodeEntityList.first)},
             ),
           );
         },
@@ -566,14 +566,14 @@ class BasicPage extends HookWidget {
     }
   }
 
-  mySelect(dynamic round, SysCodeEntity sysCodeEntity) {
+  _mySelect(dynamic round, SysCodeEntity sysCodeEntity) {
     sysCodeEntity.firstName = round.value.firstName;
     round.value = sysCodeEntity;
   }
 
   _getAddressInfo(dynamic round, String id) async {
     CZLoading.loading();
-    List<dynamic>? models = await getAddressInfo(round, id);
+    List<dynamic>? models = await getSecondAddressInfo(round, id);
     CZLoading.dismiss();
     List<SysCodeEntity> sysCodeEntityList = [];
     if (models != null) {
@@ -593,7 +593,7 @@ class BasicPage extends HookWidget {
     );
   }
 
-  Future getAddressInfo(dynamic round, String id) async {
+  Future getSecondAddressInfo(dynamic round, String id) async {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.address_info,
       params: {"modelU8mV9A": id},
@@ -616,7 +616,7 @@ class BasicPage extends HookWidget {
 
   _getJobInfo(dynamic round, String id) async {
     CZLoading.loading();
-    List<dynamic>? models = await getJobInfo();
+    List<dynamic>? models = await getSecondJobInfo();
     CZLoading.dismiss();
     List<SysCodeEntity> sysCodeEntityList = [];
     if (models != null) {
@@ -638,7 +638,7 @@ class BasicPage extends HookWidget {
         });
   }
 
-  getJobInfo() async {
+  getSecondJobInfo() async {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.job_info,
     );
@@ -677,7 +677,7 @@ class BasicPage extends HookWidget {
     round.value = sysCodeEntity;
   }
 
-  Future submitInfo(Map<String, dynamic> params) async {
+  Future submitInfoRequest(Map<String, dynamic> params) async {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.submitForm,
       params: params,

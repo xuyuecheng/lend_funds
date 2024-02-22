@@ -23,7 +23,7 @@ class OcrController extends GetxController {
     return result;
   }
 
-  Future ocrIdentifyFront(String url) async {
+  Future ocrIdentifyFrontRequest(String url) async {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.ocr,
       params: {
@@ -33,7 +33,7 @@ class OcrController extends GetxController {
     return result;
   }
 
-  Future ocrIdentifyBack(String url) async {
+  Future ocrIdentifyBackRequest(String url) async {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.ocr,
       params: {
@@ -43,7 +43,7 @@ class OcrController extends GetxController {
     return result;
   }
 
-  Future ocrIdentifyPan(String url) async {
+  Future ocrIdentifyPanRequest(String url) async {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.ocr,
       params: {
@@ -53,7 +53,7 @@ class OcrController extends GetxController {
     return result;
   }
 
-  Future submitOcrInfo({Map<String, dynamic>? params}) async {
+  Future submitOcrInfoRequest({Map<String, dynamic>? params}) async {
     dynamic result = await HttpRequest.request(
       InterfaceConfig.submitOcrInfo,
       params: params,

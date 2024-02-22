@@ -8,7 +8,7 @@ class LoginController extends GetxController {
   String? phoneStr;
   bool isHaveLoginPage = false;
 
-  Future sendPhoneCode({Map<String, dynamic>? params}) async {
+  Future sendPhoneCodeRequest({Map<String, dynamic>? params}) async {
     CZLoading.loading();
     Map<String, dynamic> result = await HttpRequest.request(
       InterfaceConfig.phoneCode,

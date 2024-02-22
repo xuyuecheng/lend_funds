@@ -240,14 +240,6 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
           ));
     });
   }
-
-  int _getColorFromHex(String hexColor) {
-    hexColor = hexColor.toUpperCase().replaceAll("#", "");
-    if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
-    }
-    return int.parse(hexColor, radix: 16);
-  }
 }
 
 final basicProvider = ChangeNotifierProvider.autoDispose

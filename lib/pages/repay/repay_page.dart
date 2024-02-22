@@ -354,7 +354,7 @@ class _RepayPageState extends State<RepayPage> {
                           borderRadius: BorderRadius.circular(5.w)),
                       child: TextButton(
                         onPressed: () {
-                          getRolloverPlan(context, orderId);
+                          _getRolloverPlan(context, orderId);
                         },
                         child: Text("Rollover",
                             style: TextStyle(
@@ -381,10 +381,10 @@ class _RepayPageState extends State<RepayPage> {
   }
 }
 
-getRolloverPlan(BuildContext context, String orderId) async {
+_getRolloverPlan(BuildContext context, String orderId) async {
   CZLoading.loading();
   final response =
-      await context.read(rolloverPlanProvider(orderId)).loadPlanData();
+      await context.read(rolloverPlanProvider(orderId))._loadPlanData();
   CZLoading.dismiss();
   if (response["statusE8iqlh"] == 0) {
     // dynamic delayAmount = response.model.containsKey("delayAmount") ? response.model["delayAmount"] : null;
@@ -401,7 +401,7 @@ class RolloverPlanModel extends BaseModel {
 
   RolloverPlanModel(this.orderId);
 
-  loadPlanData() async {
+  _loadPlanData() async {
     final response =
         await HttpRequest.request(InterfaceConfig.rollover_plan, params: {
       "modelU8mV9A": {"orderIdN1N7lN": orderId}

@@ -3,7 +3,7 @@ import 'package:get_storage/get_storage.dart';
 class CZStorage {
   static const String userInfoKey = 'UserInfo';
   static const String agreeInstallKey = "agreeInstallKey"; //
-  static final GetStorage storageBox = GetStorage('lend_funds');
+  static final GetStorage storageBox = GetStorage('sahayak_cash');
 
   static read(String key) {
     return storageBox.read(key);

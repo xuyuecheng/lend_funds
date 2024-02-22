@@ -110,7 +110,7 @@ class _AlivePageState extends State<AlivePage> {
         ),
         body: Stack(
           children: [
-            _cameraPreviewWidget(),
+            cameraPreviewWidget(),
             Center(
               child: Column(
                 children: [
@@ -134,7 +134,7 @@ class _AlivePageState extends State<AlivePage> {
                       onTap: controller != null &&
                               controller.value.isInitialized &&
                               !controller.value.isRecordingVideo
-                          ? onTakePictureButtonPressed
+                          ? _onTakePictureButtonPressed
                           : null,
                       child: Container(
                           alignment: Alignment.center,
@@ -171,8 +171,7 @@ class _AlivePageState extends State<AlivePage> {
   //   }
   // }
   ///预览窗口
-  Widget _cameraPreviewWidget() {
-    final theme = Theme.of(context);
+  Widget cameraPreviewWidget() {
     if (controller == null || !controller.value.isInitialized) {
       return Text(
         "",
@@ -192,16 +191,16 @@ class _AlivePageState extends State<AlivePage> {
     }
   }
 
-  Future<void> onTakePictureButtonPressed() async {
+  Future<void> _onTakePictureButtonPressed() async {
     XFile imageFile = await controller.takePicture();
     if (imageFile.path.length > 0) {
       String imagePath = imageFile.path;
-      imagePath = (await testCompressAndGetFile(imagePath, imagePath)).path;
+      imagePath = (await _testCompressAndGetFile(imagePath, imagePath)).path;
       File file = new File(imagePath);
       List<int> imageBytes = file.readAsBytesSync();
       String base64Image = base64Encode(imageBytes);
       CZLoading.loading();
-      var response = await aliveIdentify(base64Image);
+      var response = await _aliveIdentify(base64Image);
       CZLoading.dismiss();
       if (response["statusE8iqlh"] == 0) {
         CZLoading.loading();
@@ -220,12 +219,12 @@ class _AlivePageState extends State<AlivePage> {
     }));
   }
 
-  Future<XFile> testCompressAndGetFile(String path, String targetPath) async {
+  Future<XFile> _testCompressAndGetFile(String path, String targetPath) async {
     ImageCompressUtil imageCompressUtil = ImageCompressUtil();
     return imageCompressUtil.imageCompressAndGetFile(File(path));
   }
 
-  Future aliveIdentify(String faceInfo) async {
+  Future _aliveIdentify(String faceInfo) async {
     Map<String, dynamic> result =
         await HttpRequest.request(InterfaceConfig.alive, params: {
       "modelU8mV9A": {

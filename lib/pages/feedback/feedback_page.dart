@@ -100,7 +100,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         GestureDetector(
                             behavior: HitTestBehavior.translucent,
                             onTap: () {
-                              _getBasicData(context, widget.thirdOrderId);
+                              getBasicData(context, widget.thirdOrderId);
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -330,7 +330,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         Map<String, dynamic> params =
                             new Map<String, dynamic>();
                         if (result != null && result!.isNotEmpty) {
-                          var ossUrl = await _uploadFile(context);
+                          var ossUrl = await uploadFile(context);
                           if (ossUrl != null && ossUrl.toString().length > 0) {
                             params["imagesTBfcXb"] = [ossUrl];
                           }
@@ -339,7 +339,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         params["typeIdflzCog"] = sysCodeEntity?.id;
                         params["contentCxb7jm"] =
                             textEditingController.value.text;
-                        _submitData(context, params);
+                        submitData(context, params);
                       },
                       child: Text("Submit",
                           style: TextStyle(
@@ -355,7 +355,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     });
   }
 
-  _getBasicData(BuildContext context, String thirdOrderId) async {
+  getBasicData(BuildContext context, String thirdOrderId) async {
     CZLoading.loading();
 
     final response = await context.read(basicProvider(thirdOrderId)).loadData();
@@ -379,19 +379,19 @@ class _FeedbackPageState extends State<FeedbackPage> {
     }
   }
 
-  _submitData(BuildContext context, Map<String, dynamic> params) async {
+  submitData(BuildContext context, Map<String, dynamic> params) async {
     CZLoading.loading();
-    var response = await context.read(submitProvider(params)).loadMyData();
+    var response = await context.read(submitProvider(params))._loadMyData();
     CZLoading.dismiss();
     if (response["statusE8iqlh"] == 0) {
       Get.back(result: true);
     }
   }
 
-  _uploadFile(BuildContext context) async {
+  uploadFile(BuildContext context) async {
     CZLoading.loading();
     String? resultUrl =
-        await context.read(fileProvider("")).loadFile(result ?? "");
+        await context.read(fileProvider(""))._loadFile(result ?? "");
     CZLoading.dismiss();
     return resultUrl;
   }
@@ -423,7 +423,7 @@ class SubmitModel extends BaseListModel<dynamic> {
 
   SubmitModel(this.params);
 
-  loadMyData() async {
+  _loadMyData() async {
     this.loading = true;
     final response = await HttpRequest.request(InterfaceConfig.feedback_submit,
         params: {"modelU8mV9A": params});
@@ -443,7 +443,7 @@ final fileProvider =
 class FileModel extends BaseModel {
   FileModel();
 
-  Future<String?> loadFile(String filePath) async {
+  Future<String?> _loadFile(String filePath) async {
     final response =
         await HttpRequest.uploadFile(InterfaceConfig.uploadFile, filePath);
 

@@ -9,7 +9,7 @@ import 'package:lend_funds/utils/plugins/android_plugin.dart';
 class MainController extends GetxController {}
 
 class HttpController {
-  static Future requestUploadGoogleToken() async {
+  static Future uploadGoogleTokenRequest() async {
     if (Platform.isAndroid) {
       String googleToken = await FinancialPlugin.getGoogleToken();
       if (kDebugMode) {
@@ -24,7 +24,7 @@ class HttpController {
     }
   }
 
-  static Future requestUploadGoogleInstanceId() async {
+  static Future uploadGoogleInstanceIdRequest() async {
     if (Platform.isAndroid) {
       String googleInstanceId = await FinancialPlugin.getGoogleInstanceId();
       if (kDebugMode) {
@@ -40,7 +40,7 @@ class HttpController {
     }
   }
 
-  static Future requestUploadInstallReferrer() async {
+  static Future uploadInstallReferrerRequest() async {
     if (Platform.isAndroid) {
       var installReferrer = await FinancialPlugin.getInstallReferrer();
       if (kDebugMode) {

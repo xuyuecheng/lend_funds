@@ -7,7 +7,7 @@ import 'package:lend_funds/utils/network/dio_request.dart';
 class GlobalConfig {
   static String message = "";
 
-  static Future requestScrollMessage() async {
+  static Future scrollMessageRequest() async {
     Map<String, dynamic> result = await HttpRequest.request(
         InterfaceConfig.scrollMessage,
         params: {"displayLocgUgoAN": "FORM_TOP"});
