@@ -50,7 +50,7 @@ class _MarqueeWidgetState extends State<MarqueeWidget> {
                   ),
                   Image.asset(
                     "assets/credit/scroll_back.png",
-                    width: 24,
+                    width: 20,
                     height: 17,
                   ),
                   SizedBox(
