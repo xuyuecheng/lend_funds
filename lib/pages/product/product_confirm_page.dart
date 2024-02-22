@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/common/marquee_widget.dart';
 import 'package:lend_funds/pages/common/privacy_agreement.dart';
 
 class ProductConfirmPage extends StatefulWidget {
@@ -41,7 +42,7 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
         ),
         body: Column(
           children: [
-            // MarqueeWidget(),
+            MarqueeWidget(),
             Expanded(
                 child: SingleChildScrollView(
                     padding:

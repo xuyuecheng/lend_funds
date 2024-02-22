@@ -86,6 +86,7 @@ dev_dependencies:
       path: modal_bottom_sheet
   #
   pull_to_refresh: ^2.0.0
+  marquee_text: ^2.5.0+1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

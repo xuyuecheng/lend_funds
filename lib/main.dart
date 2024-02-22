@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lend_funds/pages/common/model/global_config.dart';
 import 'package:lend_funds/pages/main/controllers/main_config.dart';
 import 'package:lend_funds/pages/main/controllers/main_controller.dart';
 import 'package:lend_funds/utils/controller/controller_utils.dart';
@@ -14,6 +15,7 @@ late List<CameraDescription> cameras;
 void main() async {
   await CZMainConfig.CZBeforeRunAppConfig();
   cameras = await availableCameras();
+  await GlobalConfig.requestScrollMessage();
   runApp(ProviderScope(child: App()));
 }
 

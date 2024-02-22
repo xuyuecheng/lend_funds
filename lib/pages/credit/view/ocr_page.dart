@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lend_funds/pages/camera/views/camera_kpt.dart';
+import 'package:lend_funds/pages/common/marquee_widget.dart';
 import 'package:lend_funds/pages/common/privacy_agreement.dart';
 import 'package:lend_funds/pages/common/retention_dialog.dart';
 import 'package:lend_funds/pages/credit/controller/ocr_controller.dart';
@@ -72,7 +73,7 @@ class _OcrPageState extends State<OcrPage> {
         ),
         body: Column(
           children: [
-            // MarqueeWidget(),
+            MarqueeWidget(),
             Expanded(
                 child: SingleChildScrollView(
                     padding:

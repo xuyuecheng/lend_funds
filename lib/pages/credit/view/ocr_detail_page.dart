@@ -3,6 +3,7 @@ import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lend_funds/pages/common/marquee_widget.dart';
 import 'package:lend_funds/pages/common/privacy_agreement.dart';
 import 'package:lend_funds/pages/credit/controller/ocr_controller.dart';
 import 'package:lend_funds/pages/credit/view/widget/credit_choose_info_widget.dart';
@@ -53,7 +54,7 @@ class OcrDetailPage extends HookWidget {
         ),
         body: Column(
           children: [
-            // MarqueeWidget(),
+            MarqueeWidget(),
             Expanded(
                 child: SingleChildScrollView(
               // padding: EdgeInsets.symmetric(horizontal: 15.w),
