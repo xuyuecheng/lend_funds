@@ -30,7 +30,7 @@ class DeleteAccountDialog extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.5.w),
                 child: Text(
-                    "After deleting your account, all your information on Lend Funds will be deleted and you will no longer be able to use our services. If you want to continue using it, you must re-register.",
+                    "After deleting your account, all your information on Sahayak Cash will be deleted and you will no longer be able to use our services. If you want to continue using it, you must re-register.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         // height: 2,
