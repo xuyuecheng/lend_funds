@@ -48,7 +48,7 @@ static CZDeviceUtils *_CZDeviceUtils = nil;
     FlutterViewController* controller = (FlutterViewController*)[[[UIApplication sharedApplication] windows] firstObject].rootViewController;
     // 2.获取MethodChannel(方法通道)
     self.deviceChannel = [FlutterMethodChannel
-                                            methodChannelWithName:@"lend_funds_plugin"
+                                            methodChannelWithName:@"sahayak_cash_plugin"
                                             binaryMessenger:controller.binaryMessenger];
     __weak typeof(self) weakSelf = self;
     [self.deviceChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {

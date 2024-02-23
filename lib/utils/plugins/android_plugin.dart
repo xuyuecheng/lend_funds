@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 class FinancialPlugin {
   static MethodChannel platform =
-      const MethodChannel("lend_funds_plugin"); //__xor__
+      const MethodChannel("sahayak_cash_plugin"); //__xor__
   var gaid = "";
   var aid = "";
   Future<String> getGoogleGaId() async {

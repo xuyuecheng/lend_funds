@@ -3,7 +3,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 class CZDeviceUtils {
   //
-  static const platform = MethodChannel("lend_funds_plugin");
+  static const platform = MethodChannel("sahayak_cash_plugin");
   var idfa = "";
   var idfv = "";
   static Map _deviceInfo = {};

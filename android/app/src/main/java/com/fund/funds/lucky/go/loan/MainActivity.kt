@@ -13,7 +13,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : FlutterActivity() {
-    private val CHANNEL = "lend_funds_plugin"
+    private val CHANNEL = "sahayak_cash_plugin"
     private val REQUEST_CODE_LIVENESS = 1010
     private val REQUEST_CODE_PERMISSION = 1011
     private val REQUEST_ONE_CODE_PERMISSION = 1012
