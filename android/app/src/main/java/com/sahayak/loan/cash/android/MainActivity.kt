@@ -1,11 +1,11 @@
-package com.fund.funds.lucky.go.loan
+package com.sahayak.loan.cash.android
 
 import android.annotation.SuppressLint
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import com.fund.funds.lucky.go.loan.App.Companion.ins
+import com.sahayak.loan.cash.android.App.Companion.ins
 import com.google.android.gms.ads.identifier.AdvertisingIdClient
 import android.provider.Settings
 import com.google.android.gms.tasks.OnCompleteListener

@@ -1,4 +1,4 @@
-package com.fund.funds.lucky.go.loan
+package com.sahayak.loan.cash.android
 
 import android.annotation.SuppressLint
 import android.provider.Settings

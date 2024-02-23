@@ -1,4 +1,4 @@
-package com.fund.funds.lucky.go.loan
+package com.sahayak.loan.cash.android
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,7 +9,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.fund.funds.lucky.go.loan.MainActivity
+import com.sahayak.loan.cash.android.MainActivity
 
 class FbService : FirebaseMessagingService() {
 
