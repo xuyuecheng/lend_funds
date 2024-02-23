@@ -54,6 +54,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       defaultTransition: Transition.rightToLeftWithFade,
       initialBinding: CZControllerBinding(),
       builder: EasyLoading.init(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
