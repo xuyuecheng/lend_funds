@@ -25,7 +25,7 @@
             android:value="false" />
         <meta-data
             android:name="io.branch.sdk.BranchKey"
-            android:value="key_live_fqjvCLYEnu6887YKOcLIphocqDpYX0Zq" />
+            android:value="key_live_ksgrXIzi6Pl2P0VT17inHkhfvvbhtNRk" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -88,10 +88,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="zz77b.app.link"
+                    android:host="l2tjw.app.link"
                     android:scheme="https" />
                 <data
-                    android:host="zz77b-alternate.app.link"
+                    android:host="l2tjw-alternate.app.link"
                     android:scheme="https" />
             </intent-filter>
 
