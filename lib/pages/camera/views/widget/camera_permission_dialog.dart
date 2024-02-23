@@ -14,7 +14,7 @@ class CameraPermissionDialog extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: 345.w,
+          width: 288.w,
           decoration: BoxDecoration(
               color: Colors.transparent,
               // borderRadius: BorderRadius.circular(15.w),
@@ -33,39 +33,39 @@ class CameraPermissionDialog extends StatelessWidget {
                     "User has previously denied the camera access request. Go to Settings to enable camera access.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        height: 2,
+                        // height: 2,
                         fontSize: 14.5.sp,
                         color: const Color(0xFFFFFFFF),
                         fontWeight: FontWeight.normal)),
               ),
               SizedBox(
-                height: 74.w,
+                height: 44.w,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 9.w),
+                padding: EdgeInsets.symmetric(horizontal: 7.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: 154.w,
+                      width: 128.w,
                       decoration: BoxDecoration(
-                          color: const Color(0xFF003C6A),
+                          color: const Color(0xFF00A651),
                           borderRadius: BorderRadius.circular(5.w)),
                       child: TextButton(
                         onPressed: () {
                           confirmBlock();
                         },
-                        child: Text("Go",
+                        child: Text("Confirm",
                             style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 15.sp,
                                 color: const Color(0xFFFFFFFF),
-                                fontWeight: FontWeight.w500)),
+                                fontWeight: FontWeight.w700)),
                       ),
                     ),
                     Container(
-                      width: 154.w,
+                      width: 128.w,
                       decoration: BoxDecoration(
-                          color: const Color(0xFFCFDEEA),
+                          color: const Color(0xFFDBF6E9),
                           borderRadius: BorderRadius.circular(5.w)),
                       child: TextButton(
                         onPressed: () {
@@ -73,9 +73,9 @@ class CameraPermissionDialog extends StatelessWidget {
                         },
                         child: Text("Cancel",
                             style: TextStyle(
-                                fontSize: 20.sp,
-                                color: const Color(0xFF003C6A),
-                                fontWeight: FontWeight.w500)),
+                                fontSize: 15.sp,
+                                color: const Color(0xFF00A651),
+                                fontWeight: FontWeight.w700)),
                       ),
                     ),
                   ],
