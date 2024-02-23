@@ -1,8 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lend_funds/pages/camera/views/widget/camera_permission_dialog.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/pages/camera/views/widget/camera_permission_dialog.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../main.dart';

@@ -1,8 +1,8 @@
 // import 'package:financial_app/pages/mine/controllers/mine_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lend_funds/pages/home/controller/home_controller.dart';
-import 'package:lend_funds/utils/eventbus/eventbus.dart';
+import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
+import 'package:sahayak_cash/utils/eventbus/eventbus.dart';
 
 // import '../../home/controllers/home_controller.dart';
 // import '../../repay/controllers/repay_controller.dart';

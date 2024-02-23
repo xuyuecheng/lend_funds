@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lend_funds/pages/common/privacy_agreement.dart';
-import 'package:lend_funds/pages/feedback/feedback_page.dart';
-import 'package:lend_funds/utils/base/base_view_model.dart';
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/network/dio_request.dart';
-import 'package:lend_funds/utils/theme/screen_utils.dart';
-import 'package:lend_funds/utils/time/time_utils.dart';
+import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
+import 'package:sahayak_cash/pages/feedback/feedback_page.dart';
+import 'package:sahayak_cash/utils/base/base_view_model.dart';
+import 'package:sahayak_cash/utils/network/dio_config.dart';
+import 'package:sahayak_cash/utils/network/dio_request.dart';
+import 'package:sahayak_cash/utils/theme/screen_utils.dart';
+import 'package:sahayak_cash/utils/time/time_utils.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class FeedbackListPage extends StatefulWidget {

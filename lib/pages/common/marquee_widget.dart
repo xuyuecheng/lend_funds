@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:lend_funds/pages/common/model/global_config.dart';
+import 'package:sahayak_cash/pages/common/model/global_config.dart';
 import 'package:marquee_text/marquee_text.dart';
 
 class MarqueeWidget extends StatefulWidget {

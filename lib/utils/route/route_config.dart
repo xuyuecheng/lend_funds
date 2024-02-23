@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/expection_pages/unknown_route.dart';
-import 'package:lend_funds/pages/home/view/home_page.dart';
-import 'package:lend_funds/pages/login/view/login_new_page.dart';
-import 'package:lend_funds/pages/main/views/main.dart';
-import 'package:lend_funds/pages/main/views/splash.dart';
+import 'package:sahayak_cash/pages/expection_pages/unknown_route.dart';
+import 'package:sahayak_cash/pages/home/view/home_page.dart';
+import 'package:sahayak_cash/pages/login/view/login_new_page.dart';
+import 'package:sahayak_cash/pages/main/views/main.dart';
+import 'package:sahayak_cash/pages/main/views/splash.dart';
 
 class CZRouteConfig {
   //Main

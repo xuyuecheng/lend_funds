@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/network/dio_request.dart';
-import 'package:lend_funds/utils/storage/storage_utils.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/utils/network/dio_config.dart';
+import 'package:sahayak_cash/utils/network/dio_request.dart';
+import 'package:sahayak_cash/utils/storage/storage_utils.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 
 class MineController extends GetxController {
   static MineController get to => Get.find();

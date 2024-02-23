@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lend_funds/pages/credit/view/widget/syscode_widget.dart';
-import 'package:lend_funds/utils/base/base_view_model.dart';
-import 'package:lend_funds/utils/entity/syscode_entity.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/pages/credit/view/widget/syscode_widget.dart';
+import 'package:sahayak_cash/utils/base/base_view_model.dart';
+import 'package:sahayak_cash/utils/entity/syscode_entity.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 
 class SupervisionDictSheet extends HookWidget {
   final List<SysCodeEntity> sysCodes;

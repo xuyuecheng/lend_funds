@@ -2,16 +2,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/login/view/login_new_page.dart';
-import 'package:lend_funds/pages/mine/controller/mine_controller.dart';
-import 'package:lend_funds/pages/mine/view/widget/delete_account_dialog.dart';
-import 'package:lend_funds/pages/webview/webview.dart';
-import 'package:lend_funds/utils/const/translate.dart';
-import 'package:lend_funds/utils/eventbus/eventbus.dart';
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/service/TelAndSmsService.dart';
-import 'package:lend_funds/utils/storage/storage_utils.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/pages/login/view/login_new_page.dart';
+import 'package:sahayak_cash/pages/mine/controller/mine_controller.dart';
+import 'package:sahayak_cash/pages/mine/view/widget/delete_account_dialog.dart';
+import 'package:sahayak_cash/pages/webview/webview.dart';
+import 'package:sahayak_cash/utils/const/translate.dart';
+import 'package:sahayak_cash/utils/eventbus/eventbus.dart';
+import 'package:sahayak_cash/utils/network/dio_config.dart';
+import 'package:sahayak_cash/utils/service/TelAndSmsService.dart';
+import 'package:sahayak_cash/utils/storage/storage_utils.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({Key? key}) : super(key: key);
@@ -55,7 +55,7 @@ class _MinePageState extends State<MinePage> {
                 right: 7.5.w,
                 child: Column(
                   children: [
-                    Image.asset('assets/lend_funds_logo.png',
+                    Image.asset('assets/sahayak_cash_logo.png',
                         width: 57.w, height: 57.w),
                     SizedBox(
                       height: 7.h,

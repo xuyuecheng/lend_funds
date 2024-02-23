@@ -6,14 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lend_funds/pages/camera/views/camera_kpt.dart';
-import 'package:lend_funds/pages/credit/view/widget/dict_sheet.dart';
-import 'package:lend_funds/utils/base/base_view_model.dart';
-import 'package:lend_funds/utils/entity/syscode_entity.dart';
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/network/dio_request.dart';
-import 'package:lend_funds/utils/theme/screen_utils.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/pages/camera/views/camera_kpt.dart';
+import 'package:sahayak_cash/pages/credit/view/widget/dict_sheet.dart';
+import 'package:sahayak_cash/utils/base/base_view_model.dart';
+import 'package:sahayak_cash/utils/entity/syscode_entity.dart';
+import 'package:sahayak_cash/utils/network/dio_config.dart';
+import 'package:sahayak_cash/utils/network/dio_request.dart';
+import 'package:sahayak_cash/utils/theme/screen_utils.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart' as myBottomSheet;
 
 class FeedbackPage extends StatefulWidget {

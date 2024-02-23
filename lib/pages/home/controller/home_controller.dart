@@ -4,13 +4,13 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/credit/view/alive_page.dart';
-import 'package:lend_funds/pages/credit/view/basic_page.dart';
-import 'package:lend_funds/pages/credit/view/ocr_page.dart';
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/network/dio_request.dart';
-import 'package:lend_funds/utils/plugins/android_plugin.dart';
-import 'package:lend_funds/utils/plugins/ios_plugin.dart';
+import 'package:sahayak_cash/pages/credit/view/alive_page.dart';
+import 'package:sahayak_cash/pages/credit/view/basic_page.dart';
+import 'package:sahayak_cash/pages/credit/view/ocr_page.dart';
+import 'package:sahayak_cash/utils/network/dio_config.dart';
+import 'package:sahayak_cash/utils/network/dio_request.dart';
+import 'package:sahayak_cash/utils/plugins/android_plugin.dart';
+import 'package:sahayak_cash/utils/plugins/ios_plugin.dart';
 
 class HomeController extends GetxController with StateMixin<Map> {
   static HomeController get to => Get.find();

@@ -3,16 +3,16 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lend_funds/pages/common/privacy_agreement.dart';
-import 'package:lend_funds/pages/credit/view/widget/dict_sheet.dart';
-import 'package:lend_funds/utils/base/base_view_model.dart';
-import 'package:lend_funds/utils/entity/syscode_entity.dart';
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/network/dio_request.dart';
-import 'package:lend_funds/utils/service/TelAndSmsService.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
-import 'package:lend_funds/utils/vm/app_model.dart';
-import 'package:lend_funds/utils/vm/repo_provider.dart';
+import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
+import 'package:sahayak_cash/pages/credit/view/widget/dict_sheet.dart';
+import 'package:sahayak_cash/utils/base/base_view_model.dart';
+import 'package:sahayak_cash/utils/entity/syscode_entity.dart';
+import 'package:sahayak_cash/utils/network/dio_config.dart';
+import 'package:sahayak_cash/utils/network/dio_request.dart';
+import 'package:sahayak_cash/utils/service/TelAndSmsService.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/utils/vm/app_model.dart';
+import 'package:sahayak_cash/utils/vm/repo_provider.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart' as myBottomSheet;
 
 class RepayUpiPage extends HookWidget {

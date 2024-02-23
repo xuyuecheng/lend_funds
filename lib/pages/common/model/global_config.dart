@@ -1,8 +1,8 @@
 // import 'package:portal_zp_mobile/src/network/api_urls.dart';
 // import 'package:portal_zp_mobile/src/network/http_manager.dart';
 
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/network/dio_request.dart';
+import 'package:sahayak_cash/utils/network/dio_config.dart';
+import 'package:sahayak_cash/utils/network/dio_request.dart';
 
 class GlobalConfig {
   static String message = "";

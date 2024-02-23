@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:lend_funds/pages/home/view/home_page.dart';
-import 'package:lend_funds/pages/mine/view/mine_page.dart';
-import 'package:lend_funds/pages/order/view/order_page.dart';
+import 'package:sahayak_cash/pages/home/view/home_page.dart';
+import 'package:sahayak_cash/pages/mine/view/mine_page.dart';
+import 'package:sahayak_cash/pages/order/view/order_page.dart';
 
 import '../../../utils/theme/app_theme.dart';
 import '../../../utils/theme/screen_utils.dart';

@@ -7,10 +7,10 @@ import 'package:dio/src/multipart_file.dart' as multipart;
 import 'package:dio/src/response.dart' as res;
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/login/controllers/login_controller.dart';
-import 'package:lend_funds/pages/login/view/login_new_page.dart';
-import 'package:lend_funds/utils/storage/storage_utils.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/pages/login/controllers/login_controller.dart';
+import 'package:sahayak_cash/pages/login/view/login_new_page.dart';
+import 'package:sahayak_cash/utils/storage/storage_utils.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'dio_config.dart';

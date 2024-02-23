@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/common/privacy_agreement.dart';
-import 'package:lend_funds/pages/repay/repay_upi_page.dart';
-import 'package:lend_funds/utils/time/time_utils.dart';
+import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
+import 'package:sahayak_cash/pages/repay/repay_upi_page.dart';
+import 'package:sahayak_cash/utils/time/time_utils.dart';
 
 class RepayRolloverPage extends HookWidget {
   final dynamic model;

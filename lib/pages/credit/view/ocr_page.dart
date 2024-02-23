@@ -4,15 +4,15 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/camera/views/camera_kpt.dart';
-import 'package:lend_funds/pages/common/marquee_widget.dart';
-import 'package:lend_funds/pages/common/privacy_agreement.dart';
-import 'package:lend_funds/pages/common/retention_dialog.dart';
-import 'package:lend_funds/pages/credit/controller/ocr_controller.dart';
-import 'package:lend_funds/pages/credit/view/ocr_detail_page.dart';
-import 'package:lend_funds/pages/home/controller/home_controller.dart';
-import 'package:lend_funds/utils/image/ImageCompressUtil.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/pages/camera/views/camera_kpt.dart';
+import 'package:sahayak_cash/pages/common/marquee_widget.dart';
+import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
+import 'package:sahayak_cash/pages/common/retention_dialog.dart';
+import 'package:sahayak_cash/pages/credit/controller/ocr_controller.dart';
+import 'package:sahayak_cash/pages/credit/view/ocr_detail_page.dart';
+import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
+import 'package:sahayak_cash/utils/image/ImageCompressUtil.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 
 class OcrPage extends StatefulWidget {
   final String formId;

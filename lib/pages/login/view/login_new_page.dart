@@ -4,13 +4,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/login/controllers/login_controller.dart';
-import 'package:lend_funds/pages/webview/webview.dart';
-import 'package:lend_funds/utils/const/translate.dart';
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/route/route_config.dart';
-import 'package:lend_funds/utils/storage/storage_utils.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/pages/login/controllers/login_controller.dart';
+import 'package:sahayak_cash/pages/webview/webview.dart';
+import 'package:sahayak_cash/utils/const/translate.dart';
+import 'package:sahayak_cash/utils/network/dio_config.dart';
+import 'package:sahayak_cash/utils/route/route_config.dart';
+import 'package:sahayak_cash/utils/storage/storage_utils.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 
 class LoginNewPage extends StatefulWidget {
   const LoginNewPage({Key? key}) : super(key: key);

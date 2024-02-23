@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lend_funds/utils/entity/syscode_entity.dart';
+import 'package:sahayak_cash/utils/entity/syscode_entity.dart';
 
 class SysCodeWidget extends StatelessWidget {
   final Function()? onConfirm;

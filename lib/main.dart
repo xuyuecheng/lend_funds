@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lend_funds/pages/common/model/global_config.dart';
-import 'package:lend_funds/pages/main/controllers/main_config.dart';
-import 'package:lend_funds/pages/main/controllers/main_controller.dart';
-import 'package:lend_funds/utils/controller/controller_utils.dart';
-import 'package:lend_funds/utils/route/route_config.dart';
-import 'package:lend_funds/utils/service/TelAndSmsService.dart';
-import 'package:lend_funds/utils/theme/app_theme.dart';
+import 'package:sahayak_cash/pages/common/model/global_config.dart';
+import 'package:sahayak_cash/pages/main/controllers/main_config.dart';
+import 'package:sahayak_cash/pages/main/controllers/main_controller.dart';
+import 'package:sahayak_cash/utils/controller/controller_utils.dart';
+import 'package:sahayak_cash/utils/route/route_config.dart';
+import 'package:sahayak_cash/utils/service/TelAndSmsService.dart';
+import 'package:sahayak_cash/utils/theme/app_theme.dart';
 
 late List<CameraDescription> cameras;
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/common/marquee_widget.dart';
-import 'package:lend_funds/pages/common/privacy_agreement.dart';
+import 'package:sahayak_cash/pages/common/marquee_widget.dart';
+import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 
 class ProductConfirmPage extends StatefulWidget {
   final List itemList;

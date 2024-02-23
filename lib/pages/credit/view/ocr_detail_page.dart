@@ -3,13 +3,13 @@ import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/pages/common/marquee_widget.dart';
-import 'package:lend_funds/pages/common/privacy_agreement.dart';
-import 'package:lend_funds/pages/credit/controller/ocr_controller.dart';
-import 'package:lend_funds/pages/credit/view/widget/credit_choose_info_widget.dart';
-import 'package:lend_funds/pages/credit/view/widget/credit_input_info_widget.dart';
-import 'package:lend_funds/utils/time/time_utils.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/pages/common/marquee_widget.dart';
+import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
+import 'package:sahayak_cash/pages/credit/controller/ocr_controller.dart';
+import 'package:sahayak_cash/pages/credit/view/widget/credit_choose_info_widget.dart';
+import 'package:sahayak_cash/pages/credit/view/widget/credit_input_info_widget.dart';
+import 'package:sahayak_cash/utils/time/time_utils.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 
 class OcrDetailPage extends HookWidget {
   final Map<String, dynamic> params;

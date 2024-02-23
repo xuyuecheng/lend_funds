@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:lend_funds/utils/route/route_config.dart';
-import 'package:lend_funds/utils/storage/storage_utils.dart';
-import 'package:lend_funds/utils/theme/colors_utils.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/utils/route/route_config.dart';
+import 'package:sahayak_cash/utils/storage/storage_utils.dart';
+import 'package:sahayak_cash/utils/theme/colors_utils.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PermissionWebviewPage extends StatefulWidget {

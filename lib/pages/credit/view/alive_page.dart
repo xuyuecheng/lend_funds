@@ -4,14 +4,14 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lend_funds/main.dart';
-import 'package:lend_funds/pages/camera/views/widget/camera_permission_dialog.dart';
-import 'package:lend_funds/pages/common/retention_dialog.dart';
-import 'package:lend_funds/pages/home/controller/home_controller.dart';
-import 'package:lend_funds/utils/image/ImageCompressUtil.dart';
-import 'package:lend_funds/utils/network/dio_config.dart';
-import 'package:lend_funds/utils/network/dio_request.dart';
-import 'package:lend_funds/utils/toast/toast_utils.dart';
+import 'package:sahayak_cash/main.dart';
+import 'package:sahayak_cash/pages/camera/views/widget/camera_permission_dialog.dart';
+import 'package:sahayak_cash/pages/common/retention_dialog.dart';
+import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
+import 'package:sahayak_cash/utils/image/ImageCompressUtil.dart';
+import 'package:sahayak_cash/utils/network/dio_config.dart';
+import 'package:sahayak_cash/utils/network/dio_request.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class AlivePage extends StatefulWidget {
