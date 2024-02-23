@@ -56,7 +56,7 @@ class _SplashState extends State<Splash> {
   }
 
   void _onInit() async {
-    bool installProtol = await CZStorage.getAgreeInstall();
+    bool installProtol = await CZStorage.getAgreePermission();
     if (installProtol == false) {
       Get.off(() => PermissionWebviewPage(
             title: Translate.permission,

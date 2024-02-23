@@ -2,7 +2,7 @@ import 'package:get_storage/get_storage.dart';
 
 class CZStorage {
   static const String userInfoKey = 'UserInfo';
-  static const String agreeInstallKey = "agreeInstallKey"; //
+  static const String agreePermissionKey = "agreePermissionKey"; //
   static final GetStorage storageBox = GetStorage('sahayak_cash');
 
   static read(String key) {
@@ -19,13 +19,13 @@ class CZStorage {
     }
   }
 
-  static saveAgreeInstall(bool value) {
-    write(agreeInstallKey, value);
+  static saveAgreePermission(bool value) {
+    write(agreePermissionKey, value);
   }
 
-  static bool getAgreeInstall() {
-    if (storageBox.hasData(agreeInstallKey)) {
-      return read(agreeInstallKey);
+  static bool getAgreePermission() {
+    if (storageBox.hasData(agreePermissionKey)) {
+      return read(agreePermissionKey);
     }
     return false;
   }

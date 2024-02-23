@@ -126,7 +126,7 @@ class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
                     CZLoading.toast("Please read the agreement");
                     return;
                   }
-                  CZStorage.saveAgreeInstall(true);
+                  CZStorage.saveAgreePermission(true);
                   Get.offNamed(CZRouteConfig.initialRouteLogin);
                 },
                 child: Container(
