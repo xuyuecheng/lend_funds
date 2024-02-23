@@ -55,7 +55,7 @@ class _MinePageState extends State<MinePage> {
                 right: 7.5.w,
                 child: Column(
                   children: [
-                    Image.asset('assets/sahayak_cash_logo.png',
+                    Image.asset('assets/mine/mine_photo_icon.png',
                         width: 57.w, height: 57.w),
                     SizedBox(
                       height: 7.h,
