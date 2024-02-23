@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,6 +21,10 @@ void main() async {
   await CZMainConfig.CZBeforeRunAppConfig();
   cameras = await availableCameras();
   await GlobalConfig.scrollMessageRequest();
+  if (Platform.isAndroid) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  }
   runApp(ProviderScope(child: App()));
 }
 
