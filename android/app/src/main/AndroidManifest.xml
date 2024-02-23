@@ -74,7 +74,7 @@
             <intent-filter>
                 <data
                     android:host="open"
-                    android:scheme="lendfunds" />
+                    android:scheme="sahayakcash" />
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
