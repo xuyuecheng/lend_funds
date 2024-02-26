@@ -193,7 +193,7 @@ class _MinePageState extends State<MinePage> {
                                 SizedBox(
                                   height: 15.h,
                                 ),
-                                Text("Privacy Agreement",
+                                Text("Privacy Policy",
                                     style: TextStyle(
                                         fontSize: 7.5.sp,
                                         color: const Color(0xFF5F5F5F),

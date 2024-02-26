@@ -320,7 +320,7 @@ class _LoginNewPageState extends State<LoginNewPage> {
                         fontWeight: FontWeight.w700),
                   ),
                   TextSpan(
-                    text: 'Privacy Agreement',
+                    text: 'Privacy Policy',
                     style: TextStyle(
                         color: const Color(0xFF059226),
                         fontSize: 10.sp,

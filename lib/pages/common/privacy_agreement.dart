@@ -18,7 +18,7 @@ class PrivacyAgreement extends StatelessWidget {
               url: AppConfig.privacyStatementURL,
             ));
       },
-      child: Text("Privacy Agreement",
+      child: Text("Privacy Policy",
           style: TextStyle(
               fontSize: 12.sp,
               color: const Color(0xFF00A651),
