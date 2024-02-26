@@ -10,8 +10,6 @@ import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
 import 'package:sahayak_cash/pages/order/view/order_page.dart';
 import 'package:sahayak_cash/pages/product/product_confirm_page.dart';
-import 'package:sahayak_cash/pages/webview/webview.dart';
-import 'package:sahayak_cash/utils/const/translate.dart';
 import 'package:sahayak_cash/utils/eventbus/eventbus.dart';
 import 'package:sahayak_cash/utils/network/dio_config.dart';
 import 'package:sahayak_cash/utils/toast/toast_utils.dart';
@@ -765,10 +763,6 @@ class _HomePageState extends State<HomePage> {
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       // debugPrint("1");
-                                      Get.to(() => WebView(
-                                            title: Translate.privacyStatement,
-                                            url: AppConfig.privacyStatementURL,
-                                          ));
                                     },
                                 ),
                               ],
