@@ -224,7 +224,8 @@ class _LoginNewPageState extends State<LoginNewPage> {
                         return;
                       }
                       if (_switchSelected == false) {
-                        CZLoading.toast("Please read the agreement");
+                        CZLoading.toast(
+                            "Please tick the box to confirm, thanks");
                         return;
                       }
                       _sendSubmitted(_codeController.text);

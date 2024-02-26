@@ -3,6 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sahayak_cash/pages/common/marquee_widget.dart';
 import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
@@ -13,8 +15,6 @@ import 'package:sahayak_cash/utils/const/translate.dart';
 import 'package:sahayak_cash/utils/eventbus/eventbus.dart';
 import 'package:sahayak_cash/utils/network/dio_config.dart';
 import 'package:sahayak_cash/utils/toast/toast_utils.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class HomePage extends StatefulWidget {
@@ -868,7 +868,7 @@ class _HomePageState extends State<HomePage> {
                                 onPressed: () {
                                   if (_switchSelected == false) {
                                     CZLoading.toast(
-                                        "Please read the agreement");
+                                        "Please tick the box to confirm, thanks");
                                     return;
                                   }
                                   List<String> productIds = [];
