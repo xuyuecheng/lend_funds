@@ -350,7 +350,7 @@ class _LoginNewPageState extends State<LoginNewPage> {
     if (_countdownTime > 0) {
       return '${_countdownTime}s';
     } else {
-      return 'OPT';
+      return 'OTP';
     }
   }
 
