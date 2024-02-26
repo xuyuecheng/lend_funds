@@ -25,7 +25,7 @@ class PermissionWebviewPage extends StatefulWidget {
 class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
   late final WebViewController controller;
   bool _isLoading = true;
-  bool _switchSelected = true;
+  bool _switchSelected = false;
   @override
   void initState() {
     super.initState();
