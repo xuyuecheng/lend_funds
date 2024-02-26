@@ -22,43 +22,53 @@ class _RetentionDialogState extends State<RetentionDialog> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 9.w),
-          width: 262.h,
+          width: 262,
+          height: 262,
           decoration: BoxDecoration(
-            // color: const Color(0xFF00A651),
-            borderRadius: BorderRadius.circular(10.w),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomLeft,
-              colors: [Color(0xff129150), Color(0xff00A651)],
-            ),
+            image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage("assets/credit/retention_back.png")),
           ),
           child: Stack(
             alignment: AlignmentDirectional.center,
             children: [
               Positioned(
-                  top: 25.h,
+                  top: 36,
                   child: Image.asset(
                     "assets/credit/retention_background_icon.png",
-                    width: 173.w,
-                    height: 179.w,
+                    width: 173,
+                    height: 179,
                     fit: BoxFit.fill,
                   )),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 20.5.h,
-                  ),
-                  Text(
-                      "Now complete the application,\nwithdraw the loan instantly.\n Expires in 10 minutes!",
-                      style: TextStyle(
-                          fontSize: 12.5.sp,
-                          color: const Color(0xFFFFFFFF),
-                          fontWeight: FontWeight.w400)),
-                  SizedBox(
-                    height: 130.5.h,
-                  ),
-                  GestureDetector(
+              Positioned(
+                top: 17.5,
+                child: Text("One Step to get your Money\nUp to ₹ 20,000",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 17.5.sp,
+                        color: const Color(0xFFFFFFFF),
+                        fontWeight: FontWeight.w400)),
+              ),
+              Positioned(
+                  left: 10,
+                  bottom: 15,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    },
+                    child: Image.asset(
+                      "assets/credit/retention_quit_background_icon.png",
+                      width: 115,
+                      height: 35,
+                      fit: BoxFit.fill,
+                    ),
+                  )),
+              Positioned(
+                  right: 10,
+                  bottom: 15,
+                  child: GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
                       Navigator.pop(context);
@@ -66,64 +76,13 @@ class _RetentionDialogState extends State<RetentionDialog> {
                         widget.confirmBlock!();
                       }
                     },
-                    child: Container(
-                      width: 158.5.w,
-                      height: 35.h,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Color(0xffCBE6D8),
-                              Color(0xffF4FAF7),
-                              Color(0xffFFFFFF)
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(15.h)),
-                      child: Text("Continue",
-                          style: TextStyle(
-                              fontSize: 17.5.sp,
-                              color: const Color(0xFF00A651),
-                              fontWeight: FontWeight.w700)),
+                    child: Image.asset(
+                      "assets/credit/retention_continue_background_icon.png",
+                      width: 115,
+                      height: 35,
+                      fit: BoxFit.fill,
                     ),
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      width: 158.5.w,
-                      height: 35.h,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Color(0xffFFFFFF),
-                              Color(0xff01A551),
-                              Color(0xff01A651)
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(15.h)),
-                      child: Text("Cancel",
-                          style: TextStyle(
-                              fontSize: 17.5.sp,
-                              color: const Color(0xFFffffff),
-                              fontWeight: FontWeight.w700)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 4.5.h,
-                  ),
-                ],
-              ),
+                  )),
             ],
           ),
         )
