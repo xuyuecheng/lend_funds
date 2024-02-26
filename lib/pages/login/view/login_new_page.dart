@@ -59,20 +59,31 @@ class _LoginNewPageState extends State<LoginNewPage> {
           alignment: AlignmentDirectional.center,
           children: [
             Positioned(
-              top: 96.w,
+              top: 85.h,
               left: 7.w,
               right: 7.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Sahayak Cash",
-                    style: TextStyle(
-                        fontSize: 25.sp,
-                        color: const Color(0xFF000000),
-                        fontWeight: FontWeight.w500),
+                  Row(
+                    children: [
+                      Image.asset(
+                        "assets/login/login_logo_icon.png",
+                        width: 44.h,
+                        height: 42.h,
+                        fit: BoxFit.fill,
+                      ),
+                      SizedBox(width: 5.h),
+                      Text(
+                        "Sahayak Cash",
+                        style: TextStyle(
+                            fontSize: 20.sp,
+                            color: const Color(0xFF000000),
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 7.h),
+                  SizedBox(height: 5.h),
                   Text(
                     "Make your credit more valuable",
                     style: TextStyle(
@@ -205,7 +216,7 @@ class _LoginNewPageState extends State<LoginNewPage> {
                               _handleCodeAutoSizeText(),
                               style: TextStyle(
                                   fontSize: 19.5.sp,
-                                  color: const Color(0xFF000000),
+                                  color: const Color(0xFF00A651),
                                   fontWeight: FontWeight.w500),
                             ),
                           ))
@@ -276,56 +287,44 @@ class _LoginNewPageState extends State<LoginNewPage> {
                     ),
                   ),
                   TextSpan(
-                    text: '  I have read and agreed',
+                    text: '  I have read and agreed to Sahayak Cash’s ',
                     style: TextStyle(
                         color: const Color(0xFF000000),
-                        fontSize: 9.sp,
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.w700),
                   ),
                   TextSpan(
-                    text: '${"《Sahayak Cash's privacy agreement》"}',
+                    text: '${"User Agreement"}',
                     style: TextStyle(
                         color: const Color(0xFF059226),
-                        fontSize: 9.sp,
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.w700),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         debugPrint("1");
-                        Get.to(() => WebView(
-                              title: Translate.privacyStatement,
-                              url: AppConfig.privacyStatementURL,
-                            ));
                       },
                   ),
                   TextSpan(
-                    text: ' & ',
+                    text: ' and ',
                     style: TextStyle(
                         color: const Color(0xFF000000),
-                        fontSize: 9.sp,
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.w700),
                   ),
                   TextSpan(
-                    text: '《conditions and terms》',
+                    text: 'Privacy Agreement',
                     style: TextStyle(
                         color: const Color(0xFF059226),
-                        fontSize: 9.sp,
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.w700),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         debugPrint("2");
                         Get.to(() => WebView(
-                              title: Translate.termsAgreement,
-                              url: AppConfig.termsAgreement,
+                              title: Translate.privacyStatement,
+                              url: AppConfig.privacyStatementURL,
                             ));
                       },
-                  ),
-                  TextSpan(
-                    text:
-                        ' The agreement is highlighted, click to view, the agreement is checked by default, and you can click to cancel the check',
-                    style: TextStyle(
-                        color: const Color(0xFF000000),
-                        fontSize: 9.sp,
-                        fontWeight: FontWeight.w700),
                   ),
                 ],
               )),
