@@ -58,28 +58,6 @@ class _HomePageState extends State<HomePage> {
                         height: 45.h,
                       ),
                       Container(
-                        child: Row(
-                          children: [
-                            Text("Hello user",
-                                style: TextStyle(
-                                    fontSize: 20.sp,
-                                    color: const Color(0xFF000000),
-                                    fontWeight: FontWeight.w500)),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Image.asset(
-                              "assets/home/home_welcome_icon.png",
-                              width: 20.w,
-                              height: 20.w,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 19.h,
-                      ),
-                      Container(
                           child: Stack(
                         alignment: AlignmentDirectional.center,
                         children: [
@@ -195,128 +173,66 @@ class _HomePageState extends State<HomePage> {
                                           color: const Color(0xFFFFFFFF),
                                           fontWeight: FontWeight.w700)),
                                 ),
-                              ))
+                              )),
+                          Positioned(bottom: 10.h, child: PrivacyAgreement()),
                         ],
                       )),
                       SizedBox(
-                        height: 11.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/home/choose_cash_left.png",
-                            width: 49.w,
-                            height: 6.h,
-                            fit: BoxFit.fill,
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text("Reasons to choose Cash Home",
-                              style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: const Color(0xFF464646),
-                                  fontWeight: FontWeight.w700)),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Image.asset(
-                            "assets/home/choose_cash_right.png",
-                            width: 49.w,
-                            height: 6.h,
-                            fit: BoxFit.fill,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 26.h,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 11.w,
-                          ),
-                          Image.asset(
-                            "assets/home/high_quota_icon.png",
-                            width: 39.w,
-                            height: 39.w,
-                          ),
-                          SizedBox(
-                            width: 7.5.w,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("High quota",
-                                  style: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: const Color(0xFF464646),
-                                      fontWeight: FontWeight.w700)),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              Text(
-                                  "The maximum amount is 10,000~100,000 rupees, and there is no charge if the credit line is not used",
-                                  style: TextStyle(
-                                      fontSize: 6.sp,
-                                      color: const Color(0xFFBEBEBE),
-                                      fontWeight: FontWeight.normal)),
-                            ],
-                          ),
-                          SizedBox(
-                            width: 11.w,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 28.h,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 11.w,
-                          ),
-                          Image.asset(
-                            "assets/home/approval_fast_icon.png",
-                            width: 39.w,
-                            height: 39.w,
-                          ),
-                          SizedBox(
-                            width: 7.5.w,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Approval fast",
-                                  style: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: const Color(0xFF464646),
-                                      fontWeight: FontWeight.w700)),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              Text(
-                                  "Online application, automatic approval, arrive within 24 hours",
-                                  style: TextStyle(
-                                      fontSize: 6.sp,
-                                      color: const Color(0xFFBEBEBE),
-                                      fontWeight: FontWeight.normal)),
-                            ],
-                          ),
-                          SizedBox(
-                            width: 11.w,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 47.h,
+                        height: 5.h,
                       ),
                       Center(
-                        child: PrivacyAgreement(),
+                        child: Text("Loan Process",
+                            style: TextStyle(
+                                fontSize: 25.sp,
+                                color: const Color(0xFF1A1A1A),
+                                fontWeight: FontWeight.w700)),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Image.asset(
+                              "assets/home/home_id_card_icon.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 13.w,
+                          ),
+                          Expanded(
+                            child: Image.asset(
+                              "assets/home/home_application_form_icon.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 13.w,
+                          ),
+                          Expanded(
+                            child: Image.asset(
+                              "assets/home/home_loan_amount_icon.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 13.w,
+                          ),
+                          Expanded(
+                            child: Image.asset(
+                              "assets/home/home_get_loan_icon.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 15.h,
+                      ),
+                      Image.asset(
+                        "assets/home/home_choose_us_icon.png",
+                        fit: BoxFit.fill,
                       ),
                     ],
                   ),
