@@ -106,7 +106,15 @@ class _LoginNewPageState extends State<LoginNewPage> {
                       children: [
                         Image.asset('assets/login/login_phone_icon.png',
                             width: 17.w, height: 25.w),
-                        SizedBox(width: 9.h),
+                        SizedBox(width: 5.w),
+                        Text(
+                          "+91",
+                          style: TextStyle(
+                              fontSize: 15.sp,
+                              color: const Color(0xFF00A651),
+                              fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(width: 5.w),
                         Expanded(
                             child: TextFormField(
                           style: TextStyle(
@@ -350,7 +358,7 @@ class _LoginNewPageState extends State<LoginNewPage> {
     if (_countdownTime > 0) {
       return '${_countdownTime}s';
     } else {
-      return 'OTP';
+      return 'Send';
     }
   }
 
