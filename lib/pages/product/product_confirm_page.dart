@@ -3,10 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_cash/pages/common/marquee_widget.dart';
 import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
+import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
+import 'package:sahayak_cash/pages/order/view/order_page.dart';
+import 'package:sahayak_cash/pages/product/widget/positive_evaluation_dialog.dart';
+import 'package:sahayak_cash/utils/eventbus/eventbus.dart';
+import 'package:sahayak_cash/utils/storage/storage_utils.dart';
+import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 
 class ProductConfirmPage extends StatefulWidget {
   final List itemList;
-  const ProductConfirmPage({Key? key, required this.itemList})
+  final List productIds;
+  const ProductConfirmPage(
+      {Key? key, required this.itemList, required this.productIds})
       : super(key: key);
 
   @override
@@ -14,10 +22,18 @@ class ProductConfirmPage extends StatefulWidget {
 }
 
 class _ProductConfirmPageState extends State<ProductConfirmPage> {
+  bool isGoogleTestAccount = false;
   @override
   void initState() {
     super.initState();
     //...
+    var userInfo = CZStorage.getUserInfo();
+    if (userInfo != null) {
+      var isGoogleTestAccount = userInfo.containsKey("googleTestIQzU8A")
+          ? userInfo["googleTestIQzU8A"]
+          : true;
+      debugPrint("googleTestIQzU8A12345:${isGoogleTestAccount}");
+    }
   }
 
   @override
@@ -97,8 +113,21 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
                     color: const Color(0xFF1A1A1A),
                     borderRadius: BorderRadius.circular(7.5)),
                 child: TextButton(
-                  onPressed: () {
-                    Get.back(result: true);
+                  onPressed: () async {
+                    if (isGoogleTestAccount == false) {
+                      //五星好评的弹窗
+                    } else {
+                      //电子签名
+                    }
+                    CZDialogUtil.show(PositiveEvaluationDialog());
+                    return;
+                    CZLoading.loading();
+                    final response = await HomeController.to
+                        .requestLoanData(widget.productIds);
+                    CZLoading.dismiss();
+                    if (response["statusE8iqlh"] == 0) {
+                      gotoOrderListPage();
+                    }
                   },
                   child: Text("Confirm",
                       style: TextStyle(
@@ -112,6 +141,13 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
             ],
           ),
         ));
+  }
+
+  void gotoOrderListPage() {
+    Get.off(() => OrderPage(
+          canReturn: true,
+        ));
+    EventBus().emit(EventBus.refreshOrderList, null);
   }
 
   List<Widget> listWidget() {

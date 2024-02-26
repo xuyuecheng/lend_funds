@@ -8,9 +8,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sahayak_cash/pages/common/marquee_widget.dart';
 import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
-import 'package:sahayak_cash/pages/order/view/order_page.dart';
 import 'package:sahayak_cash/pages/product/product_confirm_page.dart';
-import 'package:sahayak_cash/utils/eventbus/eventbus.dart';
 import 'package:sahayak_cash/utils/network/dio_config.dart';
 import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -823,20 +821,8 @@ class _HomePageState extends State<HomePage> {
       if (item != null && item.length > 0) {
         var result = await Get.to(() => ProductConfirmPage(
               itemList: item,
+              productIds: productIds,
             ));
-        if (result != null && result) {
-          CZLoading.loading();
-          final response = await HomeController.to.requestLoanData(productIds);
-          CZLoading.dismiss();
-          if (response["statusE8iqlh"] == 0) {
-            CZDialogUtil.dismiss();
-            //
-            Get.to(() => OrderPage(
-                  canReturn: true,
-                ));
-            EventBus().emit(EventBus.refreshOrderList, null);
-          }
-        }
       }
     }
   }
