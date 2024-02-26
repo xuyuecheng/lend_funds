@@ -282,7 +282,7 @@ class _LoginNewPageState extends State<LoginNewPage> {
                         fontWeight: FontWeight.w700),
                   ),
                   TextSpan(
-                    text: '《Sahayak Cash privacy agreement》',
+                    text: '${"《Sahayak Cash's privacy agreement》"}',
                     style: TextStyle(
                         color: const Color(0xFF059226),
                         fontSize: 9.sp,
