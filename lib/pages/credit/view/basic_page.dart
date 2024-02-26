@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart' as myBottomSheet;
 import 'package:sahayak_cash/pages/common/marquee_widget.dart';
 import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 import 'package:sahayak_cash/pages/common/retention_dialog.dart';
@@ -15,7 +16,6 @@ import 'package:sahayak_cash/utils/entity/syscode_entity.dart';
 import 'package:sahayak_cash/utils/network/dio_config.dart';
 import 'package:sahayak_cash/utils/network/dio_request.dart';
 import 'package:sahayak_cash/utils/toast/toast_utils.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart' as myBottomSheet;
 
 class BasicPage extends HookWidget {
   final String formId;
@@ -333,9 +333,12 @@ class BasicPage extends HookWidget {
         String type = contents[i].containsKey("typeIVyt6h")
             ? contents[i]["typeIVyt6h"]
             : null;
+        bool required = contents[i].containsKey("required")
+            ? contents[i]["required"]
+            : false;
 
         if (type == "select") {
-          if (listFormUseState[i].value.id.toString().isEmpty) {
+          if (listFormUseState[i].value.id.toString().isEmpty && required) {
             CZLoading.toast("$name Can not be empty");
             return;
           }
@@ -353,8 +356,9 @@ class BasicPage extends HookWidget {
             submitData[id] = listFormUseState[i].value.id;
           }
         } else if (type == "jobType") {
-          if ((job1 == null || job1?.length == 0) ||
-              (job2 == null || job2?.length == 0)) {
+          if (((job1 == null || job1?.length == 0) ||
+                  (job2 == null || job2?.length == 0)) &&
+              required) {
             CZLoading.toast("$name Can not be empty");
             return;
           }
@@ -363,8 +367,9 @@ class BasicPage extends HookWidget {
           job["profession"] = job2;
           submitData[id] = job;
         } else if (type == "addressType") {
-          if ((address1 == null || address1?.length == 0) ||
-              (address2 == null || address2?.length == 0)) {
+          if (((address1 == null || address1?.length == 0) ||
+                  (address2 == null || address2?.length == 0)) &&
+              required) {
             CZLoading.toast("$name Can not be empty");
             return;
           }
@@ -381,7 +386,8 @@ class BasicPage extends HookWidget {
             submitData[ids.first] = param;
           }
         } else {
-          if (listUseTextEditingController[i].text.toString().isEmpty) {
+          if (listUseTextEditingController[i].text.toString().isEmpty &&
+              required) {
             CZLoading.toast("$name Can not be empty");
             return;
           }
