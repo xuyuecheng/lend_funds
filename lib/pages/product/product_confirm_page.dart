@@ -8,6 +8,7 @@ import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
 import 'package:sahayak_cash/pages/product/widget/feedback_dialog.dart';
 import 'package:sahayak_cash/pages/product/widget/positive_evaluation_dialog.dart';
+import 'package:sahayak_cash/pages/product/widget/signature_dialog.dart';
 import 'package:sahayak_cash/pages/product/widget/thank_dialog.dart';
 import 'package:sahayak_cash/utils/eventbus/eventbus.dart';
 import 'package:sahayak_cash/utils/storage/storage_utils.dart';
@@ -117,6 +118,12 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
                     borderRadius: BorderRadius.circular(7.5)),
                 child: TextButton(
                   onPressed: () async {
+                    CZDialogUtil.show(SignatureDialog(
+                      confirmBlock: () {
+                        gotoOrderListPage();
+                      },
+                    ));
+                    return;
                     CZLoading.loading();
                     final response = await HomeController.to
                         .requestLoanData(widget.productIds);
