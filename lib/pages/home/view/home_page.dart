@@ -9,6 +9,8 @@ import 'package:sahayak_cash/pages/common/marquee_widget.dart';
 import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
 import 'package:sahayak_cash/pages/product/product_confirm_page.dart';
+import 'package:sahayak_cash/pages/webview/webview.dart';
+import 'package:sahayak_cash/utils/const/translate.dart';
 import 'package:sahayak_cash/utils/network/dio_config.dart';
 import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -749,18 +751,22 @@ class _HomePageState extends State<HomePage> {
                                   text: '  I have read and agreed to the ',
                                   style: TextStyle(
                                       color: const Color(0xFF000000),
-                                      fontSize: 9.sp,
+                                      fontSize: 11.sp,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 TextSpan(
                                   text: '《Loan Agreement》',
                                   style: TextStyle(
                                       color: const Color(0xFF059226),
-                                      fontSize: 9.sp,
+                                      fontSize: 11.sp,
                                       fontWeight: FontWeight.w700),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       // debugPrint("1");
+                                      Get.to(() => WebView(
+                                            title: Translate.loanAgreement,
+                                            url: AppConfig.loanAgreement,
+                                          ));
                                     },
                                 ),
                               ],

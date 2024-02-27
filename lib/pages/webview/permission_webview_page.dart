@@ -105,12 +105,12 @@ class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
                         _switchSelected
                             ? "assets/main/main_permission_select.png"
                             : "assets/main/main_permission_unselect.png",
-                        width: 15.w,
-                        height: 15.w),
+                        width: 20.w,
+                        height: 20.w),
                   ),
                   SizedBox(width: 5.h),
                   Text(
-                    "Please read the agreement",
+                    "Please tick the box to agree and confirm",
                     style: TextStyle(
                         fontSize: 12.5.sp,
                         color: const Color(0xFF000000),
@@ -123,7 +123,7 @@ class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
                   if (_switchSelected == false) {
-                    CZLoading.toast("Please read the agreement");
+                    CZLoading.toast("Please tick the box to confirm, thanks");
                     return;
                   }
                   CZStorage.saveAgreePermission(true);

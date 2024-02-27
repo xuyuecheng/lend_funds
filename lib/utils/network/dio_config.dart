@@ -16,8 +16,8 @@ class AppConfig {
       "${DioConfig.baseURL}Terms_conditions.html";
   static const String permission =
       "${DioConfig.baseURL}Permission_Agreement.html";
-  // static const String aboutUs =
-  //     "${DioConfig.baseURL}eurychoric-pornocracy-swiple/deuteranopia-filibeg-spadebone/toxoplasma-counterreconnaissance-headrest/hcnihk.html";
+  static const String loanAgreement =
+      "${DioConfig.baseURL}protocol_link/5kcx9t.html";
 }
 
 class InterfaceConfig {

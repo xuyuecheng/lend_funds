@@ -290,25 +290,29 @@ class _LoginNewPageState extends State<LoginNewPage> {
                           _switchSelected
                               ? "assets/login/login_select_icon.png"
                               : "assets/login/login_noselect_icon.png",
-                          width: 15.w,
-                          height: 15.w),
+                          width: 20.w,
+                          height: 20.w),
                     ),
                   ),
                   TextSpan(
                     text: '  I have read and agreed to Sahayak Cash’s ',
                     style: TextStyle(
                         color: const Color(0xFF000000),
-                        fontSize: 10.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w700),
                   ),
                   TextSpan(
-                    text: '${"User Agreement"}',
+                    text: '${"Privacy Policy"}',
                     style: TextStyle(
                         color: const Color(0xFF059226),
-                        fontSize: 10.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w700),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
+                        Get.to(() => WebView(
+                              title: Translate.privacyStatement,
+                              url: AppConfig.privacyStatementURL,
+                            ));
                         debugPrint("1");
                       },
                   ),
@@ -316,21 +320,21 @@ class _LoginNewPageState extends State<LoginNewPage> {
                     text: ' and ',
                     style: TextStyle(
                         color: const Color(0xFF000000),
-                        fontSize: 10.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w700),
                   ),
                   TextSpan(
-                    text: 'Privacy Policy',
+                    text: 'Terms&Conditions',
                     style: TextStyle(
                         color: const Color(0xFF059226),
-                        fontSize: 10.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w700),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         debugPrint("2");
                         Get.to(() => WebView(
-                              title: Translate.privacyStatement,
-                              url: AppConfig.privacyStatementURL,
+                              title: Translate.termsAgreement,
+                              url: AppConfig.termsAgreement,
                             ));
                       },
                   ),
