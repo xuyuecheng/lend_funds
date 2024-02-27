@@ -173,6 +173,13 @@ class HomeController extends GetxController with StateMixin<Map> {
     return result;
   }
 
+  Future<Map<String, dynamic>> addFeedback(String content) async {
+    Map<String, dynamic> result = await HttpRequest.request(
+        InterfaceConfig.addFeedback,
+        params: {"modelU8mV9A": content});
+    return result;
+  }
+
   Future<Map<String, dynamic>> requestDevModel() async {
     Map<String, dynamic> result =
         await HttpRequest.request(InterfaceConfig.dev_report_situation);

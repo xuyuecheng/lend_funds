@@ -34,6 +34,7 @@ class InterfaceConfig {
   //
   static const String tria = 'calculate/handling_fee';
   static const String loan = "loan/apply";
+  static const String addFeedback = "add/app/feedback";
   //
   static const String submitForm = 'submit/form';
   //

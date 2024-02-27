@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sahayak_cash/pages/common/custom_star_rating.dart';
 
 class PositiveEvaluationDialog extends StatefulWidget {
-  const PositiveEvaluationDialog({Key? key}) : super(key: key);
+  final Function(int) confirmBlock;
+  const PositiveEvaluationDialog({Key? key, required this.confirmBlock})
+      : super(key: key);
 
   @override
   State<PositiveEvaluationDialog> createState() =>
@@ -10,7 +12,7 @@ class PositiveEvaluationDialog extends StatefulWidget {
 }
 
 class _PositiveEvaluationDialogState extends State<PositiveEvaluationDialog> {
-  var starValue = 5; //默认5星
+  int starValue = 5; //默认5星
   @override
   void initState() {
     super.initState();
@@ -63,23 +65,23 @@ class _PositiveEvaluationDialogState extends State<PositiveEvaluationDialog> {
                 height: 13,
               ),
               Container(
-                  alignment: Alignment.center,
-                  width: 133,
-                  height: 34,
-                  decoration: BoxDecoration(
-                      color: const Color(0xFF00A651),
-                      borderRadius: BorderRadius.circular(5)),
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      debugPrint("starValue:$starValue");
-                    },
-                    child: Text("ok",
-                        style: TextStyle(
-                            fontSize: 17.5,
-                            color: const Color(0xFFFFFFFF),
-                            fontWeight: FontWeight.w400)),
-                  )),
+                width: 133,
+                height: 34,
+                decoration: BoxDecoration(
+                    color: const Color(0xFF00A651),
+                    borderRadius: BorderRadius.circular(5)),
+                child: TextButton(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    widget.confirmBlock(starValue);
+                  },
+                  child: Text("ok",
+                      style: TextStyle(
+                          fontSize: 17.5,
+                          color: const Color(0xFFFFFFFF),
+                          fontWeight: FontWeight.w400)),
+                ),
+              ),
               SizedBox(
                 height: 23,
               ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:sahayak_cash/pages/common/marquee_widget.dart';
 import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
-import 'package:sahayak_cash/pages/order/view/order_page.dart';
+import 'package:sahayak_cash/pages/product/widget/feedback_dialog.dart';
 import 'package:sahayak_cash/pages/product/widget/positive_evaluation_dialog.dart';
+import 'package:sahayak_cash/pages/product/widget/thank_dialog.dart';
 import 'package:sahayak_cash/utils/eventbus/eventbus.dart';
 import 'package:sahayak_cash/utils/storage/storage_utils.dart';
 import 'package:sahayak_cash/utils/toast/toast_utils.dart';
@@ -114,19 +116,48 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
                     borderRadius: BorderRadius.circular(7.5)),
                 child: TextButton(
                   onPressed: () async {
-                    if (isGoogleTestAccount == false) {
-                      //五星好评的弹窗
-                    } else {
-                      //电子签名
-                    }
-                    CZDialogUtil.show(PositiveEvaluationDialog());
-                    return;
                     CZLoading.loading();
                     final response = await HomeController.to
                         .requestLoanData(widget.productIds);
                     CZLoading.dismiss();
                     if (response["statusE8iqlh"] == 0) {
-                      gotoOrderListPage();
+                      if (isGoogleTestAccount == false) {
+                        //five_start_dialog
+                        CZDialogUtil.show(PositiveEvaluationDialog(
+                            confirmBlock: (int starValue) {
+                          debugPrint("starValue:$starValue");
+                          //googleplay、app store
+                          if (starValue >= 4) {
+                            LaunchReview.launch(
+                              androidAppId: 'com.sahayak.loan.cash.android',
+                              iOSAppId: "",
+                            );
+                            gotoOrderListPage();
+                          }
+                          //填写反馈
+                          else {
+                            CZDialogUtil.show(FeedbackDialog(
+                              confirmBlock: (String text) async {
+                                debugPrint("text111:$text");
+                                CZLoading.loading();
+                                //调用反馈的接口
+                                final response =
+                                    await HomeController.to.addFeedback(text);
+                                CZLoading.dismiss();
+                                if (response["statusE8iqlh"] == 0) {
+                                  CZDialogUtil.show(ThankDialog(
+                                    confirmBlock: () {
+                                      gotoOrderListPage();
+                                    },
+                                  ));
+                                }
+                              },
+                            ));
+                          }
+                        }));
+                      } else {
+                        //电子签名
+                      }
                     }
                   },
                   child: Text("Confirm",
@@ -144,9 +175,11 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
   }
 
   void gotoOrderListPage() {
-    Get.off(() => OrderPage(
-          canReturn: true,
-        ));
+    // Get.off(() => OrderPage(
+    //       canReturn: true,
+    //     ));
+    Get.back();
+    EventBus().emit(EventBus.changeToOrderTab, null);
     EventBus().emit(EventBus.refreshOrderList, null);
   }
 
