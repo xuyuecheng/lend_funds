@@ -45,248 +45,318 @@ class _MinePageState extends State<MinePage> {
       }
     }
     return Scaffold(
-        backgroundColor: Color(0xFFF4F5F7),
-        body: Stack(
-          alignment: AlignmentDirectional.center,
-          children: [
-            Positioned(
-                top: 28.h,
-                left: 7.5.w,
-                right: 7.5.w,
-                child: Column(
+        backgroundColor: Color(0xFFFFFFFF),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 7.5.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 52.h,
+              ),
+              Center(
+                child: Image.asset('assets/mine/mine_photo_icon.png',
+                    width: 91.w, height: 91.w),
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              Center(
+                child: Text(phone,
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        color: const Color(0xFF0A0A0A),
+                        fontWeight: FontWeight.w700)),
+              ),
+              SizedBox(
+                height: 7.h,
+              ),
+              Center(
+                child: Text("Sahayak Cash Make your credit more valuable",
+                    style: TextStyle(
+                        fontSize: 10.sp,
+                        color: const Color(0xFF0A0A0A),
+                        fontWeight: FontWeight.normal)),
+              ),
+              SizedBox(
+                height: 27.h,
+              ),
+              Text("My Services",
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      color: const Color(0xFF0A0A0A),
+                      fontWeight: FontWeight.w500)),
+              SizedBox(
+                height: 13.h,
+              ),
+              Container(
+                width: 1.sw,
+                decoration: BoxDecoration(
+                    // color: const Color(0xFFFF0000),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Color(0xffC2FADE),
+                        Color(0xffFFFFFF),
+                        Color(0xffFFFFFF)
+                      ],
+                    ),
+                    boxShadow: [
+                      //卡片阴影
+                      BoxShadow(
+                        color: Colors.black54,
+                        offset: Offset(0, 0),
+                        blurRadius: 4.0,
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(7.5.w)),
+                child: Row(
                   children: [
-                    Image.asset('assets/mine/mine_photo_icon.png',
-                        width: 57.w, height: 57.w),
-                    SizedBox(
-                      height: 7.h,
-                    ),
-                    Text(phone,
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            color: const Color(0xFF0A0A0A),
-                            fontWeight: FontWeight.normal)),
-                    SizedBox(
-                      height: 7.h,
-                    ),
-                    Text("Make your credit more valuable",
-                        style: TextStyle(
-                            fontSize: 10.sp,
-                            color: const Color(0xFF0A0A0A),
-                            fontWeight: FontWeight.normal)),
-                    SizedBox(
-                      height: 25.h,
-                    ),
-                    Container(
-                      width: 1.sw,
-                      decoration: BoxDecoration(
-                          color: const Color(0xFFFFFFFF),
-                          borderRadius: BorderRadius.circular(7.5.w)),
-                      // alignment: Alignment.centerLeft,
-                      child: Row(
+                    Expanded(
+                        child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        EventBus().emit(EventBus.changeToOrderTab, null);
+                      },
+                      child: Column(
                         children: [
-                          Expanded(
-                              child: GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            onTap: () {
-                              EventBus().emit(EventBus.changeToOrderTab, null);
-                            },
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 17.h,
-                                ),
-                                Image.asset('assets/mine/mine_my_load_icon.png',
-                                    width: 24.w, height: 17.w),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                Text("My Loan",
-                                    style: TextStyle(
-                                        fontSize: 7.5.sp,
-                                        color: const Color(0xFF5F5F5F),
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                              ],
-                            ),
-                          )),
-                          Expanded(
-                              child: GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            onTap: () {
-                              Get.to(() => WebView(
-                                    title: Translate.termsAgreement,
-                                    url: AppConfig.termsAgreement,
-                                  ));
-                            },
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 17.h,
-                                ),
-                                Image.asset(
-                                    'assets/mine/mine_security_protocol_icon.png',
-                                    width: 24.w,
-                                    height: 17.w),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                Text("Conditions Terms",
-                                    style: TextStyle(
-                                        fontSize: 7.5.sp,
-                                        color: const Color(0xFF5F5F5F),
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                              ],
-                            ),
-                          )),
-                          Expanded(
-                              child: GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            onTap: () {
-                              _emailCall("bcvuwagdak@gmail.com");
-                            },
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 17.h,
-                                ),
-                                Image.asset(
-                                    'assets/mine/mine_customer_service_icon.png',
-                                    width: 24.w,
-                                    height: 17.w),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                Text("Customer service",
-                                    style: TextStyle(
-                                        fontSize: 7.5.sp,
-                                        color: const Color(0xFF5F5F5F),
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                              ],
-                            ),
-                          )),
-                          Expanded(
-                              child: GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            onTap: () {
-                              Get.to(() => WebView(
-                                    title: Translate.privacyStatement,
-                                    url: AppConfig.privacyStatementURL,
-                                  ));
-                            },
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 17.h,
-                                ),
-                                Image.asset(
-                                    'assets/mine/mine_privacy_agreement_icon.png',
-                                    width: 24.w,
-                                    height: 17.w),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                Text("Privacy Policy",
-                                    style: TextStyle(
-                                        fontSize: 7.5.sp,
-                                        color: const Color(0xFF5F5F5F),
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                              ],
-                            ),
-                          )),
-                          Expanded(
-                              child: GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            onTap: () {
-                              CZDialogUtil.show(
-                                  DeleteAccountDialog(confirmBlock: () {
-                                CZDialogUtil.dismiss();
-                                MineController.to
-                                    .requestDelAccount()
-                                    .then((value) {
-                                  if (value["statusE8iqlh"] == 0) {
-                                    CZStorage.removeUserInfo();
-                                    Get.offAll(() => LoginNewPage());
-                                  }
-                                });
-                              }, cancelBlock: () {
-                                CZDialogUtil.dismiss();
-                              }));
-                            },
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 17.h,
-                                ),
-                                Image.asset(
-                                    'assets/mine/mine_delete_account_icon.png',
-                                    width: 24.w,
-                                    height: 17.w),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                Text("Delete Account",
-                                    style: TextStyle(
-                                        fontSize: 7.5.sp,
-                                        color: const Color(0xFF5F5F5F),
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                              ],
-                            ),
-                          )),
+                          SizedBox(
+                            height: 14.h,
+                          ),
+                          Image.asset('assets/mine/mine_my_load_icon.png',
+                              width: 37.w, height: 26.w),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text("My Loan",
+                              style: TextStyle(
+                                  fontSize: 11.5.sp,
+                                  color: const Color(0xFF5F5F5F),
+                                  fontWeight: FontWeight.w500)),
+                          SizedBox(
+                            height: 9.5.h,
+                          ),
+                        ],
+                      ),
+                    )),
+                    SizedBox(
+                      width: 40.w,
+                    ),
+                    Expanded(
+                        child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        _emailCall("bcvuwagdak@gmail.com");
+                      },
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 11.5.h,
+                          ),
+                          Image.asset(
+                              'assets/mine/mine_customer_service_icon.png',
+                              width: 30.w,
+                              height: 30.w),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text("Customer service",
+                              style: TextStyle(
+                                  fontSize: 11.5.sp,
+                                  color: const Color(0xFF5F5F5F),
+                                  fontWeight: FontWeight.w500)),
+                          SizedBox(
+                            height: 9.5.h,
+                          ),
+                        ],
+                      ),
+                    )),
+                    SizedBox(
+                      width: 40.w,
+                    ),
+                    Expanded(
+                        child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        CZDialogUtil.show(DeleteAccountDialog(confirmBlock: () {
+                          CZDialogUtil.dismiss();
+                          MineController.to.requestDelAccount().then((value) {
+                            if (value["statusE8iqlh"] == 0) {
+                              CZStorage.removeUserInfo();
+                              Get.offAll(() => LoginNewPage());
+                            }
+                          });
+                        }, cancelBlock: () {
+                          CZDialogUtil.dismiss();
+                        }));
+                      },
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 11.5.h,
+                          ),
+                          Image.asset(
+                              'assets/mine/mine_delete_account_icon.png',
+                              width: 30.w,
+                              height: 30.w),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text("Delete Account",
+                              style: TextStyle(
+                                  fontSize: 11.5.sp,
+                                  color: const Color(0xFF5F5F5F),
+                                  fontWeight: FontWeight.w500)),
+                          SizedBox(
+                            height: 9.5.h,
+                          ),
+                        ],
+                      ),
+                    )),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 37.h,
+              ),
+              Text("Information Services",
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      color: const Color(0xFF0A0A0A),
+                      fontWeight: FontWeight.w500)),
+              SizedBox(
+                height: 15.h,
+              ),
+              Row(
+                children: [
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      Get.to(() => WebView(
+                            title: Translate.privacyStatement,
+                            url: AppConfig.privacyStatementURL,
+                          ));
+                    },
+                    child: Container(
+                      width: 84.w,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFFFffff),
+                          boxShadow: [
+                            //卡片阴影
+                            BoxShadow(
+                              color: Colors.black54,
+                              offset: Offset(0, 0),
+                              blurRadius: 4.0,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(7.5.w)),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 7.h,
+                          ),
+                          Image.asset(
+                              'assets/mine/mine_privacy_agreement_icon.png',
+                              width: 26.w,
+                              height: 30.w),
+                          SizedBox(
+                            height: 10.5.h,
+                          ),
+                          Text("Privacy\nPolicy",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 11.5.sp,
+                                  color: const Color(0xFF5F5F5F),
+                                  fontWeight: FontWeight.w500)),
+                          SizedBox(
+                            height: 12.h,
+                          ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () async {},
-                      child: Image.asset(
-                        "assets/mine/mine_ad_background.png",
-                        fit: BoxFit.fill,
+                  ),
+                  SizedBox(
+                    width: 15.w,
+                  ),
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      Get.to(() => WebView(
+                            title: Translate.termsAgreement,
+                            url: AppConfig.termsAgreement,
+                          ));
+                    },
+                    child: Container(
+                      width: 84.w,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFFFffff),
+                          boxShadow: [
+                            //卡片阴影
+                            BoxShadow(
+                              color: Colors.black54,
+                              offset: Offset(0, 0),
+                              blurRadius: 4.0,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(7.5.w)),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 7.h,
+                          ),
+                          Image.asset(
+                              'assets/mine/mine_terms_conditions_icon.png',
+                              width: 25.w,
+                              height: 30.w),
+                          SizedBox(
+                            height: 10.5.h,
+                          ),
+                          Text("Terms&\nConditions",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 11.5.sp,
+                                  color: const Color(0xFF5F5F5F),
+                                  fontWeight: FontWeight.w500)),
+                          SizedBox(
+                            height: 12.h,
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                )),
-            Positioned(
-              bottom: 20.h,
-              left: 47.w,
-              right: 47.w,
-              child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  CZStorage.removeUserInfo();
-                  Get.offAll(() => LoginNewPage());
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: const Color(0xFF00A651),
-                      borderRadius: BorderRadius.circular(5.w)),
-                  padding: EdgeInsets.symmetric(vertical: 10.5.h),
-                  alignment: Alignment.center,
-                  child: Text("Log out",
-                      style: TextStyle(
-                          fontSize: 21.5.sp,
-                          color: const Color(0xFFFFFFFF),
-                          fontWeight: FontWeight.w500)),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 80.h,
+              ),
+              Center(
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    CZStorage.removeUserInfo();
+                    Get.offAll(() => LoginNewPage());
+                  },
+                  child: Container(
+                    width: 265.w,
+                    decoration: BoxDecoration(
+                        color: const Color(0xFF00A651),
+                        borderRadius: BorderRadius.circular(5.w)),
+                    padding: EdgeInsets.symmetric(vertical: 10.5.h),
+                    alignment: Alignment.center,
+                    child: Text("Log out",
+                        style: TextStyle(
+                            fontSize: 21.5.sp,
+                            color: const Color(0xFFFFFFFF),
+                            fontWeight: FontWeight.w500)),
+                  ),
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 33.h,
+              ),
+            ],
+          ),
         ));
   }
 
