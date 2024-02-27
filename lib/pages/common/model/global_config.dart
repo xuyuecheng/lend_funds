@@ -6,6 +6,7 @@ import 'package:sahayak_cash/utils/network/dio_request.dart';
 
 class GlobalConfig {
   static String message = "";
+  static bool enableFiveStar = false;
 
   static Future scrollMessageRequest() async {
     Map<String, dynamic> result = await HttpRequest.request(
@@ -16,6 +17,21 @@ class GlobalConfig {
       if (list != null || list!.isNotEmpty) {
         Map map = list[0];
         message = map["contentCxb7jm"];
+      }
+    }
+  }
+
+  static Future appContactInfoRequest() async {
+    Map<String, dynamic> result = await HttpRequest.request(
+      InterfaceConfig.appContact_info,
+      method: "get",
+      params: null,
+    );
+    if (result["statusE8iqlh"] == 0) {
+      Map<dynamic, dynamic> map = result["modelU8mV9A"];
+      if (map["enableFiveStar"]) {
+        enableFiveStar = map["enableFiveStar"];
+        // debugPrint("enableFiveStar111:${enableFiveStar}");
       }
     }
   }

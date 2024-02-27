@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:sahayak_cash/pages/common/marquee_widget.dart';
+import 'package:sahayak_cash/pages/common/model/global_config.dart';
 import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
 import 'package:sahayak_cash/pages/product/widget/feedback_dialog.dart';
@@ -122,39 +123,43 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
                     CZLoading.dismiss();
                     if (response["statusE8iqlh"] == 0) {
                       if (isGoogleTestAccount == false) {
-                        //five_start_dialog
-                        CZDialogUtil.show(PositiveEvaluationDialog(
-                            confirmBlock: (int starValue) {
-                          debugPrint("starValue:$starValue");
-                          //googleplay、app store
-                          if (starValue >= 4) {
-                            LaunchReview.launch(
-                              androidAppId: 'com.sahayak.loan.cash.android',
-                              iOSAppId: "",
-                            );
-                            gotoOrderListPage();
-                          }
-                          //填写反馈
-                          else {
-                            CZDialogUtil.show(FeedbackDialog(
-                              confirmBlock: (String text) async {
-                                debugPrint("text111:$text");
-                                CZLoading.loading();
-                                //调用反馈的接口
-                                final response =
-                                    await HomeController.to.addFeedback(text);
-                                CZLoading.dismiss();
-                                if (response["statusE8iqlh"] == 0) {
-                                  CZDialogUtil.show(ThankDialog(
-                                    confirmBlock: () {
-                                      gotoOrderListPage();
-                                    },
-                                  ));
-                                }
-                              },
-                            ));
-                          }
-                        }));
+                        //有打开好评弹窗
+                        if (GlobalConfig.enableFiveStar) {
+                          CZDialogUtil.show(PositiveEvaluationDialog(
+                              confirmBlock: (int starValue) {
+                            debugPrint("starValue:$starValue");
+                            //googleplay、app store
+                            if (starValue >= 4) {
+                              LaunchReview.launch(
+                                androidAppId: 'com.sahayak.loan.cash.android',
+                                iOSAppId: "",
+                              );
+                              gotoOrderListPage();
+                            }
+                            //填写反馈
+                            else {
+                              CZDialogUtil.show(FeedbackDialog(
+                                confirmBlock: (String text) async {
+                                  debugPrint("text111:$text");
+                                  CZLoading.loading();
+                                  //调用反馈的接口
+                                  final response =
+                                      await HomeController.to.addFeedback(text);
+                                  CZLoading.dismiss();
+                                  if (response["statusE8iqlh"] == 0) {
+                                    CZDialogUtil.show(ThankDialog(
+                                      confirmBlock: () {
+                                        gotoOrderListPage();
+                                      },
+                                    ));
+                                  }
+                                },
+                              ));
+                            }
+                          }));
+                        } else {
+                          gotoOrderListPage();
+                        }
                       } else {
                         //电子签名
                       }
