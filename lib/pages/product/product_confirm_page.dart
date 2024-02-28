@@ -26,17 +26,18 @@ class ProductConfirmPage extends StatefulWidget {
 }
 
 class _ProductConfirmPageState extends State<ProductConfirmPage> {
-  bool isGoogleTestAccount = false;
+  bool _isGoogleTestAccount = false;
   @override
   void initState() {
     super.initState();
     //...
     var userInfo = CZStorage.getUserInfo();
     if (userInfo != null) {
-      var isGoogleTestAccount = userInfo.containsKey("googleTestIQzU8A")
+      var googleTestAccount = userInfo.containsKey("googleTestIQzU8A")
           ? userInfo["googleTestIQzU8A"]
           : true;
-      debugPrint("googleTestIQzU8A12345:${isGoogleTestAccount}");
+      _isGoogleTestAccount = googleTestAccount;
+      debugPrint("googleTestIQzU8A12345:${_isGoogleTestAccount}");
     }
   }
 
@@ -118,18 +119,12 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
                     borderRadius: BorderRadius.circular(7.5)),
                 child: TextButton(
                   onPressed: () async {
-                    CZDialogUtil.show(SignatureDialog(
-                      confirmBlock: () {
-                        gotoOrderListPage();
-                      },
-                    ));
-                    return;
                     CZLoading.loading();
                     final response = await HomeController.to
                         .requestLoanData(widget.productIds);
                     CZLoading.dismiss();
                     if (response["statusE8iqlh"] == 0) {
-                      if (isGoogleTestAccount == false) {
+                      if (_isGoogleTestAccount == false) {
                         //有打开好评弹窗
                         if (GlobalConfig.enableFiveStar) {
                           CZDialogUtil.show(PositiveEvaluationDialog(
@@ -169,6 +164,14 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
                         }
                       } else {
                         //电子签名
+                        CZDialogUtil.show(SignatureDialog(
+                          confirmBlock: () {
+                            gotoOrderListPage();
+                          },
+                          cancelBlock: () {
+                            gotoOrderListPage();
+                          },
+                        ));
                       }
                     }
                   },
