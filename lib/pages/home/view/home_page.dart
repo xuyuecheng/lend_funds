@@ -846,57 +846,36 @@ class _HomePageState extends State<HomePage> {
     Map<Permission, PermissionStatus> statuses = await [
       Permission.sms,
       Permission.camera,
-      Permission.phone,
-      Permission.bluetooth,
-      // Permission.contacts,
-      // Permission.storage
     ].request();
 
     if (PermissionStatus.granted == statuses[Permission.sms] &&
-            PermissionStatus.granted == statuses[Permission.camera] &&
-            PermissionStatus.granted == statuses[Permission.phone] &&
-            PermissionStatus.granted == statuses[Permission.bluetooth]
-        // && PermissionStatus.granted == statuses[Permission.contacts]
-        ) {
+        PermissionStatus.granted == statuses[Permission.camera]) {
       _getDevModel();
       CZLoading.loading();
       await HomeController().requestIncompleteForm();
       CZLoading.dismiss();
     } else {
-      if (PermissionStatus.denied == statuses[Permission.sms] ||
-              PermissionStatus.denied == statuses[Permission.camera] ||
-              PermissionStatus.denied == statuses[Permission.phone] ||
-              PermissionStatus.denied == statuses[Permission.bluetooth]
-          // || PermissionStatus.denied == statuses[Permission.contacts]
-          ) {
-        _requestAllPermission();
-      }
       if (PermissionStatus.permanentlyDenied == statuses[Permission.sms] ||
-              PermissionStatus.permanentlyDenied ==
-                  statuses[Permission.camera] ||
-              PermissionStatus.permanentlyDenied ==
-                  statuses[Permission.phone] ||
-              PermissionStatus.permanentlyDenied ==
-                  statuses[Permission.bluetooth]
-          // || PermissionStatus.permanentlyDenied == statuses[Permission.contacts]
-          ) {
-        //
+          PermissionStatus.permanentlyDenied == statuses[Permission.camera]) {
         showCupertinoDialog(
             context: context,
             builder: (context) {
               return CupertinoAlertDialog(
-                title: const Text('You need to grant album permissions'),
+                title: const Text(
+                    'You need to fully grant permissions to continue'),
                 content: const Text(
-                    'Please go to your phone settings to turn on the corresponding permissions'),
+                    'Please go to Settings to turn on the permissions'),
                 actions: <Widget>[
                   CupertinoDialogAction(
-                    child: const Text('cancel'),
+                    child: const Text('Deny',
+                        style: TextStyle(color: const Color(0xFF000000))),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
                   CupertinoDialogAction(
-                    child: const Text('confirm'),
+                    child: const Text('OK',
+                        style: TextStyle(color: const Color(0xFF000000))),
                     onPressed: () {
                       Navigator.pop(context);
                       //
