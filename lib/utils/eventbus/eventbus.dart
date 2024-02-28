@@ -3,8 +3,9 @@ typedef void EventCallback(arg);
 
 class EventBus {
   static String changeToOrderTab = "changeToOrderTab"; //
-  static String refreshOrderList = "refreshOrderList"; //
+  static String refreshAllOrderList = "refreshAllOrderList"; //
   static String changeToHomeTab = "changeToHomeTab"; //
+  static String selectAllOrder = "selectAllOrder"; //
 
   //
   EventBus._internal();

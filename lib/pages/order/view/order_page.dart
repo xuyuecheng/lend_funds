@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:sahayak_cash/utils/eventbus/eventbus.dart';
 
 import 'order_list_page.dart';
 
@@ -26,10 +27,22 @@ class _OrderPageState extends State<OrderPage>
   late TabController _tabController;
 
   @override
+  void dispose() {
+    //...
+    EventBus().off(EventBus.selectAllOrder);
+    super.dispose();
+  }
+
+  @override
   initState() {
     super.initState();
     _tabController = TabController(
         length: 4, vsync: this, initialIndex: (widget.initialIndex));
+    EventBus().on(EventBus.selectAllOrder, (arg) async {
+      if (_tabController.index != 0) {
+        _tabController.index = 0;
+      }
+    });
   }
 
   @override

@@ -195,7 +195,8 @@ class _ProductConfirmPageState extends State<ProductConfirmPage> {
     //     ));
     Get.back();
     EventBus().emit(EventBus.changeToOrderTab, null);
-    EventBus().emit(EventBus.refreshOrderList, null);
+    EventBus().emit(EventBus.refreshAllOrderList, null);
+    EventBus().emit(EventBus.selectAllOrder, null);
   }
 
   List<Widget> listWidget() {

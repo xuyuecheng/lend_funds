@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 import 'package:sahayak_cash/pages/feedback/feedback_list_page.dart';
 import 'package:sahayak_cash/pages/repay/repay_page.dart';
@@ -15,7 +16,6 @@ import 'package:sahayak_cash/utils/network/dio_config.dart';
 import 'package:sahayak_cash/utils/network/dio_request.dart';
 import 'package:sahayak_cash/utils/time/time_utils.dart';
 import 'package:sahayak_cash/utils/toast/toast_utils.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class OrderListPage extends StatefulWidget {
   final String status;
@@ -32,7 +32,7 @@ class _OrderListPageState extends State<OrderListPage> {
   @override
   void dispose() {
     //...
-    EventBus().off(EventBus.refreshOrderList);
+    EventBus().off(EventBus.refreshAllOrderList);
     super.dispose();
   }
 
@@ -41,7 +41,7 @@ class _OrderListPageState extends State<OrderListPage> {
     super.initState();
     //...
     //listen event
-    EventBus().on(EventBus.refreshOrderList, (arg) async {
+    EventBus().on(EventBus.refreshAllOrderList, (arg) async {
       //all update
       if (widget.status == "") {
         await model.refresh();
