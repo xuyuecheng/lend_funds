@@ -60,7 +60,7 @@ class _SplashState extends State<Splash> {
     if (installProtol == false) {
       Get.off(() => PermissionWebviewPage(
             title: Translate.permission,
-            url: AppConfig.privacyStatementURL,
+            url: AppConfig.permission,
           ));
     } else {
       //

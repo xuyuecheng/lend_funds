@@ -105,8 +105,8 @@ class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
                         _switchSelected
                             ? "assets/main/main_permission_select.png"
                             : "assets/main/main_permission_unselect.png",
-                        width: 20.w,
-                        height: 20.w),
+                        width: 24.w,
+                        height: 24.w),
                   ),
                   SizedBox(width: 5.h),
                   Text(

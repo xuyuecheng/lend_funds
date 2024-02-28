@@ -79,6 +79,9 @@ class _HomePageState extends State<HomePage> {
                                         fontSize: 45.sp,
                                         color: const Color(0xFFFFFFFF),
                                         fontWeight: FontWeight.w700)),
+                                SizedBox(
+                                  height: 11.h,
+                                ),
                                 Row(
                                   children: [
                                     Row(
@@ -102,6 +105,9 @@ class _HomePageState extends State<HomePage> {
                                                         const Color(0xFFFFFFFF),
                                                     fontWeight:
                                                         FontWeight.w500)),
+                                            SizedBox(
+                                              height: 3.h,
+                                            ),
                                             Text("360 days",
                                                 style: TextStyle(
                                                     fontSize: 10.sp,
@@ -137,6 +143,9 @@ class _HomePageState extends State<HomePage> {
                                                         const Color(0xFFFFFFFF),
                                                     fontWeight:
                                                         FontWeight.w500)),
+                                            SizedBox(
+                                              height: 3.h,
+                                            ),
                                             Text("0.05% per day",
                                                 style: TextStyle(
                                                     fontSize: 10.sp,
@@ -176,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       )),
                       SizedBox(
-                        height: 5.h,
+                        height: 30.h,
                       ),
                       Center(
                         child: Text("Loan Process",
@@ -186,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.w700)),
                       ),
                       SizedBox(
-                        height: 10.h,
+                        height: 15.h,
                       ),
                       Row(
                         children: [
@@ -226,7 +235,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                       SizedBox(
-                        height: 15.h,
+                        height: 50.h,
                       ),
                       Image.asset(
                         "assets/home/home_choose_us_icon.png",
@@ -337,7 +346,7 @@ class _HomePageState extends State<HomePage> {
                                                         SizedBox(
                                                           width: 5.w,
                                                         ),
-                                                        Text("Range(INR)",
+                                                        Text("Credit(INR)",
                                                             style: TextStyle(
                                                                 fontSize: 20.sp,
                                                                 color: const Color(
@@ -541,7 +550,7 @@ class _HomePageState extends State<HomePage> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Text("Range(INR)",
+                                                      Text("Credit(INR)",
                                                           style: TextStyle(
                                                               fontSize: 12.5.sp,
                                                               color: const Color(

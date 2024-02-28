@@ -20,6 +20,7 @@ class PrivacyAgreement extends StatelessWidget {
       },
       child: Text("Privacy Policy",
           style: TextStyle(
+              decoration: TextDecoration.underline,
               fontSize: 12.sp,
               color: const Color(0xFF00A651),
               fontWeight: FontWeight.normal)),
