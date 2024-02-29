@@ -204,7 +204,7 @@ class _OrderListPageState extends State<OrderListPage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text("Loanamount:",
+                                    Text("Loan Amount:",
                                         style: TextStyle(
                                             fontSize: 11.5.sp,
                                             color: Colors.black,
@@ -256,7 +256,7 @@ class _OrderListPageState extends State<OrderListPage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text("Loan notenumber:",
+                                    Text("Loan ID:",
                                         style: TextStyle(
                                             fontSize: 11.5.sp,
                                             color: Colors.black,
