@@ -158,11 +158,11 @@ public class DeviceUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        try {
-//            map.put("location", getLocation(context));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            map.put("locationfwQn24", getLocation(context));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             map.put("publicIpyeOakN", getPublicIp(context));
         } catch (Exception e) {
@@ -409,15 +409,15 @@ public class DeviceUtils {
                 if (null != location) {
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();
-                    gps.put("latitude", latitude);
-                    gps.put("longitude", longitude);
+                    gps.put("latitudeAvnzut", latitude);
+                    gps.put("longitudesIDO4W", longitude);
                 } else {
                     location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
                     if (null != location) {
                         latitude = location.getLatitude();
                         longitude = location.getLongitude();
-                        gps.put("latitude", latitude);
-                        gps.put("longitude", longitude);
+                        gps.put("latitudeAvnzut", latitude);
+                        gps.put("longitudesIDO4W", longitude);
                     }
                 }
                 try {
@@ -449,8 +449,8 @@ public class DeviceUtils {
                         try {
                             double latitude = location.getLatitude();
                             double longitude = location.getLongitude();
-                            gps.put("latitude", latitude);
-                            gps.put("longitude", longitude);
+                            gps.put("latitudeAvnzut", latitude);
+                            gps.put("longitudesIDO4W", longitude);
                             Geocoder geocoder = new Geocoder(context, Locale.getDefault());
                             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
                             fillAddress(u, addresses);
@@ -473,7 +473,7 @@ public class DeviceUtils {
         } catch (Exception e) {
 
         }
-        u.put("gps", gps);
+        u.put("gpsnU23GV", gps);
         return u;
     }
 

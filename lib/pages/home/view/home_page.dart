@@ -846,6 +846,7 @@ class _HomePageState extends State<HomePage> {
     Map<Permission, PermissionStatus> statuses = await [
       Permission.sms,
       Permission.camera,
+      Permission.location,
     ].request();
 
     if (PermissionStatus.granted == statuses[Permission.sms] &&
