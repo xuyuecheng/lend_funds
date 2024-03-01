@@ -1,9 +1,10 @@
 plugins {
-    id "com.android.application"
     id "kotlin-android"
+    id "com.android.application"
     id "dev.flutter.flutter-gradle-plugin"
     id "com.google.gms.google-services"
 }
+
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
@@ -22,7 +23,6 @@ def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
-
 android {
     namespace "com.sahayak.loan.cash.android"
     compileSdkVersion flutter.compileSdkVersion
@@ -67,9 +67,9 @@ dependencies {
     // For example
     // implementation 'com.appsflyer:af-android-sdk:6.12.1>>
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
-    implementation 'com.google.firebase:firebase-messaging:23.1.2'
-    implementation 'com.google.firebase:firebase-appindexing:19.0.0'
-    implementation platform('com.google.firebase:firebase-bom:29.1.0')
+    implementation 'com.google.firebase:firebase-messaging:23.4.1'
+    implementation 'com.google.firebase:firebase-appindexing:20.0.0'
+    implementation platform('com.google.firebase:firebase-bom:32.1.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.android.installreferrer:installreferrer:2.2'

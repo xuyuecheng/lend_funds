@@ -40,9 +40,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   void initState() {
     // TODO: implement initState
     super.initState();
-    //GoogleInstanceId
-    // HttpController.uploadGoogleInstanceIdRequest();
-    // HttpController.uploadGoogleTokenRequest();
+    HttpController.uploadGoogleInstanceIdRequest();
+    HttpController.uploadGoogleTokenRequest();
     HttpController.uploadInstallReferrerRequest();
     GlobalConfig.appContactInfoRequest();
   }
