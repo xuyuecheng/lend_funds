@@ -147,7 +147,7 @@ class _MinePageState extends State<MinePage> {
                         child: GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
-                        _emailCall("bcvuwagdak@gmail.com");
+                        _emailCall("sahayaknewcash@outlook.com");
                       },
                       child: Column(
                         children: [
