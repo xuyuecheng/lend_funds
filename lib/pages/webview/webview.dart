@@ -24,7 +24,7 @@ class _WebViewState extends State<WebView> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     controller = WebViewController()
-      // ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
           NavigationDelegate(onNavigationRequest: (NavigationRequest request) {
         if (mounted) {
