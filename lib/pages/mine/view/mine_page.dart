@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_cash/pages/login/view/login_new_page.dart';
@@ -117,6 +118,8 @@ class _MinePageState extends State<MinePage> {
                         child: GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
+                        facebookLogin();
+                        return;
                         EventBus().emit(EventBus.changeToOrderTab, null);
                       },
                       child: Column(
@@ -363,5 +366,21 @@ class _MinePageState extends State<MinePage> {
   Future<void> _emailCall(String emailNumber) async {
     TelAndSmsService service = getIt<TelAndSmsService>();
     service.sendEmail(emailNumber);
+  }
+
+  void facebookLogin() async {
+    final LoginResult result = await FacebookAuth.instance
+        .login(); // by default we request the email and the public profile
+    if (result.status == LoginStatus.success) {
+      // you are logged
+      final AccessToken accessToken = result.accessToken!;
+
+      Map<String, dynamic> userData = await FacebookAuth.instance.getUserData();
+      print("facebook 获取登录用户信息" + userData.toString());
+    } else {
+      print("facebook 登录失败");
+      print(result.status);
+      print(result.message);
+    }
   }
 }
