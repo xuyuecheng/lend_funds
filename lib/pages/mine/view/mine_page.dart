@@ -130,6 +130,7 @@ class _MinePageState extends State<MinePage> {
                             height: 10.h,
                           ),
                           Text("My Loan",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 11.5.sp,
                                   color: const Color(0xFF5F5F5F),
@@ -162,6 +163,7 @@ class _MinePageState extends State<MinePage> {
                             height: 10.h,
                           ),
                           Text("Customer service",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 11.5.sp,
                                   color: const Color(0xFF5F5F5F),
@@ -204,6 +206,7 @@ class _MinePageState extends State<MinePage> {
                             height: 10.h,
                           ),
                           Text("Delete Account",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 11.5.sp,
                                   color: const Color(0xFF5F5F5F),
