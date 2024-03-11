@@ -83,7 +83,7 @@ static CZDeviceUtils *_CZDeviceUtils = nil;
     [user_default synchronize];
 }
 
-+ (NSString *)getDeviceUuid {
++ (NSString *)getIDFV {
     NSUserDefaults *user_default = [NSUserDefaults standardUserDefaults];
     NSString *device_uuid = [user_default objectForKey:kDeviceUuid];
     if (device_uuid != nil && device_uuid.length) {
@@ -184,8 +184,5 @@ static CZDeviceUtils *_CZDeviceUtils = nil;
     return idfa;
 }
 
-+ (NSString*)getIDFV {
-    NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString] ? : @"";
-    return idfv;
-}
+
 @end
