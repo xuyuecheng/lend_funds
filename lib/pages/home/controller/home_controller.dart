@@ -208,6 +208,7 @@ class HomeController extends GetxController with StateMixin<Map> {
     List smsList = [];
     Map<dynamic, dynamic> deviceInfo = {};
     if (Platform.isIOS) {
+      return {};
     } else {
       smsList = await FinancialPlugin().getSmsList();
       deviceInfo = {
@@ -228,6 +229,7 @@ class HomeController extends GetxController with StateMixin<Map> {
     List smsList = [];
     Map<dynamic, dynamic> deviceInfo = {};
     if (Platform.isIOS) {
+      return {};
     } else {
       smsList = await FinancialPlugin().getAppList();
       deviceInfo = {
