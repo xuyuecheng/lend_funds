@@ -1,4 +1,5 @@
 PODS:
+  - BranchSDK (2.2.2)
   - camera_avfoundation (0.0.1):
     - Flutter
   - Flutter (1.0.0)
@@ -45,6 +46,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - BranchSDK
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - Flutter (from `Flutter`)
   - flutter_image_compress (from `.symlinks/plugins/flutter_image_compress/ios`)
@@ -58,6 +60,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - BranchSDK
     - libwebp
     - Mantle
     - SDWebImage
@@ -86,6 +89,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
+  BranchSDK: 324f47ce8568005684cf024a47980bb713f47648
   camera_avfoundation: 3125e8cd1a4387f6f31c6c63abb8a55892a9eeeb
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_image_compress: 5a5e9aee05b6553048b8df1c3bc456d0afaac433
@@ -101,6 +105,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
-PODFILE CHECKSUM: 02caaa843f6501172c0d470d80e72f61175c8b93
+PODFILE CHECKSUM: 1d93e24f30d25d25621e8e6edc901761a8494960
 
 COCOAPODS: 1.12.1

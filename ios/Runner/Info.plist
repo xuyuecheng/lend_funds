@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>branch_key</key>
+            <dict>
+                <key>live</key>
+                <string>key_live_ksgrXIzi6Pl2P0VT17inHkhfvvbhtNRk</string>
+            </dict>
+	<key>branch_universal_link_domains</key>
+	<array>
+		<string>l2tjw.app.link</string>
+		<string>l2tjw-alternate.app.link</string>
+	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -27,9 +37,11 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.sahayak.loan.cash.ios</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>prefs</string>
+				<string>branchsters</string>
 			</array>
 		</dict>
 	</array>
