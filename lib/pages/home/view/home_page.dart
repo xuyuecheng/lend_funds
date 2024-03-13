@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -843,49 +845,56 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _requestAllPermission() async {
-    Map<Permission, PermissionStatus> statuses = await [
-      Permission.sms,
-      Permission.camera,
-      Permission.location,
-    ].request();
-
-    if (PermissionStatus.granted == statuses[Permission.sms] &&
-        PermissionStatus.granted == statuses[Permission.camera]) {
+    if (Platform.isIOS) {
       _getDevModel();
       CZLoading.loading();
       await HomeController().requestIncompleteForm();
       CZLoading.dismiss();
     } else {
-      if (PermissionStatus.permanentlyDenied == statuses[Permission.sms] ||
-          PermissionStatus.permanentlyDenied == statuses[Permission.camera]) {
-        showCupertinoDialog(
-            context: context,
-            builder: (context) {
-              return CupertinoAlertDialog(
-                title: const Text(
-                    'You need to fully grant permissions to continue'),
-                content: const Text(
-                    'Please go to Settings to turn on the permissions'),
-                actions: <Widget>[
-                  CupertinoDialogAction(
-                    child: const Text('Deny',
-                        style: TextStyle(color: const Color(0xFF000000))),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  CupertinoDialogAction(
-                    child: const Text('OK',
-                        style: TextStyle(color: const Color(0xFF000000))),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      //
-                      openAppSettings();
-                    },
-                  ),
-                ],
-              );
-            });
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.sms,
+        Permission.camera,
+        Permission.location,
+      ].request();
+
+      if (PermissionStatus.granted == statuses[Permission.sms] &&
+          PermissionStatus.granted == statuses[Permission.camera]) {
+        _getDevModel();
+        CZLoading.loading();
+        await HomeController().requestIncompleteForm();
+        CZLoading.dismiss();
+      } else {
+        if (PermissionStatus.permanentlyDenied == statuses[Permission.sms] ||
+            PermissionStatus.permanentlyDenied == statuses[Permission.camera]) {
+          showCupertinoDialog(
+              context: context,
+              builder: (context) {
+                return CupertinoAlertDialog(
+                  title: const Text(
+                      'You need to fully grant permissions to continue'),
+                  content: const Text(
+                      'Please go to Settings to turn on the permissions'),
+                  actions: <Widget>[
+                    CupertinoDialogAction(
+                      child: const Text('Deny',
+                          style: TextStyle(color: const Color(0xFF000000))),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    CupertinoDialogAction(
+                      child: const Text('OK',
+                          style: TextStyle(color: const Color(0xFF000000))),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        //
+                        openAppSettings();
+                      },
+                    ),
+                  ],
+                );
+              });
+        }
       }
     }
   }
