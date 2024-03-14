@@ -8,7 +8,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sahayak_cash/utils/route/route_config.dart';
 import 'package:sahayak_cash/utils/storage/storage_utils.dart';
-import 'package:sahayak_cash/utils/theme/colors_utils.dart';
 import 'package:sahayak_cash/utils/toast/toast_utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -74,7 +73,7 @@ class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
                 alignment: Alignment.center,
                 child: SpinKitFadingCircle(
                   size: 50,
-                  color: ColorsCommon.mainColor,
+                  color: Color(0xff00A651),
                 ),
               )
             : WebViewWidget(
