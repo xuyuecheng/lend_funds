@@ -6,8 +6,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../utils/theme/colors_utils.dart';
-
 class WebView extends StatefulWidget {
   String title;
   String url;
@@ -69,7 +67,7 @@ class _WebViewState extends State<WebView> with AutomaticKeepAliveClientMixin {
               alignment: Alignment.center,
               child: SpinKitFadingCircle(
                 size: 50,
-                color: ColorsCommon.mainColor,
+                color: Color(0xff00A651),
               ),
             )
           : WebViewWidget(
