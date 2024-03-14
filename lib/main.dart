@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sahayak_cash/pages/common/model/global_config.dart';
 import 'package:sahayak_cash/pages/main/controllers/main_config.dart';
 import 'package:sahayak_cash/pages/main/controllers/main_controller.dart';
 import 'package:sahayak_cash/utils/controller/controller_utils.dart';
@@ -20,7 +19,7 @@ void main() async {
   setUpGetIt();
   await CZMainConfig.CZBeforeRunAppConfig();
   cameras = await availableCameras();
-  await GlobalConfig.scrollMessageRequest();
+  // await GlobalConfig.scrollMessageRequest();
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
@@ -43,7 +42,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     HttpController.uploadGoogleInstanceIdRequest();
     HttpController.uploadGoogleTokenRequest();
     HttpController.uploadInstallReferrerRequest();
-    GlobalConfig.appContactInfoRequest();
+    // GlobalConfig.appContactInfoRequest();
   }
 
   @override

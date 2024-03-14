@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sahayak_cash/pages/common/marquee_widget.dart';
+import 'package:sahayak_cash/pages/common/model/global_config.dart';
 import 'package:sahayak_cash/pages/common/privacy_agreement.dart';
 import 'package:sahayak_cash/pages/home/controller/home_controller.dart';
 import 'package:sahayak_cash/pages/product/product_confirm_page.dart';
@@ -30,6 +31,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    GlobalConfig.scrollMessageRequest();
+    GlobalConfig.appContactInfoRequest();
     //...
     Get.put(HomeController());
   }
