@@ -173,9 +173,21 @@ class _OrderListPageState extends State<OrderListPage> {
                                     Row(
                                       children: [
                                         Image.network(
-                                            "${DioConfig.IMAGE_URL}$icon",
-                                            width: 27.w,
-                                            height: 27.w),
+                                          "${DioConfig.IMAGE_URL}$icon",
+                                          width: 27.w,
+                                          height: 27.w,
+                                          errorBuilder: (
+                                            BuildContext context,
+                                            Object error,
+                                            StackTrace? stackTrace,
+                                          ) {
+                                            return Container(
+                                              width: 27.w,
+                                              height: 27.w,
+                                              color: Colors.white,
+                                            );
+                                          },
+                                        ),
                                         SizedBox(
                                           width: 10.w,
                                         ),
