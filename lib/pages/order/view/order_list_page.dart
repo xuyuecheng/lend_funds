@@ -318,10 +318,17 @@ class _OrderListPageState extends State<OrderListPage> {
                       children: [
                         Positioned(
                           top: 100.h,
-                          child: Image.asset(
-                              'assets/order/order_list_empty.png',
-                              width: 227.w,
-                              height: 223.w),
+                          child: Column(
+                            children: [
+                              Image.asset('assets/order/order_list_empty.png',
+                                  width: 227.w, height: 223.w),
+                              Text("No orders",
+                                  style: TextStyle(
+                                      fontSize: 17.sp,
+                                      color: Color(0xff969696),
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          ),
                         ),
                         Positioned(
                           bottom: 25.h,
