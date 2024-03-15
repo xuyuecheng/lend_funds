@@ -42,9 +42,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>branchsters</string>
+                <string>fbAPP-ID</string>
 			</array>
 		</dict>
 	</array>
+    <key>FacebookAppID</key>
+    <string>APP-ID</string>
+    <key>FacebookClientToken</key>
+    <string>CLIENT-TOKEN</string>
+    <key>FacebookDisplayName</key>
+    <string>APP-NAME</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSApplicationQueriesSchemes</key>

@@ -2,6 +2,12 @@ PODS:
   - BranchSDK (2.2.2)
   - camera_avfoundation (0.0.1):
     - Flutter
+  - FBAEMKit (16.3.1):
+    - FBSDKCoreKit_Basics (= 16.3.1)
+  - FBSDKCoreKit (16.3.1):
+    - FBAEMKit (= 16.3.1)
+    - FBSDKCoreKit_Basics (= 16.3.1)
+  - FBSDKCoreKit_Basics (16.3.1)
   - Flutter (1.0.0)
   - flutter_image_compress (1.0.0):
     - Flutter
@@ -48,6 +54,7 @@ PODS:
 DEPENDENCIES:
   - BranchSDK
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
+  - FBSDKCoreKit
   - Flutter (from `Flutter`)
   - flutter_image_compress (from `.symlinks/plugins/flutter_image_compress/ios`)
   - flutter_native_contact_picker (from `.symlinks/plugins/flutter_native_contact_picker/ios`)
@@ -61,6 +68,9 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - BranchSDK
+    - FBAEMKit
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - libwebp
     - Mantle
     - SDWebImage
@@ -91,6 +101,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   BranchSDK: 324f47ce8568005684cf024a47980bb713f47648
   camera_avfoundation: 3125e8cd1a4387f6f31c6c63abb8a55892a9eeeb
+  FBAEMKit: 6c7b5eb77c96861bb59e040842c6e55bf39512ce
+  FBSDKCoreKit: 5e4dd478947ab1bcc887e8cfadeae0727af1a942
+  FBSDKCoreKit_Basics: cd7b5f5d1e8868c26706917919d058999ca672c3
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_image_compress: 5a5e9aee05b6553048b8df1c3bc456d0afaac433
   flutter_native_contact_picker: bd430ba0fbf82768bb50c2c52a69a65759a8f907
@@ -105,6 +118,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
-PODFILE CHECKSUM: 1d93e24f30d25d25621e8e6edc901761a8494960
+PODFILE CHECKSUM: 7378f69ea6eb368cf3a6ccb610ce22e885bfed55
 
 COCOAPODS: 1.12.1
