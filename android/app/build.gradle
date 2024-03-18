@@ -16,12 +16,12 @@ if (localPropertiesFile.exists()) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    flutterVersionCode = '2'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0.1'
+    flutterVersionName = '1.0.2'
 }
 android {
     namespace "com.sahayak.loan.cash.android"
@@ -95,7 +95,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.android.installreferrer:installreferrer:2.2'
     implementation 'io.branch.sdk.android:library:5.4.0'
-    implementation 'com.facebook.android:facebook-android-sdk:8+'
+    implementation 'com.facebook.android:facebook-android-sdk:16.3.0'
 //    implementation 'com.google.firebase:firebase-messaging:23.1.2'
 //    implementation 'com.google.firebase:firebase-appindexing:19.0.0'
 //    implementation platform('com.google.firebase:firebase-bom:29.1.0')

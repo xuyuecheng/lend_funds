@@ -32,7 +32,9 @@ class _OrderListPageState extends State<OrderListPage> {
   @override
   void dispose() {
     //...
-    EventBus().off(EventBus.refreshAllOrderList);
+    if (widget.status == "") {
+      EventBus().off(EventBus.refreshAllOrderList);
+    }
     super.dispose();
   }
 
@@ -41,14 +43,13 @@ class _OrderListPageState extends State<OrderListPage> {
     super.initState();
     //...
     //listen event
-    EventBus().on(EventBus.refreshAllOrderList, (arg) async {
-      //all update
-      if (widget.status == "") {
+    if (widget.status == "") {
+      EventBus().on(EventBus.refreshAllOrderList, (arg) async {
         await model.refresh();
         refreshController.refreshCompleted();
         refreshController.loadComplete();
-      }
-    });
+      });
+    }
   }
 
   @override
@@ -318,10 +319,17 @@ class _OrderListPageState extends State<OrderListPage> {
                       children: [
                         Positioned(
                           top: 100.h,
-                          child: Image.asset(
-                              'assets/order/order_list_empty.png',
-                              width: 227.w,
-                              height: 223.w),
+                          child: Column(
+                            children: [
+                              Image.asset('assets/order/order_list_empty.png',
+                                  width: 227.w, height: 223.w),
+                              Text("No orders",
+                                  style: TextStyle(
+                                      fontSize: 17.sp,
+                                      color: Color(0xff969696),
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          ),
                         ),
                         Positioned(
                           bottom: 25.h,
