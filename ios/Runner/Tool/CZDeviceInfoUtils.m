@@ -33,6 +33,7 @@
 #import <dlfcn.h>
 #import "objc/runtime.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
+#import "XLMLocation.h"
 // 单例对象
 static CZDeviceInfoUtils *_CZDeviceInfoUtils = nil;
 
@@ -189,10 +190,32 @@ static CZDeviceInfoUtils *_CZDeviceInfoUtils = nil;
 }
 
 +(NSDictionary *)getLocation{
+    CLPlacemark *placemark = [XLMLocation shareInstance].placemark;
+    NSString *country = @"";
+    NSString *state = @"";
+    NSString *city = @"";
+    NSString *largeDistrict = @"";
+    NSString *smallDistrict = @"";
+    NSString *latitude = @"";
+    NSString *longitude = @"";
+    if(placemark.location.coordinate.latitude>0){
+        country = placemark.country!=nil?placemark.country:@"";
+        state = placemark.administrativeArea!=nil?placemark.administrativeArea:@"";
+        city = placemark.locality!=nil?placemark.locality:@"";
+        largeDistrict = placemark.subLocality!=nil?placemark.subLocality:@"";
+        smallDistrict = placemark.thoroughfare!=nil?placemark.thoroughfare:@"";
+        latitude = [NSString stringWithFormat:@"%lf",placemark.location.coordinate.latitude];
+        longitude = [NSString stringWithFormat:@"%lf",placemark.location.coordinate.longitude];
+    }
     return @{
+        @"countryoEMjku":country,
+        @"stateh4F5Rd":state,
+        @"cityehEoo4":city,
+        @"largeDistrictTACMrk":largeDistrict,
+        @"smallDistrictAqe834":smallDistrict,
         @"gpsnU23GV":@{
-            @"latitudeAvnzut":@"",
-            @"longitudesIDO4W":@"",
+            @"latitudeAvnzut":latitude,
+            @"longitudesIDO4W":longitude,
         },
     };
 }

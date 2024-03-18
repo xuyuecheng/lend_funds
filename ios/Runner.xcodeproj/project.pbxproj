@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		1C41A0F92B14632C00003DAA /* CZDeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C41A0F82B14632C00003DAA /* CZDeviceUtils.m */; };
+		1C5C91992BA82815002F23F9 /* XLMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5C91982BA82815002F23F9 /* XLMLocation.m */; };
 		1CA24B932B3A859300991D70 /* CZDeviceInfoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA24B922B3A859300991D70 /* CZDeviceInfoUtils.m */; };
 		1CA24BB72B3AB9AB00991D70 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA24BB52B3AB9AB00991D70 /* Reachability.m */; };
 		331C80F4294D02FB00263BE5 /* RunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 331C80F3294D02FB00263BE5 /* RunnerTests.m */; };
@@ -52,6 +53,8 @@
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		1C41A0F72B14632C00003DAA /* CZDeviceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZDeviceUtils.h; sourceTree = "<group>"; };
 		1C41A0F82B14632C00003DAA /* CZDeviceUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZDeviceUtils.m; sourceTree = "<group>"; };
+		1C5C91972BA82815002F23F9 /* XLMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLMLocation.h; sourceTree = "<group>"; };
+		1C5C91982BA82815002F23F9 /* XLMLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLMLocation.m; sourceTree = "<group>"; };
 		1CA24B912B3A859300991D70 /* CZDeviceInfoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZDeviceInfoUtils.h; sourceTree = "<group>"; };
 		1CA24B922B3A859300991D70 /* CZDeviceInfoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZDeviceInfoUtils.m; sourceTree = "<group>"; };
 		1CA24BB52B3AB9AB00991D70 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -101,12 +104,22 @@
 		1C41A0F62B14632C00003DAA /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				1C5C91962BA82815002F23F9 /* Location */,
 				1CA24B912B3A859300991D70 /* CZDeviceInfoUtils.h */,
 				1CA24B922B3A859300991D70 /* CZDeviceInfoUtils.m */,
 				1C41A0F72B14632C00003DAA /* CZDeviceUtils.h */,
 				1C41A0F82B14632C00003DAA /* CZDeviceUtils.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		1C5C91962BA82815002F23F9 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				1C5C91972BA82815002F23F9 /* XLMLocation.h */,
+				1C5C91982BA82815002F23F9 /* XLMLocation.m */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 		1CA24BB32B3AB9AB00991D70 /* Third */ = {
@@ -428,6 +441,7 @@
 				1C41A0F92B14632C00003DAA /* CZDeviceUtils.m in Sources */,
 				1CA24B932B3A859300991D70 /* CZDeviceInfoUtils.m in Sources */,
 				978B8F6F1D3862AE00F588F7 /* AppDelegate.m in Sources */,
+				1C5C91992BA82815002F23F9 /* XLMLocation.m in Sources */,
 				97C146F31CF9000F007C117D /* main.m in Sources */,
 				1CA24BB72B3AB9AB00991D70 /* Reachability.m in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
