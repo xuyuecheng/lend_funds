@@ -32,7 +32,9 @@ class _OrderListPageState extends State<OrderListPage> {
   @override
   void dispose() {
     //...
-    EventBus().off(EventBus.refreshAllOrderList);
+    if (widget.status == "") {
+      EventBus().off(EventBus.refreshAllOrderList);
+    }
     super.dispose();
   }
 
@@ -41,14 +43,13 @@ class _OrderListPageState extends State<OrderListPage> {
     super.initState();
     //...
     //listen event
-    EventBus().on(EventBus.refreshAllOrderList, (arg) async {
-      //all update
-      if (widget.status == "") {
+    if (widget.status == "") {
+      EventBus().on(EventBus.refreshAllOrderList, (arg) async {
         await model.refresh();
         refreshController.refreshCompleted();
         refreshController.loadComplete();
-      }
-    });
+      });
+    }
   }
 
   @override
