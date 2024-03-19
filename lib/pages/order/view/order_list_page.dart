@@ -147,8 +147,9 @@ class _OrderListPageState extends State<OrderListPage> {
                           icon = product.containsKey("iconKzUZic")
                               ? product["iconKzUZic"]
                               : null;
+                          debugPrint(
+                              "IMAGE_URL:" + "${DioConfig.IMAGE_URL}$icon");
                         }
-                        print("IMAGE_URL:" + "${DioConfig.IMAGE_URL}$icon");
                         return GestureDetector(
                           behavior: HitTestBehavior.translucent,
                           onTap: () {
@@ -173,22 +174,28 @@ class _OrderListPageState extends State<OrderListPage> {
                                   children: [
                                     Row(
                                       children: [
-                                        Image.network(
-                                          "${DioConfig.IMAGE_URL}$icon",
-                                          width: 27.w,
-                                          height: 27.w,
-                                          errorBuilder: (
-                                            BuildContext context,
-                                            Object error,
-                                            StackTrace? stackTrace,
-                                          ) {
-                                            return Container(
-                                              width: 27.w,
-                                              height: 27.w,
-                                              color: Colors.white,
-                                            );
-                                          },
-                                        ),
+                                        (icon != null)
+                                            ? Image.network(
+                                                "${DioConfig.IMAGE_URL}$icon",
+                                                width: 27.w,
+                                                height: 27.w,
+                                                errorBuilder: (
+                                                  BuildContext context,
+                                                  Object error,
+                                                  StackTrace? stackTrace,
+                                                ) {
+                                                  return Container(
+                                                    width: 27.w,
+                                                    height: 27.w,
+                                                    color: Colors.white,
+                                                  );
+                                                },
+                                              )
+                                            : Container(
+                                                width: 27.w,
+                                                height: 27.w,
+                                                color: Colors.white,
+                                              ),
                                         SizedBox(
                                           width: 10.w,
                                         ),
