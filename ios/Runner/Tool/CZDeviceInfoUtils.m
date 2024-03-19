@@ -265,7 +265,7 @@ static CZDeviceInfoUtils *_CZDeviceInfoUtils = nil;
 + (NSString *)getMnc{
     CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [info subscriberCellularProvider];
-    NSString *mnc = [carrier mobileNetworkCode] ? : @""; // 网络码 如：01
+    NSString *mnc = [carrier mobileNetworkCode]!=nil ?[carrier mobileNetworkCode] : @""; // 网络码 如：01
     return mnc;
 }
 
@@ -273,7 +273,7 @@ static CZDeviceInfoUtils *_CZDeviceInfoUtils = nil;
 + (NSString *)getMcc{
     CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [info subscriberCellularProvider];
-    NSString *mcc = [carrier mobileCountryCode] ? : @""; // 国家码 如：460
+    NSString *mcc = [carrier mobileCountryCode]!=nil ?[carrier mobileCountryCode] : @""; // 国家码 如：460
     return  mcc;
 }
 
@@ -281,7 +281,7 @@ static CZDeviceInfoUtils *_CZDeviceInfoUtils = nil;
 + (NSString *)getNetworkOperatorName{
     CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [info subscriberCellularProvider];
-    NSString *name = [carrier carrierName] ? : @""; // 运营商名称，中国联通
+    NSString *name = [carrier carrierName]!=nil ?[carrier carrierName] : @""; // 运营商名称，中国联通
     return name;
 }
 
@@ -289,7 +289,7 @@ static CZDeviceInfoUtils *_CZDeviceInfoUtils = nil;
 + (NSString *)getLocaleIso3Language{
     CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [info subscriberCellularProvider];
-    NSString *isoCountryCode = [carrier isoCountryCode] ? : @""; // cn
+    NSString *isoCountryCode = [carrier isoCountryCode]!=nil ?[carrier isoCountryCode] : @""; // cn
     return isoCountryCode;
 }
 
