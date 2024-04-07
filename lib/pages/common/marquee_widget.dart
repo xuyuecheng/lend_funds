@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:sahayak_cash/pages/common/model/global_config.dart';
 import 'package:marquee_text/marquee_text.dart';
+import 'package:sahayak_cash/pages/common/model/global_config.dart';
 
 class MarqueeWidget extends StatefulWidget {
   const MarqueeWidget({Key? key}) : super(key: key);
@@ -17,6 +17,11 @@ class _MarqueeWidgetState extends State<MarqueeWidget> {
   void initState() {
     super.initState();
     //...
+    finalMessage = getMessage();
+  }
+
+  String getMessage() {
+    String joinMessage = "";
     if (GlobalConfig.message.isNotEmpty) {
       List<String> loanList = ["5000", "10000", "20000", "25000", "30000"];
       for (int index = 0; index < 10; index++) {
@@ -26,15 +31,19 @@ class _MarqueeWidgetState extends State<MarqueeWidget> {
         String moneyStr = loanList[randomIndex];
         message = message.replaceAll("#{phone}", phoneStr);
         message = message.replaceAll("#{amount}", moneyStr);
-        finalMessage = finalMessage + message + "     ";
+        joinMessage = joinMessage + message + "     ";
       }
     }
+    return joinMessage;
   }
 
   @override
   Widget build(BuildContext context) {
+    if (finalMessage.isEmpty) {
+      finalMessage = getMessage();
+    }
     return Visibility(
-        visible: (GlobalConfig.message.isNotEmpty),
+        visible: (finalMessage.isNotEmpty),
         child: Column(
           children: [
             Container(
