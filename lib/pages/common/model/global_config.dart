@@ -16,7 +16,7 @@ class GlobalConfig {
       List<dynamic>? list = result["listNPJAeA"];
       if (list != null || list!.isNotEmpty) {
         Map map = list[0];
-        message = map["contentCxb7jm"];
+        message = map["contentCxb7jm"] ?? "";
       }
     }
     return message;

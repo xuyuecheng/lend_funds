@@ -31,10 +31,17 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    GlobalConfig.scrollMessageRequest();
+    scrollMessageReq();
     GlobalConfig.appContactInfoRequest();
     //...
     Get.put(HomeController());
+  }
+
+  void scrollMessageReq() async {
+    String message = await GlobalConfig.scrollMessageRequest();
+    if (message.isNotEmpty) {
+      setState(() {});
+    }
   }
 
   @override
