@@ -22,13 +22,18 @@ class PermissionWebviewPage extends StatefulWidget {
 }
 
 class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
-  late final WebViewController controller;
+  WebViewController? controller;
   bool _isLoading = true;
+  bool _isError = false;
   bool _switchSelected = false;
   @override
   void initState() {
     super.initState();
     //...
+    initWebViewController();
+  }
+
+  void initWebViewController() {
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
@@ -36,6 +41,8 @@ class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
         if (mounted) {
           setState(() {
             _isLoading = true; //
+            _isError = false;
+            debugPrint("onNavigationRequest");
           });
         }
         return NavigationDecision.navigate;
@@ -43,6 +50,16 @@ class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
         if (mounted) {
           setState(() {
             _isLoading = false; //页面加载完成，更新状态
+            _isError = false;
+            debugPrint("onPageFinished");
+          });
+        }
+      }, onWebResourceError: (WebResourceError error) {
+        if (mounted) {
+          setState(() {
+            _isLoading = false; //页面加载错误，更新状态
+            _isError = true;
+            debugPrint("onWebResourceError");
           });
         }
       }))
@@ -68,21 +85,39 @@ class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
           ),
           centerTitle: true,
         ),
-        body: _isLoading
-            ? Container(
-                alignment: Alignment.center,
-                child: SpinKitFadingCircle(
-                  size: 50,
-                  color: Color(0xff00A651),
+        body: _isError
+            ? Center(
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    debugPrint("123456");
+                    initWebViewController();
+                  },
+                  child: Text(
+                    "load error\n please refresh",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        color: const Color(0xFF000000),
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               )
-            : WebViewWidget(
-                controller: controller,
-                //
-                gestureRecognizers: {
-                  Factory(() => VerticalDragGestureRecognizer()), //
-                },
-              ),
+            : _isLoading
+                ? Container(
+                    alignment: Alignment.center,
+                    child: SpinKitFadingCircle(
+                      size: 50,
+                      color: Color(0xff00A651),
+                    ),
+                  )
+                : WebViewWidget(
+                    controller: controller!,
+                    //
+                    gestureRecognizers: {
+                      Factory(() => VerticalDragGestureRecognizer()), //
+                    },
+                  ),
         bottomNavigationBar: Container(
           // height: 175.h,
           child: Column(
