@@ -19,6 +19,7 @@ class GlobalConfig {
         message = map["contentCxb7jm"];
       }
     }
+    return message;
   }
 
   static Future appContactInfoRequest() async {
