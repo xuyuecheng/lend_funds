@@ -20,13 +20,17 @@ class MinePage extends StatefulWidget {
   State<MinePage> createState() => _MinePageState();
 }
 
-class _MinePageState extends State<MinePage> {
+class _MinePageState extends State<MinePage>
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
     //...
     Get.put(MineController());
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
