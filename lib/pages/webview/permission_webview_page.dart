@@ -94,7 +94,7 @@ class _PermissionWebviewPageState extends State<PermissionWebviewPage> {
                     initWebViewController();
                   },
                   child: Text(
-                    "load error\n please refresh",
+                    "Load failed\n click refresh",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 20.sp,
