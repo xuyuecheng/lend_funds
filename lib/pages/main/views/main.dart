@@ -19,7 +19,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
   late BottomNavigationBar navigationBar;
-
+  PageController _pageController = PageController();
   @override
   void initState() {
     // MainController.to.requestUpload();
@@ -27,18 +27,24 @@ class _MainPageState extends State<MainPage> {
     super.initState();
     //listen event
     EventBus().on(EventBus.changeToOrderTab, (arg) {
-      setState(() {
-        _currentIndex = 1;
-        _refresh(1);
-        debugPrint("_currentIndex:$_currentIndex");
-      });
+      // setState(() {
+      //   _currentIndex = 1;
+      //   _refresh(1);
+      //   debugPrint("_currentIndex:$_currentIndex");
+      // });
+      _currentIndex = 1;
+      _pageController.jumpToPage(1);
+      debugPrint("_currentIndex:$_currentIndex");
     });
     EventBus().on(EventBus.changeToHomeTab, (arg) {
-      setState(() {
-        _currentIndex = 0;
-        _refresh(0);
-        debugPrint("_currentIndex:$_currentIndex");
-      });
+      // setState(() {
+      //   _currentIndex = 0;
+      //   _refresh(0);
+      //   debugPrint("_currentIndex:$_currentIndex");
+      // });
+      _currentIndex = 0;
+      _pageController.jumpToPage(0);
+      debugPrint("_currentIndex:$_currentIndex");
     });
   }
 
@@ -64,16 +70,29 @@ class _MainPageState extends State<MainPage> {
       showUnselectedLabels: false,
       onTap: (index) {
         setState(() {
+          //   _currentIndex = index;
+          //   _refresh(index);
+          //   debugPrint("_currentIndex:$_currentIndex");
           _currentIndex = index;
-          _refresh(index);
+          _pageController.jumpToPage(index);
           debugPrint("_currentIndex:$_currentIndex");
         });
       },
     );
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: CZMainConfig.pages,
+      // body: IndexedStack(
+      //   index: _currentIndex,
+      //   children: CZMainConfig.pages,
+      // ),
+      body: PageView.builder(
+        controller: _pageController,
+        itemCount: CZMainConfig.pages.length,
+        itemBuilder: (context, index) => CZMainConfig.pages[index],
+        onPageChanged: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
       bottomNavigationBar: navigationBar,
     );

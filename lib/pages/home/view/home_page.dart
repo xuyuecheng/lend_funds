@@ -25,7 +25,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   var refreshController = RefreshController(initialRefresh: false);
   bool _switchSelected = true;
   @override
@@ -45,6 +46,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
         key: const Key('HomePage'),
@@ -52,6 +56,7 @@ class _HomePageState extends State<HomePage> {
           if (visibilityInfo.visibleFraction == 1) {
             HomeController.to.getIncompleteForm();
             HomeController.to.getProductList();
+            debugPrint("显示首页");
           }
         },
         child: GetBuilder<HomeController>(
