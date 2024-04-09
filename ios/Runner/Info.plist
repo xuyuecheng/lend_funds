@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>branch_key</key>
-            <dict>
-                <key>live</key>
-                <string>key_live_ksgrXIzi6Pl2P0VT17inHkhfvvbhtNRk</string>
-            </dict>
-	<key>branch_universal_link_domains</key>
-	<array>
-		<string>l2tjw.app.link</string>
-		<string>l2tjw-alternate.app.link</string>
-	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -42,16 +32,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>branchsters</string>
-                <string>fbAPP-ID</string>
+				<string>fbAPP-ID</string>
 			</array>
 		</dict>
 	</array>
-    <key>FacebookAppID</key>
-    <string>APP-ID</string>
-    <key>FacebookClientToken</key>
-    <string>CLIENT-TOKEN</string>
-    <key>FacebookDisplayName</key>
-    <string>APP-NAME</string>
+	<key>FacebookAppID</key>
+	<string>APP-ID</string>
+	<key>FacebookClientToken</key>
+	<string>CLIENT-TOKEN</string>
+	<key>FacebookDisplayName</key>
+	<string>APP-NAME</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -73,10 +63,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>"Sahayak Cash" need to get your location for reporting your location information</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>"Sahayak Cash" need to get your location for reporting your location information</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>&quot;Sahayak Cash&quot; need to get your location for reporting your location information</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;Sahayak Cash&quot; need to get your location for reporting your location information</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

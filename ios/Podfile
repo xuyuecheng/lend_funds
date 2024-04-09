@@ -1,7 +1,7 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '11.0'
 
-pod 'BranchSDK'
+#pod 'BranchSDK'
 pod 'FBSDKCoreKit'
 pod 'FirebaseMessaging'
 

@@ -1,5 +1,4 @@
 PODS:
-  - BranchSDK (2.2.2)
   - camera_avfoundation (0.0.1):
     - Flutter
   - FBAEMKit (16.3.1):
@@ -115,7 +114,6 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - BranchSDK
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - FBSDKCoreKit
   - FirebaseCore
@@ -134,7 +132,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - BranchSDK
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
@@ -174,7 +171,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
-  BranchSDK: 324f47ce8568005684cf024a47980bb713f47648
   camera_avfoundation: 3125e8cd1a4387f6f31c6c63abb8a55892a9eeeb
   FBAEMKit: 6c7b5eb77c96861bb59e040842c6e55bf39512ce
   FBSDKCoreKit: 5e4dd478947ab1bcc887e8cfadeae0727af1a942
@@ -201,6 +197,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
-PODFILE CHECKSUM: 91e7ffca8a602e409d5e79e1385dccba7a453fa9
+PODFILE CHECKSUM: 0d23dc785b19576ca56e7eed35b3b8ed2cd586b5
 
 COCOAPODS: 1.12.1

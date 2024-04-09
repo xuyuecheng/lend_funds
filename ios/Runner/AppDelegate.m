@@ -1,7 +1,7 @@
 #import "AppDelegate.h"
 #import "GeneratedPluginRegistrant.h"
 #import "CZDeviceUtils.h"
-#import <Branch.h>
+//#import <Branch.h>
 #import "XLMLocation.h"
 #import <UserNotifications/UserNotifications.h>
 #import <FirebaseCore.h>
@@ -14,10 +14,10 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
   // Override point for customization after application launch.
     [[CZDeviceUtils sharedManager] getDeviceInfo];
     // Listener for Branch deep link data
-     [[Branch getInstance] initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary * _Nonnull params, NSError * _Nullable error) {
-         NSLog(@"11112222%@,userInfo:%@,code:%ld,domain:%@", params,error.userInfo,(long)error.code,error.domain);
-           // Access and use deep link data here (nav to page, display content, etc.)
-     }];
+//     [[Branch getInstance] initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary * _Nonnull params, NSError * _Nullable error) {
+//         NSLog(@"11112222%@,userInfo:%@,code:%ld,domain:%@", params,error.userInfo,(long)error.code,error.domain);
+//           // Access and use deep link data here (nav to page, display content, etc.)
+//     }];
     [XLMLocation shareInstance];
     [[XLMLocation shareInstance] getLocationPlacemark:^(CLPlacemark *placemark) {
         NSString *locationStr = @"";
@@ -56,21 +56,21 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 }
 
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-  [[Branch getInstance] application:app openURL:url options:options];
-  return YES;
-}
+//- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+//  [[Branch getInstance] application:app openURL:url options:options];
+//  return YES;
+//}
 
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler API_AVAILABLE(ios(8.0)){
-    // Handler for Universal Links
-    [[Branch getInstance] continueUserActivity:userActivity];
-    return YES;
-}
+//- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler API_AVAILABLE(ios(8.0)){
+//    // Handler for Universal Links
+//    [[Branch getInstance] continueUserActivity:userActivity];
+//    return YES;
+//}
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
-    [[Branch getInstance] handlePushNotification:userInfo];
+//    [[Branch getInstance] handlePushNotification:userInfo];
     [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
     
