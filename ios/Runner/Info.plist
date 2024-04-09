@@ -38,7 +38,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.sahayak.loan.cash.ios</string>
+			<string>com.sahayak.loan.cash.android</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>branchsters</string>
