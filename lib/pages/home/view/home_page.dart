@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage>
                                         fontSize: 15.sp,
                                         color: const Color(0xFFFFFFFF),
                                         fontWeight: FontWeight.normal)),
-                                Text("₹ 200,000",
+                                Text("₹ 50,000",
                                     style: TextStyle(
                                         fontSize: 45.sp,
                                         color: const Color(0xFFFFFFFF),
