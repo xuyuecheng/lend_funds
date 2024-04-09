@@ -1,6 +1,6 @@
 #import <Flutter/Flutter.h>
 #import <UIKit/UIKit.h>
-#import <FirebaseMessaging.h>
-@interface AppDelegate : FlutterAppDelegate<UNUserNotificationCenterDelegate,FIRMessagingDelegate>
+//#import <FirebaseMessaging.h>
+@interface AppDelegate : FlutterAppDelegate
 
 @end

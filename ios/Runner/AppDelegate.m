@@ -3,11 +3,11 @@
 #import "CZDeviceUtils.h"
 //#import <Branch.h>
 #import "XLMLocation.h"
-#import <UserNotifications/UserNotifications.h>
-#import <FirebaseCore.h>
+//#import <UserNotifications/UserNotifications.h>
+//#import <FirebaseCore.h>
 
 @implementation AppDelegate
-NSString *const kGCMMessageIDKey = @"gcm.message_id";
+//NSString *const kGCMMessageIDKey = @"gcm.message_id";
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [GeneratedPluginRegistrant registerWithRegistry:self];
@@ -67,68 +67,68 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 //    return YES;
 //}
 
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo
-fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
-//    [[Branch getInstance] handlePushNotification:userInfo];
-    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
-    completionHandler(UIBackgroundFetchResultNewData);
-    
-}
+//- (void)application:(UIApplication *)application
+//didReceiveRemoteNotification:(NSDictionary *)userInfo
+//fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
+////    [[Branch getInstance] handlePushNotification:userInfo];
+//    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+//    completionHandler(UIBackgroundFetchResultNewData);
+//
+//}
 
 
-- (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
-    NSLog(@"FCM registration token: %@", fcmToken);
-    [[NSUserDefaults standardUserDefaults] setObject:fcmToken forKey: @"FCMtoken"];
-    // Notify about received token.
-    NSDictionary *dataDict = [NSDictionary dictionaryWithObject:fcmToken forKey:@"token"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:
-     @"FCMToken" object:nil userInfo:dataDict];
-    // TODO: If necessary send token to application server.
-    // TODO: 如有必要，将令牌发送到应用程序服务器。
-    
-    // Note: This callback is fired at each app startup and whenever a new token is generated.
-    // 注意：每次应用程序启动以及生成新令牌时都会触发此回调。
-}
+//- (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
+//    NSLog(@"FCM registration token: %@", fcmToken);
+//    [[NSUserDefaults standardUserDefaults] setObject:fcmToken forKey: @"FCMtoken"];
+//    // Notify about received token.
+//    NSDictionary *dataDict = [NSDictionary dictionaryWithObject:fcmToken forKey:@"token"];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:
+//     @"FCMToken" object:nil userInfo:dataDict];
+//    // TODO: If necessary send token to application server.
+//    // TODO: 如有必要，将令牌发送到应用程序服务器。
+//
+//    // Note: This callback is fired at each app startup and whenever a new token is generated.
+//    // 注意：每次应用程序启动以及生成新令牌时都会触发此回调。
+//}
 
-// This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
-// If swizzling is disabled then this function must be implemented so that the APNs device token can be paired to
-// the FCM registration token.
-//系统通常会在应用每次启动时用注册令牌调用此方法一次
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [[FIRMessaging messaging]tokenWithCompletion:^(NSString * _Nullable token, NSError * _Nullable error) {
-        if (error != nil) {
-            NSLog(@"Error getting FCM registration token: %@", error);
-          } else {
-            NSLog(@"FCM registration token: %@", token);
-//            self.fcmRegTokenMessage.text = token;
-          }
-    }];
- 
-   [FIRMessaging messaging].APNSToken = deviceToken;
-}
+//// This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+//// If swizzling is disabled then this function must be implemented so that the APNs device token can be paired to
+//// the FCM registration token.
+////系统通常会在应用每次启动时用注册令牌调用此方法一次
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+//    [[FIRMessaging messaging]tokenWithCompletion:^(NSString * _Nullable token, NSError * _Nullable error) {
+//        if (error != nil) {
+//            NSLog(@"Error getting FCM registration token: %@", error);
+//          } else {
+//            NSLog(@"FCM registration token: %@", token);
+////            self.fcmRegTokenMessage.text = token;
+//          }
+//    }];
+//
+//   [FIRMessaging messaging].APNSToken = deviceToken;
+//}
 
 
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center
-       willPresentNotification:(UNNotification *)notification
-         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler  API_AVAILABLE(ios(10.0)){
-    NSDictionary *userInfo = notification.request.content.userInfo;
-    if (userInfo[kGCMMessageIDKey]) {
-        NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
-    }
-    
-    //将此更改为您首选的显示选项
-    completionHandler(UNNotificationPresentationOptionNone);
-    
-    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
-}
+//- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+//       willPresentNotification:(UNNotification *)notification
+//         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler  API_AVAILABLE(ios(10.0)){
+//    NSDictionary *userInfo = notification.request.content.userInfo;
+//    if (userInfo[kGCMMessageIDKey]) {
+//        NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+//    }
+//
+//    //将此更改为您首选的显示选项
+//    completionHandler(UNNotificationPresentationOptionNone);
+//
+//    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+//}
 
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center
-didReceiveNotificationResponse:(UNNotificationResponse *)response
-         withCompletionHandler:(void(^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
-    NSDictionary *userInfo = response.notification.request.content.userInfo;
-    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
-    completionHandler();
-}
+//- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+//didReceiveNotificationResponse:(UNNotificationResponse *)response
+//         withCompletionHandler:(void(^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
+//    NSDictionary *userInfo = response.notification.request.content.userInfo;
+//    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+//    completionHandler();
+//}
 
 @end
