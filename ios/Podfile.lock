@@ -45,6 +45,9 @@ PODS:
   - SDWebImageWebPCoder (0.13.0):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
+  - Singular-SDK (12.3.2):
+    - Singular-SDK/Main (= 12.3.2)
+  - Singular-SDK/Main (12.3.2)
   - url_launcher_ios (0.0.1):
     - Flutter
   - webview_flutter_wkwebview (0.0.1):
@@ -60,6 +63,7 @@ DEPENDENCIES:
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - Singular-SDK
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
@@ -72,6 +76,7 @@ SPEC REPOS:
     - Mantle
     - SDWebImage
     - SDWebImageWebPCoder
+    - Singular-SDK
 
 EXTERNAL SOURCES:
   camera_avfoundation:
@@ -111,9 +116,10 @@ SPEC CHECKSUMS:
   permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
   SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
   SDWebImageWebPCoder: af09429398d99d524cae2fe00f6f0f6e491ed102
+  Singular-SDK: fce1555c6e782e120563d2f41ff4ac19c365fd54
   url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
-PODFILE CHECKSUM: 4f9d0d85272e8c2cddc9ce554fd3ebd8d21dff8c
+PODFILE CHECKSUM: 0d3f8921551da272c7437f7d784ba9bf3d756774
 
 COCOAPODS: 1.12.1

@@ -5,7 +5,9 @@
 #import "XLMLocation.h"
 //#import <UserNotifications/UserNotifications.h>
 //#import <FirebaseCore.h>
-
+//#import <Singular.h>
+//#import "Singular.h"
+#import <Singular/Singular.h>
 @implementation AppDelegate
 //NSString *const kGCMMessageIDKey = @"gcm.message_id";
 - (BOOL)application:(UIApplication *)application
@@ -52,9 +54,62 @@
 //
 //    [application registerForRemoteNotifications];
     
+    // 如果会话超时已过/使用 Singular Link 打开，则当用户打开应用程序时启动新会话
+                SingularConfig *config = [self getConfig];
+                config.launchOptions = launchOptions;
+                [Singular start:config];
+    
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
+- (SingularConfig *)getConfig {
+            NSLog(@"-- Scene Delegate getConfig");
+            
+            // 使用 SDK 密钥和 SDK Secret 创建配置对象
+            SingularConfig* config = [[SingularConfig alloc] initWithApiKey:@"pt_finance_2_0c804da6" andSecret:@"382fdc1f2628aa6e23567d14d84dfb35"];
+        
+            /* 在初始化前设置 300 秒延迟，以等待用户的 ATT 响应。如果不显示 ATT 提示，请删除此项！*/
+            config.waitForTrackingAuthorizationWithTimeoutInterval = 300;
+        
+            // 支持自定义 ESP 域名
+            config.espDomains = @[@"links.your-website-domain.com"];
+        
+            // 为深层链接设置处理程序方法
+            config.singularLinksHandler = ^(SingularLinkParams * params) {[self handleDeeplink:params];};
+            
+            return config;
+        }
+
+- (void)handleDeeplink:(SingularLinkParams*)params{
+            // 从 Singular Link 获取深度链接数据
+            NSString* deeplink = [params getDeepLink];
+            NSString* passthrough = [params getPassthrough];
+            BOOL isDeferredDeeplink = [params isDeferred];
+            NSDictionary *urlParams = [params getUrlParameters];
+            // 在此处添加深层链接处理代码
+        }
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity
+         restorationHandler:(void (^)(NSArray<id> *restorableObjects))restorationHandler {
+            // 当用户在后台使用单一链接打开应用程序时启动新会话
+            SingularConfig *config = [self getConfig];
+            config.userActivity = userActivity;
+            [Singular start:config];
+            return YES;
+        }
+        
+        // openURL
+
+        - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options{
+            // 当用户使用非单一链接打开应用程序时启动新会话，就像传统的应用程序方案一样。
+            SingularConfig *config = [self getConfig];
+            config.openUrl = url;
+            [Singular start:config];
+            // 在此处添加自定义代码以重定向到非单数深层链接
+            // ,,,
+            return YES;
+        }
 
 //- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
 //  [[Branch getInstance] application:app openURL:url options:options];
