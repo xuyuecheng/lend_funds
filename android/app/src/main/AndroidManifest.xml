@@ -89,9 +89,7 @@
             </intent-filter>
 
             <intent-filter>
-                <data
-                    android:host="open"
-                    android:scheme="sahayakcash" />
+                <data android:scheme="sahayakcash" />
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
