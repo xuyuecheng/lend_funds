@@ -153,7 +153,8 @@ class _OrderListPageState extends State<OrderListPage> {
                         return GestureDetector(
                           behavior: HitTestBehavior.translucent,
                           onTap: () {
-                            if (mStatus == "LOAN_SUCCESS") {
+                            if (mStatus == "LOAN_SUCCESS" ||
+                                mStatus == "DUNNING") {
                               _getPlan(context, id);
                             }
                           },
@@ -288,7 +289,8 @@ class _OrderListPageState extends State<OrderListPage> {
                                             fontWeight: FontWeight.w500))
                                   ],
                                 ),
-                                (mStatus == "LOAN_SUCCESS")
+                                (mStatus == "LOAN_SUCCESS" ||
+                                        mStatus == "DUNNING")
                                     ? Column(
                                         children: [
                                           // SizedBox(height: 11.5.h),
